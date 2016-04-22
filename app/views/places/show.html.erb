@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<div id="section-one">
+    <div id="section-content">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="col-lg-9">
+           <h3 align="left"><%= @place.name %></h3>
+            <div class="description">
+              <%= image_tag("toronto-1298016_640.jpg") %>
+              <div class="google-maps">
+                <iframe style="border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Toronto,+ON,+Canada&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
+              </div>
+            </div>
+            <div class="desciption">
+              <h4>About</h4>
+              <p><%= @place.about %></p>
+              <hr>
+              <h5><strong>Country: </strong> <%= @place.country %></h5>
+              <h5><strong>City: </strong><%= @place.city %></h5>
+              <h5><strong>Address: </strong><%= @place.address %></h5>
+              <h5><strong>Phone: </strong><%= @place.phone %></h5>
+              <h6><strong>Follow us on: </strong></h6>
+              <h6><%= link_to "Facebook", @place.fb, target: "_blank" %></h6>
+              <h6><%= link_to "Twitter", @place.twit, target: "_blank" %></h6>
+              <h6><%= link_to "Instagram", @place.insta, target: "_blank" %></h6>
+              <h6><%= link_to "My website", @place.web, target: "_blank" %></h6>
+            </div>
+          </div>
+          <div class="side-nav col-lg-3 col-md-3 col-sm-3">
+            <div class="col-md-5">
+              <h5>Cities</h5>
+              <h6>Istambul</h6>
+              <h6>Toronto</h6>
+              <h6>New York</h6>
+              <br>
+              <h5>Categories</h5>
+              <h6>Restaurant</h6>
+              <h6>Cafe</h6>
+              <h6>Art</h6>
+            </div>
+            <div align="center" class="col-md-7">
+              <div class="login">
+                <input type="text" class="form-control" placeholder="Your Email">
+              </div>
+              <div class="login">
+                <input type="text" class="form-control" placeholder="Your Password">
+              </div>
+              <input type="checkbox" aria-label="..."> Remember me
+              <button type="submit" class="btn btn-default pull-right">Log in</button>
+              <br>
+              <a href="#">Forgot your password?</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1">
+          <div class="comment-section">
+            <h6>Comments &amp; reviews :</h6>
+            <hr>
+            <div class="media">
+              <div class="media-body">
+                <h4 class="media-heading">Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates labore fugiat maiores id beatae ipsum, sapiente sunt optio, quod ducimus expedita minus odit officia dolor ad reiciendis tempora fuga ullam.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>

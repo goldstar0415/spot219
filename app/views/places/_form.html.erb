@@ -1,0 +1,86 @@
+<%= form_for(@place) do |f| %>
+  <% if @place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+      <ul>
+      <% @place.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="section-add-place">
+  <hr>
+    <div class="col-lg-10 col-lg-offset-1">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Place Name</label>
+          <%= f.text_field :name, placeholder: "Place name", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">About</label>
+          <%= f.text_area :about, placeholder: "Say something about the place ...", class: "form-control", rows: "3" %>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Country</label>
+            <%= f.text_field :country, placeholder: "Country", class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="exampleInputPassword1">City</label>
+            <%= f.text_field :city, placeholder: "City", class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Phone</label>
+            <%= f.text_field :phone, placeholder: "Phone", class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Full Address</label>
+            <%= f.text_field :address, placeholder: "Full Address", class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Link to Facebook (*)</label>
+            <%= f.text_field :fb, placeholder: "https://www.facebook.com/", class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Link to Twitter (*)</label>
+            <%= f.text_field :twit, placeholder: "https://twitter.com/", class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Link to Instagram (*)</label>
+            <%= f.text_field :insta, placeholder: "https://www.instagram.com/", class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Link to website (*)</label>
+            <%= f.text_field :web, placeholder: "http://www.example.com", class: "form-control" %>
+          </div>
+        </div>
+        <h5 class="danger">(*) Please provide all URLs with http:// or https://</h5>
+        <br>
+        <div class="form-group">
+          <label for="exampleInputFile">Upload image of the place</label>
+          <input type="file" id="exampleInputFile">
+        </div>
+        <%= f.submit "Submit", class: "btn btn-success" %>
+      </form>
+      <%= link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right" %>
+    </div>
+  </div>
+  
+<% end %>

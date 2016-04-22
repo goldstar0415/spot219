@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="title">Listing Places</h3>
+
+<div id="section-one">
+    <div id="section-content">
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+          <div class="col-lg-9">
+            <% @places.each do |place| %>
+              <div class="card">
+                <div class="hovereffect">
+                  <%= image_tag("pic.jpg") %>
+                  <div class="overlay">
+                    <h2>TurkishSpot</h2>
+				            <p><%= link_to "Read More", place %></p> 
+                  </div>
+                </div>
+                <h4 align ="center"><%= link_to place.name, place %></h4>
+                <h5 align="center">Content body text</h5>
+              </div>
+              <% end %>
+          </div>
+          <div class="side-nav col-lg-3 col-md-3 col-sm-3">
+            <div class="col-md-5">
+              <h5>Cities</h5>
+              <h6>Istambul</h6>
+              <h6>Toronto</h6>
+              <h6>New York</h6>
+              <br>
+              <h5>Categories</h5>
+              <h6>Restaurant</h6>
+              <h6>Cafe</h6>
+              <h6>Art</h6>
+            </div>
+            <div align="center" class="col-md-7">
+              <div class="login">
+                <input type="text" class="form-control" placeholder="Your Email">
+              </div>
+              <div class="login">
+                <input type="text" class="form-control" placeholder="Your Password">
+              </div>
+              <input type="checkbox" aria-label="..."> Remember me
+              <button type="submit" class="btn btn-default pull-right">Log in</button>
+              <br>
+              <a href="#">Forgot your password?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<br>
+
+<%= link_to 'New Place', new_place_path %>
