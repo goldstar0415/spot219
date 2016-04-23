@@ -34,14 +34,20 @@
               <h6>Art</h6>
             </div>
             <div align="center" class="col-md-7">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
               <div class="login">
-                <input type="text" class="form-control" placeholder="Your Email">
+                <%= f.email_field :email, autofocus: true, placeholder: "Your Email", class: "form-control" %>
               </div>
               <div class="login">
-                <input type="text" class="form-control" placeholder="Your Password">
+                <%= f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control" %>
               </div>
-              <input type="checkbox" aria-label="..."> Remember me
-              <button type="submit" class="btn btn-default pull-right">Log in</button>
+              <div class="checkbox">
+                <%= f.label :remember_me do %>
+                  <%= f.check_box :remember_me %>Remember me
+                <% end %>
+              </div>
+              <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right" %>
+              <% end %>
               <br>
               <a href="#">Forgot your password?</a>
             </div>
