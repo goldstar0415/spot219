@@ -14,6 +14,7 @@
             </div>
             <div class="desciption">
               <h4>About</h4>
+              <h6><small>This place was created by: <%= @place.user.full_name %></small></h6>
               <p><%= @place.about %></p>
               <hr>
               <h5><strong>Country: </strong> <%= @place.country %></h5>
@@ -39,18 +40,31 @@
               <h6>Cafe</h6>
               <h6>Art</h6>
             </div>
-            <div align="center" class="col-md-7">
-              <div class="login">
-                <input type="text" class="form-control" placeholder="Your Email">
+            <% if user_signed_in? %>
+              <div align="center" class="col-md-7">
+                <%= link_to 'Back', places_path %>
+                <br>
+                <% if current_user == @place.user %>
+                  <%= link_to 'Edit', edit_place_path(@place) %>
+                  <br>
+                  <%= link_to 'Delete', place_path(@place), method: :delete,
+                                data: {confirm: "Are you sure you want to delete this article ?"} %>
+                <% end %>
               </div>
-              <div class="login">
-                <input type="text" class="form-control" placeholder="Your Password">
+            <% else %>
+              <div align="center" class="col-md-7">
+                <div class="login">
+                  <input type="text" class="form-control" placeholder="Your Email">
+                </div>
+                <div class="login">
+                  <input type="text" class="form-control" placeholder="Your Password">
+                </div>
+                <input type="checkbox" aria-label="..."> Remember me
+                <button type="submit" class="btn btn-default pull-right">Log in</button>
+                <br>
+                <a class="pass" href="#">Forgot your password?</a>
               </div>
-              <input type="checkbox" aria-label="..."> Remember me
-              <button type="submit" class="btn btn-default pull-right">Log in</button>
-              <br>
-              <a href="#">Forgot your password?</a>
-            </div>
+            <% end %>
           </div>
         </div>
         <div class="col-lg-10 col-lg-offset-1">

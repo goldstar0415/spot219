@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   # GET /places
   # GET /places.json
@@ -25,7 +26,7 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(place_params)
-
+    @place.user = current_user
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place, notice: 'Place was successfully created.' }
@@ -71,4 +72,12 @@ class PlacesController < ApplicationController
     def place_params
       params.require(:place).permit(:name, :about, :country, :city, :address, :phone, :fb, :twit, :insta, :web)
     end
+    
+    def require_same_user
+      if current_user != @place.user
+        flash[:danger] = "You can only edit or delete your own places"
+        redirect_to root_path
+      end
+    end
+    
 end

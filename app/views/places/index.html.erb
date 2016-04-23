@@ -33,24 +33,30 @@
               <h6>Cafe</h6>
               <h6>Art</h6>
             </div>
-            <div align="center" class="col-md-7">
-              <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
-              <div class="login">
-                <%= f.email_field :email, autofocus: true, placeholder: "Your Email", class: "form-control" %>
+            <% if user_signed_in? %>
+              <div align="center" class="col-md-7">
+                <h4>Hello, <%= current_user.full_name %></h4>
               </div>
-              <div class="login">
-                <%= f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control" %>
-              </div>
-              <div class="checkbox">
-                <%= f.label :remember_me do %>
-                  <%= f.check_box :remember_me %>Remember me
+            <% else %>
+              <div align="center" class="col-md-7">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
+                <div class="login">
+                  <%= f.email_field :email, placeholder: "Your Email", class: "form-control" %>
+                </div>
+                <div class="login">
+                  <%= f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control" %>
+                </div>
+                <div class="checkbox">
+                  <%= f.label :remember_me do %>
+                    <%= f.check_box :remember_me %>Remember me
+                  <% end %>
+                </div>
+                <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right" %>
                 <% end %>
+                <br>
+                <%= link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name) %>
               </div>
-              <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right" %>
-              <% end %>
-              <br>
-              <a href="#">Forgot your password?</a>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
