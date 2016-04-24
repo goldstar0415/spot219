@@ -7,7 +7,11 @@
           <div class="col-lg-9">
             <div class="description">
               <h4 align="left"><strong><%= @place.name %></strong></h4>
-              <%= image_tag @place.image.url(:medium), size: "640x426" %>
+              <% if @place.image.url(:medium) %>
+                <%= image_tag @place.image.url(:medium), size: "640x426" %>
+              <% else %>
+                <%= image_tag("noImage.jpg") %>
+              <% end %>
               <div class="google-maps">
                 <iframe style="border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Toronto,+ON,+Canada&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
               </div>

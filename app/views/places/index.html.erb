@@ -8,7 +8,7 @@
             <% @places.each do |place| %>
               <div class="card">
                 <div class="hovereffect">
-                  <%= image_tag place.image.url(:thumb) %>
+                  <%= image_tag place.image.url(:thumb), size: "200x134" %>
                   <div class="overlay">
                     <h2>TurkishSpot</h2>
 				            <p><%= link_to "Read More", place %></p> 
@@ -61,7 +61,9 @@
     </div>
   </div>
 
-
+<div class="apple_pagination" align="center">
+  <%= will_paginate  %>
+</div>
 
 <br>
 
