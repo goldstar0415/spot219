@@ -1,16 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h3 class="title">Listing Places</h3>
-
 <div id="section-one">
     <div id="section-content">
       <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
-          <div class="col-lg-9">
+          <div class="col-lg-9 col-md-12 col-sm-12">
             <% @places.each do |place| %>
               <div class="card">
                 <div class="hovereffect">
-                  <%= image_tag("pic.jpg") %>
+                  <%= image_tag place.image.url(:thumb) %>
                   <div class="overlay">
                     <h2>TurkishSpot</h2>
 				            <p><%= link_to "Read More", place %></p> 
@@ -21,7 +19,7 @@
               </div>
               <% end %>
           </div>
-          <div class="side-nav col-lg-3 col-md-3 col-sm-3">
+          <div class="side-nav col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="col-md-5">
               <h5>Cities</h5>
               <h6>Istambul</h6>

@@ -1,4 +1,4 @@
-<%= form_for(@place) do |f| %>
+<%= form_for @place, html: { multipart: true }  do |f| %>
   <% if @place.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
@@ -79,7 +79,7 @@
         <br>
         <div class="form-group">
           <label for="exampleInputFile">Upload image of the place</label>
-          <input type="file" id="exampleInputFile">
+          <%= f.file_field :image %>
         </div>
         <%= f.submit "Submit", class: "btn btn-success" %>
       </form>

@@ -5,9 +5,9 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="col-lg-9">
-           <h3 align="left"><%= @place.name %></h3>
             <div class="description">
-              <%= image_tag("toronto-1298016_640.jpg") %>
+              <h4 align="left"><strong><%= @place.name %></strong></h4>
+              <%= image_tag @place.image.url(:medium), size: "640x426" %>
               <div class="google-maps">
                 <iframe style="border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Toronto,+ON,+Canada&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
               </div>
