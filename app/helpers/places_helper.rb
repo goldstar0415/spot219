@@ -1,14 +1,12 @@
 module PlacesHelper
 
   def resource_name
-    :user
+    :city
   end
  
   def resource
-    @resource ||= User.new
+    @resource ||= City.new
   end
  
-  def devise_mapping
-    @devise_mapping ||= Devise.mappings[:user]
-  end
+  
 end

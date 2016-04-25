@@ -1,0 +1,61 @@
+<%= form_for(@city) do |f| %>
+  <% if @city.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@city.errors.count, "error") %> prohibited this city from being saved:</h2>
+
+      <ul>
+      <% @city.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
+  <div id="section-add-city">
+  <hr>
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1">
+        <form>
+         <h4>Introduce yourself</h4>        
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputPassword1">First Name</label>
+              <%= f.text_field :first_name,class: "form-control", placeholder: "First Name" %>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Last Name</label>
+              <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Email</label>
+              <%= f.text_field :email,class: "form-control", placeholder: "Your Email" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Why would you like to add your city ?</label>
+            <%= f.text_area :about,class: "form-control", rows: "3", placeholder: "Say something about the city ..." %>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="exampleInputPassword1">City Name</label>
+              <%= f.text_field :city_name,class: "form-control", placeholder: "City Name" %>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-1 col-lg-offset-1">
+      <%= f.submit "Next", class: "btn btn-success" %>
+      <br>
+      <hr>
+      <%= link_to 'Cancel, go to home', root_path, class: "btn btn-default btn-xs" %>
+    </div>
+  </div>
+  
+
+<% end %>

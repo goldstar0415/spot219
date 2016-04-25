@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
-
+<h3 class="title">Places in <%= @city.city_name %></h3>
 <div id="section-one">
     <div id="section-content">
       <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
           <div class="col-lg-9 col-md-12 col-sm-12">
             <% @places.each do |place| %>
+            <% if place.city == @city.city_name %>
               <div class="card">
                 <div class="hovereffect">
                   <%= image_tag place.image.url(:thumb), size: "200x134" %>
@@ -17,6 +18,7 @@
                 <h4 align ="center"><%= link_to place.name, place %></h4>
                 <h5 align="center">Content body text</h5>
               </div>
+              <% end %>
               <% end %>
           </div>
           <div class="side-nav col-lg-3 col-md-12 col-sm-12 col-xs-12">
@@ -67,7 +69,5 @@
 <div class="apple_pagination" align="center">
   <%= will_paginate @places %>
 </div>
-
-<br>
-
-<%= link_to 'New Place', new_place_path %>
+<%= link_to 'Edit', edit_city_path(@city) %> |
+<%= link_to 'Back', cities_path %>

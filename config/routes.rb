@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cities
   resources :places
   devise_for :users, :controllers => { :registrations => "user/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.

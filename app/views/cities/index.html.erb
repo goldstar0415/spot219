@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="title">Listing Cities</h3>
+
+<div id="section-one" class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th align="center">City name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @cities.each do |city| %>
+        <tr>
+          <td align="center"><%= link_to city.city_name, city %></td>
+          <td align="center"><%= link_to 'Show', city %></td>
+          <td align="center"><%= link_to 'Edit', edit_city_path(city) %></td>
+          <% if current_user == city.user %>
+            <td align="center"><%= link_to 'Delete', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New City', new_city_path %>
