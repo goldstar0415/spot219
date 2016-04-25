@@ -77,7 +77,7 @@ class CitiesController < ApplicationController
     end
     
     def require_same_user
-      if current_user != @place.user
+      if current_user != @city.user
         flash[:danger] = "You can only edit or delete your own cities."
         redirect_to root_path
       end

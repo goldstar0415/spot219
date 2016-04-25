@@ -4,5 +4,5 @@ class City < ActiveRecord::Base
   validates :last_name, presence: true
   validates :email, presence: true, length: { minimum: 10 }
   validates :about, presence: true
-  validates :city_name, presence: true, length: { minimum: 3 }
+  validates :city_name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
 end

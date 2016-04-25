@@ -21,9 +21,9 @@
               <h6><small>This place was created by: <%= @place.user.full_name %></small></h6>
               <p><%= @place.about %></p>
               <hr>
-              <h5><strong>Country: </strong> <%= @place.country %></h5>
-              <h5><strong>City: </strong><%= @place.city %></h5>
-              <h5><strong>Address: </strong><%= @place.address %></h5>
+              <h5><strong>Country: </strong> <%= @place.country.capitalize %></h5>
+              <h5><strong>City: </strong><%= @place.city.capitalize %></h5>
+              <h5><strong>Address: </strong><%= @place.address.capitalize %></h5>
               <h5><strong>Phone: </strong><%= @place.phone %></h5>
               <h6><strong>Follow us on: </strong></h6>
               <h6><%= link_to "Facebook", @place.fb, target: "_blank" %></h6>
@@ -34,8 +34,11 @@
           </div>
           <div class="side-nav col-lg-3 col-md-3 col-sm-3">
             <div class="col-md-5">
-              <h5>Cities</h5>
-              <h6>Istambul</h6>
+              <h5><%= link_to 'Cities', cities_path, class: "link" %></h5>
+              <% @cities.each do |city| %>
+                <h6><%= link_to city.city_name, city %></h6>
+              <% end %>
+              <h6><%= link_to 'View all cities', cities_path %></h6>
               <h6>Toronto</h6>
               <h6>New York</h6>
               <br>
