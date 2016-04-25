@@ -16,9 +16,11 @@
         <tr>
           <td align="center"><%= link_to city.city_name, city %></td>
           <td align="center"><%= link_to 'Show', city %></td>
-          <td align="center"><%= link_to 'Edit', edit_city_path(city) %></td>
-          <% if current_user == city.user %>
-            <td align="center"><%= link_to 'Delete', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if user_signed_in? %>
+            <% if current_user == city.user %>
+              <td align="center"><%= link_to 'Edit', edit_city_path(city) %></td>
+              <td align="center"><%= link_to 'Delete', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           <% end %>
         </tr>
       <% end %>
