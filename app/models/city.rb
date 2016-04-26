@@ -5,4 +5,6 @@ class City < ActiveRecord::Base
   validates :email, presence: true, length: { minimum: 10 }
   validates :about, presence: true
   validates :city_name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
+  
+  
 end

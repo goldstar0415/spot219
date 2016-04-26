@@ -77,15 +77,18 @@
         </div>
         <h5 class="danger">(*) Please provide all URLs with http:// or https://</h5>
         <br>
+        <hr>
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-offset-2 col-sm-10">
+            <label>Choose category <small>(You can choose max 3 categories)</small></label>
+            <div class="col-sm-offset-1 col-sm-10">
               <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
                 <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
               <% end %>
             </div>
           </div>
         </div>
+        <hr>
         <div class="form-group">
           <label for="exampleInputFile">Upload image of the place</label>
           <%= f.file_field :image %>

@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
     @cities = City.limit(10)
     @category = Category.find(params[:id])
     @cate = Category.limit(10)
-    @category_places = @category.places.paginate(page: params[:page], per_page: 15)
+    @category_places = @category.places.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
   end
   
   private

@@ -1,5 +1,9 @@
 <div id="footer" class="footer">
   <div class="container">
-    <h6 align="center"><a href="">Contact Us</a>|<a href="">News</a>|<a href="">Cities</a>|<a href="">Add Your City</a>|<a href="">Add Place</a>| &copy; TurkishSpot 2016</h6>
+    <h6 align="center"><%= link_to 'Categories', categories_path %>|
+                       <%= link_to 'Cities', cities_path %>|
+                       <%= link_to 'Places', places_path %>|
+                       <%= link_to 'Add Place', new_place_path %>|
+                       <%= link_to 'Add Your City', new_city_path %>| &copy; TurkishSpot 2016</h6>
   </div>
 </div>
