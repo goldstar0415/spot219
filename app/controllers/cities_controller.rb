@@ -13,7 +13,8 @@ class CitiesController < ApplicationController
   # GET /cities/1
   # GET /cities/1.json
   def show
-    @places = Place.paginate(page: params[:page], per_page: 15)
+    @cate = Category.limit(10)
+    @places = Place.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
     @cities = City.limit(10)
   end
 
@@ -78,7 +79,7 @@ class CitiesController < ApplicationController
     end
     
     def require_same_user
-      if current_user != @city.user
+      if current_user != @city.user and !current_user.admin?
         flash[:danger] = "You can only edit or delete your own cities."
         redirect_to root_path
       end

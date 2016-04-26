@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'places#index'
+  
+  resources :categories, except: [:destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

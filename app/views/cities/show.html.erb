@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <h3 class="title">Places in <%= @city.city_name %></h3>
 <div id="section-one">
     <div id="section-content">
@@ -16,7 +15,9 @@
                   </div>
                 </div>
                 <h4 align ="center"><%= link_to place.name, place %></h4>
-                <h5 align="center">Content body text</h5>
+                <% if place.categories.any? %>
+                  <h6 align="center"><%= render place.categories %></h6>
+                <% end %>
               </div>
               <% end %>
               <% end %>
@@ -28,13 +29,12 @@
                 <h6><%= link_to city.city_name.capitalize, city %></h6>
               <% end %>
               <h6><%= link_to 'View all cities', cities_path %></h6>
-              <h6>Toronto</h6>
-              <h6>New York</h6>
               <br>
-              <h5>Categories</h5>
-              <h6>Restaurant</h6>
-              <h6>Cafe</h6>
-              <h6>Art</h6>
+              <h5><%= link_to "Categories", categories_path, class: "link" %></h5>
+              <% @cate.each do |category| %>
+                <h6><%= link_to category.name, category %></h6>
+              <% end %>
+              <h6><%= link_to 'View all categories', categories_path %></h6>
             </div>
             <% if user_signed_in? %>
               <div align="center" class="col-md-7">
@@ -69,5 +69,3 @@
 <div class="apple_pagination" align="center">
   <%= will_paginate @places %>
 </div>
-<%= link_to 'Edit', edit_city_path(@city) %> |
-<%= link_to 'Back', cities_path %>

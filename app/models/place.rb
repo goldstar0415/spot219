@@ -1,5 +1,7 @@
 class Place < ActiveRecord::Base
   belongs_to :user
+  has_many :place_categories
+  has_many :categories, through: :place_categories
   has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
   validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
   validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }

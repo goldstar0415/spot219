@@ -16,7 +16,7 @@ body {
 .footer {
   position: fixed;
   bottom: 0;
-  height: 25px;
+  height: 30px;
   background: #f0f0f0;
   width: 100%;
 }
@@ -40,6 +40,10 @@ body {
   padding-left: 15px !important;
 }
 
+.listing {
+	list-style: none;
+	padding-left: 0px;
+}
 
 .title {
   margin-left: 30px;
@@ -60,7 +64,7 @@ body {
 }
 
 .navbar-form .form-group input {
-  width: 450px !important;
+  width: 330px !important;
   border-radius: 0 !important;
 }
 
@@ -216,6 +220,19 @@ textarea{
 .link {
   font-size: 15px !important;
   border: 0 !important;
+}
+
+/*---- category ----*/
+
+.badg {
+  background-color: #fffff6;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  font-weight: 200;
+}
+
+.input_checkbox input {
+  width: auto !important;
 }
 
 /*----- HOVER EFFECT -----*/

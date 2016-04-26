@@ -6,8 +6,9 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.paginate(page: params[:page], per_page: 15)
+    @places = Place.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
     @cities = City.limit(10)
+    @cate = Category.limit(10)
   end
 
   # GET /places/1
@@ -73,11 +74,11 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :about, :country, :city, :address, :phone, :fb, :twit, :insta, :web, :map, :image)
+      params.require(:place).permit(:name, :about, :country, :city, :address, :phone, :fb, :twit, :insta, :web, :map, :image, category_ids: [])
     end
     
     def require_same_user
-      if current_user != @place.user
+      if current_user != @place.user and !current_user.admin?
         flash[:danger] = "You can only edit or delete your own places."
         redirect_to root_path
       end

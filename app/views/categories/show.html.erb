@@ -1,9 +1,11 @@
+<p id="notice"><%= notice %></p>
+<h3 class="title"><%= @category.name %></h3>
 <div id="section-one">
     <div id="section-content">
       <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
           <div class="col-lg-9 col-md-12 col-sm-12">
-            <% @places.each do |place| %>
+            <% @category_places.each do |place| %>
               <div class="card">
                 <div class="hovereffect">
                   <%= image_tag place.image.url(:thumb), size: "200x134" %>
@@ -23,7 +25,7 @@
             <div class="col-md-5">
               <h5><%= link_to 'Cities', cities_path, class: "link" %></h5>
               <% @cities.each do |city| %>
-                <h6><%= link_to city.city_name, city %></h6>
+                <h6><%= link_to city.city_name.capitalize, city %></h6>
               <% end %>
               <h6><%= link_to 'View all cities', cities_path %></h6>
               <br>
@@ -64,7 +66,5 @@
   </div>
 
 <div class="apple_pagination" align="center">
-  <%= will_paginate @places %>
+  <%= will_paginate @category_places %>
 </div>
-
-<br>
