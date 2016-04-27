@@ -9,13 +9,17 @@
                   <%= image_tag place.image.url(:thumb), size: "200x134" %>
                   <div class="overlay">
                     <h2>TurkishSpot</h2>
-				            <p><%= link_to "Read More", place %></p> 
+				            <p><%= link_to "Read More", place, :method => :get %></p> 
                   </div>
                 </div>
-                <h4 align ="center"><%= link_to place.name, place %></h4>
-                <% if place.categories.any? %>
-                  <h6 align="center"><%= render place.categories %></h6>
-                <% end %>
+                <h4 align ="center"><%= link_to place.name, place, :method => :get %></h4>
+                <h6 align="center">
+                  <% if place.categories.any? %>
+                    <%= render place.categories %>
+                  <% else %>
+                    .
+                  <% end %>
+                </h6>
               </div>
               <% end %>
           </div>

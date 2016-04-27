@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   resources :cities
   resources :places
   devise_for :users, :controllers => { :registrations => "user/registrations" }
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   root 'places#index'
   
   resources :categories, except: [:destroy]
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

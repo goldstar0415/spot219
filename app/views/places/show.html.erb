@@ -22,6 +22,10 @@
               <% end %>
               <p><%= @place.about %></p>
               <hr>
+              <% if current_user %>
+                <strong>Rate this place: <% link_to '(here)', @place, :method => :get, :class => 'badg' %> </strong> <%= rating_for @place, "name", disable_after_rate: false %>
+              <% end %>
+              <hr>
               <h5><strong>Country: </strong> <%= @place.country.capitalize %></h5>
               <h5><strong>City: </strong><%= @place.city.capitalize %></h5>
               <h5><strong>Address: </strong><%= @place.address.capitalize %></h5>
@@ -33,58 +37,58 @@
               <h6><%= link_to "My website", @place.web, target: "_blank" %></h6>
             </div>
           </div>
-          <div class="side-nav col-lg-3 col-md-3 col-sm-3">
+          <div class="side-nav col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="col-md-5">
               <h5><%= link_to 'Cities', cities_path, class: "link" %></h5>
               <% @cities.each do |city| %>
-                <h6><%= link_to city.city_name, city %></h6>
+                <h6><%= link_to city.city_name.capitalize, city %></h6>
               <% end %>
               <h6><%= link_to 'View all cities', cities_path %></h6>
-              <h6>Toronto</h6>
-              <h6>New York</h6>
               <br>
-              <h5>Categories</h5>
-              <h6>Restaurant</h6>
-              <h6>Cafe</h6>
-              <h6>Art</h6>
+              <h5><%= link_to "Categories", categories_path, class: "link" %></h5>
+              <% @cate.each do |category| %>
+                <h6><%= link_to category.name, category %></h6>
+              <% end %>
+              <h6><%= link_to 'View all categories', categories_path %></h6>
             </div>
             <% if user_signed_in? %>
               <div align="center" class="col-md-7">
-                <%= link_to 'Back', places_path %>
-                <br>
+                <h4>Hello, <%= current_user.full_name %></h4>
+                <%= link_to 'Back', :back %>
                 <% if current_user == @place.user %>
-                  <%= link_to 'Edit', edit_place_path(@place) %>
                   <br>
-                  <%= link_to 'Delete', place_path(@place), method: :delete,
-                                data: {confirm: "Are you sure you want to delete this article ?"} %>
+                  <%= link_to 'Edit', edit_place_path %>
+                  <br>
+                  <%= link_to 'Delete', @place, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
               </div>
             <% else %>
               <div align="center" class="col-md-7">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
                 <div class="login">
-                  <input type="text" class="form-control" placeholder="Your Email">
+                  <%= f.email_field :email, placeholder: "Your Email", class: "form-control" %>
                 </div>
                 <div class="login">
-                  <input type="text" class="form-control" placeholder="Your Password">
+                  <%= f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control" %>
                 </div>
-                <input type="checkbox" aria-label="..."> Remember me
-                <button type="submit" class="btn btn-default pull-right">Log in</button>
+                <div class="checkbox">
+                  <%= f.label :remember_me do %>
+                    <%= f.check_box :remember_me %>Remember me
+                  <% end %>
+                </div>
+                <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right" %>
+                <% end %>
                 <br>
-                <a class="pass" href="#">Forgot your password?</a>
+                <%= link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name) %>
               </div>
             <% end %>
           </div>
         </div>
         <div class="col-lg-10 col-lg-offset-1">
           <div class="comment-section">
-            <h6>Comments &amp; reviews :</h6>
-            <hr>
-            <div class="media">
-              <div class="media-body">
-                <h4 class="media-heading">Title</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates labore fugiat maiores id beatae ipsum, sapiente sunt optio, quod ducimus expedita minus odit officia dolor ad reiciendis tempora fuga ullam.</p>
-              </div>
-            </div>
+            
+            
+            
           </div>
         </div>
       </div>

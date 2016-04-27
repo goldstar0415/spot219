@@ -14,4 +14,6 @@ class Place < ActiveRecord::Base
   validates :address, presence: true, length: { minimum: 10 }
   validates :user_id, presence: true
   
+  ratyrate_rateable 'name'
+  
 end

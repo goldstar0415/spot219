@@ -14,7 +14,9 @@ class PlacesController < ApplicationController
   # GET /places/1
   # GET /places/1.json
   def show
+    @cate = Category.limit(10)
     @cities = City.limit(10)
+    @places = Place.all
   end
 
   # GET /places/new
