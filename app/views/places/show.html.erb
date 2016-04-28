@@ -85,10 +85,21 @@
           </div>
         </div>
         <div class="col-lg-10 col-lg-offset-1">
-          <div class="comment-section">
-            
-            
-            
+          <div class="container comment-section">
+            <h6>Comments &amp; reviews :</h6>
+            <hr>
+            <div id="comments">
+              <%= render :partial => @place.comments %>
+            </div>
+            <% if user_signed_in? %>
+              <div class="col-lg-5">
+                <%= form_for [@place, Comment.new] do |f| %>
+                  <%= f.text_field :title, :label => "Title", as: :string, placeholder: "Title (title can't be blank)", class: "form-control" %> <br>
+                  <%= f.text_area :description, :label => "Comment", as: :text, input_html: { rows: "4" }, placeholder: "Description (description can't be blank)", class: "form-control" %> <br>
+                  <%= f.submit "Add Comment", class: "btn btn-success" %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

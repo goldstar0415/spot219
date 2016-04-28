@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   post '/rate' => 'rater#create', :as => 'rate'
   resources :cities
   resources :places
@@ -11,7 +12,11 @@ Rails.application.routes.draw do
   root 'places#index'
   
   resources :categories, except: [:destroy]
+  resources :comments
   
+  resources :places do
+    resources :comments
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
