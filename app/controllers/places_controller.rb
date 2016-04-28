@@ -22,6 +22,7 @@ class PlacesController < ApplicationController
   # GET /places/new
   def new
     @place = Place.new
+    @cities = City.uniq.pluck(:city_name)
   end
 
   # GET /places/1/edit
