@@ -15,7 +15,7 @@
                 <h4 align ="center"><%= link_to place.name, place, :method => :get %></h4>
                 <h6 align="center">
                   <% if place.categories.any? %>
-                    <%= render place.categories %>
+                    <%= render place.categories.limit(3) %>
                   <% else %>
                     .
                   <% end %>
