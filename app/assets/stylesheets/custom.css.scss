@@ -68,9 +68,32 @@ select {
   margin-top: -29px;
 }
 
-.navbar-form .form-group input {
+.search-form {
   width: 330px !important;
   border-radius: 0 !important;
+  height: 32px;
+}
+
+.search-btn{
+  height: 33px;
+  padding-bottom: 15px;
+  border: 0px;
+}
+
+.search-group{
+  margin-top: -50px;
+}
+
+.nav-search{
+  background-color: #fffff7;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  font-weight: 200;
+}
+
+.nav-search:hover{
+  background-color: #ffffaa;
+  color: gray;
 }
 
 .btn-default {

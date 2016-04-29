@@ -17,4 +17,12 @@ class Place < ActiveRecord::Base
   
   ratyrate_rateable 'name'
   
+  searchable do
+    text :name, :boost => 0
+    text :about, :city
+    text :categories do
+      categories.map(&:name)
+    end
+  end
+  
 end

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :places do
     resources :comments
   end
+  
+  get 'search', to: "places#search"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

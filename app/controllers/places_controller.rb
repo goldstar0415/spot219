@@ -10,6 +10,15 @@ class PlacesController < ApplicationController
     @cities = City.limit(10)
     @cate = Category.limit(10)
   end
+  
+  def search
+    @search = Place.search do
+      fulltext params[:search]
+    end
+    @places = @search.results
+    @cities = City.limit(10)
+    @cate = Category.limit(10)
+  end
 
   # GET /places/1
   # GET /places/1.json
