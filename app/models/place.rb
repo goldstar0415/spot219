@@ -8,11 +8,11 @@ class Place < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, length: { minimum: 3, maximum: 25 }
-  validates :about, presence: true, length: { minimum: 10, maximum: 500 }
+  validates :about, presence: true, length: { minimum: 5, maximum: 500 }
   validates :country, presence: true
   validates :city, presence: true
   validates :phone, presence: true
-  validates :address, presence: true, length: { minimum: 10 }
+  validates :address, presence: true, length: { minimum: 5 }
   validates :user_id, presence: true
   
   ratyrate_rateable 'name'

@@ -11,14 +11,7 @@ class PlacesController < ApplicationController
     @cate = Category.limit(10)
   end
   
-  def search
-    @search = Place.search do
-      fulltext params[:search]
-    end
-    @places = @search.results
-    @cities = City.limit(10)
-    @cate = Category.limit(10)
-  end
+  
 
   # GET /places/1
   # GET /places/1.json
@@ -77,6 +70,16 @@ class PlacesController < ApplicationController
       format.html { redirect_to places_url, notice: 'Place was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  
+  def search
+    @search = Place.search do
+      fulltext params[:search]
+    end
+    @places = @search.results
+    @cities = City.limit(10)
+    @cate = Category.limit(10)
   end
 
   private
