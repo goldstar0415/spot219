@@ -30,11 +30,21 @@
               <h5><strong>City: </strong><%= @place.city.capitalize %></h5>
               <h5><strong>Address: </strong><%= @place.address.capitalize %></h5>
               <h5><strong>Phone: </strong><%= @place.phone %></h5>
-              <h6><strong>Follow us on: </strong></h6>
-              <h6><%= link_to "Facebook", @place.fb, target: "_blank" %></h6>
-              <h6><%= link_to "Twitter", @place.twit, target: "_blank" %></h6>
-              <h6><%= link_to "Instagram", @place.insta, target: "_blank" %></h6>
-              <h6><%= link_to "My website", @place.web, target: "_blank" %></h6>
+              <% if (@place.fb.size > 2) || (@place.twit.size > 2) || (@place.insta.size > 2) || (@place.web.size > 2) %>
+                <h6><strong>Follow us on: </strong></h6>
+              <% end %>
+              <% if @place.fb.size > 2 %>
+                <h6><%= link_to "Facebook", @place.fb, target: "_blank" %></h6>
+              <% end %>
+              <% if @place.twit.size > 2 %>
+                <h6><%= link_to "Twitter", @place.twit, target: "_blank" %></h6>
+              <% end %>
+              <% if @place.insta.size > 2 %>
+                <h6><%= link_to "Instagram", @place.insta, target: "_blank" %></h6>
+              <% end %>
+              <% if @place.web.size > 2 %>
+                <h6><%= link_to "My website", @place.web, target: "_blank" %></h6>
+              <% end %>
             </div>
           </div>
           <div class="side-nav col-lg-3 col-md-12 col-sm-12 col-xs-12">
