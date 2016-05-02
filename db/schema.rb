@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428155753) do
+ActiveRecord::Schema.define(version: 20160502200230) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160428155753) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "place_id"
+    t.integer  "number"
   end
 
   create_table "commontator_comments", force: :cascade do |t|

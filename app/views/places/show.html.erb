@@ -20,10 +20,14 @@
               <% if @place.categories.any? %>
                 <p>Categories: <%= render @place.categories %></p>
               <% end %>
+              <div class="ratestar">
+                <h5 class="score"><%= @place.average_rating %></h5>
+              </div>
               <p><%= @place.about %></p>
               <hr>
               <% if current_user %>
-                <strong>Rate this place: <% link_to '(here)', @place, :method => :get, :class => 'badg' %> </strong> <%= rating_for @place, "name", disable_after_rate: false %>
+                <strong>Rate this place: <% link_to '(here)', @place, :method => :get, :class => 'badg' %> </strong> 
+                <%= rating_for @place, "name", disable_after_rate: false %>
               <% end %>
               <hr>
               <h5><strong>Country: </strong> <%= @place.country.capitalize %></h5>
@@ -57,7 +61,7 @@
               <br>
               <h5><%= link_to "Categories", categories_path, class: "link" %></h5>
               <% @cate.each do |category| %>
-                <h6><%= link_to category.name, category %></h6>
+                <h6><%= link_to category.name, category %> (<small><%= pluralize(category.places.count, "place") %></small>)</h6>
               <% end %>
               <h6><%= link_to 'View all categories', categories_path %></h6>
             </div>
@@ -105,8 +109,10 @@
               <div class="col-lg-5">
                 <%= form_for [@place, Comment.new] do |f| %>
                   <%= f.text_field :title, :label => "Title", as: :string, placeholder: "Title (title can't be blank)", class: "form-control" %> <br>
-                  <%= f.text_area :description, :label => "Comment", as: :text, input_html: { rows: "4" }, placeholder: "Description (description can't be blank)", class: "form-control" %> <br>
-                  <%= f.submit "Add Comment", class: "btn btn-success" %>
+                  <%= f.text_area :description, :label => "Comment", as: :text, input_html: { rows: "4" }, placeholder: "Description (description can't be blank)", class: "form-control" %> 
+                  <h5>Rate me <small>(Higher is better)</small></h5>
+                  <%= f.select :number, ((1..5).map {|i| [i,i] }), class: "form-control" %> <br>
+                  <br><%= f.submit "Add Comment", class: "btn btn-success" %>
                 <% end %>
               </div>
             <% end %>

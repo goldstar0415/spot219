@@ -250,6 +250,23 @@ textarea{
   border: 0 !important;
 }
 
+.ratestar{
+  background: image-url('big-star.png') no-repeat;
+  margin-left: 660px;
+  margin-top: -10px;
+  background-size: cover;
+  width: 55px;
+  height: 55px;
+}
+
+.score{
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.hovereffect p{
+  color: #ffffff;
+}
 /*---- category ----*/
 
 .badg {

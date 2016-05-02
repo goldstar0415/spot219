@@ -11,7 +11,30 @@
                   <%= image_tag place.image.url(:thumb), size: "200x134" %>
                   <div class="overlay">
                     <h2>TurkishSpot</h2>
-				            <p><%= link_to "Read More", place, :method => :get %></p> 
+				            <p>
+				              <%= pluralize(place.comments.count, "Review") %>
+				              <% if place.average_rating.to_f > 4.5 %>
+				              <span class="fa fa-star"></span>
+				              <span class="fa fa-star"></span>
+				              <span class="fa fa-star"></span>
+				              <span class="fa fa-star"></span>
+				              <span class="fa fa-star"></span>
+                      <% elsif (place.average_rating.to_f < 4.5) and (place.average_rating.to_f > 3.5) %>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <% elsif (place.average_rating.to_f < 3.5) and (place.average_rating.to_f > 2.5) %>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <% elsif (place.average_rating.to_f < 2.5) and (place.average_rating.to_f > 1.5) %>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <% elsif (place.average_rating.to_f < 1.5) %>
+                      <span class="fa fa-star"></span>
+                      <% end %>
+				            </p>
                   </div>
                 </div>
                 <h4 align ="center"><%= link_to place.name, place, :method => :get %></h4>
@@ -32,7 +55,7 @@
               <br>
               <h5><%= link_to "Categories", categories_path, class: "link" %></h5>
               <% @cate.each do |category| %>
-                <h6><%= link_to category.name, category %></h6>
+                <h6><%= link_to category.name, category %> (<small><%= pluralize(category.places.count, "place") %></small>)</h6>
               <% end %>
               <h6><%= link_to 'View all categories', categories_path %></h6>
             </div>

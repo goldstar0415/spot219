@@ -81,6 +81,8 @@ class PlacesController < ApplicationController
     @cities = City.limit(10)
     @cate = Category.limit(10)
   end
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
