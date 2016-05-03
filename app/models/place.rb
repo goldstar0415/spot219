@@ -32,6 +32,8 @@ class Place < ActiveRecord::Base
     else
         '5.0'
     end
-end
+  end
+  
+  
   
 end

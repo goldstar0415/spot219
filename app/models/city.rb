@@ -6,5 +6,17 @@ class City < ActiveRecord::Base
   validates :about, presence: true
   validates :city_name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
   
+  def countPlace
+    @places = Place.all
+    c = 0
+    @places.each do |place|
+      if self.city_name == place.city
+        c+=1
+      else
+        c=c
+      end
+    end
+    return c
+  end
   
 end
