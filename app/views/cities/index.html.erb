@@ -12,7 +12,7 @@
     <tbody>
       <% @cities.each do |city| %>
         <tr>
-          <td align="center"><%= link_to city.city_name, city %></td>
+          <td align="center"><%= link_to city.city_name, city %> (<small><%= pluralize(city.countPlace, "place") %></small>)</td>
           <td align="center"><%= link_to 'Show', city %></td>
           <% if user_signed_in? %>
             <% if current_user == city.user %>

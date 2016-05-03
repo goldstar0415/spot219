@@ -55,7 +55,7 @@
             <div class="col-md-5">
               <h5><%= link_to 'Cities', cities_path, class: "link" %></h5>
               <% @cities.each do |city| %>
-                <h6><%= link_to city.city_name.capitalize, city %></h6>
+                <h6><%= link_to city.city_name.capitalize, city %> (<small><%= pluralize(city.countPlace, "place") %></small>)</h6>
               <% end %>
               <h6><%= link_to 'View all cities', cities_path %></h6>
               <br>
