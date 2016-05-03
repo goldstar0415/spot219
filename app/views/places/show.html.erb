@@ -21,7 +21,7 @@
                 <p>Categories: <%= render @place.categories %></p>
               <% end %>
               <div class="ratestar">
-                <h5 class="score"><%= @place.average_rating %></h5>
+                <h5 class="score"><%= @place.average_rating.round(1) %></h5>
               </div>
               <p><%= @place.about %></p>
               <hr>

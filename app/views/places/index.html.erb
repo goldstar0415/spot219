@@ -3,6 +3,12 @@
       <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
           <div class="col-lg-9 col-md-12 col-sm-12">
+            <%= form_tag search_path, :method => :get do %>
+              <p>
+                <%= text_field_tag :search, params[:search], class: "form-group search-form", placeholder: " Search here!" %>
+                <%= submit_tag "Search", class: "btn btn-default search-btn" %>
+              </p>
+            <% end %>
             <% @places.each do |place| %>
               <div class="card">
                 <div class="hovereffect">
