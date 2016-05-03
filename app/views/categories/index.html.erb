@@ -1,6 +1,15 @@
-<h3 class="title">Listing All Categories</h3>
+<%= render 'layouts/navbar'%>
+<h4 class="title">Listing All Categories</h4>
 <div id="section-one"> 
   <div align="center">
+    <div align="center" class="container searchbar">
+                <%= form_tag search_path, :method => :get do %>
+                <p>
+                  <%= text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..." %>
+                  <%= submit_tag "Search", class: "btn btn-default search-btn" %>
+                </p>
+              <% end %>
+              </div>
     <%= will_paginate %>
     <% @categories.each do |category| %>
       <ul class="listing">

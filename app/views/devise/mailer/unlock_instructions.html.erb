@@ -1,3 +1,4 @@
+<%= render 'layouts/navbar'%>
 <p><%= t('.greeting', :recipient => @resource.email, :default => "Hello #{@resource.email}!") %></p>
 
 <p><%= t('.message', :default => "Your account has been locked due to an excessive amount of unsuccessful sign in attempts.") %></p>

@@ -1,8 +1,89 @@
-<h3 class="title">Places in <%= @city.city_name %></h3>
+<nav class="navbar navbar-default nav-color">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <ul>
+        <%= link_to (image_tag ("logo.png")), root_path, class: "navbar-brand" %>
+        <h1 class="city-name"><%= @city.city_name %></h1>
+      </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <h4><% link_to "Have you tried Turkish Coffee? Search ...", search_path, class: "nav-search" %></h4>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <% if current_user.admin? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "All categories", categories_path %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Create new category", new_category_path %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "All categories", categories_path %></li>
+            <% end %>
+          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Places<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'View all places', places_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Add Place', new_place_path %></li>
+            </ul>
+          </li>
+          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cities<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'View all cities', cities_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Add City', new_city_path %></li>
+            </ul>
+          </li>
+          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Edit my account', edit_user_registration_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "All cities", cities_path %></li>
+          <li><%= link_to "All categories", categories_path %></li>
+          <li><%= link_to 'Register', new_user_registration_path %></li>
+          <li><%= link_to 'Log In', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <div id="section-one">
     <div id="section-content">
       <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
+        <div class="col-lg-12">
+          <div align="center" class="container searchbar">
+                <%= form_tag search_path, :method => :get do %>
+                <p>
+                  <%= text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..." %>
+                  <%= submit_tag "Search", class: "btn btn-default search-btn" %>
+                </p>
+              <% end %>
+              </div>
           <div class="col-lg-9 col-md-12 col-sm-12">
             <% @places.each do |place| %>
             <% if place.city.downcase == @city.city_name.downcase %>

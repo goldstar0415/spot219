@@ -1,9 +1,20 @@
-<p id="notice"><%= notice %></p>
-<h3 class="title"><%= @category.name %></h3>
+<%= render 'layouts/navbar'%>
+
 <div id="section-one">
     <div id="section-content">
       <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
+        <div class="col-lg-12">
+          <div align="center" class="container searchbar">
+                <%= form_tag search_path, :method => :get do %>
+                <p>
+                  <%= text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..." %>
+                  <%= submit_tag "Search", class: "btn btn-default search-btn" %>
+                </p>
+              <% end %>
+              </div>
+          <p id="notice"><%= notice %></p>
+          <h3 class="title"><%= @category.name.capitalize %></h3>
+          <hr>
           <div class="col-lg-9 col-md-12 col-sm-12">
             <% @category_places.each do |place| %>
               <div class="card">

@@ -1,7 +1,19 @@
+<%= render 'layouts/navbar'%>
+<div class="container">
+  <%= bootstrap_flash %>
+</div>
 <div id="section-one">
     <div id="section-content">
       <div class="row">
         <div class="col-lg-12">
+          <div align="center" class="container searchbar">
+              <%= form_tag search_path, :method => :get do %>
+              <p>
+                <%= text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..." %>
+                <%= submit_tag "Search", class: "btn btn-default search-btn" %>
+              </p>
+            <% end %>
+            </div>
           <div class="col-lg-9">
             <div class="description">
               <h4 align="left"><strong><%= @place.name %></strong></h4>
@@ -21,7 +33,7 @@
                 <p>Categories: <%= render @place.categories %></p>
               <% end %>
               <div class="ratestar">
-                <h5 class="score"><%= @place.average_rating.round(1) %></h5>
+                <h5 class="score"><%= @place.average_rating %></h5>
               </div>
               <p><%= @place.about %></p>
               <hr>
