@@ -56,3 +56,49 @@
     </div>
   </div>
   
+  <br><hr>
+  
+  <div class="container comment-section">
+    <h6>My Comments &amp; reviews :</h6>
+    <hr>
+    <div id="comments">
+      <% if current_user.comments.any? %>
+        <% current_user.comments.each do |comment| %>
+          <%= div_for(comment) do %>
+            <div class="media">
+             <div class="media-body">
+               <h5 class="media-heading" style="font-weight: bold;"><%= h(comment.title) %> 
+                 <% if comment.number == 1 %>
+                   <%= image_tag("star-on.png") %>
+                 <% elsif comment.number == 2 %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                 <% elsif comment.number ==3 %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                 <% elsif comment.number == 4 %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                 <% elsif comment.number == 5 %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                   <%= image_tag("star-on.png") %>
+                 <% end %>
+               </h5>
+               <p><%= h(comment.description) %></p>
+               <p><small>Posted: <%= time_ago_in_words(comment.created_at) %> ago, for <%= link_to comment.place.name, comment.place %></small></p>
+             </div>
+            </div>
+            <hr>
+          <% end %>
+        <% end %>
+      <% else %>
+        <h4>You do not have any reviews yet.</h4>
+      <% end %>
+    </div>
+  </div>

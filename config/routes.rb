@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :cities
   resources :places
   devise_for :users, :controllers => { :registrations => "user/registrations" }
+  resources :users, only: [:show]
+  resources :friendships
+  get 'search_friends', to: 'users#search'
+  post 'add_friend', to: 'users#add_friend'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -19,6 +23,8 @@ Rails.application.routes.draw do
   end
   
   get 'search', to: "places#search"
+  get 'my_profile', to: "users#my_profile"
+  get 'my_friends', to: 'users#my_friends'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502200230) do
+ActiveRecord::Schema.define(version: 20160504165119) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -90,6 +90,13 @@ ActiveRecord::Schema.define(version: 20160502200230) do
   end
 
   add_index "commontator_threads", ["commontable_id", "commontable_type"], name: "index_commontator_threads_on_c_id_and_c_type", unique: true
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "overall_averages", force: :cascade do |t|
     t.integer  "rateable_id"

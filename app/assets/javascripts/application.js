@@ -17,3 +17,12 @@
 //= require_tree .
 //= require jquery.raty
 //= require ratyrate
+
+
+var show_spinner = function(){
+  $('#spinner').show();
+}
+
+var hide_spinner = function(){
+  $('#spinner').hide();
+}
