@@ -48,7 +48,7 @@ class CitiesController < ApplicationController
   def update
     respond_to do |format|
       if @city.update(city_params)
-        format.html { redirect_to @city, notice: 'City was successfully updated.' }
+        format.html { redirect_to @city }
         format.json { render :show, status: :ok, location: @city }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class CitiesController < ApplicationController
   def destroy
     @city.destroy
     respond_to do |format|
-      format.html { redirect_to cities_url, notice: 'City was successfully destroyed.' }
+      format.html { redirect_to cities_url }
       format.json { head :no_content }
     end
   end

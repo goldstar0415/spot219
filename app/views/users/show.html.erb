@@ -27,6 +27,9 @@
                 <% @user.comments.each do |comment| %>
                   <%= div_for(comment) do %>
                     <div class="media">
+                      <div class="media-left pull-left">
+                        <%= image_tag @user.avatar.url(:thumb), size: "55x55" %>
+                      </div>
                      <div class="media-body">
                        <h5 class="media-heading" style="font-weight: bold;"><%= h(comment.title) %> 
                          <% if comment.number == 1 %>

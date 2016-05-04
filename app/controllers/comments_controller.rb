@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @place, notice: 'Review was successfully created.'}
+        format.html { redirect_to @place }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: 'new' }
