@@ -38,6 +38,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @cate = Category.limit(10)
     @category_places = @category.places.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
+    @blog = Blog.last
   end
   
   private

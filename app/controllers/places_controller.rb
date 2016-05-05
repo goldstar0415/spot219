@@ -20,6 +20,7 @@ class PlacesController < ApplicationController
     @cate = Category.limit(10)
     @cities = City.limit(10)
     @places = Place.all
+    @blog = Blog.last
   end
 
   # GET /places/new

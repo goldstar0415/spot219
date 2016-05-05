@@ -12,6 +12,17 @@
               </p>
             <% end %>
           </div>
+          <div class="container">
+            <div class="media">
+              <div class="media-left pull-left">
+                <%= link_to (image_tag @blog.user.avatar.url(:thumb), size: "55x55", class: "creator"), @blog.user %>
+              </div>
+             <div class="media-body">
+               <h5 class="media-heading"><small>Created by: </small><%= link_to @blog.user.full_name, @blog.user %></h5>
+               <p class="creator-blog"><small>Posted: <%= time_ago_in_words(@blog.created_at) %> ago</small></p>
+             </div>
+            </div>
+          </div>
           <div align="center" class="col-lg-6 col-lg-offset-3">
             <h2><strong><%= @blog.title %></strong></h2>
             <hr>
