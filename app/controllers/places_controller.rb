@@ -9,6 +9,7 @@ class PlacesController < ApplicationController
     @places = Place.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
     @cities = City.limit(10)
     @cate = Category.limit(10)
+    @blog = Blog.last
   end
   
   
@@ -65,6 +66,9 @@ class PlacesController < ApplicationController
   # DELETE /places/1
   # DELETE /places/1.json
   def destroy
+    @place.comments.each do |comment|
+      comment.destroy
+    end
     @place.destroy
     respond_to do |format|
       format.html { redirect_to places_url }

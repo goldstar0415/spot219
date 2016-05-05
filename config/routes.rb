@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :blogs
   post '/rate' => 'rater#create', :as => 'rate'
   resources :cities
   resources :places

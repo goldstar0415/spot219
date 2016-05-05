@@ -15,11 +15,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <h4><% link_to "Have you tried Turkish Coffee? Search ...", search_path, class: "nav-search" %></h4>
-        </div>
-      </form>
+      
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <% if current_user.admin? %>
