@@ -33,6 +33,26 @@
             <h4><%= @blog.body %></h4>
           </div>
       </div>
+      <div class="col-lg-8 col-lg-offset-2">
+          <div class="container comment-section">
+            <h6>Comments &amp; reviews :</h6>
+            <hr>
+            <div id="comments">
+              <%= render :partial => @blog.blog_comments %>
+            </div>
+            <% if user_signed_in? %>
+              <div class="col-lg-5">
+                <%= form_for [@blog, BlogComment.new] do |f| %>
+                  <%= f.text_field :title, :label => "Title", as: :string, placeholder: "Title (title can't be blank)", class: "form-control" %> <br>
+                  <%= f.text_area :description, :label => "Comment", as: :text, input_html: { rows: "4" }, placeholder: "Description (description can't be blank)", class: "form-control" %> 
+                  <h5>Rate me <small>(Higher is better)</small></h5>
+                  <%= f.select :number, ((1..5).map {|i| [i,i] }), class: "form-control" %> <br>
+                  <br><%= f.submit "Add Comment", class: "btn btn-success" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
     </div>
   </div>
 </div>
@@ -40,8 +60,10 @@
 
 
 <div class="container">
+  <br>
   <% if current_user.admin? %>
     <%= link_to 'Edit', edit_blog_path(@blog) %> |
-    <%= link_to 'Back', blogs_path %>
+    <%= link_to 'Back', blogs_path %>|
+    <%= link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 </div>

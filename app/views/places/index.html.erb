@@ -87,6 +87,10 @@
             <% if user_signed_in? %>
               <div align="center" class="col-md-7">
                 <h4>Hello, <%= current_user.full_name %></h4>
+                <% if current_user.admin? %>
+                  <h5>You are admin, so you can </h5>
+                  <h5><%= link_to 'Create a New blog', new_blog_path, class: "link" %></h5>
+                <% end %>
               </div>
             <% else %>
               <div align="center" class="col-md-7">

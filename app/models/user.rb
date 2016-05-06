@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :places
   has_many :comments
+  has_many :blog_comments
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :blogs

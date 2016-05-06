@@ -1,0 +1,35 @@
+<%= div_for(blog_comment) do %>
+  <div class="media">
+    <div class="media-left pull-left">
+      <%= link_to (image_tag blog_comment.user.avatar.url(:thumb), size: "55x55"), blog_comment.user %>
+    </div>
+   <div class="media-body">
+     <h5 class="media-heading" style="font-weight: bold;"><%= h(blog_comment.title) %> 
+       <% if blog_comment.number == 1 %>
+         <%= image_tag("star-on.png") %>
+       <% elsif blog_comment.number == 2 %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+       <% elsif blog_comment.number ==3 %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+       <% elsif blog_comment.number == 4 %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+       <% elsif blog_comment.number == 5 %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+         <%= image_tag("star-on.png") %>
+       <% end %>
+     </h5>
+     <p><%= h(blog_comment.description) %></p>
+     <p><small>Posted: <%= time_ago_in_words(blog_comment.created_at) %> ago by <%= link_to h(blog_comment.user.full_name), blog_comment.user %></small></p>
+   </div>
+  </div>
+  <hr>
+<% end %>
