@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   
+  
   post '/rate' => 'rater#create', :as => 'rate'
   resources :cities
   resources :places
+  resources :blog_comments
+  resources :blogs
   devise_for :users, :controllers => { :registrations => "user/registrations" }
   resources :users, only: [:show]
   resources :friendships
@@ -20,6 +23,10 @@ Rails.application.routes.draw do
   
   resources :places do
     resources :comments
+  end
+  
+  resources :blogs do
+    resources :blog_comments
   end
   
   get 'search', to: "places#search"

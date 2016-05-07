@@ -1,0 +1,38 @@
+<%= form_for @blog, html: { multipart: true } do |f| %>
+  <% if @blog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
+      <ul>
+      <% @blog.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
+  <div id="section-add-place">
+  <hr>
+    <div class="col-lg-8 col-lg-offset-2">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Title</label>
+          <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Body text</label>
+          <%= f.text_area :body, placeholder: "The main text goes here", class: "form-control", rows: "10" %>
+        </div>
+        
+        <hr>
+        <div class="form-group">
+          <label for="exampleInputFile">Upload image</label>
+          <%= f.file_field :img %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-success" %>
+      </form>
+      <%= link_to 'Back', root_path, class: "btn btn-default btn-xs pull-right" %>
+    </div>
+  </div>
+<% end %>

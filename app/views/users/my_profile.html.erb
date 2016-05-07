@@ -13,9 +13,14 @@
               </p>
             <% end %>
         </div>
-        <h3 class="title"><%= current_user.first_name.capitalize %>'s Profile</h3>
-        <h5 class="title"><%= link_to 'Edit my profile', edit_user_registration_path %></h5>
+        <div class="container" align="center">
+          <%= image_tag current_user.avatar.url(:thumb), size: "55x55" %>
+          <h4 class=""><%= current_user.first_name.capitalize %>'s Profile</h4>
+          <h6><%= current_user.email %></h6>
+          <h5 class=""><%= link_to 'Edit my profile', edit_user_registration_path %></h5>
+        </div>
         <div class="container">
+          
             <div class="container comment-section">
             <h6>My Comments &amp; reviews :</h6>
             <hr>

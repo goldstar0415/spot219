@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="hidden-lg"><br><br></div>
-          <div align="center" class="container searchbar">
+          <div align="center" class="searchbar">
               <%= form_tag search_path, :method => :get do %>
               <p>
                 <%= text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..." %>
@@ -18,11 +18,7 @@
           <div class="col-lg-9">
             <div class="description">
               <h4 align="left"><strong><%= @place.name %></strong></h4>
-              <% if @place.image.url(:medium) %>
-                <%= image_tag @place.image.url(:medium), size: "640x426" %>
-              <% else %>
-                <%= image_tag("noImage.jpg") %>
-              <% end %>
+                <%= image_tag @place.image.url(:medium), size: "640x426", class: "img-responsive" %>
               <div class="google-maps">
                 <iframe style="border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Toronto,+ON,+Canada&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
               </div>
