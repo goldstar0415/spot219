@@ -11,7 +11,7 @@ class CitiesController < ApplicationController
   end
 
   def location
-    city = City.search(params['latitude'], params['longitude']).first
+    city = City.search(params['latitude'], params['longitude']).first rescue nil
     render json: { first_time: cookies[:first_time].nil? && city, id: city.id }
   end
 

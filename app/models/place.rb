@@ -14,10 +14,10 @@ class Place < ActiveRecord::Base
   validates :phone, presence: true
   validates :address, presence: true, length: { minimum: 5 }
   validates :user_id, presence: true
-  
-  
+
+
   ratyrate_rateable 'name'
-  
+
   searchable do
     text :name, :boost => 0
     text :about, :city
@@ -25,7 +25,7 @@ class Place < ActiveRecord::Base
       categories.map(&:name)
     end
   end
-  
+
   def average_rating
     if self.comments.size > 0
         self.comments.average(:number).round(1)
@@ -33,7 +33,4 @@ class Place < ActiveRecord::Base
         '5.0'
     end
   end
-  
-  
-  
 end
