@@ -42,7 +42,7 @@ ActiveAdmin.register Place do
       row :map
 
       row :image do
-        image_tag(place.image.url)
+        image_tag(place.image.url, width: 500)
       end
 
       row :reviews do
