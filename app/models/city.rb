@@ -6,6 +6,7 @@ class City < ActiveRecord::Base
   validates :about, presence: true
   validates :city_name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
 
+  has_many :places
   validates_presence_of :latitude, :longitude, :radius
   reverse_geocoded_by :latitude, :longitude
 
@@ -18,26 +19,10 @@ class City < ActiveRecord::Base
     places.count
   end
 
-  def places
-    @places = Place.all
-    c = []
-    @places.each do |place|
-      if self.city_name == place.city
-        c << place
-      end
-    end
-
-    return c
-  end
-
   def categories
-    @places = Place.all
     c = []
-
-    @places.each do |place|
-      if self.city_name == place.city
-        c |= place.categories
-      end
+    places.each do |place|
+      c |= place.categories
     end
 
     return c

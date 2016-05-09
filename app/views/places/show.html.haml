@@ -43,7 +43,7 @@
               = @place.country.capitalize
             %h5
               %strong City:
-              = @place.city.capitalize
+              = @place.city.city_name.capitalize rescue ''
             %h5
               %strong Address:
               = @place.address.capitalize

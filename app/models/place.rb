@@ -14,6 +14,7 @@ class Place < ActiveRecord::Base
   validates :phone, presence: true
   validates :address, presence: true, length: { minimum: 5 }
   validates :user_id, presence: true
+  belongs_to :city
 
 
   ratyrate_rateable 'name'

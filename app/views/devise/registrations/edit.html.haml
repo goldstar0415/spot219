@@ -6,8 +6,11 @@
       .col-lg-6.col-lg-offset-3
         = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form", multipart: true }) do |f|
           .form-group.col-lg-12
-            %label{:for => "exampleInputFile"} Upload avatar:
+            %label Upload avatar:
             = f.file_field :avatar
+          .form-group.col-lg-12
+            %label City
+            = f.select :city_id, options_from_collection_for_select(City.all, :id, :city_name), {}, class: 'form-control'
           .col-lg-6
             .input-group.input-group-sm
               %h5 First Name
