@@ -76,9 +76,9 @@ class CitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
-      params.require(:city).permit(:first_name, :last_name, :email, :about, :city_name, :user_id)
+      params.require(:city).permit(:first_name, :last_name, :email, :about, :city_name, :user_id, :lat, :log, :radius)
     end
-    
+
     def require_same_user
       if current_user != @city.user and !current_user.admin?
         flash[:danger] = "You can only edit or delete your own cities."
