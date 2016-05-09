@@ -17,6 +17,7 @@
 //= require_tree .
 //= require jquery.raty
 //= require ratyrate
+//= require ckeditor/init
 
 
 var show_spinner = function(){
