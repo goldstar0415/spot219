@@ -1,0 +1,18 @@
+%p#notice= notice
+%h1 Listing Blog Comments
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th{:colspan => "3"}
+  %tbody
+    - @blog_comments.each do |blog_comment|
+      %tr
+        %td= blog_comment.title
+        %td= blog_comment.description
+        %td= link_to 'Show', blog_comment
+        %td= link_to 'Edit', edit_blog_comment_path(blog_comment)
+        %td= link_to 'Destroy', blog_comment, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Blog comment', new_blog_comment_path

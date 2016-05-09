@@ -1,0 +1,63 @@
+= render 'layouts/navbar'
+#section-one
+  #section-content
+    .row
+      .col-lg-12
+        .hidden-lg
+          %br/
+          %br/
+        .container.searchbar{:align => "center"}
+          = form_tag search_path, :method => :get do
+            %p
+              = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+              = submit_tag "Search", class: "btn btn-default search-btn"
+        %h3.title User Details
+        %dl.dl-horizontal
+          %dt
+            %strong Full Name
+          %dd= @user.full_name
+          %dt
+            %strong Email
+          %dd= @user.email
+        .container.comment-section
+          %h6 Comments &amp; reviews :
+          %hr/
+          #comments
+            - if @user.comments.any?
+              - @user.comments.each do |comment|
+                = div_for(comment) do
+                  .media
+                    .media-left.pull-left
+                      = image_tag @user.avatar.url(:thumb), size: "55x55"
+                    .media-body
+                      %h5.media-heading{:style => "font-weight: bold;"}
+                        = h(comment.title)
+                        - if comment.number == 1
+                          = image_tag("star-on.png")
+                        - elsif comment.number == 2
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                        - elsif comment.number ==3
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                        - elsif comment.number == 4
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                        - elsif comment.number == 5
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                          = image_tag("star-on.png")
+                      %p= h(comment.description)
+                      %p
+                        %small
+                          Posted: #{time_ago_in_words(comment.created_at)} ago, for #{link_to comment.place.name, comment.place}
+                  %hr/
+            - else
+              %h4
+                = @user.full_name
+                do not have any reviews yet.

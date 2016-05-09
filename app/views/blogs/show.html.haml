@@ -1,0 +1,59 @@
+= render 'layouts/navbar'
+#section-one
+  #section-content
+    .row
+      .col-lg-12
+        .hidden-lg
+          %br/
+          %br/
+        .searchbar{:align => "center"}
+          = form_tag search_path, :method => :get do
+            %p
+              = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+              = submit_tag "Search", class: "btn btn-default search-btn"
+        .container
+          .media
+            .media-left.pull-left
+              = link_to (image_tag @blog.user.avatar.url(:thumb), size: "55x55", class: "creator"), @blog.user
+            .media-body
+              %h5.media-heading
+                %small Created by:
+                = link_to @blog.user.full_name, @blog.user
+              %p.creator-blog
+                %small
+                  Posted: #{time_ago_in_words(@blog.created_at)} ago
+        .col-lg-6.col-lg-offset-3{:align => "center"}
+          %h2
+            %strong= @blog.title
+          %hr/
+          = image_tag @blog.img.url(:medium), size: "700x515", class: "img-responsive"
+          %br/
+          %br/
+        .col-lg-6.col-lg-offset-3
+          %h4= @blog.body
+      .col-lg-8.col-lg-offset-2
+        .container.comment-section
+          %h6 Comments &amp; reviews :
+          %hr/
+          #comments
+            = render :partial => @blog.blog_comments
+          - if user_signed_in?
+            .col-lg-5
+              = form_for [@blog, BlogComment.new] do |f|
+                = f.text_field :title, :label => "Title", as: :string, placeholder: "Title (title can't be blank)", class: "form-control"
+                %br/
+                = f.text_area :description, :label => "Comment", as: :text, input_html: { rows: "4" }, placeholder: "Description (description can't be blank)", class: "form-control"
+                %h5
+                  Rate me
+                  %small (Higher is better)
+                = f.select :number, ((1..5).map {|i| [i,i] }), class: "form-control"
+                %br/
+                %br/
+                = f.submit "Add Comment", class: "btn btn-success"
+.container
+  %br/
+  - if current_user.admin?
+    = link_to 'Edit', edit_blog_path(@blog)
+    |
+    \#{link_to 'Back', blogs_path}|
+    \#{link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' }}

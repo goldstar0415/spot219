@@ -1,0 +1,161 @@
+%nav.navbar.navbar-default.nav-color
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %ul
+        = link_to (image_tag ("turkishspot1.png")), root_path, class: "navbar-brand"
+        %h1.city-name= @city.city_name
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %form.navbar-form.navbar-left{:role => "search"}
+        .form-group
+          %h4
+            - link_to "Have you tried Turkish Coffee? Search ...", search_path, class: "nav-search"
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          - if current_user.admin?
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Categories
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to "All categories", categories_path
+                %li.divider{:role => "separator"}
+                %li= link_to "Create new category", new_category_path
+          - else
+            %li= link_to "All categories", categories_path
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Places
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to 'View all places', places_path
+              %li.divider{:role => "separator"}
+              %li= link_to 'Add Place', new_place_path
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Cities
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to 'View all cities', cities_path
+              %li.divider{:role => "separator"}
+              %li= link_to 'Add City', new_city_path
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Account
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to 'My Profile', my_profile_path
+              %li= link_to 'My Friends', my_friends_path
+              %li.divider{:role => "separator"}
+              %li= link_to 'Edit my account', edit_user_registration_path
+              %li.divider{:role => "separator"}
+              %li= link_to 'Log Out', destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "All cities", cities_path
+          %li= link_to "All categories", categories_path
+          %li= link_to 'Register', new_user_registration_path
+          %li= link_to 'Log In', new_user_session_path
+    / /.navbar-collapse
+  / /.container-fluid
+#section-one
+  #section-content
+    .row
+      .col-lg-12
+        .hidden-lg
+          %br/
+          %br/
+        .container.searchbar{:align => "center"}
+          = form_tag search_path, :method => :get do
+            %p
+              = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+              = submit_tag "Search", class: "btn btn-default search-btn"
+        .col-lg-9.col-md-12.col-sm-12
+          - @places.each do |place|
+            - if place.city.downcase == @city.city_name.downcase
+              .card
+                .hovereffect
+                  = image_tag place.image.url(:thumb), size: "200x134"
+                  .overlay
+                    %h2 TurkishSpot
+                    %p
+                      = pluralize(place.comments.count, "Review")
+                      - if place.average_rating.to_f > 4.5
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                      - elsif (place.average_rating.to_f < 4.5) and (place.average_rating.to_f > 3.5)
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                      - elsif (place.average_rating.to_f < 3.5) and (place.average_rating.to_f > 2.5)
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                      - elsif (place.average_rating.to_f < 2.5) and (place.average_rating.to_f > 1.5)
+                        %span.fa.fa-star
+                        %span.fa.fa-star
+                      - elsif (place.average_rating.to_f < 1.5)
+                        %span.fa.fa-star
+                %h4{:align => "center"}= link_to place.name, place, :method => :get
+                - if place.categories.any?
+                  %h6{:align => "center"}= render place.categories
+        .side-nav.col-lg-3.col-md-12.col-sm-12.col-xs-12
+          .col-md-5
+            %h5= link_to 'Cities', cities_path, class: "link"
+            - @cities.each do |city|
+              %h6
+                = link_to city.city_name.capitalize, city
+                (
+                %small>= pluralize(city.countPlace, "place")
+                )
+            %h6= link_to 'View all cities', cities_path
+            %br/
+            %h5= link_to "Categories", categories_path, class: "link"
+            - @cate.each do |category|
+              %h6
+                = link_to category.name, category
+                (
+                %small>= pluralize(category.places.count, "place")
+                )
+            %h6= link_to 'View all categories', categories_path
+            %br/
+            .row
+              %div
+                .thumbnail
+                  = image_tag @blog.img.url(:thumb), size: "200x134", class: "img-responsive"
+                  .caption
+                    %h3= link_to @blog.title, @blog, class: "link"
+                    %p= @blog.body.first(140)
+                    %p= link_to 'Read more', @blog, class: "btn"
+          - if user_signed_in?
+            .col-md-7{:align => "center"}
+              %h4
+                Hello, #{current_user.full_name}
+              - if current_user.admin?
+                %h5 You are admin, so you can
+                %h5= link_to 'Create a New blog', new_blog_path, class: "link"
+          - else
+            .col-md-7{:align => "center"}
+              = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
+                .login
+                  = f.email_field :email, placeholder: "Your Email", class: "form-control"
+                .login
+                  = f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control"
+                .checkbox
+                  = f.label :remember_me do
+                    = f.check_box :remember_me
+                    Remember me
+                = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right"
+              %br/
+              = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
+.apple_pagination{:align => "center"}
+  = will_paginate @places

@@ -1,0 +1,61 @@
+= render 'layouts/navbar'
+#section-one
+  #section-content
+    .row
+      .col-lg-12
+        .hidden-lg
+          %br/
+          %br/
+        .container.searchbar{:align => "center"}
+          = form_tag search_path, :method => :get do
+            %p
+              = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+              = submit_tag "Search", class: "btn btn-default search-btn"
+        .container{:align => "center"}
+          = image_tag current_user.avatar.url(:thumb), size: "55x55"
+          %h4
+            = current_user.first_name.capitalize
+            's Profile
+          %h6= current_user.email
+          %h5= link_to 'Edit my profile', edit_user_registration_path
+        .container
+          .container.comment-section
+            %h6 My Comments &amp; reviews :
+            %hr/
+            #comments
+              - if current_user.comments.any?
+                - current_user.comments.each do |comment|
+                  = div_for(comment) do
+                    .media
+                      .media-left.pull-left
+                        = image_tag current_user.avatar.url(:thumb), size: "55x55"
+                      .media-body
+                        %h5.media-heading{:style => "font-weight: bold;"}
+                          = h(comment.title)
+                          - if comment.number == 1
+                            = image_tag("star-on.png")
+                          - elsif comment.number == 2
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                          - elsif comment.number ==3
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                          - elsif comment.number == 4
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                          - elsif comment.number == 5
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                            = image_tag("star-on.png")
+                        %p= h(comment.description)
+                        %p
+                          %small
+                            Posted: #{time_ago_in_words(comment.created_at)} ago, for #{link_to comment.place.name, comment.place}
+                    %hr/
+              - else
+                %h4 You do not have any reviews yet.

@@ -1,0 +1,125 @@
+= render 'layouts/navbar'
+.container
+  = bootstrap_flash
+#section-one
+  #section-content
+    .row
+      .col-lg-12
+        .hidden-lg
+          %br/
+          %br/
+        .searchbar{:align => "center"}
+          = form_tag search_path, :method => :get do
+            %p
+              = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+              = submit_tag "Search", class: "btn btn-default search-btn"
+        .col-lg-9
+          .description
+            %h4{:align => "left"}
+              %strong= @place.name
+            = image_tag @place.image.url(:medium), size: "640x426", class: "img-responsive"
+            .google-maps
+              %iframe{:frameborder => "0", :src => "https://www.google.com/maps/embed/v1/place?q=Toronto,+ON,+Canada&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU", :style => "border:0;"}
+          .desciption
+            %h4 About
+            %h6
+              %small
+                This place was created by: #{@place.user.full_name}
+            - if @place.categories.any?
+              %p
+                Categories: #{render @place.categories}
+            .ratestar
+              %h5.score= @place.average_rating
+            %p= @place.about
+            %hr/
+            - if current_user
+              %strong
+                Rate this place:
+                - link_to '(here)', @place, :method => :get, :class => 'badg'
+              = rating_for @place, "name", disable_after_rate: false
+            %hr/
+            %h5
+              %strong Country:
+              = @place.country.capitalize
+            %h5
+              %strong City:
+              = @place.city.capitalize
+            %h5
+              %strong Address:
+              = @place.address.capitalize
+            %h5
+              %strong Phone:
+              = @place.phone
+            - if (@place.fb.size > 2) || (@place.twit.size > 2) || (@place.insta.size > 2) || (@place.web.size > 2)
+              %h6
+                %strong Follow us on:
+            - if @place.fb.size > 2
+              %h6= link_to "Facebook", @place.fb, target: "_blank"
+            - if @place.twit.size > 2
+              %h6= link_to "Twitter", @place.twit, target: "_blank"
+            - if @place.insta.size > 2
+              %h6= link_to "Instagram", @place.insta, target: "_blank"
+            - if @place.web.size > 2
+              %h6= link_to "My website", @place.web, target: "_blank"
+        .side-nav.col-lg-3.visible-lg
+          .col-md-5
+            %h5= link_to 'Cities', cities_path, class: "link"
+            - @cities.each do |city|
+              %h6
+                = link_to city.city_name.capitalize, city
+                (
+                %small>= pluralize(city.countPlace, "place")
+                )
+            %h6= link_to 'View all cities', cities_path
+            %br/
+            %h5= link_to "Categories", categories_path, class: "link"
+            - @cate.each do |category|
+              %h6
+                = link_to category.name, category
+                (
+                %small>= pluralize(category.places.count, "place")
+                )
+            %h6= link_to 'View all categories', categories_path
+          - if user_signed_in?
+            .col-md-7{:align => "center"}
+              %h4
+                Hello, #{current_user.full_name}
+              = link_to 'Back', :back
+              - if current_user == @place.user
+                %br/
+                = link_to 'Edit', edit_place_path
+                %br/
+                = link_to 'Delete', @place, method: :delete, data: { confirm: 'Are you sure?' }
+          - else
+            .col-md-7{:align => "center"}
+              = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
+                .login
+                  = f.email_field :email, placeholder: "Your Email", class: "form-control"
+                .login
+                  = f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control"
+                .checkbox
+                  = f.label :remember_me do
+                    = f.check_box :remember_me
+                    Remember me
+                = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right"
+              %br/
+              = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
+      .col-lg-10.col-lg-offset-1
+        .container.comment-section
+          %h6 Comments &amp; reviews :
+          %hr/
+          #comments
+            = render :partial => @place.comments
+          - if user_signed_in?
+            .col-lg-5
+              = form_for [@place, Comment.new] do |f|
+                = f.text_field :title, :label => "Title", as: :string, placeholder: "Title (title can't be blank)", class: "form-control"
+                %br/
+                = f.text_area :description, :label => "Comment", as: :text, input_html: { rows: "4" }, placeholder: "Description (description can't be blank)", class: "form-control"
+                %h5
+                  Rate me
+                  %small (Higher is better)
+                = f.select :number, ((1..5).map {|i| [i,i] }), class: "form-control"
+                %br/
+                %br/
+                = f.submit "Add Comment", class: "btn btn-success"

@@ -1,0 +1,9 @@
+#footer.footer
+  .container
+    %h6{:align => "center"}
+      = link_to 'Categories', categories_path
+      |
+      \#{link_to 'Cities', cities_path}|
+      \#{link_to 'Places', places_path}|
+      \#{link_to 'Add Place', new_place_path}|
+      \#{link_to 'Add Your City', new_city_path}| © TurkishSpot 2016

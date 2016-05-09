@@ -1,0 +1,36 @@
+= render 'layouts/navbar'
+= bootstrap_devise_error_messages!
+#section-one
+  #section-sign-up.sign_up
+    .row
+      .col-lg-6.col-lg-offset-3
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f|
+          .col-lg-6
+            .input-group.input-group-sm
+              %h5 First Name
+              = f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First Name"
+          .col-lg-6
+            .input-group.input-group-sm
+              %h5 Last Name
+              = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+          .col-lg-12
+            .input-group.input-group-sm
+              %h5 Email
+              = f.email_field :email, class: "form-control", placeholder: "Email"
+          .col-lg-12
+            .input-group.input-group-sm
+              %h5 Password
+              = f.password_field :password, class: "form-control", placeholder: "Password"
+          .col-lg-12
+            .input-group.input-group-sm
+              %h5 Password confirmation
+              = f.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation"
+          .align{:align => "center"}
+            = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-success"
+          .align{:align => "center"}
+            %h4 Or with
+            %hr/
+          .col-lg-6{:align => "center"}
+            %button.btn.btn-md.btn-primary Google
+          .col-lg-6{:align => "center"}
+            %button.btn.btn-md.btn-info Twitter

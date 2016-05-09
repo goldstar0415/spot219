@@ -1,0 +1,78 @@
+= form_for @place, html: { multipart: true }  do |f|
+  - if @place.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@place.errors.count, "error")
+        prohibited this place from being saved:
+      %ul
+        - @place.errors.full_messages.each do |message|
+          %li= message
+  #section-add-place
+    %hr/
+    .col-lg-10.col-lg-offset-1
+      %form
+        .col-lg-12
+          .form-group
+            %label Place Name
+            = f.text_field :name, placeholder: "Place name", class: "form-control"
+        .col-lg-12
+          .form-group
+            %label About
+            = f.text_area :about, placeholder: "e.g. The best coffee in Toronto ...", class: "form-control", rows: "3"
+        .col-lg-3
+          .form-group
+            %label Country
+            = f.text_field :country, placeholder: "Country", class: "form-control"
+        .col-lg-3
+          .form-group
+            %label City
+            %br/
+            = f.select :city, options_for_select(@cities), {}, class: "form-control sel"
+        .col-lg-3
+          .form-group
+            %label Phone
+            = f.text_field :phone, placeholder: "Phone", class: "form-control"
+        .col-lg-3
+          .form-group
+            %label Full Address
+            = f.text_field :address, placeholder: "Full Address", class: "form-control"
+        .col-lg-12
+          .form-group
+            %label Link to map
+            = f.text_field :map, placeholder: "Map Link", class: "form-control"
+        .col-lg-3
+          .form-group
+            %label Link to Facebook (*)
+            = f.text_field :fb, placeholder: "https://www.facebook.com/", class: "form-control"
+        .col-lg-3
+          .form-group
+            %label Link to Twitter (*)
+            = f.text_field :twit, placeholder: "https://twitter.com/", class: "form-control"
+        .col-lg-3
+          .form-group
+            %label Link to Instagram (*)
+            = f.text_field :insta, placeholder: "https://www.instagram.com/", class: "form-control"
+        .col-lg-3
+          .form-group
+            %label Link to website (*)
+            = f.text_field :web, placeholder: "http://www.example.com", class: "form-control"
+        %h5.danger (*) Please provide all URLs with http:// or https://
+        %br/
+        %hr/
+        .col-lg-12
+          .form-group
+            .row
+              %label
+                Choose category
+                %small (You can choose max 3 categories)
+              .col-sm-offset-1.col-sm-10
+                = f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|
+                  - cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text}
+        %hr/
+        .form-group
+          %label{:for => "exampleInputFile"} Upload image of the place
+          = f.file_field :image
+
+        = f.submit "Submit", class: "btn btn-success"
+
+      = link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right"

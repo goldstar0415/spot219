@@ -1,0 +1,63 @@
+= render 'layouts/navbar'
+= bootstrap_devise_error_messages!
+#section-one
+  #section-sign-up.sign_up
+    .row
+      .col-lg-6.col-lg-offset-3
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form", multipart: true }) do |f|
+          .form-group.col-lg-12
+            %label{:for => "exampleInputFile"} Upload avatar:
+            = f.file_field :avatar
+          .col-lg-6
+            .input-group.input-group-sm
+              %h5 First Name
+              = f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First Name"
+          .col-lg-6
+            .input-group.input-group-sm
+              %h5 Last Name
+              = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+          .col-lg-12
+            .input-group.input-group-sm
+              %h5 Email
+              = f.email_field :email, class: "form-control", placeholder: "Email"
+          .col-lg-12
+            .input-group.input-group-sm
+              = f.label :password
+              %i
+                (#{t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")})
+              %br/
+              = f.password_field :password, :autocomplete => "off", class: "form-control"
+          .col-lg-12
+            .input-group.input-group-sm
+              = f.label :password_confirmation
+              %br/
+              = f.password_field :password_confirmation, class: "form-control"
+          .col-lg-12
+            .input-group.input-group-sm
+              = f.label :current_password
+              %i
+                (#{t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes')})
+              = f.password_field :current_password, class: "form-control"
+          .align{:align => "center"}
+            = f.submit t('.update', :default => "Update"), class: "btn btn-primary"
+          %p
+            = t('.unhappy', :default => 'Unhappy')
+            ? #{link_to t('.cancel_my_account', :default => "Cancel my account"),  registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete}.
+          = link_to t('.back', :default => 'Back'), :back
+%br/
+%hr/
+.container.comment-section
+  %h6 My Places :
+  %hr/
+  #section-one.container
+    %table.table.table-striped
+      %thead
+        %tr
+          %th{:align => "center"} Place name
+          %th{:colspan => "3"}
+      %tbody
+        - current_user.places.each do |place|
+          %tr
+            %td{:align => "center"}= link_to place.name, place
+            %td{:align => "center"}= link_to 'Show', place
+            %td{:align => "center"}= link_to 'Delete', place, method: :delete, data: { confirm: 'Are you sure?' }

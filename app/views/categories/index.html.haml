@@ -1,0 +1,22 @@
+= render 'layouts/navbar'
+%h4.title Listing All Categories
+#section-one
+  %div{:align => "center"}
+    .hidden-lg
+      %br/
+      %br/
+    .container.searchbar{:align => "center"}
+      = form_tag search_path, :method => :get do
+        %p
+          = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+          = submit_tag "Search", class: "btn btn-default search-btn"
+    = will_paginate
+    - @categories.each do |category|
+      %ul.listing
+        .row
+          .well.col-md-4.col-md-offset-4
+            %li.article-title
+              = link_to "#{category.name}", category_path(category)
+            %li
+              %small= pluralize(category.places.count, "place")
+    = will_paginate

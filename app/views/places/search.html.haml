@@ -1,0 +1,92 @@
+= render 'layouts/navbar'
+.container
+  = bootstrap_flash
+#section-one
+  #section-content
+    .row
+      .col-lg-12
+        .hidden-lg
+          %br/
+          %br/
+        .container.searchbar{:align => "center"}
+          = form_tag search_path, :method => :get do
+            %p
+              = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+              = submit_tag "Search", class: "btn btn-default search-btn"
+        .col-lg-6.col-lg-offset-3.search-group{:align => "center"}
+          %h4 Results
+        .col-lg-9.col-md-12.col-sm-12
+          - @places.each do |place|
+            .card
+              .hovereffect
+                = image_tag place.image.url(:thumb), size: "200x134"
+                .overlay
+                  %h2 TurkishSpot
+                  %p
+                    = pluralize(place.comments.count, "Review")
+                    - if place.average_rating.to_f > 4.5
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                    - elsif (place.average_rating.to_f < 4.5) and (place.average_rating.to_f > 3.5)
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                    - elsif (place.average_rating.to_f < 3.5) and (place.average_rating.to_f > 2.5)
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                    - elsif (place.average_rating.to_f < 2.5) and (place.average_rating.to_f > 1.5)
+                      %span.fa.fa-star
+                      %span.fa.fa-star
+                    - elsif (place.average_rating.to_f < 1.5)
+                      %span.fa.fa-star
+              %h4{:align => "center"}= link_to place.name, place, :method => :get
+              %h6{:align => "center"}
+                - if place.categories.any?
+                  = render place.categories.limit(3)
+                - else
+                  \.
+        .side-nav.col-lg-3.col-md-12.col-sm-12.col-xs-12
+          .col-md-5
+            %h5= link_to 'Cities', cities_path, class: "link"
+            - @cities.each do |city|
+              %h6
+                = link_to city.city_name, city
+                (
+                %small>= pluralize(city.countPlace, "place")
+                )
+            %h6= link_to 'View all cities', cities_path
+            %br/
+            %h5= link_to "Categories", categories_path, class: "link"
+            - @cate.each do |category|
+              %h6
+                = link_to category.name, category
+                (
+                %small>= pluralize(category.places.count, "place")
+                )
+            %h6= link_to 'View all categories', categories_path
+          - if user_signed_in?
+            .col-md-7{:align => "center"}
+              %h4
+                Hello, #{current_user.full_name}
+          - else
+            .col-md-7{:align => "center"}
+              = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
+                .login
+                  = f.email_field :email, placeholder: "Your Email", class: "form-control"
+                .login
+                  = f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control"
+                .checkbox
+                  = f.label :remember_me do
+                    = f.check_box :remember_me
+                    Remember me
+                = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right"
+              %br/
+              = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
+.apple_pagination{:align => "center"}
+  = will_paginate @places
+%br/

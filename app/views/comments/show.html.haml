@@ -1,0 +1,11 @@
+= render 'layouts/navbar'
+%p#notice= notice
+%p
+  %strong Title:
+  = @comment.title
+%p
+  %strong Description:
+  = @comment.description
+= link_to 'Edit', edit_comment_path(@comment)
+|
+= link_to 'Back', comments_path
