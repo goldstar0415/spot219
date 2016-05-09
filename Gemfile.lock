@@ -97,6 +97,7 @@ GEM
       countries (~> 1.2.0)
       sort_alphabetical (~> 1.0)
     currencies (0.4.2)
+    daemons (1.2.3)
     debug_inspector (0.0.2)
     delayed_job (4.0.6)
       activesupport (>= 3.0, < 5.0)
@@ -320,6 +321,7 @@ DEPENDENCIES
   ckeditor
   coffee-rails (~> 4.1.0)
   country_select
+  daemons
   delayed_job_active_record
   devise
   devise-bootstrap-views

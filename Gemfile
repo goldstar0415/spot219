@@ -52,6 +52,7 @@ gem 'country_select'
 gem "letter_opener", :group => :development
 gem 'delayed_job_active_record'
 gem 'ckeditor'
+gem 'daemons'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
