@@ -72,6 +72,7 @@ GEM
     devise-bootstrap-views (0.0.8)
     erubis (2.7.0)
     execjs (2.6.0)
+    geocoder (1.2.9)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     google-webfonts-rails (0.0.4)
@@ -246,6 +247,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   devise-bootstrap-views
+  geocoder
   google-webfonts-rails
   haml-rails
   jbuilder (~> 2.0)

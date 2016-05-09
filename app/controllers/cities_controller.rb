@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:show, :index]
+  before_action :authenticate_user!, :except => [:show, :index, :location]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   # GET /cities
@@ -10,6 +10,11 @@ class CitiesController < ApplicationController
     @places = Place.all
   end
 
+  def location
+    city = City.search(params['latitude'], params['longitude']).first
+    render json: { first_time: cookies[:first_time].nil? && city, id: city.id }
+  end
+
   # GET /cities/1
   # GET /cities/1.json
   def show
@@ -17,6 +22,8 @@ class CitiesController < ApplicationController
     @places = Place.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
     @cities = City.limit(10)
     @blog = Blog.last
+
+    cookies[:first_time] = false
   end
 
   # GET /cities/new

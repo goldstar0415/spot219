@@ -34,7 +34,7 @@ select {
   color: gray;
   border-bottom: 1px solid;
   padding: 0; /*removing spacing*/
-  background-color: #ffff66; 
+  background-color: #ffff66;
 }
 
 .no-padding{
@@ -110,7 +110,7 @@ select {
 }
 
 .searchbar{
-  margin-top: -90px;
+  margin-top: -80px;
   margin-bottom: 50px;
 }
 
@@ -151,7 +151,7 @@ select {
   color: gray;
   border-bottom: 1px solid;
   padding: 0; /*removing spacing*/
-  background-color: #ffff66; 
+  background-color: #ffff66;
 }
 
 #section-one .overlay a {
@@ -164,7 +164,7 @@ select {
   color: gray;
   border-bottom: 1px solid;
   padding: 0; /*removing spacing*/
-  background-color: none; 
+  background-color: none;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -398,8 +398,8 @@ textarea{
 .apple_pagination {
   background: none;
   text-align: center;
-  cursor: default; 
-  
+  cursor: default;
+
 }
 
 .apple_pagination a{
@@ -409,10 +409,10 @@ textarea{
 }
 
 .apple_pagination a, .apple_pagination span {
-    padding: 0.2em 0.3em; 
+    padding: 0.2em 0.3em;
 }
   .apple_pagination .disabled {
-    color: #aaaaaa; 
+    color: #aaaaaa;
 }
   .apple_pagination .current {
     font-style: normal;
@@ -428,7 +428,7 @@ textarea{
   .apple_pagination a {
     background-color: #fdfdfd !important;
     text-decoration: none;
-    color: black; 
+    color: black;
 }
     .apple_pagination a:hover, .apple_pagination a:focus {
       background-color: #f0f0f0 !important;

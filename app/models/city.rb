@@ -5,7 +5,10 @@ class City < ActiveRecord::Base
   validates :email, presence: true, length: { minimum: 10 }
   validates :about, presence: true
   validates :city_name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
-  
+
+  validates_presence_of :latitude, :longitude, :radius
+  reverse_geocoded_by :latitude, :longitude
+
   def countPlace
     @places = Place.all
     c = 0
@@ -18,5 +21,14 @@ class City < ActiveRecord::Base
     end
     return c
   end
-  
+
+  def self.search lat, long
+    cities = []
+    City.find_each do |city|
+      in_radius_ids = City.near([lat, long], city.radius, :units => :km).map(&:id)
+      cities << city if in_radius_ids.include?(city.id)
+    end
+
+    cities
+  end
 end

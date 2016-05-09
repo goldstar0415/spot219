@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  
-  
+
+
   post '/rate' => 'rater#create', :as => 'rate'
-  resources :cities
+  resources :cities do
+    post :location, on: :collection
+  end
+
   resources :places
   resources :blog_comments
   resources :blogs
@@ -17,18 +20,18 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'places#index'
-  
+
   resources :categories, except: [:destroy]
   resources :comments
-  
+
   resources :places do
     resources :comments
   end
-  
+
   resources :blogs do
     resources :blog_comments
   end
-  
+
   get 'search', to: "places#search"
   get 'my_profile', to: "users#my_profile"
   get 'my_friends', to: 'users#my_friends'
