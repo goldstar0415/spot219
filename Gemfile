@@ -10,7 +10,7 @@ gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem "paperclip", "~> 5.0.0.beta1"
 gem 'google-webfonts-rails'
-gem 'will_paginate', '3.0.7'
+gem 'will_paginate'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'ratyrate'
 gem 'sunspot_rails'

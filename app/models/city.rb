@@ -9,16 +9,37 @@ class City < ActiveRecord::Base
   validates_presence_of :latitude, :longitude, :radius
   reverse_geocoded_by :latitude, :longitude
 
+  has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
+  validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
+  validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
   def countPlace
+    places.count
+  end
+
+  def places
     @places = Place.all
-    c = 0
+    c = []
     @places.each do |place|
       if self.city_name == place.city
-        c+=1
-      else
-        c=c
+        c << place
       end
     end
+
+    return c
+  end
+
+  def categories
+    @places = Place.all
+    c = []
+
+    @places.each do |place|
+      if self.city_name == place.city
+        c |= place.categories
+      end
+    end
+
     return c
   end
 
