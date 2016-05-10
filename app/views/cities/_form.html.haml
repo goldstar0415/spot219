@@ -35,15 +35,15 @@
           .col-lg-4
             .form-group
               %label Latitude
-              = f.text_field :lat,class: "form-control", placeholder: "City's latitude"
+              = f.text_field :latitude, class: "form-control", placeholder: "City's latitude"
           .col-lg-4
             .form-group
               %label Longitude
-              = f.text_field :log,class: "form-control", placeholder: "City's longitude"
+              = f.text_field :longitude, class: "form-control", placeholder: "City's longitude"
           .col-lg-4
             .form-group
               %label Radius (unit: km)
-              = f.text_field :radius,class: "form-control", placeholder: "Radius"
+              = f.text_field :radius, class: "form-control", placeholder: "Radius"
     .col-lg-1.col-lg-offset-1
       = f.submit "Next", class: "btn btn-success"
       %br/

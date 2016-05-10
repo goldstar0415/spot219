@@ -11,8 +11,6 @@ class PlacesController < ApplicationController
     @cate = Category.limit(10)
     @blog = Blog.last
   end
-  
-  
 
   # GET /places/1
   # GET /places/1.json
@@ -76,8 +74,8 @@ class PlacesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  
+
+
   def search
     @search = Place.search do
       fulltext params[:search]
@@ -86,8 +84,8 @@ class PlacesController < ApplicationController
     @cities = City.limit(10)
     @cate = Category.limit(10)
   end
-  
-  
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -99,12 +97,12 @@ class PlacesController < ApplicationController
     def place_params
       params.require(:place).permit(:name, :about, :country, :city, :address, :phone, :fb, :twit, :insta, :web, :map, :image, category_ids: [])
     end
-    
+
     def require_same_user
       if current_user != @place.user and !current_user.admin?
         flash[:danger] = "You can only edit or delete your own places."
         redirect_to root_path
       end
     end
-    
+
 end
