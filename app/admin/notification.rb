@@ -18,7 +18,7 @@ index do
     id_column
     column :title
     column :city do |item|
-      item.city.city_name
+      item.city.try(:city_name)
     end
   end
 
