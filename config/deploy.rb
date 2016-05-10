@@ -37,6 +37,7 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       execute "cd #{current_path} && touch tmp/restart.txt"
       execute "cd #{current_path} && RAILS_ENV=production bundle exec bin/delayed_job restart"
+      execute "cd #{current_path} && RAILS_ENV=production bundle exec rake sunspot:solr:start"
     end
   end
 
