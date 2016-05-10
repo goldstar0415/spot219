@@ -58,7 +58,7 @@ ActiveAdmin.register Place do
       f.input :name
       f.input :about
       f.input :country
-      f.input :city_id, collection: City.all.map {|item| [item.city_name, item.id]}
+      f.input :city_id, collection: City.all.map {|item| [item.city_name, item.id]}, as: :select
       f.input :address
       f.input :phone
       f.input :fb
