@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  FROM_MAILER = 'noreply@turkish-spot.com'
+  FROM_MAILER = 'Turkish Spot <trangtrinhaxinh.vn@gmail.com>'
   default from: FROM_MAILER
 
   def notify email, noti
