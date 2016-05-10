@@ -16,6 +16,8 @@ gem 'ratyrate'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
+gem 'searchkick'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

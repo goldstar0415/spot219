@@ -77,10 +77,8 @@ class PlacesController < ApplicationController
 
 
   def search
-    @search = Place.search do
-      fulltext params[:search]
-    end
-    @places = @search.results
+    @places = Place.search params[:search]
+
     @cities = City.limit(10)
     @cate = Category.limit(10)
   end

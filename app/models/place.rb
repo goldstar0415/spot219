@@ -1,4 +1,6 @@
 class Place < ActiveRecord::Base
+  searchkick
+
   belongs_to :user
   has_many :place_categories
   has_many :categories, through: :place_categories
@@ -19,12 +21,13 @@ class Place < ActiveRecord::Base
 
   ratyrate_rateable 'name'
 
-  searchable do
-    text :name, :boost => 0
-    text :about, :city
-    text :categories do
-      categories.map(&:name)
-    end
+  def search_data
+    {
+      name: name,
+      about: about,
+      city: city.city_name,
+      categories: categories.map(&:name)
+    }
   end
 
   def average_rating
