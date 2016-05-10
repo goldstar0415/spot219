@@ -12,7 +12,7 @@ class CitiesController < ApplicationController
 
   def location
     city = City.search(params['latitude'], params['longitude']).first rescue nil
-    render json: { first_time: cookies[:first_time].nil? && city, id: city.id }
+    render json: { first_time: cookies[:first_time].nil? && city, id: city.try(:id) }
   end
 
   # GET /cities/1
