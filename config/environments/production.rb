@@ -108,12 +108,13 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'turkish-spot.com' }
 
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            ENV['GMAIL_USERNAME'],
-    password:             ENV['GMAIL_PSW'],
-    authentication:       'plain'
+    address:   ENV['MailDrill_HOST'],
+    user_name: ENV['MailDrill_USER_NAME'],
+    password:  ENV['MailDrill_PASSS'],
+    :authentication => :login,
+    :enable_starttls_auto => true,
+    :port => 465
   }
 end
