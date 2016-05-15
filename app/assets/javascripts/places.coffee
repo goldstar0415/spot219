@@ -48,6 +48,9 @@ codeAddress =(address) ->
         @marker = new (google.maps.Marker)(
           position: location
           map: gMapObj)
+
+      jQuery('#place_latitude').val location.lat()
+      jQuery('#place_longitude').val location.lng()
     else
       alert 'Geocode was not successful for the following reason: ' + status
     return
