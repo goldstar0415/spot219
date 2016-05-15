@@ -38,7 +38,9 @@ ActiveAdmin.register Blog do
         image_tag(blog.img.url(:thumb), width: '100')
       end
 
-      row :body
+      row :body do
+        raw(blog.body)
+      end
     end
   end
 
