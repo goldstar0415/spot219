@@ -19,7 +19,7 @@
               %strong= @place.name
             = image_tag @place.image.url(:medium), size: "640x426", class: "img-responsive"
             .google-maps
-              %iframe{:frameborder => "0", :src => "https://www.google.com/maps/embed/v1/place?q=Toronto,+ON,+Canada&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU", :style => "border:0;"}
+              = render_gmap_coordinate_picker :lat_column => 'latitude', :lng_column => 'longitude' , :zoom_level => 12, :default_coordinates => [@place.latitude, @place.longitude], map_width: 500
           .desciption
             %h4 About
             %h6
@@ -50,17 +50,23 @@
             %h5
               %strong Phone:
               = @place.phone
+
             - if (@place.fb.size > 2) || (@place.twit.size > 2) || (@place.insta.size > 2) || (@place.web.size > 2)
               %h6
                 %strong Follow us on:
+
             - if @place.fb.size > 2
               %h6= link_to "Facebook", @place.fb, target: "_blank"
+
             - if @place.twit.size > 2
               %h6= link_to "Twitter", @place.twit, target: "_blank"
+
             - if @place.insta.size > 2
               %h6= link_to "Instagram", @place.insta, target: "_blank"
+
             - if @place.web.size > 2
               %h6= link_to "My website", @place.web, target: "_blank"
+
         .side-nav.col-lg-3.visible-lg
           .col-md-5
             %h5= link_to 'Cities', cities_path, class: "link"

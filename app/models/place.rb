@@ -12,7 +12,7 @@ class Place < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3, maximum: 25 }
   validates :about, presence: true, length: { minimum: 5, maximum: 500 }
   validates :country, presence: true
-  validates :city, presence: true
+  validates :city_id, presence: true
   validates :phone, presence: true
   validates :address, presence: true, length: { minimum: 5 }
   validates :user_id, presence: true
@@ -25,7 +25,7 @@ class Place < ActiveRecord::Base
     {
       name: name,
       about: about,
-      city: city.city_name,
+      city: city.try(:city_name),
       categories: categories.map(&:name)
     }
   end

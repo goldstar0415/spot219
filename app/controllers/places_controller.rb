@@ -24,7 +24,7 @@ class PlacesController < ApplicationController
   # GET /places/new
   def new
     @place = Place.new
-    @cities = City.uniq.pluck(:city_name)
+    @cities = City.all
   end
 
   # GET /places/1/edit
@@ -37,6 +37,10 @@ class PlacesController < ApplicationController
   def create
     @place = Place.new(place_params)
     @place.user = current_user
+    @place.save
+
+    p @place.errors
+
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place }
@@ -93,7 +97,9 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :about, :country, :city, :address, :phone, :fb, :twit, :insta, :web, :map, :image, category_ids: [])
+      params.require(:place).permit(:name, :about, :country, :city,
+        :address, :phone, :fb, :twit, :insta, :web, :map, :image,
+        :city_id, :latitude, :longitude, category_ids: [])
     end
 
     def require_same_user
