@@ -100,5 +100,6 @@
   = will_paginate @places
 %br/
 
-:javascript
-  getLocation()
+- if cookies[:first_time].nil?
+  :javascript
+    getLocation()
