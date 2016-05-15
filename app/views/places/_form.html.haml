@@ -27,7 +27,7 @@
           .form-group
             %label City
             %br/
-            = f.select :city_id, options_from_collection_for_select(@cities, :id, :city_name), {}, class: "form-control sel"
+            = f.select :city_id, options_from_collection_for_select(City.all, :id, :city_name), {}, class: "form-control sel"
         .col-lg-3
           .form-group
             %label Phone
