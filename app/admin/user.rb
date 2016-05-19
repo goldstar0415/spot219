@@ -31,8 +31,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "User Details" do
       f.input :email
-      f.input :roles, :collection => Role.global,
-        :label_method => lambda { |el| t "simple_form.options.user.roles.#{el.name}" }
+      f.input :role_ids, collection: Role.global.map {|item| [(t "simple_form.options.user.roles.#{item.name}"), item.id]},  prompt: "Select Role"
     end
     f.actions
   end
