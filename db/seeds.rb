@@ -4,19 +4,43 @@
 #             email: 'demo@demo.com',
 #             password: '12345678',
 #             admin: true)
-# AdminUser.create!(email: 'admin@example.com',
-#                   password: 'password',
-#                   password_confirmation: 'password')
+AdminUser.create!(email: 'admin@example.com',
+                  password: 'password',
+                  password_confirmation: 'password')
 
+#----------------------------------------
+admin = User.create(first_name: 'admin',
+            last_name: 'user',
+            email: 'admin_user@example.com',
+            password: '12345678')
+admin.add_role :admin
+#------------------------------------------
+# place_owner = User.create(first_name: 'place_owner',
+#             last_name: 'user',
+#             email: 'place_owner@example.com',
+#             password: '12345678')
+# place_owner.add_role :place_owner
+#---------------------------------------------
+mayor = User.create(first_name: 'mayor',
+            last_name: 'user',
+            email: 'mayor@example.com',
+            password: '12345678')
+mayor.add_role :mayor
+#---------------------------------
+regular = User.create(first_name: 'regular',
+            last_name: 'user',
+            email: 'regular@example.com',
+            password: '12345678')
+regular.add_role :regular
 
-#Create User ---------
+#----------------------
 (1..5).each do |index|
-  User.create(first_name: Faker::Name.first_name,
+  place_owner = User.create(first_name: Faker::Name.first_name,
               last_name: Faker::Name.last_name,
               email: Faker::Internet.email,
-              password: '12345678',
-              admin: true
+              password: '12345678'
             )
+  place_owner.add_role :place_owner
 end
 (1..5).each do |index|
   City.create(
@@ -30,8 +54,8 @@ end
               radius: index
             )
 end
-(1..10).each do |index|
-  user = User.order("RANDOM()").first
+(1..21).each do |index|
+  user = User.with_role(:place_owner).order("RANDOM()").first
   city = City.order("RANDOM()").first
   Place.create(
             name: Faker::Address.street_name,
@@ -40,6 +64,8 @@ end
             city_id: city.id,
             phone: Faker::PhoneNumber.phone_number,
             address: city.about,
-            user_id: user.id
+            user_id: user.id,
+            image: File.new("#{Rails.root}/app/assets/images/500-500.png"),
+            fb: "", twit: "", insta: "", web: ""
           )
 end

@@ -77,3 +77,5 @@ group :production do
 end
 
 gem 'faker'
+gem "rolify"
+gem 'cancancan', '~> 1.10'

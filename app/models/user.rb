@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   has_many :places
   has_many :comments
   has_many :blog_comments
