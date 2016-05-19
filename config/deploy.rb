@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'Turkish Spot'
-set :repo_url, 'git@bitbucket.org:lelacag/turkish-spot.git'
+set :repo_url, 'git@bitbucket.org:jackyvo/turkish.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
