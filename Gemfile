@@ -77,4 +77,3 @@ group :production do
 end
 
 gem 'faker'
-gem 'typhoeus'
