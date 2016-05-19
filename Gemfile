@@ -79,3 +79,6 @@ end
 gem 'faker'
 gem "rolify"
 gem 'cancancan', '~> 1.10'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rvm', github: 'capistrano/rvm'
+gem 'capistrano3-delayed-job', '~> 1.0'
