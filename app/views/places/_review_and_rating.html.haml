@@ -1,0 +1,13 @@
+%script{:type => "application/ld+json"}
+  {
+  "@context": "http://schema.org/",
+  "@type": "LocalBusiness",
+  "name": "#{@place.name}",
+  "description": "#{@place.description}",
+  "aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "#{@place.average_rating}",
+  "bestRating": "5",
+  "ratingCount": "#{@place.rating_count}"
+  }
+  }

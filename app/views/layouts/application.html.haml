@@ -6,7 +6,9 @@
     %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %link{:href => "https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700", :rel => "stylesheet", :type => "text/css"}/
-    %title= content_for?(:title) ? yield(:title) : "TurkishSpot"
+    = display_meta_tags site: 'TurkishSpot',
+                        separator: "|",
+                        reverse: true
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
     / For third-generation iPad with high-resolution Retina display:

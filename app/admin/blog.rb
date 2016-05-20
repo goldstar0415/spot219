@@ -12,7 +12,7 @@ ActiveAdmin.register Blog do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+  filter :title
 
   index do
     selectable_column
@@ -22,18 +22,25 @@ ActiveAdmin.register Blog do
     end
     column :title
 
+    column :description do |blog|
+      blog.description.truncate(50)
+    end
+
     column :body do |blog|
       blog.body.truncate(100)
     end
 
+    column :views_number
     column :user
+    actions
+
   end
 
   show do
     attributes_table do
       row :title
       row :user
-
+      row :views_number
       row :image do
         image_tag(blog.img.url(:thumb), width: '100')
       end
@@ -47,6 +54,7 @@ ActiveAdmin.register Blog do
  form do |f|
     f.inputs 'Community' do
       f.input :title
+      f.input :description
       f.input :body, :as => :ckeditor
       f.input :user
       f.input :img

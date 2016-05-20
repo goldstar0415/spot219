@@ -11,6 +11,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @blog.increment
   end
 
   # GET /blogs/new
@@ -73,7 +74,7 @@ class BlogsController < ApplicationController
     def blog_params
       params.require(:blog).permit(:title, :body, :img)
     end
-    
+
     def require_admin
       if !user_signed_in? || (user_signed_in? and !current_user.admin?)
         flash[:danger] = "Only admins can perform that action"

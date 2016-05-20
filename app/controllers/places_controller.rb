@@ -6,7 +6,7 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
+    @places = Place.order(created_at: :desc).paginate(page: params[:page], per_page: 18)
     @cities = City.limit(10)
     @cate = Category.limit(10)
     @blog = Blog.last

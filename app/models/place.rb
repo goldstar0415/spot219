@@ -37,4 +37,12 @@ class Place < ActiveRecord::Base
         '5.0'
     end
   end
+
+  def rating_count
+    if self.comments.size > 0
+      self.comments.size
+    else
+      20
+    end
+  end
 end

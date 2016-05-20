@@ -12,23 +12,30 @@ ActiveAdmin.register Place do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+  filter :name
 
   index do
     selectable_column
     id_column
     column :name
+    column :title
+    column :title do |place|
+      place.title.truncate(30)
+    end
     column :about
     column :address
     column :phone
     column :web
     column :user
+
+    actions
   end
 
   show do
     attributes_table do
       row :name
-
+      row :title
+      row :description
       row :about
       row :country
       row :city
@@ -56,6 +63,8 @@ ActiveAdmin.register Place do
    form do |f|
     f.inputs 'Community' do
       f.input :name
+      f.input :title
+      f.input :description
       f.input :about
       f.input :country
       f.input :city_id, collection: City.all.map {|item| [item.city_name, item.id]}, as: :select

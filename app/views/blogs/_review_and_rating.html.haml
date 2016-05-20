@@ -1,0 +1,13 @@
+%script{:type => "application/ld+json"}
+  {
+  "@context": "http://schema.org/",
+  "@type": "Service",
+  "name": "#{@blog.title}",
+  "description": "#{@blog.description}",
+  "aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "#{@blog.average_rating}",
+  "bestRating": "5",
+  "ratingCount": "#{@blog.views_number}"
+  }
+  }
