@@ -1,18 +1,24 @@
+= render 'layouts/navbar'
 %p#notice= notice
 %h1 Listing Blogs
-%table
-  %thead
-    %tr
-      %th Title
-      %th Body
-      %th{:colspan => "3"}
-  %tbody
-    - @blogs.each do |blog|
+#section-one
+  %table.table.table-bordered
+    %thead
       %tr
-        %td= blog.title
-        %td= blog.body
-        %td= link_to 'Show', blog
-        %td= link_to 'Edit', edit_blog_path(blog)
-        %td= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Blog', new_blog_path
+        %th Title
+        %th Body
+        %th City
+        %th{:colspan => "3"}
+    %tbody
+      - @blogs.each do |blog|
+        %tr
+          %td= blog.title.truncate(20)
+          %td= blog.body.truncate(90)
+          %td= blog.city.try(:city_name)
+          %td= link_to 'Show', blog
+          %td= link_to 'Edit', edit_blog_path(blog)
+          %td= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+  = link_to 'New Blog', new_blog_path
+.apple_pagination{:align => "center"}
+  = will_paginate @blogs

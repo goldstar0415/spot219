@@ -1,0 +1,10 @@
+.clearfix
+%h2 List Blogs
+- @blogs.each do |blog|
+  .card
+    .hovereffect
+      = image_tag blog.img.url(:thumb), size: "200x134"
+    %h4{:align => "center"}= link_to blog.title.truncate(20), blog, :method => :get
+.clearfix
+.apple_pagination{:align => "center"}
+  = will_paginate @blogs, param_name: 'blog_page'

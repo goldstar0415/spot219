@@ -11,6 +11,8 @@ class City < ActiveRecord::Base
   validates_presence_of :latitude, :longitude, :radius
   reverse_geocoded_by :latitude, :longitude
 
+  has_many :blogs
+
   has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
   validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
   validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }

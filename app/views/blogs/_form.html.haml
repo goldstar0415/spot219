@@ -17,6 +17,12 @@
         .form-group
           %label{:for => "exampleInputEmail1"} Body text
           = f.text_area :body, placeholder: "The main text goes here", class: "form-control", rows: "10"
+        .form-group
+          %label{:for => "blog_city"} City
+          -if has_role?(:admin)
+            = f.select :city_id, options_for_select(City.all.map{|c| [c.city_name, c.id]}, selected: @blog.city_id), {include_blank: 'All city'}, {class: "form-control"}
+          -else
+            = f.select :city_id, options_for_select(current_user.cities.map{|c| [c.city_name, c.id]}, selected: @blog.city_id), {}, {class: "form-control"}
         %hr/
         .form-group
           %label{:for => "exampleInputFile"} Upload image

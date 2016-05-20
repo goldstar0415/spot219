@@ -76,37 +76,8 @@
               = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
               = submit_tag "Search", class: "btn btn-default search-btn"
         .col-lg-9.col-md-12.col-sm-12
-          - @places.each do |place|
-            .card
-              .hovereffect
-                = image_tag place.image.url(:thumb), size: "200x134"
-                .overlay
-                  %h2 TurkishSpot
-                  %p
-                    = pluralize(place.comments.count, "Review")
-                    - if place.average_rating.to_f > 4.5
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                    - elsif (place.average_rating.to_f < 4.5) and (place.average_rating.to_f > 3.5)
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                    - elsif (place.average_rating.to_f < 3.5) and (place.average_rating.to_f > 2.5)
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                    - elsif (place.average_rating.to_f < 2.5) and (place.average_rating.to_f > 1.5)
-                      %span.fa.fa-star
-                      %span.fa.fa-star
-                    - elsif (place.average_rating.to_f < 1.5)
-                      %span.fa.fa-star
-              %h4{:align => "center"}= link_to place.name, place, :method => :get
-              - if place.categories.any?
-                %h6{:align => "center"}= render place.categories
+          = render 'list_places'
+          = render 'list_blogs'
 
         .side-nav.col-lg-3.col-md-12.col-sm-12.col-xs-12
           .col-md-5
@@ -159,5 +130,4 @@
                 = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right"
               %br/
               = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
-.apple_pagination{:align => "center"}
-  = will_paginate @places
+

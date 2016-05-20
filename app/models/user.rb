@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :friends, through: :friendships
   has_many :blogs
   belongs_to :city
+  has_many :cities
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

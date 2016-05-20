@@ -31,7 +31,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "User Details" do
       f.input :email
-      f.input :role_ids, collection: Role.global.map {|item| [(t "simple_form.options.user.roles.#{item.name}"), item.id]},  prompt: "Select Role"
+      f.input :role_ids, collection: Role.global.map {|item| [(t "simple_form.options.user.roles.#{item.name}"), item.id]}, include_blank: false
     end
     f.actions
   end

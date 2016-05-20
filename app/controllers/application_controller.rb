@@ -8,4 +8,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
+  def has_role?(*args)
+    #current_roles.include?(role.to_s)
+    args.any? { |x| current_roles.include?(x.to_s) }
+  end
+  helper_method :has_role?
+
+  def current_roles
+    return [] unless current_user
+    @current_roles ||= current_user.roles.pluck(:name)
+  end
 end
