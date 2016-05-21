@@ -1,6 +1,8 @@
 class Place < ActiveRecord::Base
   searchkick
 
+  after_save :update_role
+
   belongs_to :user
   has_many :place_categories
   has_many :categories, through: :place_categories
@@ -43,6 +45,12 @@ class Place < ActiveRecord::Base
       self.comments.size
     else
       20
+    end
+  end
+
+  def update_role
+    if self.user_id_changed?
+      self.user.add_role :place_owner
     end
   end
 end

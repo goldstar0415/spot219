@@ -19,6 +19,7 @@ class PlacesController < ApplicationController
     @cities = City.limit(10)
     @places = Place.all
     @blog = Blog.last
+    @claim = Claim.new
   end
 
   # GET /places/new
@@ -38,8 +39,6 @@ class PlacesController < ApplicationController
     @place = Place.new(place_params)
     @place.user = current_user
     @place.save
-
-    p @place.errors
 
     respond_to do |format|
       if @place.save

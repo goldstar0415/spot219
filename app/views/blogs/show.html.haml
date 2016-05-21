@@ -1,6 +1,6 @@
 - set_meta_tags title: @blog.title,
                 description: @blog.description,
-                keywords: @blog.title.split(' ').join(',')
+                keywords: @blog.title.to_s.split(' ').join(',')
 = render 'review_and_rating'
 = render 'layouts/navbar'
 #section-one

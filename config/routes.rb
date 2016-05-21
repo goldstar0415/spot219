@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post :location, on: :collection
   end
 
+  resources :claims
   resources :places
   resources :blog_comments
   resources :blogs

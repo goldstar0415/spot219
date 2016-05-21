@@ -1,6 +1,6 @@
 - set_meta_tags title: @place.title,
                 description: @place.description,
-                keywords: @place.title.split(' ').join(',')
+                keywords: @place.title.to_s.split(' ').join(',')
 = render 'review_and_rating'
 = render 'layouts/navbar'
 .container
@@ -133,3 +133,7 @@
                 %br/
                 %br/
                 = f.submit "Add Comment", class: "btn btn-success"
+          .col-log-5
+            #claim
+              %button.btn.btn-primary.btn-lg{"data-target" => "#claim-modal", "data-toggle" => "modal", :type => "button"} Claim
+              = render "claim_modal"

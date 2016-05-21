@@ -13,10 +13,10 @@
       %form
         .form-group
           %label{:for => "exampleInputEmail1"} Title
-          = f.text_field :title, placeholder: "Title", class: "form-control"
+          = f.text_field :title, placeholder: "Title", class: "form-control", required: true
         .form-group
           %label{:for => "exampleInputEmail1"} Body text
-          = f.text_area :body, placeholder: "The main text goes here", class: "form-control", rows: "10"
+          = f.cktext_area :body, placeholder: "The main text goes here", class: "form-control", rows: "10"
         .form-group
           %label{:for => "blog_city"} City
           -if has_role?(:admin)

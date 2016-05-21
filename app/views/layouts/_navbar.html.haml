@@ -13,15 +13,6 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          - if has_role?(:admin, :mayor)
-            %li.dropdown
-              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                Blogs
-                %span.caret
-              %ul.dropdown-menu
-                %li= link_to "All blogs", blogs_path
-                %li.divider{:role => "separator"}
-                %li= link_to "Create new blog", new_blog_path
           - if has_role?(:admin)
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -33,6 +24,15 @@
                 %li= link_to "Create new category", new_category_path
           - else
             %li= link_to "All categories", categories_path
+          - if has_role?(:admin, :mayor)
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Blogs
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to "All blogs", blogs_path
+                %li.divider{:role => "separator"}
+                %li= link_to "Create new blog", new_blog_path
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               Places

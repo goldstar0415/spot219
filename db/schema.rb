@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520083557) do
+ActiveRecord::Schema.define(version: 20160521082924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,23 @@ ActiveRecord::Schema.define(version: 20160520083557) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "claims", force: :cascade do |t|
+    t.string   "email",              default: "", null: false
+    t.string   "first_name",         default: ""
+    t.string   "last_name",          default: ""
+    t.string   "proof_file_name"
+    t.string   "proof_content_type"
+    t.integer  "proof_file_size"
+    t.datetime "proof_updated_at"
+    t.string   "phone"
+    t.text     "reason"
+    t.integer  "status"
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "comments", force: :cascade do |t|

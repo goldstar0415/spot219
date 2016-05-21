@@ -1,0 +1,47 @@
+/ Modal
+#claim-modal.modal.fade{"aria-labelledby" => "claimModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#claimModalLabel.modal-title Claim Form
+      .modal-body
+        #section-sign-up.sign_up
+          .row
+            .col-lg-12
+              = form_for(@claim, html: { role: "form" }) do |f|
+                = f.hidden_field :place_id, value: @place.id
+                .col-lg-6
+                  .input-group.input-group-sm
+                    %h5 First Name
+                    -if user_signed_in?
+                      = f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First Name", value: current_user.first_name, readonly: true
+                    -else
+                      = f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First Name"
+
+                .col-lg-6
+                  .input-group.input-group-sm
+                    %h5 Last Name
+                    -if user_signed_in?
+                      = f.text_field :last_name, class: "form-control", placeholder: "Last Name", value: current_user.last_name, readonly: true
+                    -else
+                      = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+                .col-lg-12
+                  .input-group.input-group-sm
+                    %h5 Email
+                    -if user_signed_in?
+                      = f.email_field :email, class: "form-control", placeholder: "Email", value: current_user.email, readonly: true
+                    -else
+                      = f.email_field :email, class: "form-control", placeholder: "Email"
+                .col-lg-12
+                  .input-group.input-group-sm
+                    %h5 Phone
+                    = f.text_field :phone, class: "form-control", placeholder: "Phone"
+                .col-lg-12
+                  .input-group.input-group-sm
+                    %h5 Upload Proof
+                    = f.file_field :proof
+                .align{:align => "center"}
+                  %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+                  = f.submit t('.sign_up', :default => "Submit"), class: "btn btn-success"
