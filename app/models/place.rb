@@ -50,7 +50,10 @@ class Place < ActiveRecord::Base
 
   def update_role
     if self.user_id_changed?
-      self.user.add_role :place_owner
+      u = self.user
+      role_id =Role.where(name: "place_owner").first.id
+      u.role_ids = role_id
+      u.save
     end
   end
 end

@@ -1,5 +1,4 @@
 class ClaimMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -8,7 +7,7 @@ class ClaimMailer < ApplicationMailer
   def sent_approve_claim email
     @greeting = "Hi"
 
-    mail to: email
+    mail(to: email, subject: 'Turkish Approve claim mail')
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -19,6 +18,6 @@ class ClaimMailer < ApplicationMailer
   def sent_deny_claim email
     @greeting = "Hi"
 
-    mail to: email
+    mail(to: email, subject: 'Turkish Deny claim mail')
   end
 end
