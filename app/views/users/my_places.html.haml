@@ -1,0 +1,11 @@
+= render 'layouts/navbar'
+= bootstrap_devise_error_messages!
+#section-one
+  #section-sign-up.sign_up
+    .row
+      .col-lg-12
+        .col-lg-9
+          = render 'my_places'
+        .col-lg-2
+          = render 'devise/registrations/sidebar'
+

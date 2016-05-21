@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'search', to: "places#search"
   get 'my_profile', to: "users#my_profile"
   get 'my_friends', to: 'users#my_friends'
+  get 'my-places', to: 'users#my_places'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

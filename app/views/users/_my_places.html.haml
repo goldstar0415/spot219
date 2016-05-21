@@ -1,0 +1,35 @@
+%h2 My Places
+- @places.each do |place|
+  .card
+    .hovereffect
+      = image_tag place.image.url(:thumb), size: "200x134"
+      .overlay
+        %h2 TurkishSpot
+        %p
+          = pluralize(place.comments.count, "Review")
+          - if place.average_rating.to_f > 4.5
+            %span.fa.fa-star
+            %span.fa.fa-star
+            %span.fa.fa-star
+            %span.fa.fa-star
+            %span.fa.fa-star
+          - elsif (place.average_rating.to_f < 4.5) and (place.average_rating.to_f > 3.5)
+            %span.fa.fa-star
+            %span.fa.fa-star
+            %span.fa.fa-star
+            %span.fa.fa-star
+          - elsif (place.average_rating.to_f < 3.5) and (place.average_rating.to_f > 2.5)
+            %span.fa.fa-star
+            %span.fa.fa-star
+            %span.fa.fa-star
+          - elsif (place.average_rating.to_f < 2.5) and (place.average_rating.to_f > 1.5)
+            %span.fa.fa-star
+            %span.fa.fa-star
+          - elsif (place.average_rating.to_f < 1.5)
+            %span.fa.fa-star
+    %h4{:align => "center"}= link_to place.name, place, :method => :get
+    - if place.categories.any?
+      %h6{:align => "center"}= render place.categories
+.clearfix
+.apple_pagination{:align => "center"}
+  = will_paginate @places
