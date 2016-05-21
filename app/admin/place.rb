@@ -63,8 +63,6 @@ ActiveAdmin.register Place do
    form do |f|
     f.inputs 'Community' do
       f.input :name
-      f.input :title
-      f.input :description
       f.input :about
       f.input :country
       f.input :city_id, collection: City.all.map {|item| [item.city_name, item.id]}, as: :select
@@ -77,6 +75,9 @@ ActiveAdmin.register Place do
       f.input :user
       f.input :map
       f.input :image
+      hr
+      f.input :title, label: "SEO Title"
+      f.input :description, label: "SEO Description"
     end
 
     actions
