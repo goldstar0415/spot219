@@ -20,17 +20,31 @@ class PlacesController < ApplicationController
     @places = Place.all
     @blog = Blog.last
     @claim = Claim.new
+    @open_days = @place.open_days.where(open: true)
+
   end
 
   # GET /places/new
   def new
     @place = Place.new
     @cities = City.all
+
+    @open_days = []
+    Date::DAYNAMES.each do |day|
+      @open_days << @place.open_days.build(day_in_week: day)
+    end
   end
 
   # GET /places/1/edit
   def edit
     @cities = City.uniq.pluck(:city_name)
+    @open_days = @place.open_days
+    if @open_days.blank?
+      @open_days = []
+      Date::DAYNAMES.each do |day|
+        @open_days << @place.open_days.build(day_in_week: day)
+      end
+    end
   end
 
   # POST /places
@@ -39,7 +53,7 @@ class PlacesController < ApplicationController
     @place = Place.new(place_params)
     @place.user = current_user
     @place.save
-
+    #binding.pry
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place }
@@ -55,6 +69,7 @@ class PlacesController < ApplicationController
   # PATCH/PUT /places/1.json
   def update
     respond_to do |format|
+      #binding.pry
       if @place.update(place_params)
         format.html { redirect_to @place }
         format.json { render :show, status: :ok, location: @place }
@@ -98,7 +113,7 @@ class PlacesController < ApplicationController
     def place_params
       params.require(:place).permit(:name, :about, :country, :city,
         :address, :phone, :fb, :twit, :insta, :web, :map, :image,
-        :city_id, :latitude, :longitude, category_ids: [])
+        :city_id, :latitude, :longitude, category_ids: [], open_days_attributes: [ :id, :day_in_week, :start_time, :end_time, :open ])
     end
 
     def require_same_user

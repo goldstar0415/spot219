@@ -2,6 +2,7 @@ class Place < ActiveRecord::Base
   searchkick
 
   after_save :update_role
+  after_create :add_open_days
 
   belongs_to :user
   has_many :place_categories
@@ -19,7 +20,8 @@ class Place < ActiveRecord::Base
   validates :address, presence: true, length: { minimum: 5 }
   validates :user_id, presence: true
   belongs_to :city
-
+  has_many :open_days
+  accepts_nested_attributes_for :open_days , :reject_if => :all_blank
 
   ratyrate_rateable 'name'
 
@@ -54,6 +56,15 @@ class Place < ActiveRecord::Base
       role_id =Role.where(name: "place_owner").first.id
       u.role_ids = role_id
       u.save
+    end
+  end
+
+  def add_open_days
+    if self.open_days.blank?
+      Date::DAYNAMES.each do |day|
+        open_day = self.open_days.new(day_in_week: day, open: false)
+        open_day.save
+      end
     end
   end
 end

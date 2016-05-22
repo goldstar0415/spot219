@@ -12,6 +12,7 @@ ActiveAdmin.register Place do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+
   filter :name
 
   index do
@@ -78,6 +79,15 @@ ActiveAdmin.register Place do
       hr
       f.input :title, label: "SEO Title"
       f.input :description, label: "SEO Description"
+      hr
+      f.inputs do
+        f.has_many :open_days, heading: "Open Days", allow_destroy: false, new_record: false do |a|
+          a.input :day_in_week
+          a.input :open, as: :select, include_blank: false
+          a.input :start_time, as: :time_select, ampm: true, discard_minute: true, ignore_date: true, include_blank: false
+          a.input :end_time, as: :time_select, ampm: true, discard_minute: true, ignore_date: true, include_blank: false
+        end
+      end
     end
 
     actions
