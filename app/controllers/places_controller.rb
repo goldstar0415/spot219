@@ -102,7 +102,7 @@ class PlacesController < ApplicationController
     end
 
     def require_same_user
-      if current_user != @place.user and !current_user.admin?
+      if current_user != @place.user and !has_role?(:admin)
         flash[:danger] = "You can only edit or delete your own places."
         redirect_to root_path
       end

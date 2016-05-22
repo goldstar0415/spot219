@@ -49,7 +49,7 @@ class Place < ActiveRecord::Base
   end
 
   def update_role
-    if self.user_id_changed?
+    if self.user_id_changed? and self.user.has_role?(:regular)
       u = self.user
       role_id =Role.where(name: "place_owner").first.id
       u.role_ids = role_id
