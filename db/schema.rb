@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521082924) do
+ActiveRecord::Schema.define(version: 20160522035419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,7 +105,10 @@ ActiveRecord::Schema.define(version: 20160521082924) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "subdomain"
   end
+
+  add_index "cities", ["subdomain"], name: "index_cities_on_subdomain", unique: true, using: :btree
 
   create_table "claims", force: :cascade do |t|
     t.string   "email",              default: "", null: false

@@ -16,34 +16,38 @@
           .col-lg-4
             .form-group
               %label{:for => "exampleInputPassword1"} First Name
-              = f.text_field :first_name,class: "form-control", placeholder: "First Name"
+              = f.text_field :first_name,class: "form-control", placeholder: "First Name", required: true
           .col-lg-4
             .form-group
               %label{:for => "exampleInputPassword1"} Last Name
-              = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+              = f.text_field :last_name, class: "form-control", placeholder: "Last Name", required: true
           .col-lg-4
             .form-group
               %label{:for => "exampleInputPassword1"} Email
-              = f.text_field :email,class: "form-control", placeholder: "Your Email"
+              = f.text_field :email,class: "form-control", placeholder: "Your Email", required: true
           .form-group.col-lg-12
             %label Why would you like to add your city ?
-            = f.text_area :about,class: "form-control", rows: "3", placeholder: "Say something about the city ..."
+            = f.text_area :about,class: "form-control", rows: "3", placeholder: "Say something about the city ...", required: true
           .col-lg-4
             .form-group
               %label City Name
-              = f.text_field :city_name,class: "form-control", placeholder: "City Name"
+              = f.text_field :city_name,class: "form-control", placeholder: "City Name", required: true
           .col-lg-4
             .form-group
               %label Latitude
-              = f.text_field :latitude, class: "form-control", placeholder: "City's latitude"
+              = f.text_field :latitude, class: "form-control", placeholder: "City's latitude", required: true
           .col-lg-4
             .form-group
               %label Longitude
-              = f.text_field :longitude, class: "form-control", placeholder: "City's longitude"
+              = f.text_field :longitude, class: "form-control", placeholder: "City's longitude", required: true
           .col-lg-4
             .form-group
               %label Radius (unit: km)
-              = f.text_field :radius, class: "form-control", placeholder: "Radius"
+              = f.text_field :radius, class: "form-control", placeholder: "Radius", required: true
+          .col-lg-4
+            .form-group
+              %label Subdomain
+              = f.text_field :subdomain, class: "form-control", placeholder: "Subdomain", required: true
     .col-lg-1.col-lg-offset-1
       = f.submit "Next", class: "btn btn-success"
       %br/

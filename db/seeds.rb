@@ -56,7 +56,8 @@ if City.count == 0
                 latitude: Faker::Address.latitude,
                 longitude: Faker::Address.longitude,
                 radius: index,
-                user_id: user.id
+                user_id: user.id,
+                subdomain: Faker::Internet.domain_word
               )
   end
 end

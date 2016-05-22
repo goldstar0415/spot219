@@ -6,6 +6,8 @@ class City < ActiveRecord::Base
   validates :email, presence: true, length: { minimum: 10 }
   validates :about, presence: true
   validates :city_name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
+  validates :subdomain, presence: true, uniqueness: true
+
 
   has_many :places
   validates_presence_of :latitude, :longitude, :radius
@@ -39,5 +41,13 @@ class City < ActiveRecord::Base
     end
 
     cities
+  end
+
+  def to_param
+    self.subdomain
+  end
+
+  def self.find(subdomain)
+    self.find_by_subdomain(subdomain)
   end
 end

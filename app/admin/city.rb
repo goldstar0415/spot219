@@ -12,10 +12,14 @@ ActiveAdmin.register City do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  filter :city_name
+  filter :subdomain
 
   index do
     selectable_column
-    id_column
+    column "Subdomain" do |c|
+      link_to c.subdomain, edit_admin_city_path(c.subdomain)
+    end
     column :city_name
     column :first_name
     column :last_name
@@ -50,6 +54,8 @@ ActiveAdmin.register City do
       row :image do
         image_tag(city.image.url, width: 500)
       end
+
+      row :subdomain
     end
 
     active_admin_comments
@@ -67,6 +73,7 @@ ActiveAdmin.register City do
       f.input :latitude
       f.input :radius
       f.input :image
+      f.input :subdomain
     end
 
     actions
