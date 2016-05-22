@@ -23,11 +23,11 @@ ActiveAdmin.register Blog do
     column :title
 
     column :description do |blog|
-      blog.description.truncate(50)
+      blog.description.try(:truncate, 50)
     end
 
     column :body do |blog|
-      blog.body.truncate(100)
+      blog.body.try(:truncate, 100)
     end
 
     column :views_number

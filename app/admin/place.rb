@@ -20,7 +20,7 @@ ActiveAdmin.register Place do
     column :name
     column :title
     column :title do |place|
-      place.title.truncate(30)
+      place.title.try(:truncate, 30)
     end
     column :about
     column :address
