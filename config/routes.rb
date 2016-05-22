@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
 
 
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post '/rate' => 'rater#create', :as => 'rate'
   resources :cities do
     post :location, on: :collection
   end
-
+  resources :shopping_carts do
+    collection do
+      get :paypal_callback
+    end
+    member do
+      delete :remove_item
+    end
+  end
   resources :claims
   resources :places
   resources :blog_comments

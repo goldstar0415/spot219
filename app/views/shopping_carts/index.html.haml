@@ -1,0 +1,25 @@
+= render 'layouts/navbar'
+%h1 Listing shopping_carts
+#section-one
+  #section-content
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Place Name
+          %th Quantity
+          %th Price
+          %th
+      %tbody
+        - @shopping_cart.shopping_cart_items.each do |shopping_cart_item|
+          %tr
+            /-binding.pry
+            %td= shopping_cart_item.item.name
+            %td= shopping_cart_item.quantity
+            %td= shopping_cart_item.price
+            %td= link_to 'remove', remove_item_shopping_cart_path(shopping_cart_item.item), :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %tr
+          %th
+          %th
+          %th= "Total: #{@shopping_cart.total}"
+          %th= link_to "Checkout", @shopping_cart.paypal_url(paypal_callback_shopping_carts_url), class: 'btn btn-success'
+

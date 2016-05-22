@@ -21,6 +21,7 @@ class PlacesController < ApplicationController
     @blog = Blog.last
     @claim = Claim.new
     @open_days = @place.open_days.where(open: true)
+    @shopping_cart = ShoppingCart.new
 
   end
 
