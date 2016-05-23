@@ -7,7 +7,8 @@
 
 redirectToCity = (position) ->
   $.post '/cities/location', position.coords, (data)->
-    location.href = "/cities/#{data.id}"
+    if data.first_time
+      location.href = "/cities/#{data.id}"
   return
 
 @redirectToCityWithNoLocation=(lat, long)  ->
