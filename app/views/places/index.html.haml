@@ -102,6 +102,11 @@
   = will_paginate @places
 %br/
 
-- if cookies[:first_time].nil?
+- if cookies[:latitude].present? && cookies[:longitude].present?
+  :javascript
+    var latitude = #{cookies[:latitude]}
+    var longitude = #{cookies[:longitude]}
+    redirectToCityWithNoLocation(latitude, longitude)
+- else
   :javascript
     getLocation()
