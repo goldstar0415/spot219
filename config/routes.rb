@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :shopping_carts do
     collection do
       get :paypal_callback
+      post :checkout
     end
     member do
       delete :remove_item

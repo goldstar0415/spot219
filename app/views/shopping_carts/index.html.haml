@@ -1,25 +1,104 @@
 = render 'layouts/navbar'
-%h1 Listing shopping_carts
-#section-one
-  #section-content
-    %table.table.table-bordered
+.container
+  .checkout-page
+    %h2 Place your order
+    %h3 Review the products in your shopping bag
+    %table.orderItems
       %thead
         %tr
-          %th Place Name
-          %th Quantity
-          %th Price
-          %th
+          %td Qty
+          %td Item
+          %td Price
+          %td Tax
+          %td Sub-Total
       %tbody
-        - @shopping_cart.shopping_cart_items.each do |shopping_cart_item|
+        - @shopping_cart.shopping_cart_items.each do |cart_item|
           %tr
-            /-binding.pry
-            %td= shopping_cart_item.item.name
-            %td= shopping_cart_item.quantity
-            %td= shopping_cart_item.price
-            %td= link_to 'remove', remove_item_shopping_cart_path(shopping_cart_item.item), :method => :delete, :data => { :confirm => 'Are you sure?' }
-        %tr
-          %th
-          %th
-          %th= "Total: #{@shopping_cart.total}"
-          %th= link_to "Checkout", @shopping_cart.paypal_url(paypal_callback_shopping_carts_url), class: 'btn btn-success'
+            %td.quantity
+              = cart_item.quantity
+            %td.product
+              = cart_item.item.name
+              = link_to 'remove', remove_item_shopping_cart_path(cart_item.item), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "delete", rel: "nofollow"
+            %td.money.price= "$#{cart_item.price}"
+            %td.money.tax= "$#{cart_item.tax}"
+            %td.money.total= "$#{cart_item.sub_total}"
 
+      %tfoot
+        %tr.subtotal
+          %td{:colspan => "4"} Total (excluding Tax)
+          %td.money= "$#{@shopping_cart.subtotal}"
+        %tr.tax
+          %td{:colspan => "4"} Tax
+          %td.money= "$#{@shopping_cart.taxes}"
+        %tr.total
+          %td{:colspan => "4"} Total
+          %td.money= "$#{@shopping_cart.total}"
+    %h3 Complete your details below to complete your order
+    = form_tag(checkout_shopping_carts_path, {:method => :post}) do
+      .row
+        .col-md-6
+          = fields_for :order_info, @order_info do |f|
+            .form-group
+              %label{:for => "input1"} Name
+              .row
+                .col-md-6
+                  = f.text_field :first_name,class: "form-control", placeholder: "First name", required: true
+                .col-md-6
+                  = f.text_field :last_name,class: "form-control", placeholder: "Last name", required: true
+            .form-group
+              %label{:for => "input1"} Company Name(optional)
+              = f.text_field :company,class: "form-control", placeholder: "Company name", required: true
+            .form-group
+              %label{:for => "input1"} Your E-Mail Address
+              = f.text_field :email,class: "form-control", placeholder: "Email", required: true
+            .form-group
+              %label{:for => "input1"} Your Contact Phone Number
+              = f.text_field :phone,class: "form-control", placeholder: "Phone Number", required: true
+
+        .col-md-6
+          .row
+            .col-md-12
+              = fields_for :billing_address, @billing_address do |f|
+                .form-group
+                  %label{:for => "input1"} Line
+                  = f.text_field :line,class: "form-control", placeholder: "Line", required: true
+                .form-group
+                  %label{:for => "input1"} City
+                  = f.text_field :city,class: "form-control", placeholder: "City", required: true
+                .form-group
+                  %label{:for => "input1"} Country
+                  = f.text_field :country,class: "form-control", placeholder: "Country", required: true
+                .form-group
+                  %label{:for => "input1"} Postcode
+                  = f.text_field :postcode,class: "form-control", placeholder: "Postcode", required: true
+                .form-group
+                  %label{:for => "input1"} Country
+                  = country_select("billing_address", "country_code", {priority_countries: ["US", "GB"]}, {class: "form-control"})
+                .form-group
+                  %label{:for => "billing_address_add_delivery"}
+                    = f.check_box :add_delivery, onclick: "checkAddress(this)"
+                    Deliver to a different address ?
+            .col-md-12
+              #delivery-address.hide
+                = fields_for :delivery_address, @delivery_address do |f|
+                  .form-group
+                    %label{:for => "input1"} Deliver to (name/company)
+                    = f.text_field :name,class: "form-control", placeholder: "Deliver to (name/company)"
+                  .form-group
+                    %label{:for => "input1"} Line
+                    = f.text_field :line,class: "form-control", placeholder: "Line"
+                  .form-group
+                    %label{:for => "input1"} City
+                    = f.text_field :city,class: "form-control", placeholder: "City"
+                  .form-group
+                    %label{:for => "input1"} Country
+                    = f.text_field :country,class: "form-control", placeholder: "Country"
+                  .form-group
+                    %label{:for => "input1"} Postcode
+                    = f.text_field :postcode,class: "form-control", placeholder: "Postcode"
+                  .form-group
+                    %label{:for => "input1"} Country
+                    = country_select("delivery_address", "country_code", {priority_countries: ["US", "GB"]}, {class: "form-control"})
+
+              .pull-right
+                = submit_tag "Continue to payment", class: "btn btn-primary"

@@ -67,4 +67,8 @@ class Place < ActiveRecord::Base
       end
     end
   end
+
+  def price
+    5
+  end
 end

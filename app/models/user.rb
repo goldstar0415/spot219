@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :blogs
   belongs_to :city
   has_many :cities
+  has_one :order_info
+  has_one :billing_address
+  has_one :delivery_address
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

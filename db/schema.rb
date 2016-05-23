@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522145411) do
+ActiveRecord::Schema.define(version: 20160523162002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20160522145411) do
     t.float    "avg",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "billing_addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "line"
+    t.string   "city"
+    t.string   "country"
+    t.string   "postcode"
+    t.string   "country_code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "blog_comments", force: :cascade do |t|
@@ -195,6 +206,18 @@ ActiveRecord::Schema.define(version: 20160522145411) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "delivery_addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "line"
+    t.string   "city"
+    t.string   "country"
+    t.string   "postcode"
+    t.string   "country_code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -216,6 +239,44 @@ ActiveRecord::Schema.define(version: 20160522145411) do
     t.time    "start_time"
     t.time    "end_time"
     t.boolean "open",        default: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "place_id"
+    t.integer  "quantiy",                            default: 0
+    t.decimal  "price",      precision: 8, scale: 2, default: 0.0
+    t.decimal  "tax",        precision: 8, scale: 2, default: 0.0
+    t.decimal  "sub_total",  precision: 8, scale: 2, default: 0.0
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
+  create_table "order_infos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "day_delivery",                                default: 0
+    t.decimal  "price_delivery",      precision: 8, scale: 2, default: 0.0
+    t.integer  "total_item",                                  default: 0
+    t.decimal  "total_excluding_tax", precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_price",         precision: 8, scale: 2, default: 0.0
+    t.decimal  "tax",                 precision: 8, scale: 2, default: 0.0
+    t.integer  "order_info_id"
+    t.integer  "billing_address_id"
+    t.integer  "delivery_address_id"
+    t.integer  "status",                                      default: 0
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
   create_table "overall_averages", force: :cascade do |t|

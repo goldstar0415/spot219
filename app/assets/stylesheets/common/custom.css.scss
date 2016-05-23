@@ -190,6 +190,9 @@ select {
   border-bottom: 1px solid;
   padding: 0; /*removing spacing*/
   margin: 14px; /*add spacing*/
+  &.cart-icon{
+    margin: 0px;
+  }
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -198,6 +201,9 @@ select {
   padding: 0; /*removing spacing*/
   margin: 14px; /*add spacing*/
   background-color: #ffff66;
+  &.cart-icon{
+    margin: 0px;
+  }
 }
 
 .card{

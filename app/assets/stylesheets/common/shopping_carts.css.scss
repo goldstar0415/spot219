@@ -1,0 +1,53 @@
+.checkout-page{
+  h2 {
+    font-size: 2.0em;
+    color: #216d74;
+    font-weight: bold;
+  }
+  table.orderItems {
+    margin-top: 0;
+    width: 100%;
+    font-size: 0.8em;
+    margin: 25px 0;
+  }
+  .orderItems td {
+      border: 1px solid #ccc;
+      padding: 10px;
+  }
+  .orderItems td.quantity {
+    width: 15%;
+  }
+  .orderItems td.money {
+      text-align: right;
+      width: 12%;
+      font-weight: normal;
+  }
+  .orderItems td.money {
+      text-align: right;
+      width: 12%;
+      font-weight: normal;
+  }
+  .orderItems td.money {
+    text-align: right;
+    width: 12%;
+    font-weight: normal;
+  }
+  .orderItems tfoot td {
+    text-align: right;
+    font-weight: bold;
+  }
+  td.product a.delete {
+    float: right;
+    opacity: 0.3;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    text-indent: -40000px;
+    background: image-url("close.svg");
+    background-size: 16px;
+  }
+  .orderItems td.product a.delete:hover {
+    opacity: 1;
+  }
+}
+
