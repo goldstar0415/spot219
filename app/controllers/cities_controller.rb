@@ -11,6 +11,11 @@ class CitiesController < ApplicationController
   end
 
   def location
+    if params['latitude'] && params['longitude']
+      cookies[:latitude] = params['latitude']
+      cookies[:longitude] = params['longitude']
+    end
+
     city = City.search(params['latitude'], params['longitude']).first rescue nil
     render json: { first_time: cookies[:first_time].nil? && city, id: city.try(:id) }
   end
@@ -79,7 +84,7 @@ class CitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_city
-      @city = City.find(params[:id])
+      @city = City.find_by_subdomain(params[:id]) || City.find_by_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

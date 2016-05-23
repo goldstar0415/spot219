@@ -7,6 +7,15 @@
 
 redirectToCity = (position) ->
   $.post '/cities/location', position.coords, (data)->
-    if data.first_time
-      location.href = "/cities/#{data.id}"
+    location.href = "/cities/#{data.id}"
+  return
+
+@redirectToCityWithNoLocation=(lat, long)  ->
+  $.post '/cities/location', {latitude: lat, longitude: long}, (data)->
+    location.href = "/cities/#{data.id}"
+  return
+
+$(document).ajaxSend (e, xhr, options) ->
+  token = $('meta[name=\'csrf-token\']').attr('content')
+  xhr.setRequestHeader 'X-CSRF-Token', token
   return
