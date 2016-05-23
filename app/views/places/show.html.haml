@@ -75,13 +75,13 @@
               - @open_days.each do |open_day|
                 %h6
                   %strong= "#{open_day.day_in_week}"
-                  = "-#{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}"
-
-            %hr/
-            = form_for @shopping_cart do |f|
-              = hidden_field_tag :place_id, @place.id
-              .actions
-                = f.submit 'Add to Cart', class: 'btn btn-primary'
+                  = " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}"
+            - if !user_signed_in? or (user_signed_in? and current_user.id != @place.user_id)
+              %hr/
+              = form_for @shopping_cart do |f|
+                = hidden_field_tag :place_id, @place.id
+                .actions
+                  = f.submit 'Add to Cart', class: 'btn btn-primary'
         .side-nav.col-lg-3.visible-lg
           .col-md-5
             %h5= link_to 'Cities', cities_path, class: "link"

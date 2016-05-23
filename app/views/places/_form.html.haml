@@ -73,20 +73,20 @@
           %label{:for => "exampleInputFile"} Upload image of the place
           = f.file_field :image
         %hr/
-        - @open_days.each do |open_day|
-          = f.fields_for :open_days, open_day do |open_f|
-            .form-inline
-              .row
-                .col-md-1
-                  /-binding.pry
-                  /= open_f.select_hour :start_time, {field_name: :start_time , ampm: true}
-                  = open_f.hidden_field :day_in_week, value: open_day.day_in_week
-                  = open_f.label open_day.day_in_week
-                  = open_f.check_box :open, {class: 'form-control'}
-                .col-md-1
-                  = open_f.time_select :start_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
-                .col-md-1
-                  = open_f.time_select :end_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
+        .open_days
+          - @open_days.each do |open_day|
+            = f.fields_for :open_days, open_day do |open_f|
+              .form-inline{class: "#{'active' if open_day.open}"}
+                .row
+                  .col-md-2
+                    = open_f.hidden_field :day_in_week, value: open_day.day_in_week
+                    %label
+                      = open_day.day_in_week
+                      = open_f.check_box :open
+                  .col-md-1
+                    = open_f.time_select :start_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
+                  .col-md-1
+                    = open_f.time_select :end_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
 
         = f.submit "Submit", class: "btn btn-success"
 

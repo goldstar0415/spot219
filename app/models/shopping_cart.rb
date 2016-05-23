@@ -7,7 +7,7 @@ class ShoppingCart < ActiveRecord::Base
       :cmd => '_cart',
       :upload => 1,
       :return => return_url,
-      :invoice => id
+      :invoice => invoice_number
     }
     shopping_cart_items.each_with_index do |cart, index|
       values.merge!({
@@ -18,5 +18,9 @@ class ShoppingCart < ActiveRecord::Base
       })
     end
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+  end
+
+  def invoice_number
+    (0...8).map { (65 + rand(26)).chr }.join
   end
 end

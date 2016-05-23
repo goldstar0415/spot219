@@ -15,7 +15,8 @@ class ShoppingCartsController < InheritedResources::Base
 
   def paypal_callback
     @shopping_cart.clear
-    redirect_to shopping_carts_path
+    flash[:notice] = "Your Payment was successful"
+    redirect_to root_path
   end
 
   private
