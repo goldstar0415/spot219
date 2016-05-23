@@ -9,7 +9,7 @@ class Claim < ActiveRecord::Base
 
   has_attached_file :proof
   validates_with AttachmentSizeValidator, attributes: :proof, less_than: 5.megabytes
-  validates_attachment :proof, :content_type => { :content_type => %w(application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document text/plain) }
+  validates_attachment :proof, :content_type => { :content_type => %w(image/jpeg image/jpg image/gif image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document text/plain) }
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
