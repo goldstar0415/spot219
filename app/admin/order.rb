@@ -138,20 +138,20 @@ ActiveAdmin.register Order do
 
    form do |f|
     f.inputs 'Community' do
-      f.input :total_excluding_tax
-      f.input :tax
-      f.input :total_price
+      f.input :total_excluding_tax, :input_html => { :readonly => true }
+      f.input :tax, :input_html => { :readonly => true }
+      f.input :total_price, :input_html => { :readonly => true }
       f.input :status
-      hr
-      f.inputs do
-        f.has_many :order_details, heading: "Order Details", allow_destroy: false, new_record: false do |o|
-          o.input :place_id
-          o.input :quantity
-          o.input :price
-          o.input :tax
-          o.input :sub_total
-        end
-      end
+      # hr
+      # f.inputs do
+      #   f.has_many :order_details, heading: "Order Details", allow_destroy: false, new_record: false do |o|
+      #     o.input :place_id
+      #     o.input :quantity
+      #     o.input :price
+      #     o.input :tax
+      #     o.input :sub_total
+      #   end
+      # end
     end
 
     actions
