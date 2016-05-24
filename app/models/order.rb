@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   enum status: [ :pending, :payment, :completed ]
 
   has_many :order_details
+  accepts_nested_attributes_for :order_details
   belongs_to :order_info
   belongs_to :billing_address
   belongs_to :delivery_address

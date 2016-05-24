@@ -70,7 +70,7 @@ class ShoppingCartsController < InheritedResources::Base
       @shopping_cart.shopping_cart_items.each do |item|
         order_detail = order.order_details.new
         order_detail.place_id = item.item.id
-        order_detail.quantiy = item.quantity
+        order_detail.quantity = item.quantity
         order_detail.price = item.price
         order_detail.tax = item.tax
         order_detail.sub_total = item.sub_total

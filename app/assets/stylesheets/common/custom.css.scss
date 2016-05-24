@@ -192,6 +192,12 @@ select {
   margin: 14px; /*add spacing*/
   &.cart-icon{
     margin: 0px;
+    border-bottom: none;
+    padding: 10px;
+    img{
+      width: 24px;
+      height: 24px;
+    }
   }
 }
 
@@ -203,6 +209,8 @@ select {
   background-color: #ffff66;
   &.cart-icon{
     margin: 0px;
+    border-bottom: none;
+    padding: 10px;
   }
 }
 
