@@ -524,7 +524,7 @@ DEPENDENCIES
   activeadmin!
   byebug
   cancancan (~> 1.10)
-  capistrano (~> 3.4)
+  capistrano (~> 3.5)
   capistrano-rails (~> 1.1.1)
   capistrano-rvm!
   capistrano3-delayed-job (~> 1.0)
