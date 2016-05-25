@@ -18,6 +18,8 @@
 /public/system
 /public/attachment
 /public/uploads
+.ruby-gemset
+.ruby-version
 
 # Ignore application configuration
 /config/application.yml
