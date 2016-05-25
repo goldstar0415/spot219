@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.5.0'
 
-set :application, 'Turkish Spot'
+set :application, 'Turkish_Spot'
 set :repo_url, 'git@bitbucket.org:jackyvo/turkish.git'
 
 # Default branch is :master
