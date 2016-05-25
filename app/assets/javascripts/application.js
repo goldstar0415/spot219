@@ -18,7 +18,7 @@
 //= require jquery.raty
 //= require ratyrate
 //= require ckeditor/init
-
+//= require_tree ./shoppe
 
 var show_spinner = function(){
   $('#spinner').show();

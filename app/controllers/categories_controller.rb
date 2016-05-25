@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @categories = Category.paginate(page: params[:page], per_page: 15)
+    @categories = Category.page(params[:page]).per(15)
   end
 
   def new
@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
     @cities = City.limit(10)
     @category = Category.find(params[:id])
     @cate = Category.limit(10)
-    @category_places = @category.places.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
+    @category_places = @category.places.order(created_at: :desc).page(params[:page]).per(15)
     @blog = Blog.last
   end
 

@@ -10,7 +10,7 @@ class BlogsController < ApplicationController
     else
       @blogs = current_user.blogs
     end
-    @blogs = @blogs.paginate(page: params[:page], per_page: 15)
+    @blogs = @blogs.page(params[:page]).per(15)
   end
 
   # GET /blogs/1

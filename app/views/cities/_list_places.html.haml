@@ -32,4 +32,4 @@
       %h6{:align => "center"}= render place.categories
 .clearfix
 .apple_pagination{:align => "center"}
-  = will_paginate @places, param_name: 'place_page'
+  = paginate @places, param_name: 'place_page'

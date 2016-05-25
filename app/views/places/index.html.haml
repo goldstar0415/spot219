@@ -99,7 +99,7 @@
               %br/
               = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
 .apple_pagination{:align => "center"}
-  = will_paginate @places
+  = paginate @places
 %br/
 
 - if cookies[:latitude].present? && cookies[:longitude].present?

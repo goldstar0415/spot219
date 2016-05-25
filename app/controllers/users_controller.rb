@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def my_places
-    @places = current_user.places.paginate(page: params[:page], per_page: 18)
+    @places = current_user.places.page(params[:page]).per(18)
   end
 
   def search

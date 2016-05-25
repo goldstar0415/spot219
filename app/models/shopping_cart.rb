@@ -1,5 +1,5 @@
 class ShoppingCart < ActiveRecord::Base
-  acts_as_shopping_cart
+  #acts_as_shopping_cart
 
   def paypal_url(return_url)
     values = {

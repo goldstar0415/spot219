@@ -10,11 +10,11 @@ gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem "paperclip", "~> 5.0.0.beta1"
 gem 'google-webfonts-rails'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate', '0.0.10'
+#gem 'will_paginate'
+#gem 'bootstrap-will_paginate', '0.0.10'
 gem 'ratyrate'
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+# gem 'sunspot_rails'
+# gem 'sunspot_solr'
 gem 'progress_bar'
 gem 'searchkick'
 gem "gmap_coordinates_picker"
@@ -69,7 +69,7 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  #gem 'spring'
   gem 'pry-rails'
 end
 
@@ -84,5 +84,9 @@ gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rvm', github: 'capistrano/rvm'
 gem 'capistrano3-delayed-job', '~> 1.0'
 gem 'meta-tags'
-gem 'acts_as_shopping_cart', '~> 0.2.1'
+#gem 'acts_as_shopping_cart', '~> 0.2.1'
 gem 'country_select'
+gem 'shoppe'
+gem "shoppe-paypal"
+gem 'redcarpet'
+gem 'safe_attributes' #fix ratyrate conflict shoppe

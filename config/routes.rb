@@ -1,7 +1,45 @@
 Rails.application.routes.draw do
+  #
+  # Shoppe admin interface
+  #
+  mount Shoppe::Engine => "/shoppe"
 
+  #
+  # Product browising
+  #
+  get "products", to: "products#index", :as => 'products'
+  #get 'products' => 'products#categories', :as => 'catalogue'
+  get 'products/filter' => 'products#filter', :as => 'product_filter'
+  get 'products/:category_id' => 'products#index', :as => 'products_by_category'
+  get 'products/:category_id/:product_id' => 'products#show', :as => 'product'
+  post 'products/:category_id/:product_id/buy' => 'products#add_to_basket', :as => 'buy_product'
 
+  #
+  # Order status
+  #
+  get 'order/:token' => 'orders#status', :as => 'order_status'
 
+  #
+  # Basket
+  #
+  get 'basket' => 'orders#show', :as => 'basket'
+  delete 'basket' => 'orders#destroy', :as => 'empty_basket'
+  post 'basket/:order_item_id' => 'orders#change_item_quantity', :as => 'adjust_basket_item_quantity'
+  delete 'basket/:order_item_id' => 'orders#change_item_quantity'
+  delete 'basket/delete/:order_item_id' => 'orders#remove_item', :as => 'remove_basket_item'
+
+  #
+  # Checkout
+  #
+  match 'checkout' => 'orders#checkout', :as => 'checkout', :via => [:get, :patch]
+  match 'checkout/delivery' => 'orders#change_delivery_service', :as => 'change_delivery_service', :via => [:post]
+  match 'checkout/pay' => 'orders#payment', :as => 'checkout_payment', :via => [:get, :patch]
+  match 'checkout/confirm' => 'orders#confirmation', :as => 'checkout_confirmation', :via => [:get, :patch]
+  #
+  # Paypal
+  #
+  get "checkout/paypal", to: "orders#paypal"
+###################################################
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   post '/rate' => 'rater#create', :as => 'rate'
@@ -49,52 +87,7 @@ Rails.application.routes.draw do
   get 'my_friends', to: 'users#my_friends'
   get 'my-places', to: 'users#my_places'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
+  # Static pages
   #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  get ':action', :controller => 'pages', :as => 'page'
 end

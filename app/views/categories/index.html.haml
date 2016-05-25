@@ -10,7 +10,7 @@
         %p
           = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
           = submit_tag "Search", class: "btn btn-default search-btn"
-    = will_paginate
+    = paginate @categories
     - @categories.each do |category|
       %ul.listing
         .row
@@ -19,4 +19,4 @@
               = link_to "#{category.name}", category_path(category)
             %li
               %small= pluralize(category.places.count, "place")
-    = will_paginate
+    = paginate @categories

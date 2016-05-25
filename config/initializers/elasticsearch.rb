@@ -1,1 +1,1 @@
-Searchkick.timeout = 20
+#Searchkick.timeout = 20
