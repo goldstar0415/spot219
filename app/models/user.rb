@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   validates_attachment :avatar, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  ratyrate_rater
+  #ratyrate_rater
 
   def full_name
     return "#{first_name} #{last_name}".strip if (first_name || last_name)

@@ -23,7 +23,7 @@ class Place < ActiveRecord::Base
   has_many :open_days
   accepts_nested_attributes_for :open_days , :reject_if => :all_blank
 
-  ratyrate_rateable 'name'
+  #ratyrate_rateable 'name'
 
   def search_data
     {

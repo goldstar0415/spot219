@@ -12,7 +12,7 @@ gem "paperclip", "~> 5.0.0.beta1"
 gem 'google-webfonts-rails'
 #gem 'will_paginate'
 #gem 'bootstrap-will_paginate', '0.0.10'
-gem 'ratyrate'
+#gem 'ratyrate'
 # gem 'sunspot_rails'
 # gem 'sunspot_solr'
 gem 'progress_bar'
@@ -89,4 +89,4 @@ gem 'country_select'
 gem 'shoppe'
 gem "shoppe-paypal"
 gem 'redcarpet'
-gem 'safe_attributes' #fix ratyrate conflict shoppe
+#gem 'safe_attributes' #fix ratyrate conflict shoppe
