@@ -73,9 +73,9 @@ group :development do
   gem 'pry-rails'
 end
 
-group :production do
-  gem 'rails_12factor'
-end
+# group :production do
+#   gem 'rails_12factor'
+# end
 
 gem 'faker'
 gem "rolify"
