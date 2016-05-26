@@ -1,0 +1,41 @@
+= render 'layouts/navbar'
+.container
+  = bootstrap_flash
+.subscriptions-page
+  .container
+    .standard-plans.clearfix
+      -@subscriptions.each_with_index do |sub, index|
+        %section.box
+          - colors = %w(green blue orange)
+          .heading{class: "#{colors[index]}"}
+            %figure
+              -if index==0
+                %svg#Layer_1{"enable-background" => "new 0 0 15.457 14.168", :height => "14.168px", :version => "1.1", :viewBox => "0 0 15.457 14.168", :width => "15.457px", :x => "0px", "xml:space" => "preserve", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", :y => "0px"}
+                  %path{:d => "M12.654 3.76V0.221h-2.003v2.01L7.729 0 0 5.899l1.215 1.592 0.832-0.635v7.312H13.41V6.856l0.832 0.635L15.457 5.9 12.654 3.76zM12.296 13.055H9.732V8.827H5.726v4.229H3.161V6.148L7.729 2.66l4.568 3.488V13.055z", :fill => "#FFFFFF"}
+              -if index == 1
+                %svg#Layer_1{"enable-background" => "new 0 0 16 14.751", :height => "14.751px", :version => "1.1", :viewBox => "0 0 16 14.751", :width => "16px", :x => "0px", "xml:space" => "preserve", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", :y => "0px"}
+                  %polygon{:fill => "#FFFFFF", :points => "7.756,0 10,5.751 16,5.751 10.859,9.162 13,14.751 7.756,11.416 2.963,14.751 4.654,9.162 0,5.751   6,5.751 "}
+              -if index == 2
+                %svg#Layer_1{"enable-background" => "new 0 0 15 14", :height => "14px", :version => "1.1", :viewBox => "0 0 15 14", :width => "15px", :x => "0px", "xml:space" => "preserve", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", :y => "0px"}
+                  %g
+                    %path{:d => "M12.801 12h-10.6C2.09 12 2 12.09 2 12.2v1.6C2 13.91 2.09 14 2.201 14h10.6C12.91 14 13 13.91 13 13.8v-1.6C13 12.09 12.91 12 12.801 12z", :fill => "#FFFFFF"}
+                    %path{:d => "M15 1.5C15 0.671 14.328 0 13.5 0S12 0.671 12 1.5c0 0.507 0.254 0.952 0.637 1.224L10 8 8.262 2.786C8.701 2.524 9 2.049 9 1.5 9 0.671 8.328 0 7.5 0S6 0.671 6 1.5c0 0.549 0.299 1.024 0.738 1.286L5 8 2.363 2.725C2.748 2.453 3 2.007 3 1.5 3 0.671 2.328 0 1.5 0S0 0.671 0 1.5c0 0.69 0.469 1.266 1.105 1.44L2 11h11l0.896-8.06C14.531 2.766 15 2.19 15 1.5z", :fill => "#FFFFFF"}
+
+
+            %h2= sub.name
+          .summary
+            .vat-price
+              %strong
+                %span.vatPriceElement>
+                  = "$#{sub.price}"
+                  \/mo.
+                %em.vatNoticeText
+            %ul
+              - sub.features.each do |fe|
+                %li
+                  %svg#Layer_1{"enable-background" => "new 0 0 14 14", :height => "14px", :version => "1.1", :viewBox => "0 0 14 14", :width => "14px", :x => "0px", "xml:space" => "preserve", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink", :y => "0px"}
+                    %path{:d => "M12.99 0.98V0H1v0.98H0v12.04h1V14h11.99v-0.98H14V0.98H12.99zM11 6.07h-0.97v0.97H9.051v1.03h-1.03V9.05H7v0.98H4.98V9.05H4v-1H3V6.06h1.98v1h2.04V6.05h1V5.03H9V3.99h2V6.07z", :fill => "#FFFFFF"}
+                  = fe.name
+
+          %a.btn.large_button.borange{:href => "#{sub.paypal_url(root_url)}"} Get Started
+

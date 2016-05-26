@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525030505) do
+ActiveRecord::Schema.define(version: 20160526075438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,6 +216,11 @@ ActiveRecord::Schema.define(version: 20160525030505) do
     t.string   "country_code"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -678,6 +683,20 @@ ActiveRecord::Schema.define(version: 20160525030505) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string  "name"
+    t.decimal "price",   precision: 8, scale: 2, default: 0.0
+    t.integer "package"
+  end
+
+  create_table "subscriptions_features", force: :cascade do |t|
+    t.integer "subscription_id"
+    t.integer "feature_id"
+  end
+
+  add_index "subscriptions_features", ["feature_id"], name: "index_subscriptions_features_on_feature_id", using: :btree
+  add_index "subscriptions_features", ["subscription_id"], name: "index_subscriptions_features_on_subscription_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

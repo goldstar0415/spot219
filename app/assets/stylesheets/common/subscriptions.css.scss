@@ -1,0 +1,135 @@
+.subscriptions-page{
+  h1, h2, h3, h4, h5, h6 {
+    line-height: normal;
+    margin: 0;
+    font-family: Montserrat,Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    color: #444;
+  }
+  .standard-plans .box:nth-of-type(1) {
+    margin: 0;
+  }
+  .standard-plans .box {
+    position: relative;
+    float: left;
+    width: 32%;
+    min-height: 540px;
+    border: 0;
+    margin: 0 0 0 2%;
+    text-align: center;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.15),0 0 0 1px #eee;
+  }
+  .box {
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+  }
+  .standard-plans .box .heading {
+    position: relative;
+    padding: 19px 10px;
+    background: #f4f4f4;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 5px 5px 0 0;
+    z-index: 10;
+  }
+  .standard-plans .box .heading.green figure {
+    background: #4c9d2f;
+  }
+  .standard-plans .box .heading figure {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 10px;
+    padding: 9px 0 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 15px #f4f4f4;
+  }
+  .standard-plans .box .heading figure svg {
+    width: 28px;
+    height: 28px;
+    margin: 0 auto;
+  }
+  svg {
+    max-width: 100%;
+  }
+  .standard-plans .box .heading figure:after {
+    position: absolute;
+    top: 42px;
+    left: 10%;
+    content: "";
+    width: 80%;
+    height: 1px;
+    background: #ccc;
+    z-index: -1;
+  }
+  .standard-plans .box .heading h2 {
+    font-size: 26px;
+    color: #333;
+  }
+  .standard-plans .box .heading h2+p {
+    margin: 0;
+  }
+  .standard-plans .box .summary>.vat-price strong {
+    display: block;
+    padding: 5px 0 0;
+    font-weight: 700;
+    font-size: 26px;
+    color: #59a345;
+  }
+  .standard-plans .box .summary>.vat-price strong .vatNoticeText {
+    display: block;
+    font-size: 10px;
+    margin: 8px 0 0;
+    color: #c5c5c5;
+    text-transform: uppercase;
+  }
+  .vatPriceElement, .vatNoticeText {
+    font-style: normal !important;
+  }
+  .standard-plans .box .summary>ul {
+    margin: 12px 0 0;
+    padding: 15px 0 0;
+    border-top: 1px solid #ccc;
+  }
+  .standard-plans .box .summary>ul li {
+    position: relative;
+    margin: 6px 0;
+    text-align: left;
+  }
+  .standard-plans .box .summary>ul li svg {
+    float: left;
+    margin: 2px 6px 0 0;
+  }
+  .standard-plans .box .summary>ul li {
+    position: relative;
+    margin: 6px 0;
+    text-align: left;
+  }
+  .standard-plans .box .summary>ul li svg path {
+    fill: #7589a2;
+  }
+  .standard-plans .box .large_button {
+    position: absolute;
+    width: 80%;
+    left: 0;
+    bottom: 60px;
+    margin: 0 10%;
+  }
+  .borange {
+    background: #f56332;
+  }
+  .standard-plans .box .summary {
+    padding: 19px 19px 120px;
+  }
+  .standard-plans .box .heading.blue figure {
+    background: #5d9bd6;
+  }
+  .standard-plans .box .heading.orange figure {
+    background: #f56332;
+  }
+  .standard-plans .box .summary>ul li svg path {
+    fill: #7589a2;
+  }
+
+}
