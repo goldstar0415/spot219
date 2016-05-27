@@ -1,5 +1,6 @@
-%ul.bxslider
-  - @sliders.each do |slider|
-    %li
-      = image_tag slider.image
+-if @sliders.present?
+  %ul.bxslider
+    - @sliders.each do |slider|
+      %li
+        = image_tag slider.image
 
