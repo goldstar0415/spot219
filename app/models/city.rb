@@ -43,6 +43,10 @@ class City < ActiveRecord::Base
     cities
   end
 
+  def self.find id
+    self.class.find_by(subdomain: id) || self.class.find_by(id: id)
+  end
+
   def to_param
     self.subdomain || id.to_s
   end
