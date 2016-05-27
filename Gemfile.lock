@@ -79,6 +79,7 @@ GEM
       sass (~> 3.4)
       thor (~> 0.19)
     builder (3.2.2)
+    bxslider-rails (4.2.5.1)
     byebug (9.0.4)
     cancancan (1.14.0)
     capistrano (3.5.0)
@@ -514,6 +515,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  bxslider-rails
   byebug
   cancancan (~> 1.10)
   capistrano (~> 3.5)

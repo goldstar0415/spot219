@@ -89,4 +89,4 @@ gem 'country_select'
 gem 'shoppe'
 gem "shoppe-paypal"
 gem 'redcarpet'
-#gem 'safe_attributes' #fix ratyrate conflict shoppe
+gem 'bxslider-rails'

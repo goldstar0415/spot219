@@ -12,6 +12,7 @@
  *
  *= require_tree ./common
  *= require_self
+ *= require bxslider
  */
 
 body {

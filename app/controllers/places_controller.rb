@@ -22,7 +22,7 @@ class PlacesController < ApplicationController
     @claim = Claim.new
     @open_days = @place.open_days.where(open: true)
     @shopping_cart = ShoppingCart.new
-
+    @sliders = @place.sliders.order(:position)
   end
 
   # GET /places/new

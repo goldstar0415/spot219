@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bxslider
 //= require twitter/bootstrap
 // require turbolinks
 //= require_tree .
@@ -27,3 +28,6 @@ var show_spinner = function(){
 var hide_spinner = function(){
   $('#spinner').hide();
 }
+$(document).ready(function(){
+  $('.bxslider').bxSlider();
+});

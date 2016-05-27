@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @slider.name
+%p
+  %b User:
+  = @slider.user_id
+%p
+  %b Image:
+  = @slider.image
+%p
+  %b Position:
+  = @slider.position
+
+= link_to 'Edit', edit_slider_path(@slider)
+\|
+= link_to 'Back', sliders_path

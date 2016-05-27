@@ -1,0 +1,26 @@
+= form_for @slider do |f|
+  - if @slider.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@slider.errors.count, "error")} prohibited this slider from being saved:"
+      %ul
+        - @slider.errors.full_messages.each do |msg|
+          %li= msg
+
+  .col-lg-12
+    .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .col-lg-12
+    .form-group
+    = f.label "Place"
+    = f.select :place_id, current_user.places.collect {|u| [u.name, u.id]}, class: "form-control"
+  .col-lg-12
+    .form-group
+    = f.label :image
+    = f.file_field :image, class: "form-control"
+  .col-lg-12
+    .form-group
+    = f.label :position
+    = f.number_field :position, class: "form-control"
+  %div{:align => "center"}
+    = f.submit 'Save', class: 'btn btn-success'

@@ -1,0 +1,27 @@
+%h1 Listing sliders
+.pull-right
+  %h2
+    = link_to 'New Slider', new_slider_path
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Image
+      %th Place
+      %th Position
+      %th
+      %th
+
+  %tbody
+    - @sliders.each do |slider|
+      %tr
+        %td= slider.name
+        %td= image_tag slider.image, size: "500x150"
+        %td= link_to slider.place.name, slider.place
+        %td= slider.position
+        %td= link_to 'Edit', edit_slider_path(slider)
+        %td= link_to 'Destroy', slider, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+

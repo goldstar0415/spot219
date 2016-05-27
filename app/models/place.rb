@@ -22,6 +22,7 @@ class Place < ActiveRecord::Base
   belongs_to :city
   has_many :open_days
   accepts_nested_attributes_for :open_days , :reject_if => :all_blank
+  has_many :sliders
 
   #ratyrate_rateable 'name'
 
