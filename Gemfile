@@ -90,3 +90,4 @@ gem 'shoppe'
 gem "shoppe-paypal"
 gem 'redcarpet'
 gem 'bxslider-rails'
+gem "cocoon"

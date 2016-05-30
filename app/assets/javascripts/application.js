@@ -19,7 +19,7 @@
 //= require jquery.raty
 //= require ratyrate
 //= require ckeditor/init
-//= require_tree ./shoppe
+//= require cocoon
 
 var show_spinner = function(){
   $('#spinner').show();

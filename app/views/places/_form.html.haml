@@ -87,7 +87,9 @@
                     = open_f.time_select :start_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
                   .col-md-1
                     = open_f.time_select :end_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
-
+        %hr
+        .place-form-slider
+          = render 'form_slider', f: f
         = f.submit "Submit", class: "btn btn-success"
 
       = link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right"

@@ -1,0 +1,20 @@
+= render 'layouts/navbar'
+.container
+  = bootstrap_flash
+  %h1 Mailbox
+  -if @conversations.present?
+    %ol
+      - @conversations.each do |conversation|
+        %li
+          - new_message = ""
+          - if conversation.messages.last.try(:user_id) != current_user.id and conversation.messages.last.try(:read) == false
+            - new_message = "(have new messages)"
+          - if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id
+            - if conversation.sender_id == current_user.id
+              - recipient = User.find(conversation.recipient_id)
+            - else
+              - recipient = User.find(conversation.sender_id)
+            = link_to "#{recipient.first_name} #{new_message}", conversation_messages_path(conversation)
+
+  -else
+    %p You have no conversations.

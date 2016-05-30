@@ -1,0 +1,8 @@
+.row
+  .col-md-8
+    = f.fields_for :sliders do |slider|
+      = render 'slider_fields', f: slider
+    .links
+      = link_to_add_association 'Add slider', f, :sliders
+
+

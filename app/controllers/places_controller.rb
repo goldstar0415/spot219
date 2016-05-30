@@ -34,6 +34,7 @@ class PlacesController < ApplicationController
     Date::DAYNAMES.each do |day|
       @open_days << @place.open_days.build(day_in_week: day)
     end
+    @place.sliders.build
   end
 
   # GET /places/1/edit
@@ -114,7 +115,7 @@ class PlacesController < ApplicationController
     def place_params
       params.require(:place).permit(:name, :about, :country, :city,
         :address, :phone, :fb, :twit, :insta, :web, :map, :image,
-        :city_id, :latitude, :longitude, category_ids: [], open_days_attributes: [ :id, :day_in_week, :start_time, :end_time, :open ])
+        :city_id, :latitude, :longitude, category_ids: [], open_days_attributes: [ :id, :day_in_week, :start_time, :end_time, :open ], sliders_attributes: [:id, :user_id, :image, :position, :_destroy])
     end
 
     def require_same_user
