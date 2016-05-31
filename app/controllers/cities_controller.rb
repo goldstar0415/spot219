@@ -17,7 +17,7 @@ class CitiesController < ApplicationController
     end
 
     city = City.search(params['latitude'], params['longitude']).first rescue nil
-    render json: { first_time: !city.nil?, id: city.try(:id) }
+    render json: { first_time: !city.nil?, subdomain: city.try(:subdomain) }
   end
 
   # GET /cities/1
