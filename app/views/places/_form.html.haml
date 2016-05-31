@@ -68,10 +68,15 @@
               .col-sm-offset-1.col-sm-10
                 = f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|
                   - cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text}
+
         %hr/
         .form-group
           %label{:for => "exampleInputFile"} Upload image of the place
-          = f.file_field :image
+          -if has_feature?(current_user, "add-photo-slider")
+            .place-form-slider
+              = render 'form_slider', f: f
+          -else
+            = f.file_field :image
         %hr/
         .open_days
           - @open_days.each do |open_day|
@@ -87,11 +92,7 @@
                     = open_f.time_select :start_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
                   .col-md-1
                     = open_f.time_select :end_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
-        %hr
-        .place-form-slider
-          = render 'form_slider', f: f
-        = f.submit "Submit", class: "btn btn-success"
-
+      = f.submit "Submit", class: "btn btn-success"
       = link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right"
 
 :javascript

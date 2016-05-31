@@ -17,13 +17,16 @@
             %p
               = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
               = submit_tag "Search", class: "btn btn-default search-btn"
-        / .place-slider-wrapper
-        /   = render "slider"
+
         .col-lg-9
           .description
             %h4{:align => "left"}
               %strong= @place.name
-            = image_tag @place.image.url(:medium), size: "640x426", class: "img-responsive"
+            -if has_feature?(@place.user, "add-photo-slider") and @place.sliders.present?
+              .place-slider-wrapper
+                = render "slider"
+            -else
+              = image_tag @place.image.url(:medium), size: "640x426", class: "img-responsive"
             .google-maps
               = render_gmap_coordinate_picker :lat_column => 'latitude', :lng_column => 'longitude' , :zoom_level => 12, :default_coordinates => [@place.latitude, @place.longitude], map_width: 500
           .desciption

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_one :billing_address
   has_one :delivery_address
   has_many :sliders
+  belongs_to :subscription
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

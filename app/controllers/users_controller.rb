@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+
   def my_profile
     @user = current_user
   end
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
 
   def my_places
     @places = current_user.places.page(params[:page]).per(18)
+    render :layout => 'setting'
   end
 
   def search

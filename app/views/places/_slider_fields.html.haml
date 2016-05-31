@@ -4,7 +4,8 @@
     .form-group
       = f.label :image
       = f.file_field :image, class: "form-control"
-      = image_tag f.object.image, size: "500x150"
+      -if f.object.image.exists?
+        = image_tag f.object.image, size: "500x150"
     .form-group
       = f.label :position
       = f.number_field :position, class: "form-control"

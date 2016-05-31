@@ -5,6 +5,8 @@ class Subscription < ActiveRecord::Base
   enum package: [ :free, :package1, :package2 ]
   validates :name, presence: true
 
+  has_many :users
+
   def paypal_url(return_url)
     values = {
       :business => ENV['Paypal_Business'],

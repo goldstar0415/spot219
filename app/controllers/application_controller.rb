@@ -40,4 +40,14 @@ class ApplicationController < ActionController::Base
     end
 
     helper_method :current_order, :has_order?
+
+    def has_feature?(user, slug)
+      current_features(user).to_a.include?(slug)
+    end
+
+    def current_features(user)
+      return [] unless user
+      @current_features ||= user.subscription.try(:features).try(:pluck, :slug)
+    end
+    helper_method :has_feature?
 end
