@@ -73,4 +73,12 @@ class Place < ActiveRecord::Base
   def price
     5
   end
+
+  def self.find id
+    self.find_by(subdomain: id) || self.find_by(id: id)
+  end
+
+  def to_param
+    self.subdomain || id.to_s
+  end
 end
