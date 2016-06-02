@@ -7,13 +7,13 @@
 
 redirectToCity = (position) ->
   $.post '/cities/location', position.coords, (data)->
-    if data.first_time
+    if data.first_time && data.subdomain
       location.href = "/cities/#{data.subdomain}"
   return
 
 @redirectToCityWithNoLocation=(lat, long)  ->
   $.post '/cities/location', {latitude: lat, longitude: long}, (data)->
-    if data.first_time
+    if data.first_time && data.subdomain
       location.href = "/cities/#{data.subdomain}"
   return
 
