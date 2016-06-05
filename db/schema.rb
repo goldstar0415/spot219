@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531054539) do
+ActiveRecord::Schema.define(version: 20160602132051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -346,7 +346,10 @@ ActiveRecord::Schema.define(version: 20160531054539) do
     t.float    "longitude"
     t.string   "title"
     t.string   "description"
+    t.string   "subdomain"
   end
+
+  add_index "places", ["subdomain"], name: "index_places_on_subdomain", unique: true, using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id"

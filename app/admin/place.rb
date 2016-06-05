@@ -14,10 +14,13 @@ ActiveAdmin.register Place do
 # end
 
   filter :name
+  filter :subdomain
 
   index do
     selectable_column
-    id_column
+    column "Subdomain" do |c|
+      link_to c.subdomain, edit_admin_place_path(c.subdomain)
+    end
     column :name
     column :title
     column :title do |place|
@@ -48,6 +51,7 @@ ActiveAdmin.register Place do
       row :web
       row :user
       row :map
+      row :subdomain
 
       row :image do
         image_tag(place.image.url, width: 500)
@@ -76,6 +80,7 @@ ActiveAdmin.register Place do
       f.input :user
       f.input :map
       f.input :image
+      f.input :subdomain
       hr
       f.input :title, label: "SEO Title"
       f.input :description, label: "SEO Description"
