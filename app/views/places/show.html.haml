@@ -8,7 +8,7 @@
   #section-content
     .row
       .col-lg-12
-        .col-lg-8
+        .col-lg-9
           .description
             %h4{:align => "left"}
               %strong= @place.name
@@ -31,11 +31,6 @@
               %h5.score= @place.average_rating
             %p= @place.about
             %hr/
-            / - if current_user
-            /   %strong
-            /     Rate this place:
-            /     - link_to '(here)', @place, :method => :get, :class => 'badg'
-            /   = rating_for @place, "name", disable_after_rate: false, :star_path => '/images'
             %hr/
             %h5
               %strong Country:
@@ -68,19 +63,8 @@
             %hr/
             #claim
               %button.btn.btn-primary.btn-lg{"data-target" => "#claim-modal", "data-toggle" => "modal", :type => "button"} Claim
-            / %hr/
-            / %div
-            /   - @open_days.each do |open_day|
-            /     %h6
-            /       %strong= "#{open_day.day_in_week}"
-            /       = " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}"
-            / - if !user_signed_in? or (user_signed_in? and current_user.id != @place.user_id)
-            /   %hr/
-            /   = form_for @shopping_cart do |f|
-            /     = hidden_field_tag :place_id, @place.id
-            /     .actions
-            /       = f.submit 'Add to Cart', class: 'btn btn-primary'
-        .side-nav.col-lg-4.visible-lg
+
+        .side-nav.col-lg-3.visible-lg
           .col-md-5
             %h5= link_to 'Cities', cities_path, class: "link"
             - @cities.each do |city|
@@ -123,7 +107,8 @@
                 = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right"
               %br/
               = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
-      .col-lg-10.col-lg-offset-1
+
+      .col-lg-10
         .container.comment-section
           %h6 Comments &amp; reviews :
           %hr/
