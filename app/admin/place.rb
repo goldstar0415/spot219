@@ -81,10 +81,9 @@ ActiveAdmin.register Place do
       f.input :map
       f.input :image
       f.input :subdomain
-      hr
       f.input :title, label: "SEO Title"
       f.input :description, label: "SEO Description"
-      hr
+
       f.inputs do
         f.has_many :open_days, heading: "Open Days", allow_destroy: false, new_record: false do |a|
           a.input :day_in_week
