@@ -24,5 +24,12 @@ module TurkishSpot
     config.active_record.raise_in_transactional_callbacks = true
 
     config.time_zone = 'Eastern Time (US & Canada)'
+
+    Rails.application.config.middleware.use ExceptionNotification::Rack,
+      :email => {
+        :email_prefix => "[TurkishSpot] ",
+        :sender_address => %{"notifier" <trangtrinhaxinh.vn@gmail.com>},
+        :exception_recipients => %w{jackyinvn@gmail.com}
+      }
   end
 end
