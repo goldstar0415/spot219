@@ -11,6 +11,7 @@
                         reverse: true
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
+    %link{:href => "/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
     = javascript_include_tag "application"
     = google_webfonts_init({                |
         google: ['Open Sans', 'sans-serif'] |
@@ -22,8 +23,9 @@
       #body.row
         .col-lg-12
           = render 'layouts/navbar'
-          = render 'layouts/flash'
-          .container= yield
+          .container
+            = bootstrap_flash
+            = yield
 
       %footer
         = render 'layouts/footer'
