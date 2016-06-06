@@ -110,8 +110,10 @@ select {
 }
 
 .searchbar{
-  margin-top: -80px;
-  margin-bottom: 50px;
+  display: inline-block;
+  float: left;
+  width: 500px;
+  margin-top: 6px;
 }
 
 .nav-search{
@@ -360,7 +362,6 @@ textarea{
   overflow: hidden;
   width: 80%;
   height: 80%;
-  left: 10%;
   top: 10%;
   border-bottom: 1px solid #FFF;
   border-top: 1px solid #FFF;
@@ -384,6 +385,7 @@ textarea{
   position: relative;
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
+  margin: auto;
 }
 
 .hovereffect:hover img {

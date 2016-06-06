@@ -2,14 +2,6 @@
   #section-content
     .row
       .col-lg-10.col-lg-offset-1
-        .hidden-lg
-          %br/
-          %br/
-        .container.searchbar{:align => "center"}
-          = form_tag search_path, :method => :get do
-            %p
-              = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
-              = submit_tag "Search", class: "btn btn-default search-btn"
         #section-one.container
           %table.table.table-striped
             %thead

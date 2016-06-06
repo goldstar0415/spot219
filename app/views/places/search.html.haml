@@ -4,17 +4,9 @@
   #section-content
     .row
       .col-lg-12
-        .hidden-lg
-          %br/
-          %br/
-        .container.searchbar{:align => "center"}
-          = form_tag search_path, :method => :get do
-            %p
-              = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
-              = submit_tag "Search", class: "btn btn-default search-btn"
         .col-lg-6.col-lg-offset-3.search-group{:align => "center"}
           %h4 Results
-        .col-lg-9.col-md-12.col-sm-12
+        .col-lg-8.col-md-12.col-sm-12
           - @places.each do |place|
             .card
               .hovereffect
@@ -49,7 +41,7 @@
                   = render place.categories.limit(3)
                 - else
                   \.
-        .side-nav.col-lg-3.col-md-12.col-sm-12.col-xs-12
+        .side-nav.col-lg-4.col-md-12.col-sm-12.col-xs-12
           .col-md-5
             %h5= link_to 'Cities', cities_path, class: "link"
             - @cities.each do |city|

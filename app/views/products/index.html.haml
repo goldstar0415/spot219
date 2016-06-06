@@ -1,4 +1,11 @@
 .container
+  %label CATEGORIES:
+  - Shoppe::ProductCategory.all.each do |item|
+    = link_to item.name, products_path({category_id: item.permalink}), class: 'tag'
+
+  %br/
+  %br/
+  %hr/
   = render 'shared/product_list', :products => @products
   .clearfix
   = paginate @products

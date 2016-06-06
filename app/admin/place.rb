@@ -19,7 +19,7 @@ ActiveAdmin.register Place do
   index do
     selectable_column
     column "Subdomain" do |c|
-      link_to c.subdomain, edit_admin_place_path(c.subdomain)
+      link_to (c.subdomain.blank? ? c.name : c.subdomain), edit_admin_place_path(c.subdomain.blank? ? c.id : c.subdomain)
     end
     column :name
     column :title
@@ -95,10 +95,9 @@ ActiveAdmin.register Place do
         end
       end
       f.input :subdomain
-      hr
       f.input :title, label: "SEO Title"
       f.input :description, label: "SEO Description"
-      hr
+
       f.inputs do
         f.has_many :open_days, heading: "Open Days", allow_destroy: false, new_record: false do |a|
           a.input :day_in_week
