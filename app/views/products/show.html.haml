@@ -2,9 +2,8 @@
   - active_nav_item :catalogue
   - @page_title = @product.name + " - " + @product.product_category.name
   .product
-    - if @product.default_image
-      .img{:style => "background-image:url(#{@product.default_image.path})"}
     %h2= @product.name
+    = image_tag @product.default_image.path, width: '400px'
     %p.intro= @product.short_description
 
     - if @product.has_variants?

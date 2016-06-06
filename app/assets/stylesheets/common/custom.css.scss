@@ -362,7 +362,6 @@ textarea{
   overflow: hidden;
   width: 80%;
   height: 80%;
-  left: 10%;
   top: 10%;
   border-bottom: 1px solid #FFF;
   border-top: 1px solid #FFF;
@@ -386,6 +385,7 @@ textarea{
   position: relative;
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
+  margin: auto;
 }
 
 .hovereffect:hover img {
