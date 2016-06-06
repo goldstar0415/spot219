@@ -29,4 +29,7 @@
                 %i.fa.fa-times
 
           %li
+          - if current_user.subscription_id == sub.id
+            Curerent Plan
+          - else
             %a.signUp{:href => "#{sub.paypal_url(root_url)}"} Get Started

@@ -15,7 +15,7 @@
                 = f.label :remember_me do
                   = f.check_box :remember_me
                   Remember me
-            = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-success"
+            .row= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-success"
         = render "devise/shared/links"
         .align{:align => "center"}
           %h4 Or with
