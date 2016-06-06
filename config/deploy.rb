@@ -22,7 +22,7 @@ set :repo_url, 'git@bitbucket.org:jackyvo/turkish.git'
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files, %w(config/database.yml config/application.yml)
+set :linked_files, %w(config/database.yml config/application.yml public/.htaccess)
 set :linked_dirs,  %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system  config/locales public/attachment public/uploads)
 
 # Default value for default_env is {}
