@@ -48,6 +48,6 @@ class City < ActiveRecord::Base
   end
 
   def to_param
-    self.subdomain || id.to_s
+    subdomain.blank? ? id.to_s : subdomain
   end
 end
