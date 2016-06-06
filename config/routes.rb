@@ -30,11 +30,11 @@ Rails.application.routes.draw do
   #
   # Basket
   #
-  get 'basket' => 'orders#show', :as => 'basket'
-  delete 'basket' => 'orders#destroy', :as => 'empty_basket'
-  post 'basket/:order_item_id' => 'orders#change_item_quantity', :as => 'adjust_basket_item_quantity'
-  delete 'basket/:order_item_id' => 'orders#change_item_quantity'
-  delete 'basket/delete/:order_item_id' => 'orders#remove_item', :as => 'remove_basket_item'
+  get 'carts' => 'orders#show', :as => 'carts'
+  delete 'carts' => 'orders#destroy', :as => 'empty_basket'
+  post 'carts/:order_item_id' => 'orders#change_item_quantity', :as => 'adjust_basket_item_quantity'
+  delete 'carts/:order_item_id' => 'orders#change_item_quantity'
+  delete 'carts/delete/:order_item_id' => 'orders#remove_item', :as => 'remove_basket_item'
 
   #
   # Checkout

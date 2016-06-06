@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree ./common
+ *= require products
  *= require_self
  *= require bxslider
  */

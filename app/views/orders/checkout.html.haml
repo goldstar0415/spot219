@@ -1,8 +1,7 @@
 - @page_title = 'Checkout'
 = render 'checkout_sidebar'
-    
+
 .checkout
-  %p.secure Secure connection
   %h2 Place your order
   %p.intro
     Fantastic! You're ready to place your order, just follow the instructions below and
@@ -13,48 +12,51 @@
 
   - unless @order.delivery_required? && @order.delivery_service.nil?
     %h3 Complete your details below to complete your order
-    
-    = form_for @order, :url => checkout_path, :html => {:class => 'checkout disableable'} do |f|
+
+    = form_for @order, :url => checkout_path, :html => {:class => 'checkout disableable form-horizontal col-md-8'} do |f|
       = f.error_messages
       .customer
         = field_set_tag do
-          %dl
+          %dl.form-group
             %dt= f.label :first_name, "Name", :class => 'req'
-            %dd.name
-              = f.text_field :first_name, :placeholder => 'First Name'
-              = f.text_field :last_name, :placeholder => 'Last Name'
-          %dl
+            %dd.row
+              .col-md-6= f.text_field :first_name, :placeholder => 'First Name', class: 'form-control'
+              .col-md-6= f.text_field :last_name, :placeholder => 'Last Name', class: 'form-control'
+          %dl.form-group
             %dt= f.label :company, "Company Name (optional)"
-            %dd= f.text_field :company
-          %dl
+            %dd= f.text_field :company, class: 'form-control'
+          %dl.form-group
             %dt= f.label :email_address, 'Your E-Mail Address', :class => 'req'
-            %dd= f.text_field :email_address
-          %dl
+            %dd= f.text_field :email_address, class: 'form-control'
+          %dl.form-group
             %dt= f.label :phone_number, 'Your Contact Phone Number', :class => 'req'
-            %dd= f.text_field :phone_number
+            %dd= f.text_field :phone_number, class: 'form-control'
 
         = field_set_tag do
-          %dl
+          %dl.form-group.row
             %dt= f.label :billing_address1, "Billing Address", :class => 'req'
-            %dd= f.text_field :billing_address1, :placeholder => "Line 1"
-            %dd= f.text_field :billing_address3, :placeholder => "Town/City"
-            %dd= f.text_field :billing_address4, :placeholder => "County"
-            %dd= f.text_field :billing_postcode, :placeholder => "Postcode", :class => 'postcode'
-            %dd= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name
-            %dd
+            %dd.col-md-4= f.text_field :billing_address1, :placeholder => "Line 1", class: 'form-control'
+            %dd.col-md-4= f.text_field :billing_address3, :placeholder => "Town/City", class: 'form-control'
+          %dl.form-group.row
+            %dd.col-md-4= f.text_field :billing_address4, :placeholder => "County", class: 'form-control'
+            %dd.col-md-4= f.text_field :billing_postcode, :placeholder => "Postcode", :class => 'postcode', class: 'form-control'
+            %dd.col-md-4= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name, {}, class: 'form-control'
+          %dl.form-group
+            %dd.col-md-12
               = f.check_box :separate_delivery_address
               = f.label :separate_delivery_address, "Deliver to a different address?"
-          %dl.delivery
+
+          %dl.form-group.row.delivery
             %dt= f.label :delivery_address1, "Delivery Address", :class => 'req'
-            %dd= f.text_field :delivery_name, :placeholder => "Deliver to (name/company)"
-            %dd= f.text_field :delivery_address1, :placeholder => "Line 1"
-            %dd= f.text_field :delivery_address3, :placeholder => "Town/City"
-            %dd= f.text_field :delivery_address4, :placeholder => "County"
-            %dd= f.text_field :delivery_postcode, :placeholder => "Postcode", :class => 'postcode'
-            %dd= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name
-            
-      %p.submit= f.submit "Continue to payment"
+            %dd.col-md-4= f.text_field :delivery_name, :placeholder => "Name", class: 'form-control'
+            %dd.col-md-4= f.text_field :delivery_address1, :placeholder => "Line 1", class: 'form-control'
+            %dd.col-md-4= f.text_field :delivery_address3, :placeholder => "Town/City", class: 'form-control'
+          %dl.form-group.row.delivery
+            %dd.col-md-4= f.text_field :delivery_address4, :placeholder => "County", class: 'form-control'
+            %dd.col-md-4= f.text_field :delivery_postcode, :placeholder => "Postcode", :class => 'postcode', class: 'form-control'
+            %dd.col-md-4= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name, {}, class: 'form-control'
+
+      %p.submit= f.submit "Continue to payment", class: 'btn btn-primary'
 
   - else
-    %p Please call us to place this order. 
-    
+    %p Please call us to place this order.

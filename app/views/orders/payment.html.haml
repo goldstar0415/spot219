@@ -6,23 +6,27 @@
     %p Payment will be processed by PayPal
     = link_to "Continue", checkout_confirmation_path
   - else
-    %p.secure Secure connection
     %h3 Pay using your credit/debit card
-    = form_for @order, :url => checkout_payment_path, :html => {:class => 'checkout'} do |f|
+    = form_for @order, :url => checkout_payment_path, :html => {:class => 'checkout form-horizontal col-md-6'} do |f|
       = field_set_tag nil, :class => 'payment' do
-        %h3 This is a demo form. Any values entered here will be accepted.
-        %dl
+        %dl.form-group
           %dt= label_tag 'card_number', "Full Card Number"
-          %dd.number= text_field_tag 'card_number', '', :name => nil
-        %dl
+          %dd.number= text_field_tag 'card_number', '', :name => nil, class: 'form-control'
+
+        %dl.form-group
           %dt= label_tag 'exp_month', "Expiry Date (mm/yyyy)"
-          %dd.expiry
-            = select_tag nil, options_for_select((1..12).to_a)
-            = select_tag nil, options_for_select((Date.today.year..Date.today.year + 10).to_a), :class => 'year'
-        %dl
+          %dd.expiry.row
+            .col-md-6= select_tag nil, options_for_select((1..12).to_a), class: 'form-control'
+            .col-md-6= select_tag nil, options_for_select((Date.today.year..Date.today.year + 10).to_a), :class => 'year form-control'
+
+        %dl.form-group
           %dt= label_tag 'cvc', "Security Code"
-          %dd.cvc
-            = text_field_tag 'cvc', '', :name => nil, :maxlength => 4
-            %span This is the 3 digit number on the back of your card.
-      %p.submit= f.submit "Review your order", :class => 'review'
-    = link_to "Pay with PayPal", checkout_paypal_path
+          %dd.cvc.row
+            .col-md-8= text_field_tag 'cvc', '', :name => nil, :maxlength => 4, class: 'form-control'
+            .col-md-4 This is the 3 digit number on the back of your card.
+
+      .row
+        %p.submit= f.submit "Review your order", :class => 'review btn btn-primary'
+
+        %p
+          = link_to "Pay with PayPal", checkout_paypal_path, class: 'btn btn-default'

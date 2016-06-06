@@ -1,6 +1,4 @@
 class OrdersController < ApplicationController
-  layout 'shoppe'
-
   before_filter(:except => :status) { redirect_to root_path unless has_order? }
   before_filter(only: [:paypal, :payment]) { Shoppe::Paypal.setup_paypal }
 
@@ -85,19 +83,6 @@ class OrdersController < ApplicationController
       if @order.proceed_to_confirm
         redirect_to checkout_payment_path
       end
-    else
-      # Add some example order data for the example. In a real application
-      # this shouldn't be present.
-      Faker::Config.locale = 'en-GB'
-      @order.first_name = Faker::Name.first_name                                            if @order.first_name.blank?
-      @order.last_name = Faker::Name.last_name                                              if @order.last_name.blank?
-      @order.company = Faker::Company.name                                                  if @order.company.blank?
-      @order.email_address = Faker::Internet.email                                          if @order.email_address.blank?
-      @order.phone_number = Faker::PhoneNumber.phone_number                                 if @order.phone_number.blank?
-      @order.billing_address1 = Faker::Address.building_number + " " + Faker::Address.street_name   if @order.billing_address1.blank?
-      @order.billing_address3 = Faker::Address.city                                                 if @order.billing_address3.blank?
-      @order.billing_address4 = Faker::Address.country                                               if @order.billing_address4.blank?
-      @order.billing_postcode = Faker::Address.zip                                                  if @order.billing_postcode.blank?
     end
   end
 

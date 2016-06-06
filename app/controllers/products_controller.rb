@@ -1,20 +1,4 @@
 class ProductsController < ApplicationController
-  layout 'shoppe'
-  # def index
-  #   @products = Shoppe::Product.root.ordered.includes(:product_categories, :variants)
-  #   @products = @products.group_by(&:product_category)
-  # end
-
-  # def show
-  #   @product = Shoppe::Product.root.find_by_permalink(params[:permalink])
-  # end
-
-  # def buy
-  #   @product = Shoppe::Product.root.find_by_permalink!(params[:permalink])
-  #   current_order.order_items.add_item(@product, 1)
-  #   redirect_to product_path(@product.permalink), :notice => "Product has been added successfuly!"
-  # end
-
   before_filter do
     if params[:category_id]
       @product_category = Shoppe::ProductCategory.where(:permalink => params[:category_id]).first!
@@ -30,6 +14,8 @@ class ProductsController < ApplicationController
     else
       @products = Shoppe::Product.active.featured.includes(:product_categories, :variants).root
     end
+
+    @products = @products.page(params[:page])
   end
 
   def filter
@@ -48,7 +34,7 @@ class ProductsController < ApplicationController
     product_to_order = params[:variant] ? @product.variants.find(params[:variant].to_i) : @product
     current_order.order_items.add_item(product_to_order, params[:quantity].blank? ? 1 : params[:quantity].to_i)
     respond_to do |wants|
-      wants.html { redirect_to request.referer }
+      wants.html { redirect_to request.referer, notice: 'You have added successfully to cart' }
       wants.json { render :json => {:added => true} }
     end
   rescue Shoppe::Errors::NotEnoughStock => e
@@ -57,6 +43,4 @@ class ProductsController < ApplicationController
       wants.json { render :json => {:error => 'NotEnoughStock', :available_stock => e.available_stock}}
     end
   end
-
-
 end

@@ -1,3 +1,22 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.products{
+  .card{
+    margin: 0;
+    margin-bottom: 30px;
+
+    min-height: 100px;
+  }
+}
+
+i.sub {
+  display: inline-block;
+  position: absolute;
+  bottom: -5px;
+  right: 2px;
+}
+
+a:visited{
+  color: white;
+}

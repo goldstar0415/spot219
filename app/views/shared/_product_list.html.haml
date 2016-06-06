@@ -1,12 +1,12 @@
-%ul.products
+.products
   - for product in products
-    %li
-      .img{:style => product.default_image ? "background-image:url(#{product.default_image.path})" : ''}
-      %h4= link_to product.name, product_path(product.product_category.permalink, product.permalink)
-      %p.info= truncate product.short_description, :length => 90
-      %p.buttons 
-        = link_to "Info", product_path(product.product_category.permalink, product.permalink)
-        - if product.orderable?
-          = link_to "Add", buy_product_path(product.product_category.permalink, product.permalink), :class => 'add', :method => :post
+    .card.col-md-3
+      .hovereffect
+        = image_tag product.default_image.path, size: "200x134"
+        .overlay
+          %h2= product.name
+
+      %h4{:align => "center"}= link_to product.name, product_path(product.product_category.permalink, product.permalink)
       %p.price= number_to_currency product.price
-      
+      - if product.orderable?
+        = link_to "Add", buy_product_path(product.product_category.permalink, product.permalink), :class => 'add btn btn-default', :method => :post
