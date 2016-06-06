@@ -8,7 +8,7 @@
   #section-content
     .row
       .col-lg-12
-        .col-lg-9
+        .col-lg-8
           .description
             %h4{:align => "left"}
               %strong= @place.name
@@ -80,7 +80,7 @@
             /     = hidden_field_tag :place_id, @place.id
             /     .actions
             /       = f.submit 'Add to Cart', class: 'btn btn-primary'
-        .side-nav.col-lg-3.visible-lg
+        .side-nav.col-lg-4.visible-lg
           .col-md-5
             %h5= link_to 'Cities', cities_path, class: "link"
             - @cities.each do |city|
