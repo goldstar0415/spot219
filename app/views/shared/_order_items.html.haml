@@ -1,39 +1,40 @@
-%table.orderItems.table.table-bordered.table-striped
-  %thead
-    %tr
-      %td Qty
-      %td Item
-      %td Price
-      %td= Shoppe.settings.tax_name
-      %td Sub-Total
-
-  %tbody
-    - for item in order.order_items
+.orderItems
+  %table.table.table-bordered.table-striped
+    %thead
       %tr
-        %td.quantity
-          - unless defined?(readonly)
-            %span
-              = link_to "+", adjust_basket_item_quantity_path(item.id), :method => :post, :class => 'ajax'
-              = item.quantity
-              = link_to "-", adjust_basket_item_quantity_path(item.id), :method => :delete, :class => 'ajax'
-        %td.product
-          = item.ordered_item.full_name
-          - unless defined?(readonly)
-            = link_to "Delete", remove_basket_item_path(item), :method => :delete, :class => 'delete ajax'
-        %td.money.price= number_to_currency item.sub_total
-        %td.money.tax= number_to_currency item.tax_amount
-        %td.money.total= number_to_currency item.total
+        %td Qty
+        %td Item
+        %td Price
+        %td= Shoppe.settings.tax_name
+        %td Sub-Total
 
-  %tfoot
-    %tr.subtotal
-      %td.text-right{:colspan => 4} Total (excluding #{Shoppe.settings.tax_name})
-      %td.money.strong= number_to_currency order.total_before_tax
-    %tr.tax
-      %td.text-right{:colspan => 4}= Shoppe.settings.tax_name
-      %td.money.strong= number_to_currency order.tax
-    %tr.total
-      %td.text-right{:colspan => 4} Total
-      %td.money.strong= number_to_currency order.total
+    %tbody
+      - for item in order.order_items
+        %tr
+          %td.quantity
+            - unless defined?(readonly)
+              %span
+                = link_to "+", adjust_basket_item_quantity_path(item.id), :method => :post, :class => 'ajax'
+                = item.quantity
+                = link_to "-", adjust_basket_item_quantity_path(item.id), :method => :delete, :class => 'ajax'
+          %td.product
+            = item.ordered_item.full_name
+            - unless defined?(readonly)
+              = link_to "Delete", remove_basket_item_path(item), :method => :delete, :class => 'delete ajax'
+          %td.money.price= number_to_currency item.sub_total
+          %td.money.tax= number_to_currency item.tax_amount
+          %td.money.total= number_to_currency item.total
 
-.clearfix
-= link_to 'Checkout', checkout_path, class: 'pull-right btn btn-primary'
+    %tfoot
+      %tr.subtotal
+        %td.text-right{:colspan => 4} Total (excluding #{Shoppe.settings.tax_name})
+        %td.money.strong= number_to_currency order.total_before_tax
+      %tr.tax
+        %td.text-right{:colspan => 4}= Shoppe.settings.tax_name
+        %td.money.strong= number_to_currency order.tax
+      %tr.total
+        %td.text-right{:colspan => 4} Total
+        %td.money.strong= number_to_currency order.total
+
+  .clearfix
+  = link_to 'Checkout', checkout_path, class: 'pull-right btn btn-primary'

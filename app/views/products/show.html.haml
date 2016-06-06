@@ -22,8 +22,8 @@
               .form-group.row
                 = form_tag buy_product_path(@product.product_category.permalink, @product.permalink, :variant => variant.id), :class => (variant.in_stock? ? 'in-stock' : 'no-stock') do
                   %p
-                    .col-md-2= select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !variant.in_stock?
-                    .col-md-2= submit_tag 'Add to basket', :disabled => !variant.in_stock?
+                    .col-md-2= select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !variant.in_stock?, class: 'form-control'
+                    .col-md-2= submit_tag 'Add to basket', :disabled => !variant.in_stock?, class: 'btn btn-primary'
     - else
       .optionsBox
         .top
@@ -31,8 +31,8 @@
           .form-group.row
             = form_tag buy_product_path(@product.product_category.permalink, @product.permalink), :class => (@product.in_stock? ? 'in-stock' : 'no-stock') do
               %p
-                .col-md-2= select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !@product.in_stock?
-                .col-md-2= submit_tag 'Add to basket', :disabled => !@product.in_stock?
+                .col-md-2= select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !@product.in_stock?, class: 'form-control'
+                .col-md-2= submit_tag 'Add to basket', :disabled => !@product.in_stock?, class: 'btn btn-primary'
         .bottom
           .stock
             - if @product.in_stock?
