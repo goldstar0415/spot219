@@ -1,0 +1,211 @@
+@import url(http://fonts.googleapis.com/css?family=Exo:300,400,500,600,700);
+@import url(http://fontawesome.io/assets/font-awesome/css/font-awesome.css);
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Arial", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+.packageContainer {
+  text-align: center;
+}
+
+.package {
+  width: 935px;
+  margin: 50px auto 20px;
+  border: 1px solid #CCC;
+  display: inline-block;
+}
+
+.fa {
+  color: #b9b9b9;
+  font-size: 18px;
+  font-style: normal;
+  margin-right: 5px;
+  width: 25px;
+  float: left;
+}
+
+.packageLeftBar {
+  width: 210px;
+  background: #fbfbfb;
+  float: left;
+}
+
+.packageLeftBar li, .packageDetails li {
+  padding: 15px 25px;
+  font-size: 14px;
+  font-weight: bold;
+  border-top: 1px dotted #CCC;
+  text-align: left;
+}
+
+.packageLeftBar li:first-child, .packageDetails li:first-child {
+  text-align: center;
+  padding: 30px;
+  border: none;
+}
+
+.packageLeftBar li:last-child, .packageDetails li:last-child {
+  padding: 30px 0;
+  background: #FFF;
+}
+
+.packageDetails {
+  width: 144px;
+  float: left;
+  position: relative;
+  border-left: 1px dotted #CCC;
+}
+
+.packageDetails:hover {
+  background: #FAFAFA;
+}
+
+.packageDetails .fa-times {
+  color: #d31c06;
+}
+
+.packageDetails .fa-check {
+  color: #7e9513;
+}
+
+.packageDetails li {
+  text-align: center;
+}
+
+.packageDetails li .fa {
+  text-align: center;
+  float: none;
+  line-height: 0;
+}
+
+.packageDetails li:first-child {
+  padding: 10px 10px;
+}
+
+.packageLeftBar li:first-child {
+  padding: 38px 10px 37px;
+}
+
+.packageDetails li:first-child span {
+  padding: 10px 0;
+  left: 50%;
+  margin-left: -65px;
+  width: 130px;
+  display: block;
+  background-color: #d9a702;
+  position: absolute;
+  top: -5px;
+  box-shadow: 3px 3px 0px #b68c03;
+  font-family: 'Exo', sans-serif;
+  font-weight: 400;
+}
+
+.packageDetails.yellow li:first-child {
+  background-color: #EBC137;
+  color: #FFF;
+  line-height: 16px;
+}
+
+.signUp {
+  padding: 8px 15px;
+  color: #FFF;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.packageDetails li:nth-child(2) {
+  padding: 68px 10px 25px;
+  border-top: 0;
+  color: #FFF;
+  font-size: 21px;
+}
+
+.packageDetails.yellow li:nth-child(2) {
+  background: #EBC137;
+}
+
+.packageDetails.yellow .signUp {
+  background-color: #d9a702;
+  box-shadow: 3px 3px 0px #b68c03;
+}
+
+.packageDetails.orange li:first-child {
+  background-color: #e69844;
+  color: #FFF;
+  line-height: 16px;
+}
+
+.packageDetails.orange li:first-child span {
+  background-color: #cf7a1c;
+  box-shadow: 3px 3px 0px #b36004;
+}
+
+.packageDetails.orange li:nth-child(2) {
+  background: #E38C2D;
+}
+
+.packageDetails.orange .signUp {
+  background-color: #cf7a1c;
+  box-shadow: 3px 3px 0px #b36004;
+}
+
+.packageDetails.red li:first-child {
+  background-color: #e84c3d;
+  color: #FFF;
+  line-height: 16px;
+}
+
+.packageDetails.red li:first-child span {
+  background-color: #b52918;
+  box-shadow: 3px 3px 0px #9c4239;
+}
+
+.packageDetails.red li:nth-child(2) {
+  background: #e84c3d;
+}
+
+.packageDetails.red .signUp {
+  background-color: #b52918;
+  box-shadow: 3px 3px 0px #9c4239;
+}
+
+.packageDetails.maroon li:first-child {
+  background-color: #771E10;
+  color: #FFF;
+  line-height: 16px;
+}
+
+.packageDetails.maroon li:first-child span {
+  background-color: #531106;
+  box-shadow: 3px 3px 0px #380a03;
+}
+
+.packageDetails.maroon li:nth-child(2) {
+  background: #771E10;
+}
+
+.packageDetails.maroon .signUp {
+  background-color: #531106;
+  box-shadow: 3px 3px 0px #380a03;
+}
+
+.packageDetails #economy li:nth-child(2) {
+  padding: 40px 10px 15px;
+}
+
+.packageDetails #economy li:nth-child(2) select {
+  margin-top: 14px;
+}
+
+#economy select {
+  border: 0;
+  outline: none;
+  padding: 3px 8px;
+}

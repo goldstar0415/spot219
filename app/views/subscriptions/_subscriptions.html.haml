@@ -1,0 +1,32 @@
+- list = ['yellow', 'orange', 'red', 'maroon', 'maroon.brown']
+.packageContainer
+  .package
+    .packageLeftBar
+      %ul
+        %li Individual Package Details
+        %li
+          %i.fa.fa-tags
+          Price
+
+        - Feature.order(id: :asc).each do |feature|
+          %li
+            %i.fa.fa-check
+            = feature.name
+        %li
+
+    - Subscription.all.each_with_index do |sub, index|
+      .packageDetails{class: list[index] }
+        %ul
+          %li
+            %span= sub.name
+          %li= number_to_currency sub.price
+
+          - Feature.order(id: :asc).each do |feature|
+            %li
+              - if sub.features.include?(feature)
+                %i.fa.fa-check
+              - else
+                %i.fa.fa-times
+
+          %li
+            %a.signUp{:href => "#{sub.paypal_url(root_url)}"} Get Started
