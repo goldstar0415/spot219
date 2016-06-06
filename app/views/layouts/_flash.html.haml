@@ -1,0 +1,9 @@
+.flash--container.container
+  - %w(notice alert).each do |message|
+    - unless flash[message.to_sym].blank?
+      .flash--message{class: "is-#{message}"}
+        .message{class: message == 'notice' ? 'text-success' : 'text-warning'}
+          = raw(flash[message.to_sym])
+
+  - if content_for? :flash
+    = yield :flash
