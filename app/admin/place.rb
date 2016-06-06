@@ -19,7 +19,7 @@ ActiveAdmin.register Place do
   index do
     selectable_column
     column "Subdomain" do |c|
-      link_to c.subdomain, edit_admin_place_path(c.subdomain)
+      link_to c, edit_admin_place_path(c.subdomain.blank? ? c.id : c.subdomain)
     end
     column :name
     column :title
