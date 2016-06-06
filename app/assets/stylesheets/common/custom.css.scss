@@ -110,8 +110,10 @@ select {
 }
 
 .searchbar{
-  margin-top: -80px;
-  margin-bottom: 50px;
+  display: inline-block;
+  float: left;
+  width: 500px;
+  margin-top: 6px;
 }
 
 .nav-search{

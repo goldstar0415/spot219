@@ -9,7 +9,12 @@
         %span.icon-bar
       %ul
         = link_to (image_tag ("turkishspot1.png")), root_path, class: "navbar-brand"
-    / Collect the nav links, forms, and other content for toggling
+
+    .searchbar{:align => "center"}
+      = form_tag search_path, :method => :get do
+        = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+        = submit_tag "Search", class: "btn btn-default search-btn"
+
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         %li= link_to 'Products', products_path
