@@ -57,6 +57,14 @@ ActiveAdmin.register Place do
         image_tag(place.image.url, width: 500)
       end
 
+      panel "Sliders" do
+        table_for place.sliders do
+          column "Image" do |slider|
+            image_tag slider.image.url
+          end
+        end
+      end
+
       row :reviews do
         place.average_rating
       end
@@ -80,6 +88,12 @@ ActiveAdmin.register Place do
       f.input :user
       f.input :map
       f.input :image
+      hr
+      f.inputs do
+        f.has_many :sliders, heading: "Sliders", allow_destroy: true, new_record: true do |a|
+          a.input :image, :as => :file, :label => "Image",:hint => a.object.image.nil? ? a.template.content_tag(:span, "No Image Yet") : a.template.image_tag(a.object.image)
+        end
+      end
       f.input :subdomain
       f.input :title, label: "SEO Title"
       f.input :description, label: "SEO Description"
