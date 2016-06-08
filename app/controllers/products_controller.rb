@@ -15,6 +15,14 @@ class ProductsController < ApplicationController
       @products = Shoppe::Product.active.featured.includes(:product_categories, :variants).root
     end
 
+    if params[:search].present?
+      search = params[:search]
+      ids = Shoppe::Product.all.select {|item| item.name.downcase.include?(search.downcase)}.map(&:id)
+      p ids
+
+      @products = @products.where(id: ids)
+    end
+
     @products = @products.page(params[:page])
   end
 
