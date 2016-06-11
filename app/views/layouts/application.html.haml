@@ -19,13 +19,12 @@
     /[if lt IE 9]
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
   %body
-    #container.containerr
+    #container
       #body.row
         .col-lg-12
           = render 'layouts/navbar'
-          .container
-            = bootstrap_flash
-            = yield
+          = bootstrap_flash
+          = yield
 
       %footer
         = render 'layouts/footer'
