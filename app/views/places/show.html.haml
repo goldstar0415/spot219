@@ -2,8 +2,6 @@
                 description: @place.description,
                 keywords: @place.title.to_s.split(' ').join(',')
 = render 'review_and_rating'
-.container
-  = bootstrap_flash
 #section-one
   #section-content
     .row
@@ -76,10 +74,11 @@
 
             %hr/
             %div
-              - @open_days.each do |open_day|
-                %h6
-                  %strong= "#{open_day.day_in_week}"
-                  = " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}"
+              - if @open_days.present?
+                - @open_days.each do |open_day|
+                  %h6
+                    %strong= "#{open_day.day_in_week}"
+                    = " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}"
 
             %hr/
             #claim

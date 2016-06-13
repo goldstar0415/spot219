@@ -16,7 +16,9 @@ class PlacesController < ApplicationController
     @places = Place.all
     @blog = Blog.last
     @claim = Claim.new
+
     @open_days = @place.open_days.where(open: true)
+
     @shopping_cart = ShoppingCart.new
     @sliders = @place.sliders.order(:position)
   end
@@ -24,23 +26,16 @@ class PlacesController < ApplicationController
   def new
     @place = Place.new
     @cities = City.all
+    build_opendays
+    @open_days = @place.open_days
 
-    @open_days = []
-    Date::DAYNAMES.each do |day|
-      @open_days << @place.open_days.build(day_in_week: day)
-    end
+
     @place.sliders.build
   end
 
   def edit
     @cities = City.uniq.pluck(:city_name)
-
-    if @place.open_days.blank?
-      Date::DAYNAMES.each do |day|
-        @place.open_days.build(day_in_week: day)
-      end
-    end
-
+    build_opendays
     @open_days = @place.open_days
   end
 
@@ -48,13 +43,16 @@ class PlacesController < ApplicationController
     @place = Place.new(place_params)
     @place.user = current_user
     @place.save
-    #binding.pry
+
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place }
         format.json { render :show, status: :created, location: @place }
       else
-        format.html { render :new }
+        build_opendays
+        @open_days = @place.open_days
+        flash.now[:error] = @place.errors.full_messages.to_sentence
+        format.html { render :new  }
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
     end
@@ -67,6 +65,10 @@ class PlacesController < ApplicationController
         format.html { redirect_to @place }
         format.json { render :show, status: :ok, location: @place }
       else
+        build_opendays
+        @open_days = @place.open_days
+        flash.now[:error] = @place.errors.full_messages.to_sentence
+
         format.html { render :edit }
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
@@ -109,5 +111,11 @@ class PlacesController < ApplicationController
         flash[:danger] = "You can only edit or delete your own places."
         redirect_to root_path
       end
+    end
+
+    def build_opendays
+      Date::DAYNAMES.each do |day|
+        @place.open_days.build(day_in_week: day)
+      end if @place.open_days.empty?
     end
 end

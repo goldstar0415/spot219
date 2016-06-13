@@ -1,12 +1,4 @@
 = form_for @place, html: { multipart: true }  do |f|
-  - if @place.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@place.errors.count, "error")
-        prohibited this place from being saved:
-      %ul
-        - @place.errors.full_messages.each do |message|
-          %li= message
   #section-add-place
     %hr/
     .col-lg-10.col-lg-offset-1
@@ -80,7 +72,7 @@
           - if has_feature?(current_user, "add-photo-slider")
             = render 'form_slider', f: f
           - else
-            = f.file_field :image
+            = f.file_field :image, required: true if f.object.new_record?
 
         %hr/
         .open_days
@@ -97,6 +89,7 @@
                     = open_f.time_select :start_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
                   .col-md-1
                     = open_f.time_select :end_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
+
       = f.submit "Submit", class: "btn btn-success"
       = link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right"
 
