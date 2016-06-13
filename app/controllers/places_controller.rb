@@ -114,8 +114,10 @@ class PlacesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
       params.require(:place).permit(:name, :about, :country, :city,
-        :address, :phone, :fb, :twit, :insta, :web, :map, :image,
-        :city_id, :latitude, :longitude, category_ids: [], open_days_attributes: [ :id, :day_in_week, :start_time, :end_time, :open ], sliders_attributes: [:id, :user_id, :image, :position, :_destroy])
+        :address, :phone, :fb, :twit, :insta, :web, :map, :image, :subdomain,
+        :city_id, :latitude, :longitude, category_ids: [],
+        open_days_attributes: [ :id, :day_in_week, :start_time, :end_time, :open ],
+        sliders_attributes: [:id, :user_id, :image, :position, :_destroy])
     end
 
     def require_same_user
