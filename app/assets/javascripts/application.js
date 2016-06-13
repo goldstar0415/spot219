@@ -28,5 +28,8 @@ var hide_spinner = function(){
   $('#spinner').hide();
 }
 $(document).ready(function(){
-  $('.bxslider').bxSlider();
+  $('.bxslider').bxSlider({
+    auto: true,
+    autoControls: true
+  });
 });

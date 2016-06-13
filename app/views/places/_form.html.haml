@@ -61,6 +61,7 @@
             %label Link to website (*)
             = f.text_field :web, placeholder: "http://www.example.com", class: "form-control"
         %h5.danger (*) Please provide all URLs with http:// or https://
+
         %br/
         %hr/
         .form-group
@@ -75,12 +76,12 @@
 
         %hr/
         .form-group
-          %label{:for => "exampleInputFile"} Upload image of the place
-          -if has_feature?(current_user, "add-photo-slider")
-            .place-form-slider
-              = render 'form_slider', f: f
-          -else
+          %label Upload image of the place
+          - if has_feature?(current_user, "add-photo-slider")
+            = render 'form_slider', f: f
+          - else
             = f.file_field :image
+
         %hr/
         .open_days
           - @open_days.each do |open_day|

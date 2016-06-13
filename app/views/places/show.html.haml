@@ -9,28 +9,40 @@
     .row
       .col-lg-12
         .col-lg-9
+
           .description
             %h4{:align => "left"}
               %strong= @place.name
-            -if has_feature?(@place.user, "add-photo-slider") and @place.sliders.present?
+
+            // Slider ##
+            - if has_feature?(@place.user, "add-photo-slider") and @place.sliders.present?
               .place-slider-wrapper
                 = render "slider"
-            -else
+            - else
               = image_tag @place.image.url(:medium), size: "640x426", class: "img-responsive"
+
+            // Map ##
             .google-maps
               = render_gmap_coordinate_picker :lat_column => 'latitude', :lng_column => 'longitude' , :zoom_level => 12, :default_coordinates => [@place.latitude, @place.longitude], map_width: 500
+
+          // description ##
           .desciption
             %h4 About
             %h6
               %small
                 This place was created by: #{@place.user.full_name}
+
             - if @place.categories.any?
               %p
                 Categories: #{render @place.categories}
+
             .ratestar
               %h5.score= @place.average_rating
+
+            // about ##
             %p= @place.about
-            %hr/
+
+            // address ####
             %hr/
             %h5
               %strong Country:
@@ -46,6 +58,7 @@
               = @place.phone
 
             - if (@place.fb.size > 2) || (@place.twit.size > 2) || (@place.insta.size > 2) || (@place.web.size > 2)
+              %hr/
               %h6
                 %strong Follow us on:
 
@@ -60,6 +73,14 @@
 
             - if @place.web.size > 2
               %h6= link_to "My website", @place.web, target: "_blank"
+
+            %hr/
+            %div
+              - @open_days.each do |open_day|
+                %h6
+                  %strong= "#{open_day.day_in_week}"
+                  = " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}"
+
             %hr/
             #claim
               %button.btn.btn-primary.btn-lg{"data-target" => "#claim-modal", "data-toggle" => "modal", :type => "button"} Claim
@@ -83,6 +104,7 @@
                 %small>= pluralize(category.places.count, "place")
                 )
             %h6= link_to 'View all categories', categories_path
+
           - if user_signed_in?
             .col-md-7{:align => "center"}
               %h4
@@ -127,4 +149,5 @@
                 %br/
                 %br/
                 = f.submit "Add Comment", class: "btn btn-success"
+
 = render "claim_modal"

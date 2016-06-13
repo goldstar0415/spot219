@@ -1,8 +1,12 @@
-.row
-  .col-md-8
+- 3.times { f.object.sliders.build } if f.object.sliders.empty?
+
+.place-form-slider
+  .row.form-group
     = f.fields_for :sliders do |slider|
       = render 'slider_fields', f: slider
-    .links
-      = link_to_add_association 'Add more', f, :sliders
+
+    .clearfix
+      .col-xs-12
+        = link_to_add_association 'Add more', f, :sliders
 
 

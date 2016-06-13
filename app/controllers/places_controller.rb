@@ -3,8 +3,6 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index, :search]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
-  # GET /places
-  # GET /places.json
   def index
     @places = Place.order(created_at: :desc).page(params[:page])
     @cities = City.limit(10)
@@ -12,8 +10,6 @@ class PlacesController < ApplicationController
     @blog = Blog.last
   end
 
-  # GET /places/1
-  # GET /places/1.json
   def show
     @cate = Category.limit(10)
     @cities = City.limit(10)
@@ -25,7 +21,6 @@ class PlacesController < ApplicationController
     @sliders = @place.sliders.order(:position)
   end
 
-  # GET /places/new
   def new
     @place = Place.new
     @cities = City.all
@@ -37,20 +32,18 @@ class PlacesController < ApplicationController
     @place.sliders.build
   end
 
-  # GET /places/1/edit
   def edit
     @cities = City.uniq.pluck(:city_name)
-    @open_days = @place.open_days
-    if @open_days.blank?
-      @open_days = []
+
+    if @place.open_days.blank?
       Date::DAYNAMES.each do |day|
-        @open_days << @place.open_days.build(day_in_week: day)
+        @place.open_days.build(day_in_week: day)
       end
     end
+
+    @open_days = @place.open_days
   end
 
-  # POST /places
-  # POST /places.json
   def create
     @place = Place.new(place_params)
     @place.user = current_user
@@ -67,8 +60,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /places/1
-  # PATCH/PUT /places/1.json
   def update
     respond_to do |format|
       #binding.pry
@@ -82,8 +73,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  # DELETE /places/1
-  # DELETE /places/1.json
   def destroy
     @place.comments.each do |comment|
       comment.destroy
@@ -95,7 +84,6 @@ class PlacesController < ApplicationController
     end
   end
 
-
   def search
     @places = Place.search params[:search]
 
@@ -103,15 +91,11 @@ class PlacesController < ApplicationController
     @cate = Category.limit(10)
   end
 
-
-
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_place
       @place = Place.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
       params.require(:place).permit(:name, :about, :country, :city,
         :address, :phone, :fb, :twit, :insta, :web, :map, :image, :subdomain,
@@ -126,5 +110,4 @@ class PlacesController < ApplicationController
         redirect_to root_path
       end
     end
-
 end
