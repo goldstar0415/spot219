@@ -33,7 +33,7 @@
                     = image_tag @blog.img.url(:thumb), size: "200x134", class: "img-responsive"
                     .caption
                       %h3= link_to @blog.title, @blog, class: "link"
-                      %p= @blog.body.first(140)
+                      %p= @blog.body.truncate(80)
                       %p= link_to 'Read more', @blog, class: "btn"
 
           - if user_signed_in?
