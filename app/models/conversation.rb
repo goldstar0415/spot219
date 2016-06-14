@@ -13,7 +13,8 @@ class Conversation < ActiveRecord::Base
     where("conversations.sender_id = ? OR conversations.recipient_id =?", user_id, user_id)
   end
 
-  scope :not_read, -> {
-    joins(:messages).where(messages: {read: false})
-  }
+  scope :to_me, -> (user_id) do
+    joins(:messages).where('messages.read = false and messages.user_id <> :user_id',
+      user_id: user_id).uniq
+  end
 end

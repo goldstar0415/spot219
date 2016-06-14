@@ -7,21 +7,18 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
+
     if @messages.length > 10
       @over_ten = true
       @messages = @messages[-10..-1]
     end
+
     if params[:m]
       @over_ten = false
       @messages = @conversation.messages
     end
-    if @messages.last
 
-      if @messages.last.user_id != current_user.id
-        @messages.last.update(read: true)
-
-      end
-    end
+    @messages.where.not(user_id: current_user.id).update_all read: true
     @message = @conversation.messages.new
   end
 
