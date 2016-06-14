@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  resources :sliders
+  resources :sliders, :campaigns
   resources :subscriptions, only: :index
 
   #

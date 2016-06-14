@@ -13,6 +13,15 @@ select {
   height: 35px;
 }
 
+a.btn{
+  padding: 5px 10px !important;
+  color: white !important;
+
+  &:hover{
+    background: #428bca !important;
+  }
+}
+
 .segment .item{
   margin-bottom: 20px;
 }

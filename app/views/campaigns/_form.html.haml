@@ -1,0 +1,15 @@
+= form_for @campaign, html: { class: 'form-horizontal col-md-6 col-md-offset-2' } do |f|
+  .form-group
+    %label Name
+    = f.text_field :name, class: 'form-control'
+
+  .form-group
+    %label Budget
+    = f.text_field :budget, class: 'form-control'
+
+  .form-group
+    %label Running
+    = f.check_box :running
+
+  .form-group
+    = f.submit 'Save', class: 'ui blue labeled submit icon button btn btn-primary'

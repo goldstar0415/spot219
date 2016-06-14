@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :blogs
+  has_many :campaigns, dependent: :destroy
 
   belongs_to :city
 

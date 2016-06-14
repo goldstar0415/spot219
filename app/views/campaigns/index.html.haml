@@ -1,0 +1,22 @@
+#section-one
+  #section-content
+    .col-md-12
+      %table.table.table-hovered
+        %thead
+          %tr
+            %th Name
+            %th Budget
+            %th Status
+            %th
+
+        %tbody
+          - current_user.campaigns.each do |item|
+            %tr
+              %td= link_to item.name, item
+              %td= item.budget
+              %td= item.running? ? 'Running' : 'Paused'
+              %td
+                = link_to 'Delete', item, 'data-method' => :delete
+                = link_to 'Edit', [:edit, item]
+
+      = link_to 'New', new_campaign_path, class: 'ui blue labeled submit icon button btn btn-primary'
