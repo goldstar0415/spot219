@@ -6,7 +6,7 @@
           - @places.each do |place|
             .card
               .hovereffect
-                - img = place.sliders.first ? place.sliders.first.url(:thumb) : place.image.url(:thumb)
+                - img = place.sliders.first ? place.sliders.first.image.url(:thumb) : place.image.url(:thumb)
                 = image_tag img, size: "200x134"
 
                 .overlay
