@@ -3,8 +3,18 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index, :search]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
+  LIMIT = 12
+
   def index
-    @places = Place.order(created_at: :desc).page(params[:page])
+    @places = Place.feature
+
+    if @places.count < 12
+      items = Place.where.not(id: @places.ids)
+      (12 - @places.count).times do |i|
+        @places << items[i] if items[i]
+      end
+    end
+
     @cities = City.limit(10)
     @cate = Category.limit(10)
     @blog = Blog.last

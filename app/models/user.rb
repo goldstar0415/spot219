@@ -33,8 +33,10 @@ class User < ActiveRecord::Base
   validates_attachment :avatar, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  before_create do
-    self.subscription_id = Subscription.find_by(name: 'Free').id rescue nil
+  before_save do
+    if subscription_id_changed?
+      places.update_all featured: !self.subscription_id.nil?
+    end
   end
 
   def full_name

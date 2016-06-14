@@ -89,8 +89,7 @@
                 = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right"
               %br/
               = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
-.apple_pagination{:align => "center"}
-  = paginate @places
+
 %br/
 
 - if cookies[:latitude].present? && cookies[:longitude].present?

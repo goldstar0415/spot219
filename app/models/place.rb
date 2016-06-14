@@ -32,7 +32,13 @@ class Place < ActiveRecord::Base
   has_many :sliders
   accepts_nested_attributes_for :sliders , reject_if: :all_blank, allow_destroy: true
 
-  #ratyrate_rateable 'name'
+  scope :feature, -> {
+    where(featured: :true).order("RANDOM()").limit(12)
+  }
+
+  before_create do
+    self.featured = !user.subscription_id.nil?
+  end
 
   def search_data
     {
@@ -41,6 +47,9 @@ class Place < ActiveRecord::Base
       city: city.try(:city_name),
       categories: categories.map(&:name)
     }
+  end
+
+  def is_feature?
   end
 
   def view! user_id, featured=false
