@@ -12,4 +12,8 @@ class Conversation < ActiveRecord::Base
   scope :my_conversations, -> (user_id) do
     where("conversations.sender_id = ? OR conversations.recipient_id =?", user_id, user_id)
   end
+
+  scope :not_read, -> {
+    joins(:messages).where(messages: {read: false})
+  }
 end

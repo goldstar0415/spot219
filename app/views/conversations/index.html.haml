@@ -1,6 +1,6 @@
 .container
   %h1 Mailbox
-  -if @conversations.present?
+  - if @conversations.present?
     %ol
       - @conversations.each do |conversation|
         %li
@@ -14,5 +14,5 @@
               - recipient = User.find(conversation.sender_id)
             = link_to "#{recipient.first_name} #{new_message}", conversation_messages_path(conversation)
 
-  -else
+  - else
     %p You have no conversations.

@@ -12,7 +12,7 @@
           %dd= @user.email
           -if user_signed_in?
             %dt
-              %strong Sent messages
+              %strong Send message to
             %dd= link_to "Message #{@user.full_name}!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post'
         .container.comment-section
           %h6 Comments &amp; reviews :

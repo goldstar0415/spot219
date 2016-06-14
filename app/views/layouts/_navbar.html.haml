@@ -57,13 +57,17 @@
               %li.divider{:role => "separator"}
               %li= link_to 'Add City', new_city_path
           %li.dropdown
+            - unread = Conversation.my_conversations(current_user.id).not_read.count
+            - unread = unread > 0 ? "<b>{#{unread}}</b>" : ''
+
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              Account
+              = raw "#{unread} Account"
               %span.caret
             %ul.dropdown-menu
               %li= link_to 'My Profile', my_profile_path
               %li= link_to 'My Friends', my_friends_path
-              %li= link_to 'My Conversations', conversations_path
+
+              %li= link_to raw("My Conversations #{unread}"), conversations_path
               %li.divider{:role => "separator"}
               %li= link_to 'Edit my account', edit_user_registration_path
               %li.divider{:role => "separator"}

@@ -12,6 +12,7 @@ class ConversationsController < ApplicationController
     else
       @conversation = Conversation.create!(conversation_params)
     end
+
     redirect_to conversation_messages_path(@conversation)
   end
 

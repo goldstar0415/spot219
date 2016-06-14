@@ -21,7 +21,9 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  has_attached_file :avatar, styles: { thumb: "55x55#" }
+  has_attached_file :avatar, styles: { thumb: "55x55#" },
+    default_url: "avatar.png"
+
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 5.megabytes
   validates_attachment :avatar, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
