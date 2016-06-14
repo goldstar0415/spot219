@@ -49,11 +49,8 @@ class Place < ActiveRecord::Base
     }
   end
 
-  def is_feature?
-  end
-
-  def view! user_id, featured=false
-    place_views.create(user_id: user_id, featured: featured)
+  def view! user_id
+    place_views.create(user_id: user_id, featured: self.featured)
   end
 
   def average_rating
