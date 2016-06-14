@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base
   rolify
+
   has_many :places
   has_many :comments
   has_many :blog_comments
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :blogs
+
   belongs_to :city
+
   has_many :cities
   has_one :order_info
   has_one :billing_address
@@ -18,6 +21,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 

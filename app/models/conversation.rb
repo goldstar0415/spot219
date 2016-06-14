@@ -14,7 +14,7 @@ class Conversation < ActiveRecord::Base
   end
 
   scope :to_me, -> (user_id) do
-    joins(:messages).where('messages.read = false and messages.user_id <> :user_id',
+    joins(:messages).my_conversations(user_id).where('messages.read = false and messages.user_id <> :user_id',
       user_id: user_id).uniq
   end
 end
