@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   # Paypal
   #
   get "checkout/paypal", to: "orders#paypal"
+  get 'stats' => 'places#stat', as: :stats
 ###################################################
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -64,7 +65,10 @@ Rails.application.routes.draw do
     end
   end
   resources :claims
-  resources :places
+  resources :places do
+    get :stat, on: :collection
+  end
+
   resources :blog_comments
   resources :blogs
   devise_for :users, :controllers => { :registrations => "user/registrations" }

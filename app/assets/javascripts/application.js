@@ -19,6 +19,8 @@
 //= require ratyrate
 //= require ckeditor/init
 //= require cocoon
+//= require highcharts
+//= require chartkick
 
 var show_spinner = function(){
   $('#spinner').show();

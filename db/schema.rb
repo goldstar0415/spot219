@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602132051) do
+ActiveRecord::Schema.define(version: 20160614073409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -322,6 +322,14 @@ ActiveRecord::Schema.define(version: 20160602132051) do
     t.integer "category_id"
   end
 
+  create_table "place_views", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "featured"
+  end
+
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.text     "about"
@@ -386,6 +394,13 @@ ActiveRecord::Schema.define(version: 20160602132051) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "search_logs", force: :cascade do |t|
+    t.string   "keyword"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "shoppe_addresses", force: :cascade do |t|
     t.integer  "customer_id"
@@ -753,6 +768,7 @@ ActiveRecord::Schema.define(version: 20160602132051) do
     t.datetime "avatar_updated_at"
     t.integer  "city_id"
     t.integer  "subscription_id"
+    t.boolean  "gender"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -1,0 +1,33 @@
+#section-one
+  #section-content
+    .col-md-12
+      .form-group
+        %h4 Place views
+        - places = {}
+        - current_user.places.each {|place| places[place.subdomain] = place.place_views.count }
+        = column_chart places
+
+
+  #section-content
+    .col-md-12
+      .form-group
+        %h4 Visit from Feature Mode
+        - places = {}
+        - current_user.places.each {|place| places[place.subdomain] = place.place_views.featured.count }
+        = column_chart places
+
+  #section-content
+    .col-md-12
+      .form-group
+        %h4 Genders analysis
+        - places = []
+        - places = [true, false].map { |item| {name: (item == true ? 'Male' : 'Female'), data: current_user.places.map {|place| [place.subdomain, place.users.where(gender: item).count] }}}
+        = column_chart places, stacked: true, colors: ["red", "green"]
+
+  #section-content
+    .col-md-12
+      .form-group
+        %h4 Search Keywords
+        - data = {}
+        - logs = SearchLog.where(place_id: current_user.place_ids).group(:keyword).count
+        = column_chart logs

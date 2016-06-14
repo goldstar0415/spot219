@@ -8,6 +8,9 @@ class Place < ActiveRecord::Base
   has_many :place_categories
   has_many :categories, through: :place_categories
   has_many :comments, dependent: :destroy
+  has_many :place_views, dependent: :destroy
+  has_many :users, through: :place_views
+  has_many :search_logs, dependent: :destroy
   has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
 
   validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
@@ -38,6 +41,10 @@ class Place < ActiveRecord::Base
       city: city.try(:city_name),
       categories: categories.map(&:name)
     }
+  end
+
+  def view! user_id, featured=false
+    place_views.create(user_id: user_id, featured: featured)
   end
 
   def average_rating

@@ -21,6 +21,8 @@ class PlacesController < ApplicationController
 
     @shopping_cart = ShoppingCart.new
     @sliders = @place.sliders.order(:position)
+
+    @place.view!(current_user.try(:id))
   end
 
   def new
@@ -88,6 +90,9 @@ class PlacesController < ApplicationController
 
   def search
     @places = Place.search params[:search]
+    @places.each do |item|
+      item.search_logs.create(keyword: params[:search])
+    end
 
     @cities = City.limit(10)
     @cate = Category.limit(10)
