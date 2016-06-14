@@ -24,7 +24,7 @@ class CitiesController < ApplicationController
   # GET /cities/1.json
   def show
     @cate = Category.limit(10)
-    @places = @city.places.order(created_at: :desc).page(params[:place_page]).per(15)
+    @places = @city.places.order(featured: :desc).page(params[:place_page]).per(12)
     @cities = City.limit(10)
     @blog = Blog.last
     @blogs = @city.blogs.page(params[:blog_page]).per(15)
