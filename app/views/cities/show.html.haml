@@ -18,6 +18,7 @@
             %h6= link_to 'View all cities', cities_path
             %br/
             %h5= link_to "Categories", categories_path, class: "link"
+
             - @cate.each do |category|
               %h6
                 = link_to category.name, category
@@ -25,6 +26,7 @@
                 %small>= pluralize(category.places.count, "place")
                 )
             %h6= link_to 'View all categories', categories_path
+
             %br/
             - if @blog
               .row
