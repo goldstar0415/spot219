@@ -32,7 +32,9 @@ class User < ActiveRecord::Base
   validates_attachment :avatar, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  #ratyrate_rater
+  before_create do
+    self.subscription_id = Subscription.find_by(name: 'Free').id rescue nil
+  end
 
   def full_name
     return "#{first_name} #{last_name}".strip if (first_name || last_name)
