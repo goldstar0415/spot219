@@ -12,7 +12,11 @@
         .item
           .media
             .media-left.pull-left
-              = image_tag user.avatar.url(:thumb), size: "55x55", class: 'img-circle'
+              = link_to user do
+                = image_tag user.avatar.url(:thumb), size: "55x55", class: 'img-circle'
+                %center
+                  %sub= user.first_name
+
             .media-body
               %i
                 = message.message_time
