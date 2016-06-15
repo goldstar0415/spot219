@@ -13,7 +13,7 @@ class PlaceView < ActiveRecord::Base
     when 3
       where(created_at: now.beginning_of_month..now.end_of_month)
     when 4
-      where(created_at: 2.month.from_now.beginning_of_month..now.end_of_month)
+      where(created_at: 2.month.ago.beginning_of_month..now.end_of_month)
     when 5
       where(created_at: now.beginning_of_year..now.end_of_years)
     end
