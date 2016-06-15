@@ -12,7 +12,18 @@
               - recipient = User.find(conversation.recipient_id)
             - else
               - recipient = User.find(conversation.sender_id)
-            = link_to "#{recipient.first_name} #{new_message}", conversation_messages_path(conversation)
+
+            .media
+              .media-left.pull-left
+                = link_to recipient do
+                  = image_tag recipient.avatar.url(:thumb), size: "55x55", class: 'img-circle'
+                  %center
+                    %sub= recipient.first_name
+
+              .media-body
+                %i= new_message
+                %br
+                = link_to "Compose", conversation_messages_path(conversation), class: 'btn btn-primary'
 
   - else
     %p You have no conversations.
