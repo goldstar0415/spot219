@@ -28,7 +28,7 @@
       .form-group
         %h4 Genders analysis
         - places = []
-        - places = [true, false].map { |item|  {name: (item == true ? 'Male' : 'Female'), data: current_user.places.map {|place| users = place.place_views.in_period(params[:period]).map(&:user); [place.subdomain, users.select{|item| item.gender == item}.count] }}}
+        - places = [true, false].map { |item|  {name: (item == true ? 'Male' : 'Female'), data: current_user.places.map {|place| users = place.place_views.in_period(params[:period]).map(&:user).compact.uniq; [place.subdomain, users.select{|item| item.gender == item}.count] }}}
         = column_chart places, stacked: true, colors: ["red", "green"]
 
   #section-content
