@@ -50,8 +50,9 @@ ActiveAdmin.register Place do
       row :insta
       row :web
       row :user
-      row :map
       row :subdomain
+      row :longitude
+      row :latitude
 
       row :image do
         image_tag(place.image.url, width: 500)
