@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614073409) do
+ActiveRecord::Schema.define(version: 20160614100141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(version: 20160614073409) do
     t.string   "description"
     t.integer  "views_number",     default: 0
     t.integer  "city_id"
+  end
+
+  create_table "campaigns", force: :cascade do |t|
+    t.float    "budget"
+    t.string   "name"
+    t.integer  "user_id"
+    t.boolean  "running"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -189,6 +198,14 @@ ActiveRecord::Schema.define(version: 20160614073409) do
   end
 
   add_index "commontator_threads", ["commontable_id", "commontable_type"], name: "index_commontator_threads_on_c_id_and_c_type", unique: true, using: :btree
+
+  create_table "compaigns", force: :cascade do |t|
+    t.float    "budget"
+    t.integer  "user_id"
+    t.boolean  "running"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
@@ -355,6 +372,7 @@ ActiveRecord::Schema.define(version: 20160614073409) do
     t.string   "title"
     t.string   "description"
     t.string   "subdomain"
+    t.boolean  "featured"
   end
 
   add_index "places", ["subdomain"], name: "index_places_on_subdomain", unique: true, using: :btree

@@ -87,7 +87,8 @@ ActiveAdmin.register Place do
       f.input :insta
       f.input :web
       f.input :user
-      f.input :map
+      f.input :longitude
+      f.input :latitude
       f.input :image
       hr
       f.inputs do
