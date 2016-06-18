@@ -2,7 +2,7 @@ class Place < ActiveRecord::Base
   searchkick
 
   after_save :update_role
-  after_create :add_open_days
+  #after_create :add_open_days
 
   belongs_to :user
   has_many :place_categories
