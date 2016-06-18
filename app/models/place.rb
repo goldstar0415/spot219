@@ -43,9 +43,9 @@ class Place < ActiveRecord::Base
   def initialize
     super
 
-    # Date::DAYNAMES.each do |day|
-    #   open_day = self.open_days.build(day_in_week: day, open: false)
-    # end if self.open_days.empty?
+    Date::DAYNAMES.each do |day|
+      open_day = self.open_days.build(day_in_week: day, open: false)
+    end if self.open_days.empty?
   end
 
   def search_data
