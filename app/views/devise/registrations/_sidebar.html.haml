@@ -2,3 +2,4 @@
   %a.list-group-item{:href => edit_user_registration_path, class: active_class?(edit_user_registration_path)} Settings
   %a.list-group-item{:href => my_places_path, class: active_class?(my_places_path)} My Places
   = link_to "Subscriptions", subscriptions_path, class: "list-group-item #{active_class?(subscriptions_path)}"
+  = link_to 'My Stats', stats_path, class: 'list-group-item'

@@ -5,6 +5,10 @@ class PlacesController < ApplicationController
 
   LIMIT = 16
 
+  def stat
+    render layout: 'setting'
+  end
+
   def index
     @places = Place.feature
 
