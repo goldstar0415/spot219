@@ -87,8 +87,9 @@ ActiveAdmin.register Place do
       f.input :insta
       f.input :web
       f.input :user
-      f.input :longitude
-      f.input :latitude
+      f.inputs do
+        f.gmap_coordinate_picker :lat_column => 'latitude', :lng_column => 'longitude' , :zoom_level => 12, :default_coordinates => [cookies[:latitude] || f.object.latitude || '9.9333', cookies[:longitude] || f.object.longitude || '-84.0833'], map_width: 800
+      end
       f.input :image
       hr
       f.inputs do
