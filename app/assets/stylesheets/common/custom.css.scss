@@ -86,8 +86,6 @@ a.btn{
   color: white;
   display: inline-block;
   padding: 10px 20px;
-  margin-top: -30px;
-  margin-bottom: 20px;
 }
 
 .navbar-brand {
@@ -122,10 +120,9 @@ a.btn{
 }
 
 .searchbar{
-  display: inline-block;
-  float: left;
   max-width: 500px;
   margin-top: 6px;
+  margin: auto;
 }
 
 .nav-search{
@@ -239,9 +236,13 @@ a.btn{
 
 .card{
   float: left;
-  margin: 0 35px 37px 35px;
+  margin: 0 35px 37px 0px;
   position: relative;
   text-align: center;
+}
+
+.places{
+  margin: 0 15px;
 }
 
 #section-one {

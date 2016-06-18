@@ -10,11 +10,9 @@
       %ul
         = link_to (image_tag ("turkishspot1.png")), root_path, class: "navbar-brand"
 
-    .searchbar{:align => "center"}
-      - url = request[:controller] == 'products' ? products_path : search_path
-      = form_tag url, :method => :get do
-        = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
-        = submit_tag "Search", class: "btn btn-default search-btn"
+        - if @city.present?
+          .city-name= @city.city_name
+
 
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
@@ -81,3 +79,9 @@
           = link_to carts_path, class: 'cart-icon' do
             = image_tag('cart-32x32.png')
             %i.sub= pluralize current_order.total_items, 'item'
+
+    .searchbar{:align => "center"}
+      - url = request[:controller] == 'products' ? products_path : search_path
+      = form_tag url, :method => :get do
+        = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search ..."
+        = submit_tag "Search", class: "btn btn-default search-btn"
