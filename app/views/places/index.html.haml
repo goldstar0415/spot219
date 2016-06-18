@@ -5,7 +5,7 @@
         .col-lg-8.col-md-12.col-sm-12
           .row
             - @places.each do |place|
-              .card.col-md-3
+              .card
                 .hovereffect
                   - img = place.sliders.first ? place.sliders.first.image.url(:thumb) : place.image.url(:thumb)
                   = image_tag img, size: "200x134"

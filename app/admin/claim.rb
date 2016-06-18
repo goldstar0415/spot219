@@ -13,6 +13,7 @@ ActiveAdmin.register Claim do
     column :email
     column :status
     column :created_at
+    column :place
 
     actions
   end
@@ -24,6 +25,7 @@ ActiveAdmin.register Claim do
         row :last_name
         row :email
         row :phone
+        row :place
         row :proof do
           link_to ad.proof.original_filename, ad.proof.url, target: "_blank"
         end
@@ -38,6 +40,7 @@ ActiveAdmin.register Claim do
       f.input :last_name
       f.input :email
       f.input :phone
+      f.input :place
       f.inputs  do
         f.input :proof
         li do
