@@ -66,6 +66,12 @@ ActiveAdmin.register Place do
         end
       end
 
+      row :days do
+        raw(place.open_days.where(open: true).map do |open_day|
+          ("<strong>#{open_day.day_in_week}</strong>" + " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}")
+        end.join('<br/>'))
+      end
+
       row :reviews do
         place.average_rating
       end
