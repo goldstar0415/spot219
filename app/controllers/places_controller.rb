@@ -37,6 +37,8 @@ class PlacesController < ApplicationController
 
   def new
     @place = Place.new
+    @place.add_open_days
+
     @cities = City.all
     build_opendays
     @open_days = @place.open_days

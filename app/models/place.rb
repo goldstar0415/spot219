@@ -2,7 +2,6 @@ class Place < ActiveRecord::Base
   searchkick
 
   after_save :update_role
-  #after_create :add_open_days
 
   belongs_to :user
   has_many :place_categories
@@ -38,14 +37,6 @@ class Place < ActiveRecord::Base
 
   before_create do
     self.featured = !user.subscription_id.nil?
-  end
-
-  def initialize
-    super
-
-    Date::DAYNAMES.each do |day|
-      open_day = self.open_days.build(day_in_week: day, open: false)
-    end if self.open_days.empty?
   end
 
   def search_data
@@ -89,8 +80,7 @@ class Place < ActiveRecord::Base
   def add_open_days
     if self.open_days.empty?
       Date::DAYNAMES.each do |day|
-        open_day = self.open_days.new(day_in_week: day, open: false)
-        open_day.save
+        self.open_days.build(day_in_week: day, open: false)
       end
     end
   end

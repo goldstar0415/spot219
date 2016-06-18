@@ -94,6 +94,7 @@ ActiveAdmin.register Place do
       f.input :web
       f.input :user
       f.inputs do
+        f.object.add_open_days
         f.gmap_coordinate_picker :lat_column => 'latitude', :lng_column => 'longitude' , :zoom_level => 12, :default_coordinates => [cookies[:latitude] || f.object.latitude || '9.9333', cookies[:longitude] || f.object.longitude || '-84.0833'], map_width: 800
       end
       f.input :image
