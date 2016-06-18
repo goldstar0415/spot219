@@ -3,14 +3,14 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, :except => [:show, :index, :search]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
-  LIMIT = 12
+  LIMIT = 16
 
   def index
     @places = Place.feature
 
-    if @places.count < 12
+    if @places.count < LIMIT
       items = Place.where.not(id: @places.ids)
-      (12 - @places.count).times do |i|
+      (LIMIT - @places.count).times do |i|
         @places << items[i] if items[i]
       end
     end
