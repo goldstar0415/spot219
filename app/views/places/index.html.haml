@@ -45,7 +45,7 @@
             %h5= link_to 'Cities', cities_path, class: "link"
             - @cities.each do |city|
               %h6
-                = link_to city.city_name, city
+                = link_to city.name, city
                 (
                 %small>= pluralize(city.countPlace, "place")
                 )
@@ -69,6 +69,7 @@
                       %h3= link_to @blog.title, @blog, class: "link"
                       %p= sanitize @blog.body.truncate(80)
                       %p= link_to 'Read more', @blog, class: "btn"
+
           - if user_signed_in?
             .col-md-7{:align => "center"}
               %h4
@@ -76,20 +77,34 @@
               - if current_user.admin?
                 %h5 You are admin, so you can
                 %h5= link_to 'Create a New blog', new_blog_path, class: "link"
+
           - else
             .col-md-7{:align => "center"}
               = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
                 .login
                   = f.email_field :email, placeholder: "Your Email", class: "form-control"
+
                 .login
                   = f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control"
+
                 .checkbox
                   = f.label :remember_me do
                     = f.check_box :remember_me
                     Remember me
                 = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-default pull-right"
-              %br/
-              = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
+
+                %br/
+                = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name)
+
+              .align{:align => "center"}
+                %h4 Or with
+                %hr/
+
+              .col-lg-6{:align => "center"}
+                = link_to 'Twitter', user_twitter_omniauth_authorize_path
+
+              .col-lg-6{:align => "center"}
+                = link_to 'Google', user_google_omniauth_authorize_path
 
 %br/
 
@@ -98,6 +113,7 @@
     var latitude = #{cookies[:latitude]}
     var longitude = #{cookies[:longitude]}
     redirectToCityWithNoLocation(latitude, longitude)
+
 - else
   :javascript
     getLocation()

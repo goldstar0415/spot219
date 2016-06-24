@@ -47,7 +47,7 @@
               = @place.country.capitalize
             %h5
               %strong City:
-              = @place.city.city_name.capitalize rescue ''
+              = @place.city.name.capitalize rescue ''
             %h5
               %strong Address:
               = @place.address.capitalize
@@ -89,7 +89,7 @@
             %h5= link_to 'Cities', cities_path, class: "link"
             - @cities.each do |city|
               %h6
-                = link_to city.city_name.capitalize, city
+                = link_to city.name.capitalize, city
                 (
                 %small>= pluralize(city.countPlace, "place")
                 )

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614100141) do
+ActiveRecord::Schema.define(version: 20160624185746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,25 +110,24 @@ ActiveRecord::Schema.define(version: 20160614100141) do
   end
 
   create_table "cities", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
     t.text     "about"
-    t.string   "city_name"
+    t.string   "name"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "user_id"
-    t.float    "longitude"
-    t.float    "latitude"
+    t.float    "lng"
+    t.float    "lat"
     t.float    "radius"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "subdomain"
+    t.string   "slug"
+    t.float    "distance"
+    t.integer  "country_id"
   end
 
-  add_index "cities", ["subdomain"], name: "index_cities_on_subdomain", unique: true, using: :btree
+  add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
 
   create_table "claims", force: :cascade do |t|
     t.string   "email",              default: "", null: false
@@ -212,6 +211,16 @@ ActiveRecord::Schema.define(version: 20160614100141) do
     t.integer "recipient_id"
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.float    "lat"
+    t.float    "lng"
+    t.float    "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -244,6 +253,19 @@ ActiveRecord::Schema.define(version: 20160614100141) do
     t.string "name"
     t.string "slug"
   end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -350,32 +372,28 @@ ActiveRecord::Schema.define(version: 20160614100141) do
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.text     "about"
-    t.string   "country"
-    t.string   "city"
     t.string   "address"
     t.string   "phone"
-    t.string   "fb"
-    t.string   "twit"
-    t.string   "insta"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "instagram"
     t.string   "web"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "map"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "city_id"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "title"
-    t.string   "description"
-    t.string   "subdomain"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "tagline"
+    t.string   "slug"
     t.boolean  "featured",           default: false
   end
 
-  add_index "places", ["subdomain"], name: "index_places_on_subdomain", unique: true, using: :btree
+  add_index "places", ["slug"], name: "index_places_on_slug", unique: true, using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id"
@@ -776,6 +794,8 @@ ActiveRecord::Schema.define(version: 20160614100141) do
     t.integer  "city_id"
     t.integer  "subscription_id"
     t.boolean  "gender"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

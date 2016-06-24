@@ -12,7 +12,7 @@ ActiveAdmin.register City do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  filter :city_name
+  filter :name
   filter :subdomain
 
   index do
@@ -20,7 +20,7 @@ ActiveAdmin.register City do
     column "Subdomain" do |c|
       link_to c.subdomain, edit_admin_city_path(c.subdomain)
     end
-    column :city_name
+    column :name
     column :first_name
     column :last_name
     column :longitude
@@ -30,7 +30,7 @@ ActiveAdmin.register City do
 
   show do
     attributes_table do
-      row :city_name
+      row :name
 
       row :user
       row :first_name
@@ -63,7 +63,7 @@ ActiveAdmin.register City do
 
   form do |f|
     f.inputs 'Community' do
-      f.input :city_name
+      f.input :name
       f.input :user
       f.input :first_name
       f.input :last_name

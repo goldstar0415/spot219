@@ -12,7 +12,7 @@
               - @cities.each do |city|
                 %tr
                   %td{:align => "center"}
-                    = link_to city.city_name, city
+                    = link_to city.name, city
                     (
                     %small>= pluralize(city.countPlace, "place")
                     )

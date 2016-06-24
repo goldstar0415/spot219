@@ -45,7 +45,7 @@
             %h5= link_to 'Cities', cities_path, class: "link"
             - @cities.each do |city|
               %h6
-                = link_to city.city_name, city
+                = link_to city.name, city
                 (
                 %small>= pluralize(city.countPlace, "place")
                 )

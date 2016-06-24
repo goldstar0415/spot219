@@ -7,20 +7,27 @@
             .form-group
               = f.label :email
               = f.email_field :email, autofocus: true, class: "form-control"
+
             .form-group
               = f.label :password
               = f.password_field :password, autocomplete: "off", class: "form-control"
+
             - if devise_mapping.rememberable?
               .checkbox
                 = f.label :remember_me do
                   = f.check_box :remember_me
                   Remember me
-            .row= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-success"
+
+            .row= f.submit  t('.sign_in', default: "Sign in"), class: "btn btn-success"
+
         = render "devise/shared/links"
-        .align{:align => "center"}
-          %h4 Or with
-          %hr/
-        .col-lg-6{:align => "center"}
-          %button.btn.btn-md.btn-primary Google
-        .col-lg-6{:align => "center"}
-          %button.btn.btn-md.btn-info Twitter
+
+        / .align{ align: "center" }
+        /   %h4 Or with
+        /   %hr/
+
+        / .col-lg-6{ align: "center" }
+        /   %button.btn.btn-md.btn-primary Google
+
+        / .col-lg-6{ align: "center" }
+        /   %button.btn.btn-md.btn-info Twitter

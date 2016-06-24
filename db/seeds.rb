@@ -42,47 +42,58 @@ if User.count == 0
 
 end
 
+
+# # Cities
+# #======================================================
+# City.destroy_all
+
+# ['Toronto', 'Jakarta', 'New York', 'Kualalumpur', 'Singapore'].each do |city_name|
+#   user = User.with_role(:mayor).order("RANDOM()").first
+
+#   if @city = City.create(name: city_name, user: user)
+#     p "City #{@city.name} generated -------------"
+#   else
+#     p "#{@city.errors.full_messages} -------------"
+#   end
+# end
+
+
+# City & Places
 #======================================================
-if City.count == 0
-  puts "Generate City -------------"
-  (1..5).each do |index|
-    user = User.with_role(:mayor).order("RANDOM()").first
-    City.create(
-                first_name: Faker::Name.first_name,
-                last_name: Faker::Name.last_name,
-                email: Faker::Internet.email,
-                about: Faker::Address.street_address,
-                city_name: Faker::Address.city,
-                latitude: Faker::Address.latitude,
-                longitude: Faker::Address.longitude,
-                radius: index,
-                user_id: user.id,
-                subdomain: Faker::Internet.domain_word
-              )
+Country.destroy_all
+
+20.times do
+  company   = FFaker::Company.name
+  addresses = JSON.parse(open("https://randomuser.me/api/").read)
+  addr      = addresses['results'][0]['location']
+  geocoded  = Geokit::Geocoders::GoogleGeocoder.geocode "#{addr['street']}, #{addr['city']}"
+
+  country   = Country.create! name: geocoded.country
+  city      = country.cities.create! name: addr['city']
+
+  @place = Place.new(
+    name: company,
+    about: FFaker::Lorem.paragraph,
+    address: "#{addr['street']}, #{addr['postcode']}",
+    city: city,
+    phone: addresses['results'][0]['phone'],
+    facebook: "https://facebook.com/#{company.parameterize}",
+    twitter: "https://twitter.com/#{company.parameterize}",
+    instagram: "https://instagram.com/#{company.parameterize}",
+    web: "http://www.#{company.parameterize}.com",
+    user: User.with_role(:place_owner).order("RANDOM()").first,
+    tagline: FFaker::Lorem.paragraph,
+    featured: [true, false].sample
+    )
+
+  if @place.save
+    p "Place #{@place.name} generated -------------"
+  else
+    p "#{@place.errors.full_messages} -------------"
   end
 end
 
-#======================================================
-if Place.count == 0
-  puts "Generate Place -------------"
-  (1..21).each do |index|
-    user = User.with_role(:place_owner).order("RANDOM()").first
-    city = City.order("RANDOM()").first
-    Place.create(
-              title: Faker::Hipster.sentence(7),
-              description: Faker::Hipster.sentence(25),
-              name: Faker::Address.street_name,
-              about: city.about,
-              country: Faker::Address.country,
-              city_id: city.id,
-              phone: Faker::PhoneNumber.phone_number,
-              address: city.about,
-              user_id: user.id,
-              image: File.new("#{Rails.root}/app/assets/images/500-500.png"),
-              fb: "", twit: "", insta: "", web: ""
-            )
-  end
-end
+
 #=====================================================
 if Blog.count == 0
   puts "Generate Blog -------------"

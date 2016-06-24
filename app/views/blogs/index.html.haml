@@ -13,7 +13,7 @@
         %tr
           %td= blog.title.truncate(20)
           %td= blog.body.truncate(90)
-          %td= blog.city.try(:city_name)
+          %td= blog.city.try(:name)
           %td= link_to 'Show', blog
           %td= link_to 'Edit', edit_blog_path(blog)
           %td= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }

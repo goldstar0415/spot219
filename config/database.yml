@@ -3,7 +3,6 @@ default: &default
   encoding: unicode
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  # password: anvh
   pool: 5
 
 development:

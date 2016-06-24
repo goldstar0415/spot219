@@ -18,7 +18,7 @@ index do
     id_column
     column :title
     column :city do |item|
-      item.city.try(:city_name)
+      item.city.try(:name)
     end
   end
 
@@ -28,7 +28,7 @@ index do
       row :body
 
       row :city do
-        notification.city.try(:city_name)
+        notification.city.try(:name)
       end
     end
 
@@ -39,7 +39,7 @@ index do
     f.inputs 'Community' do
       f.input :title
       f.input :body, :as => :ckeditor
-      f.input :city, collection: City.all.map {|item| [item.city_name, item.id]}
+      f.input :city, collection: City.all.map {|item| [item.name, item.id]}
     end
 
     actions

@@ -25,6 +25,8 @@
 #  city_id                :integer
 #  subscription_id        :integer
 #  gender                 :boolean
+#  provider               :string
+#  uid                    :string
 #
 
 require 'test_helper'

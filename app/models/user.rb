@@ -25,9 +25,15 @@
 #  city_id                :integer
 #  subscription_id        :integer
 #  gender                 :boolean
+#  provider               :string
+#  uid                    :string
 #
 
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:twitter, :google]
   rolify
 
   has_many :places
@@ -47,11 +53,6 @@ class User < ActiveRecord::Base
   has_many :sliders
   belongs_to :subscription
   has_many :place_views
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, presence: true
   validates :last_name, presence: true

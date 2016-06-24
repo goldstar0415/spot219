@@ -17,22 +17,6 @@
 #                                  PATCH      /conversations/:id(.:format)                                conversations#update
 #                                  PUT        /conversations/:id(.:format)                                conversations#update
 #                                  DELETE     /conversations/:id(.:format)                                conversations#destroy
-#                          sliders GET        /sliders(.:format)                                          sliders#index
-#                                  POST       /sliders(.:format)                                          sliders#create
-#                       new_slider GET        /sliders/new(.:format)                                      sliders#new
-#                      edit_slider GET        /sliders/:id/edit(.:format)                                 sliders#edit
-#                           slider GET        /sliders/:id(.:format)                                      sliders#show
-#                                  PATCH      /sliders/:id(.:format)                                      sliders#update
-#                                  PUT        /sliders/:id(.:format)                                      sliders#update
-#                                  DELETE     /sliders/:id(.:format)                                      sliders#destroy
-#                        campaigns GET        /campaigns(.:format)                                        campaigns#index
-#                                  POST       /campaigns(.:format)                                        campaigns#create
-#                     new_campaign GET        /campaigns/new(.:format)                                    campaigns#new
-#                    edit_campaign GET        /campaigns/:id/edit(.:format)                               campaigns#edit
-#                         campaign GET        /campaigns/:id(.:format)                                    campaigns#show
-#                                  PATCH      /campaigns/:id(.:format)                                    campaigns#update
-#                                  PUT        /campaigns/:id(.:format)                                    campaigns#update
-#                                  DELETE     /campaigns/:id(.:format)                                    campaigns#destroy
 #                    subscriptions GET        /subscriptions(.:format)                                    subscriptions#index
 #                           shoppe            /shoppe                                                     Shoppe::Engine
 #                         products GET        /products(.:format)                                         products#index
@@ -60,6 +44,25 @@
 #         edit_admin_user_password GET        /admin/password/edit(.:format)                              active_admin/devise/passwords#edit
 #                                  PATCH      /admin/password(.:format)                                   active_admin/devise/passwords#update
 #                                  PUT        /admin/password(.:format)                                   active_admin/devise/passwords#update
+#                 new_user_session GET        /users/sign_in(.:format)                                    devise/sessions#new
+#                     user_session POST       /users/sign_in(.:format)                                    devise/sessions#create
+#             destroy_user_session DELETE     /users/sign_out(.:format)                                   devise/sessions#destroy
+#  user_twitter_omniauth_authorize GET|POST   /users/auth/twitter(.:format)                               devise/omniauth_callbacks#passthru
+#   user_twitter_omniauth_callback GET|POST   /users/auth/twitter/callback(.:format)                      devise/omniauth_callbacks#twitter
+#   user_google_omniauth_authorize GET|POST   /users/auth/google(.:format)                                devise/omniauth_callbacks#passthru
+#    user_google_omniauth_callback GET|POST   /users/auth/google/callback(.:format)                       devise/omniauth_callbacks#google
+#                    user_password POST       /users/password(.:format)                                   devise/passwords#create
+#                new_user_password GET        /users/password/new(.:format)                               devise/passwords#new
+#               edit_user_password GET        /users/password/edit(.:format)                              devise/passwords#edit
+#                                  PATCH      /users/password(.:format)                                   devise/passwords#update
+#                                  PUT        /users/password(.:format)                                   devise/passwords#update
+#         cancel_user_registration GET        /users/cancel(.:format)                                     user/registrations#cancel
+#                user_registration POST       /users(.:format)                                            user/registrations#create
+#            new_user_registration GET        /users/sign_up(.:format)                                    user/registrations#new
+#           edit_user_registration GET        /users/edit(.:format)                                       user/registrations#edit
+#                                  PATCH      /users(.:format)                                            user/registrations#update
+#                                  PUT        /users(.:format)                                            user/registrations#update
+#                                  DELETE     /users(.:format)                                            user/registrations#destroy
 #                       admin_root GET        /admin(.:format)                                            admin/dashboard#index
 #   batch_action_admin_admin_users POST       /admin/admin_users/batch_action(.:format)                   admin/admin_users#batch_action
 #                admin_admin_users GET        /admin/admin_users(.:format)                                admin/admin_users#index
@@ -176,15 +179,6 @@
 #                                  PATCH      /claims/:id(.:format)                                       claims#update
 #                                  PUT        /claims/:id(.:format)                                       claims#update
 #                                  DELETE     /claims/:id(.:format)                                       claims#destroy
-#                      stat_places GET        /places/stat(.:format)                                      places#stat
-#                           places GET        /places(.:format)                                           places#index
-#                                  POST       /places(.:format)                                           places#create
-#                        new_place GET        /places/new(.:format)                                       places#new
-#                       edit_place GET        /places/:id/edit(.:format)                                  places#edit
-#                            place GET        /places/:id(.:format)                                       places#show
-#                                  PATCH      /places/:id(.:format)                                       places#update
-#                                  PUT        /places/:id(.:format)                                       places#update
-#                                  DELETE     /places/:id(.:format)                                       places#destroy
 #                    blog_comments GET        /blog_comments(.:format)                                    blog_comments#index
 #                                  POST       /blog_comments(.:format)                                    blog_comments#create
 #                 new_blog_comment GET        /blog_comments/new(.:format)                                blog_comments#new
@@ -201,22 +195,6 @@
 #                                  PATCH      /blogs/:id(.:format)                                        blogs#update
 #                                  PUT        /blogs/:id(.:format)                                        blogs#update
 #                                  DELETE     /blogs/:id(.:format)                                        blogs#destroy
-#                 new_user_session GET        /users/sign_in(.:format)                                    devise/sessions#new
-#                     user_session POST       /users/sign_in(.:format)                                    devise/sessions#create
-#             destroy_user_session DELETE     /users/sign_out(.:format)                                   devise/sessions#destroy
-#                    user_password POST       /users/password(.:format)                                   devise/passwords#create
-#                new_user_password GET        /users/password/new(.:format)                               devise/passwords#new
-#               edit_user_password GET        /users/password/edit(.:format)                              devise/passwords#edit
-#                                  PATCH      /users/password(.:format)                                   devise/passwords#update
-#                                  PUT        /users/password(.:format)                                   devise/passwords#update
-#         cancel_user_registration GET        /users/cancel(.:format)                                     user/registrations#cancel
-#                user_registration POST       /users(.:format)                                            user/registrations#create
-#            new_user_registration GET        /users/sign_up(.:format)                                    user/registrations#new
-#           edit_user_registration GET        /users/edit(.:format)                                       user/registrations#edit
-#                                  PATCH      /users(.:format)                                            user/registrations#update
-#                                  PUT        /users(.:format)                                            user/registrations#update
-#                                  DELETE     /users(.:format)                                            user/registrations#destroy
-#                             user GET        /users/:id(.:format)                                        users#show
 #                      friendships GET        /friendships(.:format)                                      friendships#index
 #                                  POST       /friendships(.:format)                                      friendships#create
 #                   new_friendship GET        /friendships/new(.:format)                                  friendships#new
@@ -225,16 +203,22 @@
 #                                  PATCH      /friendships/:id(.:format)                                  friendships#update
 #                                  PUT        /friendships/:id(.:format)                                  friendships#update
 #                                  DELETE     /friendships/:id(.:format)                                  friendships#destroy
-#                   search_friends GET        /search_friends(.:format)                                   users#search
-#                       add_friend POST       /add_friend(.:format)                                       users#add_friend
-#                             root GET        /                                                           places#index
-#                       categories GET        /categories(.:format)                                       categories#index
-#                                  POST       /categories(.:format)                                       categories#create
-#                     new_category GET        /categories/new(.:format)                                   categories#new
-#                    edit_category GET        /categories/:id/edit(.:format)                              categories#edit
-#                         category GET        /categories/:id(.:format)                                   categories#show
-#                                  PATCH      /categories/:id(.:format)                                   categories#update
-#                                  PUT        /categories/:id(.:format)                                   categories#update
+#                          sliders GET        /sliders(.:format)                                          sliders#index
+#                                  POST       /sliders(.:format)                                          sliders#create
+#                       new_slider GET        /sliders/new(.:format)                                      sliders#new
+#                      edit_slider GET        /sliders/:id/edit(.:format)                                 sliders#edit
+#                           slider GET        /sliders/:id(.:format)                                      sliders#show
+#                                  PATCH      /sliders/:id(.:format)                                      sliders#update
+#                                  PUT        /sliders/:id(.:format)                                      sliders#update
+#                                  DELETE     /sliders/:id(.:format)                                      sliders#destroy
+#                        campaigns GET        /campaigns(.:format)                                        campaigns#index
+#                                  POST       /campaigns(.:format)                                        campaigns#create
+#                     new_campaign GET        /campaigns/new(.:format)                                    campaigns#new
+#                    edit_campaign GET        /campaigns/:id/edit(.:format)                               campaigns#edit
+#                         campaign GET        /campaigns/:id(.:format)                                    campaigns#show
+#                                  PATCH      /campaigns/:id(.:format)                                    campaigns#update
+#                                  PUT        /campaigns/:id(.:format)                                    campaigns#update
+#                                  DELETE     /campaigns/:id(.:format)                                    campaigns#destroy
 #                         comments GET        /comments(.:format)                                         comments#index
 #                                  POST       /comments(.:format)                                         comments#create
 #                      new_comment GET        /comments/new(.:format)                                     comments#new
@@ -243,6 +227,25 @@
 #                                  PATCH      /comments/:id(.:format)                                     comments#update
 #                                  PUT        /comments/:id(.:format)                                     comments#update
 #                                  DELETE     /comments/:id(.:format)                                     comments#destroy
+#                      stat_places GET        /places/stat(.:format)                                      places#stat
+#                           places GET        /places(.:format)                                           places#index
+#                                  POST       /places(.:format)                                           places#create
+#                        new_place GET        /places/new(.:format)                                       places#new
+#                       edit_place GET        /places/:id/edit(.:format)                                  places#edit
+#                            place GET        /places/:id(.:format)                                       places#show
+#                                  PATCH      /places/:id(.:format)                                       places#update
+#                                  PUT        /places/:id(.:format)                                       places#update
+#                                  DELETE     /places/:id(.:format)                                       places#destroy
+#                             user GET        /users/:id(.:format)                                        users#show
+#                   search_friends GET        /search_friends(.:format)                                   users#search
+#                       add_friend POST       /add_friend(.:format)                                       users#add_friend
+#                       categories GET        /categories(.:format)                                       categories#index
+#                                  POST       /categories(.:format)                                       categories#create
+#                     new_category GET        /categories/new(.:format)                                   categories#new
+#                    edit_category GET        /categories/:id/edit(.:format)                              categories#edit
+#                         category GET        /categories/:id(.:format)                                   categories#show
+#                                  PATCH      /categories/:id(.:format)                                   categories#update
+#                                  PUT        /categories/:id(.:format)                                   categories#update
 #                   place_comments GET        /places/:place_id/comments(.:format)                        comments#index
 #                                  POST       /places/:place_id/comments(.:format)                        comments#create
 #                new_place_comment GET        /places/:place_id/comments/new(.:format)                    comments#new
@@ -280,6 +283,7 @@
 #                       my_friends GET        /my_friends(.:format)                                       users#my_friends
 #                        my_places GET        /my-places(.:format)                                        users#my_places
 #                             page GET        /:action(.:format)                                          pages#:action
+#                             root GET        /                                                           places#index
 #
 # Routes for Shoppe::Engine:
 #                                              GET      /attachment/:id/:filename.:extension(.:format)                                     shoppe/attachments#show
@@ -416,7 +420,6 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  resources :sliders, :campaigns
   resources :subscriptions, only: :index
 
   #
@@ -462,41 +465,46 @@ Rails.application.routes.draw do
   get 'stats' => 'places#stat', as: :stats
 ###################################################
   devise_for :admin_users, ActiveAdmin::Devise.config
+
+  devise_for :users, controllers: {
+    registrations: "user/registrations"
+  }
+
   ActiveAdmin.routes(self)
-  post '/rate' => 'rater#create', :as => 'rate'
+
+  post '/rate' => 'rater#create', as: 'rate'
+
   resources :cities do
     post :location, on: :collection
   end
+
   resources :shopping_carts do
     collection do
       get :paypal_callback
       post :checkout
     end
+
     member do
       delete :remove_item
     end
   end
-  resources :claims
+
+  resources :claims, :blog_comments, :blogs, :friendships, :sliders, :campaigns, :comments
+
   resources :places do
     get :stat, on: :collection
   end
 
-  resources :blog_comments
-  resources :blogs
-  devise_for :users, :controllers => { :registrations => "user/registrations" }
   resources :users, only: [:show]
-  resources :friendships
+
   get 'search_friends', to: 'users#search'
   post 'add_friend', to: 'users#add_friend'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-  root 'places#index'
 
   resources :categories, except: [:destroy]
-  resources :comments
 
   resources :places do
     resources :comments
@@ -513,5 +521,6 @@ Rails.application.routes.draw do
 
   # Static pages
   #
-  get ':action', :controller => 'pages', :as => 'page'
+  get ':action', controller: 'pages', as: 'page'
+  root 'places#index'
 end

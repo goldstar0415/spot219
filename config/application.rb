@@ -25,11 +25,13 @@ module TurkishSpot
 
     config.time_zone = 'Eastern Time (US & Canada)'
 
-    Rails.application.config.middleware.use ExceptionNotification::Rack,
-      :email => {
-        :email_prefix => "[TurkishSpot] ",
-        :sender_address => %{"notifier" <trangtrinhaxinh.vn@gmail.com>},
-        :exception_recipients => %w{jackyinvn@gmail.com}
-      }
+    unless Rails.env.development?
+      Rails.application.config.middleware.use ExceptionNotification::Rack,
+        email: {
+          email_prefix: "[TurkishSpot] ",
+          sender_address: %{"notifier" <trangtrinhaxinh.vn@gmail.com>},
+          exception_recipients: %w{jackyinvn@gmail.com black.biron@gmail.com}
+        }
+    end
   end
 end

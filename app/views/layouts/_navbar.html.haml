@@ -7,12 +7,12 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
+
       %ul
         = link_to (image_tag ("turkishspot1.png")), root_path, class: "navbar-brand"
 
         - if @city.present?
-          .city-name= @city.city_name
-
+          .city-name= @city.name
 
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
@@ -23,37 +23,46 @@
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 Categories
                 %span.caret
+
               %ul.dropdown-menu
                 %li= link_to "All categories", categories_path
                 %li.divider{:role => "separator"}
                 %li= link_to "Create new category", new_category_path
+
           - else
             %li= link_to "All categories", categories_path
+
           - if has_role?(:admin, :mayor)
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 Blogs
                 %span.caret
+
               %ul.dropdown-menu
                 %li= link_to "All blogs", blogs_path
                 %li.divider{:role => "separator"}
                 %li= link_to "Create new blog", new_blog_path
+
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               Places
               %span.caret
+
             %ul.dropdown-menu
               %li= link_to 'View all places', places_path
               %li.divider{:role => "separator"}
               %li= link_to 'Add Place', new_place_path
+
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               Cities
               %span.caret
+
             %ul.dropdown-menu
               %li= link_to 'View all cities', cities_path
               %li.divider{:role => "separator"}
               %li= link_to 'Add City', new_city_path
+
           %li.dropdown
             - unread = Conversation.to_me(current_user.id).count
             - unread = unread > 0 ? "<b>{#{unread}}</b>" : ''
@@ -61,6 +70,7 @@
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = raw "#{unread} Account"
               %span.caret
+
             %ul.dropdown-menu
               %li= link_to 'My Profile', my_profile_path
               %li= link_to 'My Friends', my_friends_path
@@ -69,6 +79,7 @@
               %li= link_to 'Edit my account', edit_user_registration_path
               %li.divider{:role => "separator"}
               %li= link_to 'Log Out', destroy_user_session_path, method: :delete
+
         - else
           %li= link_to "All cities", cities_path
           %li= link_to "All categories", categories_path

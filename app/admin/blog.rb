@@ -57,7 +57,7 @@ ActiveAdmin.register Blog do
       f.input :body, :as => :ckeditor
       f.input :user, include_blank: false
       f.input :city_id, :as => :select,
-              :collection => City.all.map{|c| [c.city_name, c.id]},
+              :collection => City.all.map{|c| [c.name, c.id]},
               include_blank: "All City"
       f.input :img
       hr

@@ -3,22 +3,21 @@
 # Table name: cities
 #
 #  id                 :integer          not null, primary key
-#  first_name         :string
-#  last_name          :string
-#  email              :string
 #  about              :text
-#  city_name          :string
+#  name               :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  user_id            :integer
-#  longitude          :float
-#  latitude           :float
+#  lon                :float
+#  lat                :float
 #  radius             :float
 #  image_file_name    :string
 #  image_content_type :string
 #  image_file_size    :integer
 #  image_updated_at   :datetime
-#  subdomain          :string
+#  slug               :string
+#  distance           :float
+#  country_id         :integer
 #
 
 require 'test_helper'

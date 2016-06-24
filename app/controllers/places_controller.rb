@@ -1,14 +1,20 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:show, :index, :search]
+  before_action :authenticate_user!, except: [:show, :index, :search]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   LIMIT = 16
 
+
+  #
+  #
   def stat
     render layout: 'setting'
   end
 
+
+  #
+  #
   def index
     @places = Place.feature
 
@@ -24,6 +30,9 @@ class PlacesController < ApplicationController
     @blog = Blog.last
   end
 
+
+  #
+  #
   def show
     @cate = Category.limit(10)
     @cities = City.limit(10)
@@ -39,6 +48,9 @@ class PlacesController < ApplicationController
     @place.view!(current_user.try(:id))
   end
 
+
+  #
+  #
   def new
     @place = Place.new
     @place.add_open_days
@@ -51,12 +63,18 @@ class PlacesController < ApplicationController
     @place.sliders.build
   end
 
+
+  #
+  #
   def edit
-    @cities = City.uniq.pluck(:city_name)
+    @cities = City.uniq.pluck(:name)
     build_opendays
     @open_days = @place.open_days
   end
 
+
+  #
+  #
   def create
     @place = Place.new(place_params)
     @place.user = current_user
@@ -74,8 +92,13 @@ class PlacesController < ApplicationController
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
     end
+
+    p @place.errors.full_messages
   end
 
+
+  #
+  #
   def update
     respond_to do |format|
       #binding.pry
@@ -93,10 +116,10 @@ class PlacesController < ApplicationController
     end
   end
 
+
+  #
+  #
   def destroy
-    @place.comments.each do |comment|
-      comment.destroy
-    end
     @place.destroy
     respond_to do |format|
       format.html { redirect_to places_url }
@@ -104,6 +127,9 @@ class PlacesController < ApplicationController
     end
   end
 
+
+  #
+  #
   def search
     @places = Place.search params[:search]
     @places.each do |item|
@@ -114,11 +140,19 @@ class PlacesController < ApplicationController
     @cate = Category.limit(10)
   end
 
-  private
+
+  protected
+
+
+    #
+    #
     def set_place
       @place = Place.find(params[:id])
     end
 
+
+    #
+    #
     def place_params
       params.require(:place).permit(:name, :about, :country, :city,
         :address, :phone, :fb, :twit, :insta, :web, :map, :image, :subdomain,
@@ -127,6 +161,9 @@ class PlacesController < ApplicationController
         sliders_attributes: [:id, :user_id, :image, :position, :_destroy])
     end
 
+
+    #
+    #
     def require_same_user
       if current_user != @place.user and !has_role?(:admin)
         flash[:danger] = "You can only edit or delete your own places."
@@ -134,6 +171,9 @@ class PlacesController < ApplicationController
       end
     end
 
+
+    #
+    #
     def build_opendays
       Date::DAYNAMES.each do |day|
         @place.open_days.build(day_in_week: day)
