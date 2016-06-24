@@ -372,7 +372,7 @@ ActiveRecord::Schema.define(version: 20160614100141) do
     t.string   "title"
     t.string   "description"
     t.string   "subdomain"
-    t.boolean  "featured"
+    t.boolean  "featured",           default: false
   end
 
   add_index "places", ["subdomain"], name: "index_places_on_subdomain", unique: true, using: :btree
@@ -717,17 +717,6 @@ ActiveRecord::Schema.define(version: 20160614100141) do
   end
 
   add_index "shoppe_users", ["email_address"], name: "index_shoppe_users_on_email_address", using: :btree
-
-  create_table "shopping_cart_items", force: :cascade do |t|
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.integer  "quantity"
-    t.integer  "item_id"
-    t.string   "item_type"
-    t.float    "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "shopping_carts", force: :cascade do |t|
     t.integer  "user_id"

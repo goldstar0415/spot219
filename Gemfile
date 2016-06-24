@@ -3,12 +3,11 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-# Use sqlite3 as the database for Active Record
 gem 'pg'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
-gem "paperclip", "~> 5.0.0.beta1"
+gem 'paperclip', '~> 5.0.0.beta1'
 gem 'google-webfonts-rails'
 #gem 'will_paginate'
 #gem 'bootstrap-will_paginate', '0.0.10'
@@ -17,7 +16,7 @@ gem 'google-webfonts-rails'
 # gem 'sunspot_solr'
 gem 'progress_bar'
 gem 'searchkick'
-gem "gmap_coordinates_picker"
+gem 'gmap_coordinates_picker'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -37,7 +36,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'exception_notification'
 gem 'gmaps4rails'
 
 # Use ActiveModel has_secure_password
@@ -50,23 +48,31 @@ gem 'gmaps4rails'
 # gem 'capistrano-rails', group: :development
 
 # erd ########
-gem 'rails-erd'
-gem "haml-rails"
+gem 'haml-rails'
 gem 'geocoder'
 gem 'activeadmin', github: 'activeadmin'
 gem 'country_select'
-gem "letter_opener", :group => :development
 gem 'delayed_job_active_record'
 gem 'ckeditor'
 gem 'daemons'
-gem "figaro"
+gem 'figaro'
 gem 'chartkick'
+gem 'rolify'
+gem 'cancancan', '~> 1.10'
+gem 'meta-tags'
+gem 'shoppe'
+gem 'shoppe-paypal'
+gem 'redcarpet'
+gem 'bxslider-rails'
+gem 'cocoon'
+gem 'exception_notification'
+
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem "capistrano", "~> 3.5"
+  gem 'faker'
 end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -75,23 +81,19 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #gem 'spring'
   gem 'pry-rails'
+  gem 'capistrano', '~> 3.5'
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-rvm', github: 'capistrano/rvm'
+  gem 'capistrano3-delayed-job', '~> 1.0'
+  gem 'letter_opener'
+  gem 'rails-erd'
+  gem 'annotate'
 end
 
 # group :production do
 #   gem 'rails_12factor'
 # end
 
-gem 'faker'
-gem "rolify"
-gem 'cancancan', '~> 1.10'
-gem 'capistrano-rails', '~> 1.1.1'
-gem 'capistrano-rvm', github: 'capistrano/rvm'
-gem 'capistrano3-delayed-job', '~> 1.0'
-gem 'meta-tags'
-#gem 'acts_as_shopping_cart', '~> 0.2.1'
-gem 'country_select'
-gem 'shoppe'
-gem "shoppe-paypal"
-gem 'redcarpet'
-gem 'bxslider-rails'
-gem "cocoon"
+# group :staging, :production do
+#   gem 'exception_notification'
+# end

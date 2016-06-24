@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id      :integer          not null, primary key
+#  name    :string
+#  price   :decimal(8, 2)    default(0.0)
+#  package :integer
+#
+
 class Subscription < ActiveRecord::Base
   has_and_belongs_to_many :features, join_table: :subscriptions_features
   #accepts_nested_attributes_for :features

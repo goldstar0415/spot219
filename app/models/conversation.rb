@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: conversations
+#
+#  id           :integer          not null, primary key
+#  sender_id    :integer
+#  recipient_id :integer
+#
+
 class Conversation < ActiveRecord::Base
   belongs_to :sender, :foreign_key => :sender_id, class_name: 'User'
   belongs_to :recipient, :foreign_key => :recipient_id, class_name: 'User'

@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: features
+#
+#  id   :integer          not null, primary key
+#  name :string
+#  slug :string
+#
+
 class Feature < ActiveRecord::Base
   has_and_belongs_to_many :subscriptions, join_table: :subscriptions_features
 

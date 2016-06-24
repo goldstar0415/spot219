@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id      :integer          not null, primary key
+#  name    :string
+#  price   :decimal(8, 2)    default(0.0)
+#  package :integer
+#
+
 require 'test_helper'
 
 class SubscriptionTest < ActiveSupport::TestCase

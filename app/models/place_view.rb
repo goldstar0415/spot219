@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: place_views
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  place_id   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  featured   :boolean
+#
+
 class PlaceView < ActiveRecord::Base
   belongs_to :user
   belongs_to :place

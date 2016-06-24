@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: claims
+#
+#  id                 :integer          not null, primary key
+#  email              :string           default(""), not null
+#  first_name         :string           default("")
+#  last_name          :string           default("")
+#  proof_file_name    :string
+#  proof_content_type :string
+#  proof_file_size    :integer
+#  proof_updated_at   :datetime
+#  phone              :string
+#  reason             :text
+#  status             :integer
+#  user_id            :integer
+#  place_id           :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
 class Claim < ActiveRecord::Base
   enum status: [ :pending, :approve, :deny ]
 

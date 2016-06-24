@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: shopping_carts
+#
+#  id          :integer          not null, primary key
+#  user_id     :integer
+#  total       :integer
+#  total_price :decimal(8, 2)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class ShoppingCart < ActiveRecord::Base
   #acts_as_shopping_cart
 

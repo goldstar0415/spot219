@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: features
+#
+#  id   :integer          not null, primary key
+#  name :string
+#  slug :string
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
