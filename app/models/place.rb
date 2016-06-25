@@ -2,25 +2,26 @@
 #
 # Table name: places
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  about      :text
-#  address    :string
-#  phone      :string
-#  facebook   :string
-#  twitter    :string
-#  instagram  :string
-#  web        :string
-#  created_at :datetime
-#  updated_at :datetime
-#  user_id    :integer
-#  city_id    :integer
-#  lat        :float
-#  lng        :float
-#  tagline    :string
-#  slug       :string
-#  featured   :boolean          default(FALSE)
-#  image      :string
+#  id                :integer          not null, primary key
+#  name              :string
+#  about             :text
+#  address           :string
+#  phone             :string
+#  facebook          :string
+#  twitter           :string
+#  instagram         :string
+#  web               :string
+#  created_at        :datetime
+#  updated_at        :datetime
+#  user_id           :integer
+#  city_id           :integer
+#  lat               :float
+#  lng               :float
+#  tagline           :string
+#  slug              :string
+#  featured          :boolean          default(FALSE)
+#  image             :string
+#  impressions_count :integer
 #
 
 class Place < ActiveRecord::Base
@@ -31,6 +32,7 @@ class Place < ActiveRecord::Base
   friendly_id :name
   is_impressionable counter_cache: true
   mount_uploader :image, ImageUploader
+  # acts_as_mappable auto_geocode: { field: :address, error_message: 'Could not geocode city'}
 
 
   # relations
@@ -52,6 +54,7 @@ class Place < ActiveRecord::Base
   # validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
   # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_presence_of :name, :about, :address, :city, :phone, :user, :tagline
+  before_validation :geocode_address, on: :create
 
 
   # nested attributes
@@ -80,11 +83,6 @@ class Place < ActiveRecord::Base
       city: city.try(:name),
       categories: categories.map(&:name)
     }
-  end
-
-
-  def view! user_id
-    place_views.create(user_id: user_id, featured: self.featured)
   end
 
 
@@ -127,5 +125,14 @@ class Place < ActiveRecord::Base
 
   def price
     5
+  end
+
+
+  def geocode_address
+    if lat.nil? || lng.nil?
+      geo = Geokit::Geocoders::MultiGeocoder.geocode ("#{address}, #{city.name}")
+      errors.add(:address, "Could not Geocode address") if !geo.success
+      self.lat, self.lng = geo.lat,geo.lng if geo.success
+    end
   end
 end

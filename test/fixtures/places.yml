@@ -2,25 +2,26 @@
 #
 # Table name: places
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  about      :text
-#  address    :string
-#  phone      :string
-#  facebook   :string
-#  twitter    :string
-#  instagram  :string
-#  web        :string
-#  created_at :datetime
-#  updated_at :datetime
-#  user_id    :integer
-#  city_id    :integer
-#  lat        :float
-#  lng        :float
-#  tagline    :string
-#  slug       :string
-#  featured   :boolean          default(FALSE)
-#  image      :string
+#  id                :integer          not null, primary key
+#  name              :string
+#  about             :text
+#  address           :string
+#  phone             :string
+#  facebook          :string
+#  twitter           :string
+#  instagram         :string
+#  web               :string
+#  created_at        :datetime
+#  updated_at        :datetime
+#  user_id           :integer
+#  city_id           :integer
+#  lat               :float
+#  lng               :float
+#  tagline           :string
+#  slug              :string
+#  featured          :boolean          default(FALSE)
+#  image             :string
+#  impressions_count :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

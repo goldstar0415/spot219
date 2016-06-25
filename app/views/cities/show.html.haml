@@ -31,7 +31,8 @@
               .row
                 %div
                   .thumbnail
-                    = image_tag @blog.img.url(:thumb), size: "200x134", class: "img-responsive"
+                    = image_tag @blog.image.thumb, class: "img-responsive"
+
                     .caption
                       %h3= link_to @blog.title, @blog, class: "link"
                       %p= raw @blog.body.truncate(80)

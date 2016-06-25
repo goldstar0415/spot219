@@ -7,8 +7,8 @@
             - @places.each do |place|
               .card
                 .hovereffect
-                  - img = place.sliders.first ? place.sliders.first.image.url(:thumb) : place.image.url(:thumb)
-                  = image_tag img, size: "200x134"
+                  - img = place.sliders.first ? place.sliders.first.image.thumb : place.image.thumb
+                  = image_tag img
 
                   .overlay
                     %h2 TurkishSpot
@@ -34,12 +34,16 @@
                         %span.fa.fa-star
                       - elsif (place.average_rating.to_f < 1.5)
                         %span.fa.fa-star
-                %h4{:align => "center"}= link_to place.name, place, :method => :get
-                %h6{:align => "center"}
-                  - if place.categories.any?
-                    = render place.categories.limit(3)
-                  - else
-                    \.
+
+                .card-info
+                  %h4{:align => "center"}= link_to place.name, place
+
+                  %h6{:align => "center"}
+                    - if place.categories.any?
+                      = render place.categories.limit(3)
+                    - else
+                      \.
+
         .side-nav.col-lg-4.col-md-12.col-sm-12.col-xs-12
           .col-md-5
             %h5= link_to 'Cities', cities_path, class: "link"
@@ -52,19 +56,24 @@
             %h6= link_to 'View all cities', cities_path
             %br/
             %h5= link_to "Categories", categories_path, class: "link"
+
             - @cate.each do |category|
               %h6
                 = link_to category.name, category
                 (
                 %small>= pluralize(category.places.count, "place")
                 )
+
             %h6= link_to 'View all categories', categories_path
+
             %br/
+
             - if @blog
               .row
                 %div
                   .thumbnail
-                    = image_tag @blog.img.url(:thumb), size: "200x134", class: "img-responsive"
+                    = image_tag @blog.image.thumb, class: "img-responsive"
+
                     .caption
                       %h3= link_to @blog.title, @blog, class: "link"
                       %p= sanitize @blog.body.truncate(80)

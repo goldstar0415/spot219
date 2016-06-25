@@ -2,17 +2,17 @@
 #
 # Table name: blogs
 #
-#  id            :integer          not null, primary key
-#  title         :string
-#  body          :text
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  user_id       :integer
-#  description   :string
-#  city_id       :integer
-#  counter_cache :integer
-#  image         :string
-#  slug          :string
+#  id                :integer          not null, primary key
+#  title             :string
+#  body              :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  user_id           :integer
+#  description       :string
+#  city_id           :integer
+#  impressions_count :integer
+#  image             :string
+#  slug              :string
 #
 
 class Blog < ActiveRecord::Base

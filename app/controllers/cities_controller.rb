@@ -80,18 +80,26 @@ class CitiesController < ApplicationController
     end
   end
 
-  private
+  protected
+
+
+    #
     # Use callbacks to share common setup or constraints between actions.
     def set_city
-      @city = City.find_by_subdomain(params[:id]) || City.find_by_id(params[:id])
+      @city = City.find(params[:id])
     end
 
+
+    #
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
       params.require(:city).permit(:first_name, :last_name, :email, :about, :name, :user_id,
         :latitude, :longitude, :radius, :subdomain)
     end
 
+
+    #
+    #
     def require_same_user
       if current_user != @city.user and !has_role?(:admin)
         flash[:danger] = "You can only edit or delete your own cities."

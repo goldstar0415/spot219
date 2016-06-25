@@ -40,12 +40,13 @@ class PlacesController < ApplicationController
     @blog = Blog.last
     @claim = Claim.new
 
-    @open_days = @place.open_days.where(open: true)
+    @open_days = @place.open_days
 
     @shopping_cart = ShoppingCart.new
     @sliders = @place.sliders.order(:position)
 
-    @place.view!(current_user.try(:id))
+    # @place.view!(current_user.try(:id))
+    impressionist @place
   end
 
 

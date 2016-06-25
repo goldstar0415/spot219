@@ -19,3 +19,11 @@
 body {
 	font-family: 'Open Sans'
 }
+
+.card-info h4,
+.card-info h6 {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

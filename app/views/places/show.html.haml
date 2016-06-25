@@ -1,6 +1,6 @@
-- set_meta_tags title: @place.title,
-                description: @place.description,
-                keywords: @place.title.to_s.split(' ').join(',')
+- set_meta_tags title: @place.name,
+                description: @place.about,
+                keywords: @place.name.to_s.split(' ').join(', ')
 = render 'review_and_rating'
 #section-one
   #section-content
@@ -16,12 +16,13 @@
             - if has_feature?(@place.user, "add-photo-slider") and @place.sliders.present?
               .place-slider-wrapper
                 = render "slider"
+
             - else
-              = image_tag @place.image.url(:medium), size: "640x426", class: "img-responsive"
+              = image_tag @place.image.medium, class: "img-responsive"
 
             // Map ##
             .google-maps
-              = render_gmap_coordinate_picker :lat_column => 'latitude', :lng_column => 'longitude' , :zoom_level => 12, :default_coordinates => [@place.latitude, @place.longitude], map_width: 500
+              = render_gmap_coordinate_picker lat_column: 'lat', lng_column: 'lng' , zoom_level: 12, default_coordinates: [(@place.lat || 0), (@place.lng || 0)], map_width: 500
 
           // description ##
           .desciption
@@ -44,33 +45,36 @@
             %hr/
             %h5
               %strong Country:
-              = @place.country.capitalize
+              = @place.city.country.name
+
             %h5
               %strong City:
-              = @place.city.name.capitalize rescue ''
+              = @place.city.name
+
             %h5
               %strong Address:
-              = @place.address.capitalize
+              = @place.address
+
             %h5
               %strong Phone:
               = @place.phone
 
-            - if (@place.fb.size > 2) || (@place.twit.size > 2) || (@place.insta.size > 2) || (@place.web.size > 2)
+            - if @place.facebook.present? || @place.twitter.present? || @place.instagram.present? || @place.web.present?
               %hr/
               %h6
                 %strong Follow us on:
 
-            - if @place.fb.size > 2
-              %h6= link_to "Facebook", @place.fb, target: "_blank"
+            - if @place.facebook.present?
+              %h6= link_to @place.facebook, @place.facebook, target: :_blank
 
-            - if @place.twit.size > 2
-              %h6= link_to "Twitter", @place.twit, target: "_blank"
+            - if @place.twitter.present?
+              %h6= link_to @place.twitter, @place.twitter, target: :_blank
 
-            - if @place.insta.size > 2
-              %h6= link_to "Instagram", @place.insta, target: "_blank"
+            - if @place.instagram.present?
+              %h6= link_to @place.instagram, @place.instagram, target: :_blank
 
-            - if @place.web.size > 2
-              %h6= link_to "My website", @place.web, target: "_blank"
+            - if @place.web.present?
+              %h6= link_to @place.web, @place.web, target: :_blank
 
             %hr/
             %div
