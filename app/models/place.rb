@@ -131,8 +131,9 @@ class Place < ActiveRecord::Base
   def geocode_address
     if lat.nil? || lng.nil?
       geo = Geokit::Geocoders::MultiGeocoder.geocode ("#{address}, #{city.name}")
-      errors.add(:address, "Could not Geocode address") if !geo.success
-      self.lat, self.lng = geo.lat,geo.lng if geo.success
+      # errors.add(:address, "Could not Geocode address") if !geo.success
+      self.lat, self.lng = 0, 0 if !geo.success
+      self.lat, self.lng = geo.lat, geo.lng if geo.success
     end
   end
 end

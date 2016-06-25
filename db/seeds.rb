@@ -61,7 +61,7 @@ end
 # Categories
 #======================================================
 ['Food', 'Nightlife', 'Restaurants', 'Shopping', 'Active Life'].each do |category|
-  if @category = Category.find_or_create_by(name: category)
+  if @category = Category.where(name: category).first_or_create
     p "Category #{@category.name} generated -------------"
   else
     p "#{@category.errors.full_messages} -------------"

@@ -10,7 +10,8 @@
           - @category_places.each do |place|
             .card
               .hovereffect
-                = image_tag place.image.url(:thumb), size: "200x134"
+                = image_tag place.image.thumb
+
                 .overlay
                   %h2 TurkishSpot
                   %p
@@ -35,9 +36,12 @@
                       %span.fa.fa-star
                     - elsif (place.average_rating.to_f < 1.5)
                       %span.fa.fa-star
-              %h4{:align => "center"}= link_to place.name, place, :method => :get
-              - if place.categories.any?
-                %h6{:align => "center"}= render place.categories
+              .card-info
+                %h4{:align => "center"}= link_to place.name, place
+
+                - if place.categories.any?
+                  %h6{:align => "center"}= render place.categories
+
         .side-nav.col-lg-3.col-md-12.col-sm-12.col-xs-12
           .col-md-5
             %h5= link_to 'Cities', cities_path, class: "link"
@@ -62,11 +66,13 @@
               .row
                 %div
                   .thumbnail
-                    = image_tag @blog.img.url(:thumb), size: "200x134", class: "img-responsive"
+                    = image_tag @blog.image.thumb, class: "img-responsive"
+
                     .caption
                       %h3= link_to @blog.title, @blog, class: "link"
                       %p= @blog.body.truncate(80)
                       %p= link_to 'Read more', @blog, class: "btn"
+
           - if user_signed_in?
             .col-md-7{:align => "center"}
               %h4

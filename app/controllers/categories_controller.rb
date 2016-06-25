@@ -1,14 +1,23 @@
 class CategoriesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
+
+  #
+  #
   def index
     @categories = Category.page(params[:page]).per(15)
   end
 
+
+  #
+  #
   def new
     @category = Category.new
   end
 
+
+  #
+  #
   def create
     @category = Category.new(category_params)
     if @category.save
@@ -19,10 +28,16 @@ class CategoriesController < ApplicationController
     end
   end
 
+
+  #
+  #
   def edit
     @category = Category.find(params[:id])
   end
 
+
+  #
+  #
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
@@ -33,6 +48,9 @@ class CategoriesController < ApplicationController
     end
   end
 
+
+  #
+  #
   def show
     @cities = City.limit(10)
     @category = Category.find(params[:id])
@@ -41,17 +59,23 @@ class CategoriesController < ApplicationController
     @blog = Blog.last
   end
 
-  private
 
+  protected
+
+
+    #
+    #
     def category_params
       params.require(:category).permit(:name)
     end
 
+
+    #
+    #
     def require_admin
       if !user_signed_in? || (user_signed_in? and !has_role?(:admin))
         flash[:danger] = "Only admins can perform that action"
         redirect_to categories_path
       end
     end
-
 end

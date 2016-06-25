@@ -20,6 +20,7 @@ class CitiesController < ApplicationController
     render json: { first_time: !city.nil?, subdomain: city.try(:subdomain) }
   end
 
+
   # GET /cities/1
   # GET /cities/1.json
   def show
@@ -30,6 +31,7 @@ class CitiesController < ApplicationController
 
     cookies[:first_time] = false
   end
+
 
   # GET /cities/new
   def new

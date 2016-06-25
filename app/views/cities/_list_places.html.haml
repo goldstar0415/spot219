@@ -27,9 +27,12 @@
             %span.fa.fa-star
           - elsif (place.average_rating.to_f < 1.5)
             %span.fa.fa-star
-    %h4{:align => "center"}= link_to place.name, place, :method => :get
-    - if place.categories.any?
-      %h6{:align => "center"}= render place.categories
+    .card-info
+      %h4{:align => "center"}= link_to place.name, place, :method => :get
+
+      - if place.categories.any?
+        %h6{:align => "center"}= render place.categories
+
 .clearfix
 .apple_pagination{:align => "center"}
   = paginate @places, param_name: 'place_page'
