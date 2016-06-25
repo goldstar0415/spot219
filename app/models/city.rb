@@ -26,7 +26,7 @@ class City < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name
   # reverse_geocoded_by :latitude, :longitude
-  has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
+  # has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
   acts_as_mappable auto_geocode: { field: :name, error_message: 'Could not geocode city'}
 
 
@@ -48,9 +48,9 @@ class City < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
   # validates :subdomain, presence: true, uniqueness: true
   # validates_presence_of :latitude, :longitude, :radius
-  validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
-  validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  # validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
+  # validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
+  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
 
   def countPlace

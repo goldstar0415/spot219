@@ -2,19 +2,17 @@
 #
 # Table name: blogs
 #
-#  id               :integer          not null, primary key
-#  title            :string
-#  body             :text
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  img_file_name    :string
-#  img_content_type :string
-#  img_file_size    :integer
-#  img_updated_at   :datetime
-#  user_id          :integer
-#  description      :string
-#  views_number     :integer          default(0)
-#  city_id          :integer
+#  id            :integer          not null, primary key
+#  title         :string
+#  body          :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  user_id       :integer
+#  description   :string
+#  city_id       :integer
+#  counter_cache :integer
+#  image         :string
+#  slug          :string
 #
 
 require 'test_helper'

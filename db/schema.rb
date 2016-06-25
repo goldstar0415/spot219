@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624185746) do
+ActiveRecord::Schema.define(version: 20160625060442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,16 +82,14 @@ ActiveRecord::Schema.define(version: 20160624185746) do
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "img_file_name"
-    t.string   "img_content_type"
-    t.integer  "img_file_size"
-    t.datetime "img_updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.string   "description"
-    t.integer  "views_number",     default: 0
     t.integer  "city_id"
+    t.integer  "counter_cache"
+    t.string   "image"
+    t.string   "slug"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -107,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160624185746) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -273,6 +272,31 @@ ActiveRecord::Schema.define(version: 20160624185746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "impressions", force: :cascade do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"

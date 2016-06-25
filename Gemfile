@@ -10,6 +10,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'geocoder'
 gem 'friendly_id'
 gem 'geokit-rails'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'impressionist'
+# gem 'paperclip', '~> 5.0.0.beta1'
 
 
 # auth
@@ -24,7 +28,6 @@ gem 'cancancan', '~> 1.10'
 # assets
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
-gem 'paperclip', '~> 5.0.0.beta1'
 gem 'google-webfonts-rails'
 #gem 'will_paginate'
 #gem 'bootstrap-will_paginate', '0.0.10'

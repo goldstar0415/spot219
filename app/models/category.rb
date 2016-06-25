@@ -6,16 +6,23 @@
 #  name       :string
 #  created_at :datetime
 #  updated_at :datetime
+#  slug       :string
 #
 
 class Category < ActiveRecord::Base
-  
-  has_many :place_categories
+  # plugins
+  #
+  extend FriendlyId
+  friendly_id :name
 
+
+  # relations
+  #
+  has_many :place_categories, dependent: :destroy
   has_many :places, through: :place_categories
 
-  validates :name, presence: true, length: { minimum: 3, maximum: 25 }
 
-  validates_uniqueness_of :name
-
+  # validations
+  #
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end
