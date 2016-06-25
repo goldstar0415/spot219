@@ -20,7 +20,7 @@
 #  image_updated_at   :datetime
 #  city_id            :integer
 #  lat                :float
-#  lon                :float
+#  lng                :float
 #  tagline            :string
 #  slug               :string
 #  featured           :boolean          default(FALSE)

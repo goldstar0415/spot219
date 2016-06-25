@@ -20,7 +20,7 @@
 #  image_updated_at   :datetime
 #  city_id            :integer
 #  lat                :float
-#  lon                :float
+#  lng                :float
 #  tagline            :string
 #  slug               :string
 #  featured           :boolean          default(FALSE)
@@ -29,8 +29,8 @@
 class Place < ActiveRecord::Base
   # plugins
   #
-  searchkick
-  has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
+  # searchkick
+  # has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
   extend FriendlyId
   friendly_id :name
 
@@ -51,16 +51,16 @@ class Place < ActiveRecord::Base
 
   # validations
   #
-  validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
-  validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  validates_presence_of :city, :phone, :address, :user, :name, :about, :tagline
+  # validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
+  # validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
+  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  validates_presence_of :name, :about, :address, :city, :phone, :user, :tagline
 
 
   # nested attributes
   #
-  accepts_nested_attributes_for :open_days , reject_if: :all_blank
-  accepts_nested_attributes_for :sliders , reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :open_days, reject_if: :all_blank
+  accepts_nested_attributes_for :sliders, reject_if: :all_blank, allow_destroy: true
 
 
   # scopes
@@ -72,11 +72,8 @@ class Place < ActiveRecord::Base
 
   # callbacks
   #
-  after_save :update_role
-
-  before_create do
-    self.featured = !user.subscription_id.nil?
-  end
+  # after_save :update_role
+  # before_create { self.featured = !user.subscription_id.nil? }
 
 
   def search_data
@@ -115,7 +112,7 @@ class Place < ActiveRecord::Base
   def update_role
     if self.user_id_changed? and self.user.has_role?(:regular)
       u = self.user
-      role_id =Role.where(name: "place_owner").first.id
+      role_id = Role.where(name: "place_owner").first.id
       u.role_ids = role_id
       u.save
     end

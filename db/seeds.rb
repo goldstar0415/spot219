@@ -58,38 +58,51 @@ end
 # end
 
 
+# Categories
+#======================================================
+['Food', 'Nightlife', 'Restaurants', 'Shopping', 'Active Life'].each do |category|
+  if @category = Category.find_or_create_by(name: category)
+    p "Category #{@category.name} generated -------------"
+  else
+    p "#{@category.errors.full_messages} -------------"
+  end
+end
+
+
 # City & Places
 #======================================================
 Country.destroy_all
 
-20.times do
+50.times do
   company   = FFaker::Company.name
   addresses = JSON.parse(open("https://randomuser.me/api/").read)
   addr      = addresses['results'][0]['location']
   geocoded  = Geokit::Geocoders::GoogleGeocoder.geocode "#{addr['street']}, #{addr['city']}"
 
-  country   = Country.create! name: geocoded.country
-  city      = country.cities.create! name: addr['city']
+  if geocoded.success?
+    country   = Country.where(name: geocoded.country).first_or_create
+    city      = country.cities.where(name: addr['city'].titleize).first_or_create
 
-  @place = Place.new(
-    name: company,
-    about: FFaker::Lorem.paragraph,
-    address: "#{addr['street']}, #{addr['postcode']}",
-    city: city,
-    phone: addresses['results'][0]['phone'],
-    facebook: "https://facebook.com/#{company.parameterize}",
-    twitter: "https://twitter.com/#{company.parameterize}",
-    instagram: "https://instagram.com/#{company.parameterize}",
-    web: "http://www.#{company.parameterize}.com",
-    user: User.with_role(:place_owner).order("RANDOM()").first,
-    tagline: FFaker::Lorem.paragraph,
-    featured: [true, false].sample
-    )
+    @place = city.places.new(
+      name: company,
+      about: FFaker::Lorem.paragraph,
+      address: "#{addr['street']}, #{addr['postcode']}",
+      phone: addresses['results'][0]['phone'],
+      facebook: "https://facebook.com/#{company.parameterize}",
+      twitter: "https://twitter.com/#{company.parameterize}",
+      instagram: "https://instagram.com/#{company.parameterize}",
+      web: "http://www.#{company.parameterize}.com",
+      user: User.with_role(:place_owner).order("RANDOM()").first,
+      tagline: FFaker::Lorem.paragraph
+      )
 
-  if @place.save
-    p "Place #{@place.name} generated -------------"
-  else
-    p "#{@place.errors.full_messages} -------------"
+    @place.categories << Category.order('RANDOM()').first(rand 1..3)
+
+    if @place.save!
+      p "Place #{@place.name} generated -------------"
+    else
+      p @place.errors
+    end
   end
 end
 

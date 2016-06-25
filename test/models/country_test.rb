@@ -6,7 +6,7 @@
 #  name       :string
 #  slug       :string
 #  lat        :float
-#  lon        :float
+#  lng        :float
 #  distance   :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

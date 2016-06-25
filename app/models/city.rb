@@ -8,7 +8,7 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  user_id            :integer
-#  lon                :float
+#  lng                :float
 #  lat                :float
 #  radius             :float
 #  image_file_name    :string
@@ -33,7 +33,7 @@ class City < ActiveRecord::Base
   # relations
   #
   belongs_to :country
-  has_many :places
+  has_many :places, dependent: :destroy
   has_many :blogs
   belongs_to :user
   has_many :users
