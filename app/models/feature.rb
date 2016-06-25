@@ -8,17 +8,19 @@
 #
 
 class Feature < ActiveRecord::Base
+  # plugins
+  #
+  extend FriendlyId
+  friendly_id :name
+
+
+  # relations
+  #
   has_and_belongs_to_many :subscriptions, join_table: :subscriptions_features
 
-  before_save :add_slug
 
+  # validations
+  #
   validates :name, presence: true
-  validates :name, presence: true, uniqueness: true
-
-  def add_slug
-    if self.slug.blank?
-      self.slug = name.parameterize
-    end
-  end
-
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

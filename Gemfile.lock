@@ -155,6 +155,8 @@ GEM
     elasticsearch-transport (1.0.17)
       faraday
       multi_json
+    enumerize (1.1.1)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     exception_notification (4.1.4)
       actionmailer (~> 4.0)
@@ -574,6 +576,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise-bootstrap-views
+  enumerize
   exception_notification
   faker
   ffaker

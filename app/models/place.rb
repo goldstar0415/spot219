@@ -2,37 +2,35 @@
 #
 # Table name: places
 #
-#  id                 :integer          not null, primary key
-#  name               :string
-#  about              :text
-#  address            :string
-#  phone              :string
-#  facebook           :string
-#  twitter            :string
-#  instagram          :string
-#  web                :string
-#  created_at         :datetime
-#  updated_at         :datetime
-#  user_id            :integer
-#  image_file_name    :string
-#  image_content_type :string
-#  image_file_size    :integer
-#  image_updated_at   :datetime
-#  city_id            :integer
-#  lat                :float
-#  lng                :float
-#  tagline            :string
-#  slug               :string
-#  featured           :boolean          default(FALSE)
+#  id         :integer          not null, primary key
+#  name       :string
+#  about      :text
+#  address    :string
+#  phone      :string
+#  facebook   :string
+#  twitter    :string
+#  instagram  :string
+#  web        :string
+#  created_at :datetime
+#  updated_at :datetime
+#  user_id    :integer
+#  city_id    :integer
+#  lat        :float
+#  lng        :float
+#  tagline    :string
+#  slug       :string
+#  featured   :boolean          default(FALSE)
+#  image      :string
 #
 
 class Place < ActiveRecord::Base
   # plugins
   #
   # searchkick
-  # has_attached_file :image, styles: { medium: "640x426>", thumb: "200x134#" }
   extend FriendlyId
   friendly_id :name
+  is_impressionable counter_cache: true
+  mount_uploader :image, ImageUploader
 
 
   # relations
@@ -40,8 +38,7 @@ class Place < ActiveRecord::Base
   belongs_to :user
   has_many :place_categories
   has_many :categories, through: :place_categories
-  has_many :comments, dependent: :destroy
-  has_many :place_views, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :users, through: :place_views
   has_many :search_logs, dependent: :destroy
   belongs_to :city

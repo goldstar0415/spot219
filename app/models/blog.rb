@@ -19,7 +19,7 @@ class Blog < ActiveRecord::Base
   # plugins
   #
   is_impressionable counter_cache: true
-  mount_uploader :image, BlogImageUploader
+  mount_uploader :image, ImageUploader
 
 
   # relations

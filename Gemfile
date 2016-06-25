@@ -13,6 +13,7 @@ gem 'geokit-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'impressionist'
+gem 'enumerize'
 # gem 'paperclip', '~> 5.0.0.beta1'
 
 

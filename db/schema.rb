@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625060442) do
+ActiveRecord::Schema.define(version: 20160625091313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,30 +129,27 @@ ActiveRecord::Schema.define(version: 20160625060442) do
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
 
   create_table "claims", force: :cascade do |t|
-    t.string   "email",              default: "", null: false
-    t.string   "first_name",         default: ""
-    t.string   "last_name",          default: ""
-    t.string   "proof_file_name"
-    t.string   "proof_content_type"
-    t.integer  "proof_file_size"
-    t.datetime "proof_updated_at"
+    t.string   "email",      default: "", null: false
+    t.string   "first_name", default: ""
+    t.string   "last_name",  default: ""
+    t.string   "proof"
     t.string   "phone"
     t.text     "reason"
     t.integer  "status"
     t.integer  "user_id"
     t.integer  "place_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "user_id"
-    t.integer  "place_id"
-    t.integer  "number"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
   create_table "commontator_comments", force: :cascade do |t|
@@ -331,7 +328,6 @@ ActiveRecord::Schema.define(version: 20160625060442) do
     t.string  "day_in_week"
     t.time    "start_time"
     t.time    "end_time"
-    t.boolean "open",        default: false
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -405,16 +401,13 @@ ActiveRecord::Schema.define(version: 20160625060442) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.integer  "city_id"
     t.float    "lat"
     t.float    "lng"
     t.string   "tagline"
     t.string   "slug"
-    t.boolean  "featured",           default: false
+    t.boolean  "featured",   default: false
+    t.string   "image"
   end
 
   add_index "places", ["slug"], name: "index_places_on_slug", unique: true, using: :btree
@@ -770,15 +763,12 @@ ActiveRecord::Schema.define(version: 20160625060442) do
 
   create_table "sliders", force: :cascade do |t|
     t.string   "name"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.integer  "position"
     t.integer  "user_id"
     t.integer  "place_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "image"
   end
 
   create_table "subscriptions", force: :cascade do |t|
