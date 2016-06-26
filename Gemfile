@@ -27,7 +27,7 @@ gem 'cancancan', '~> 1.10'
 
 
 # assets
-gem 'twitter-bootstrap-rails'
+# gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'google-webfonts-rails'
 #gem 'will_paginate'
@@ -45,6 +45,9 @@ gem 'turbolinks'
 gem 'gmaps4rails'
 gem 'gmap_coordinates_picker'
 gem 'haml-rails'
+gem 'font-awesome-sass'
+gem 'bootstrap-sass'
+gem 'bxslider-rails'
 
 
 # Use Unicorn as the app server
@@ -59,7 +62,6 @@ gem 'meta-tags'
 gem 'shoppe'
 gem 'shoppe-paypal'
 gem 'redcarpet'
-gem 'bxslider-rails'
 gem 'cocoon'
 
 

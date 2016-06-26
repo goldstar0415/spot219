@@ -88,9 +88,9 @@ Country.destroy_all
       about: FFaker::Lorem.paragraph,
       address: "#{addr['street']}, #{addr['postcode']}",
       phone: addresses['results'][0]['phone'],
-      facebook: "https://facebook.com/#{company.parameterize}",
-      twitter: "https://twitter.com/#{company.parameterize}",
-      instagram: "https://instagram.com/#{company.parameterize}",
+      facebook: company.parameterize,
+      twitter: "@#{company.parameterize}",
+      instagram: "@#{company.parameterize}",
       web: "http://www.#{company.parameterize}.com",
       user: User.with_role(:place_owner).order("RANDOM()").first,
       tagline: FFaker::Lorem.paragraph

@@ -64,17 +64,29 @@
               %h6
                 %strong Follow us on:
 
-            - if @place.facebook.present?
-              %h6= link_to @place.facebook, @place.facebook, target: :_blank
+              - if @place.facebook.present?
+                %h6.social
+                  = link_to @place.facebook, target: :_blank do
+                    = icon 'facebook'
+                    %span= @place.name
 
-            - if @place.twitter.present?
-              %h6= link_to @place.twitter, @place.twitter, target: :_blank
+              - if @place.twitter.present?
+                %h6.social
+                  = link_to @place.twitter, target: :_blank do
+                    = icon 'twitter'
+                    %span= @place.twitter
 
-            - if @place.instagram.present?
-              %h6= link_to @place.instagram, @place.instagram, target: :_blank
+              - if @place.instagram.present?
+                %h6.social
+                  = link_to @place.instagram, target: :_blank do
+                    = icon 'instagram'
+                    %span= @place.instagram
 
-            - if @place.web.present?
-              %h6= link_to @place.web, @place.web, target: :_blank
+              - if @place.web.present?
+                %h6.social
+                  = link_to @place.web, target: :_blank do
+                    = icon 'link'
+                    %span= @place.web
 
             %hr/
             %div
@@ -85,8 +97,13 @@
                     = " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}"
 
             %hr/
+
             #claim
-              %button.btn.btn-primary.btn-lg{"data-target" => "#claim-modal", "data-toggle" => "modal", :type => "button"} Claim
+              %button.btn.btn-primary.btn-lg{"data-target" => "#claim-modal", "data-toggle" => "modal", type: "button"} Claim
+
+              / - if user_signed_in? && current_user == @place.user
+              - if user_signed_in?
+                = link_to 'Edit', edit_place_path, class: 'btn btn-lg btn-edit'
 
         .side-nav.col-lg-3.visible-lg
           .col-md-5
@@ -113,11 +130,11 @@
               %h4
                 Hello, #{current_user.full_name}
               = link_to 'Back', :back
-              - if current_user == @place.user
-                %br/
-                = link_to 'Edit', edit_place_path
+
+              - if current_user.has_role? :admin
                 %br/
                 = link_to 'Delete', @place, method: :delete, data: { confirm: 'Are you sure?' }
+
           - else
             .col-md-7{:align => "center"}
               = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
@@ -138,7 +155,8 @@
           %h6 Comments &amp; reviews :
           %hr/
           #comments
-            = render :partial => @place.comments
+            = render partial: @place.comments
+
           - if user_signed_in?
             .col-lg-5
               = form_for [@place, Comment.new] do |f|
@@ -148,7 +166,7 @@
                 %h5
                   Rate me
                   %small (Higher is better)
-                = f.select :number, ((1..5).map {|i| [i,i] }), class: "form-control"
+                = f.select :rating, ((1..5).map {|i| [i,i] }), class: "form-control"
                 %br/
                 %br/
                 = f.submit "Add Comment", class: "btn btn-success"

@@ -1,0 +1,46 @@
+@import "common/*"
+@import "bootstrap-sprockets"
+@import "bootstrap"
+@import "font-awesome-sprockets"
+@import "font-awesome"
+@import "products"
+@import "bxslider"
+
+body
+  font-family: 'Open Sans'
+
+.card-info
+  h4,
+  h6
+    width: 200px
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+h6.social
+  a
+    .fa
+      width: 18px
+      margin-right: 0
+
+    span
+      text-decoration: none !important
+
+    &:hover
+      span
+        text-decoration: underline !important
+
+.searchbar
+  .search-btn
+    border: none
+
+    &:hover
+      background: #ff6
+
+#claim
+  .btn-edit
+    border: none !important
+    padding: 11px 16px !important
+
+    &:hover
+      background: #ff6 !important

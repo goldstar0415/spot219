@@ -8,20 +8,28 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.navbar {
+  background: white !important;
+}
+
+.container {
+  width: 100% !important;
+}
+
 select {
   width: 100%;
   height: 35px;
 }
 
-a.btn{
+a.btn {
   padding: 5px 10px !important;
 
-  &:hover{
+  &:hover {
     background: #428bca !important;
   }
 }
 
-.segment .item{
+.segment .item {
   margin-bottom: 20px;
 }
 
@@ -40,13 +48,13 @@ a.btn{
 
 .footer a {
   margin: 10px;
-}
 
-.footer a:hover{
-  color: gray;
-  border-bottom: 1px solid;
-  padding: 0; /*removing spacing*/
-  background-color: #ffff66;
+  &:hover {
+    color: gray;
+    border-bottom: 1px solid;
+    padding: 0; /*removing spacing*/
+    background-color: #ffff66;
+  }
 }
 
 .no-padding{
