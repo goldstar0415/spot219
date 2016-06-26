@@ -65,10 +65,16 @@ gem 'redcarpet'
 gem 'cocoon'
 
 
+gem 'capistrano', '~> 3.5'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rvm', github: 'capistrano/rvm'
+gem 'capistrano3-delayed-job', '~> 1.0'
+gem 'ffaker'
+gem 'faker' # remove this later
+
+
 group :development, :test do
   gem 'byebug'
-  gem 'faker' # remove this later
-  gem 'ffaker'
 end
 
 
@@ -76,10 +82,6 @@ group :development do
   gem 'web-console', '~> 2.0'
   #gem 'spring'
   gem 'pry-rails'
-  gem 'capistrano', '~> 3.5'
-  gem 'capistrano-rails', '~> 1.1.1'
-  gem 'capistrano-rvm', github: 'capistrano/rvm'
-  gem 'capistrano3-delayed-job', '~> 1.0'
   gem 'letter_opener'
   gem 'rails-erd'
   gem 'annotate'
