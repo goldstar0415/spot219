@@ -17,14 +17,6 @@ GIT
       sass-rails
       sprockets (< 4)
 
-GIT
-  remote: git://github.com/capistrano/rvm.git
-  revision: 9cfef39cf0022839dca6b5b330dfefeb5fc363e7
-  specs:
-    capistrano-rvm (0.1.2)
-      capistrano (~> 3.0)
-      sshkit (~> 1.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,6 +95,9 @@ GEM
     capistrano-rails (1.1.6)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capistrano3-delayed-job (1.7.2)
       capistrano (~> 3.0, >= 3.0.0)
     carrierwave (0.10.0)
@@ -559,7 +554,7 @@ DEPENDENCIES
   cancancan (~> 1.10)
   capistrano (~> 3.5)
   capistrano-rails (~> 1.1.1)
-  capistrano-rvm!
+  capistrano-rvm
   capistrano3-delayed-job (~> 1.0)
   carrierwave
   chartkick

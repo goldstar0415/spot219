@@ -67,7 +67,7 @@ gem 'cocoon'
 
 gem 'capistrano', '~> 3.5'
 gem 'capistrano-rails', '~> 1.1.1'
-gem 'capistrano-rvm', github: 'capistrano/rvm'
+gem 'capistrano-rvm'
 gem 'capistrano3-delayed-job', '~> 1.0'
 gem 'ffaker'
 gem 'faker' # remove this later
