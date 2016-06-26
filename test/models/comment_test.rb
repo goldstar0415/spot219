@@ -10,6 +10,7 @@
 #  user_id          :integer
 #  commentable_id   :integer
 #  commentable_type :string
+#  rating           :integer
 #
 
 require 'test_helper'

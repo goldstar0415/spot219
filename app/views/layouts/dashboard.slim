@@ -1,0 +1,966 @@
+doctype html
+
+html lang="en"
+  head
+    title TurkishSpot
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900', 'dashboard/application'
+
+  body.sb-left
+    aside#app-aside.app-aside.left.light
+      header.aside-header
+        .animated
+          = link_to dashboard_root_path, id: 'app-brand', class: 'app-brand' do ||
+            span#brand-icon.brand-icon
+              i.fa.fa-gg
+            span#brand-name.brand-icon.foldable Infinity
+
+      /! #sidebar-header
+      .aside-user
+        /! aside-user
+        .media
+          .media-left
+            .avatar.avatar-md.avatar-circle
+              a href="javascript:void(0)"
+                img.img-responsive alt="avatar" src="../assets/images/221.jpg" /
+            /! .avatar
+          .media-body
+            .foldable
+              h5
+                a.username href="javascript:void(0)"  John Doe
+              ul
+                li.dropdown
+                  a.dropdown-toggle.usertitle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:void(0)"
+                    small Web Developer
+                    span.caret
+                  ul.dropdown-menu.animated.flipInY
+                    li
+                      a.text-color href="http://envato.rathemes.com/index.html"
+                        span.m-r-xs
+                          i.fa.fa-home
+                        span Home
+                    li
+                      a.text-color href="profile.html"
+                        span.m-r-xs
+                          i.fa.fa-user
+                        span Profile
+                    li
+                      a.text-color href="settings.html"
+                        span.m-r-xs
+                          i.fa.fa-gear
+                        span Settings
+                    li.divider role="separator"
+                    li
+                      a.text-color href="logout.html"
+                        span.m-r-xs
+                          i.fa.fa-power-off
+                        span Home
+        /! /aside-user
+      /! #aside-user
+      .aside-scroll
+        #aside-scroll-inner.aside-scroll-inner
+          ul.aside-menu.aside-left-menu
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-view-dashboard.zmdi-hc-lg
+                span.menu-text.foldable Dashboard
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="index-2.html"  Dashboard 1
+                li
+                  a href="dashboard.2.html"  Dashboard 2
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-layers.zmdi-hc-lg
+                span.menu-text.foldable Layouts
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="index-2.html"  Default
+                li
+                  a href="../topbar/index.html"  Topbar
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-puzzle-piece.zmdi-hc-lg
+                span.menu-text.foldable UI Kit
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="buttons.html"  Buttons
+                li
+                  a href="alerts.html"  Alerts
+                li
+                  a href="panels.html"  Panels
+                li
+                  a href="lists.html"  Lists
+                li
+                  a href="icons.html"  Icons
+                li
+                  a href="media.html"  Media
+                li
+                  a href="widgets.html"  Widgets
+                li
+                  a href="tabs.html"  Tabs &amp; Accordions
+                li
+                  a href="progress.html"  Progress
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-inbox.zmdi-hc-lg
+                span.menu-text.foldable Mail Box
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="inbox.html"
+                    | Inbox
+                    span.badge.bg-primary.menu-label 12
+                li
+                  a href="compose.html"  Compose
+            /! .menu-item
+            li.menu-item
+              a.menu-link href="search.web.html"
+                span.menu-icon
+                  i.zmdi.zmdi-search.zmdi-hc-lg
+                span.menu-text.foldable Search
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-pages.zmdi-hc-lg
+                span.menu-text.foldable Pages
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="profile.html"  Profile
+                li
+                  a href="price.html"  Prices
+                li
+                  a href="invoice.html"  Invoice
+                li
+                  a href="gallery.1.html"  Gallery
+                li
+                  a href="gallery.2.html"  Gallery 2
+                li
+                  a href="support.html"  FAQ
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-check.zmdi-hc-lg
+                span.menu-text.foldable Forms
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="form.layouts.html"  Form Layouts
+                li
+                  a href="form.elements.html"  Form Elements
+                li
+                  a href="form.custom.html"  Customized Elements
+                li
+                  a href="form.plugins.html"  Form Plugins
+                li
+                  a href="file-upload.html"  File Upload
+                li
+                  a href="form.datetime.html"  DateTime Pickers
+                li
+                  a href="editors.html"  Editors
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-storage.zmdi-hc-lg
+                span.menu-text.foldable Tables
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="tables.basic.html"  Basic Tables
+                li
+                  a href="datatables.html"  DataTables
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-chart.zmdi-hc-lg
+                span.menu-text.foldable Charts
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="charts.flot.html"  Flot Charts
+                li
+                  a href="echarts.bar.html"  Bar echarts
+                li
+                  a href="echarts.pie.html"  Pie echarts
+                li
+                  a href="echarts.line.html"  Line echarts
+                li
+                  a href="echarts.map.html"  Map echarts
+                li
+                  a href="echarts.scatter.html"  Scatter echarts
+                li
+                  a href="echarts.custom.html"  Custom echarts
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-pin.zmdi-hc-lg
+                span.menu-text.foldable Maps
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="map-google.html"  Google Maps
+                li
+                  a href="map-vector.html"  Vector Maps
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-apps.zmdi-hc-lg
+                span.menu-text.foldable Apps
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="calendar.html"  Calendar
+                li
+                  a href="contacts.html"  Contacts
+            /! .menu-item
+            li.menu-item.has-submenu
+              a.menu-link.submenu-toggle href="javascript:void(0)"
+                span.menu-icon
+                  i.zmdi.zmdi-plus.zmdi-hc-lg
+                span.menu-text.foldable Extras
+                span.menu-caret.foldable
+                  i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+              ul.submenu
+                li
+                  a href="login.html"  Login
+                li
+                  a href="signup.html"  Sign Up
+                li
+                  a href="password-forget.html"  Reset Password
+                li
+                  a href="unlock.html"  Unlock Screen
+                li
+                  a href="404.html"  404 Error
+            /! .menu-item
+          hr/
+          footer#aside-footer
+            ul.aside-menu.aside-left-menu
+              li.menu-item
+                a.menu-link href="documentation.html"
+                  span.menu-icon
+                    i.zmdi.zmdi-file-text.zmdi-hc-lg
+                  span.menu-text.foldable Documentation
+              /! .menu-item
+              li.menu-item
+                a.menu-link href="javascript:void(0)"
+                  span.menu-icon
+                    i.zmdi.zmdi-settings.zmdi-hc-lg
+                  span.menu-text.foldable Settings
+              /! .menu-item
+              li.menu-item
+                a.menu-link href="javascript:void(0)"
+                  span.menu-icon
+                    i.zmdi.zmdi-language-javascript.zmdi-hc-lg
+                  span.menu-text.foldable Angular Version
+              /! .menu-item
+          /! #sidebar-footer
+        /! .aside-scroll-inner
+      /! #aside-scroll
+
+    nav#app-navbar.app-navbar.p-l-lg.p-r-md.primary
+      #navbar-header.pull-left
+        button#aside-fold.hamburger.visible-lg-inline-block.hamburger--arrowalt.is-active.js-hamburger type="button"
+          span.hamburger-box
+            span.hamburger-inner
+
+        button#aside-toggle.hamburger.hidden-lg.hamburger--spin.js-hamburger type="button"
+          span.hamburger-box
+            span.hamburger-inner
+
+        h5#page-title.visible-md-inline-block.visible-lg-inline-block.m-l-md Dashboard
+
+      div
+        ul#top-nav.pull-right
+          li.nav-item.dropdown
+            a#navbar-search-open.navbar-search-open href="javascript:void(0)"
+              i.zmdi.zmdi-hc-lg.zmdi-search
+
+          li.nav-item.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:void(0)" role="button"
+              i.zmdi.zmdi-hc-lg.zmdi-notifications
+
+            .media-group.dropdown-menu.animated.flipInY
+              a.media-group-item href="javascript:void(0)"
+              .media
+                .media-left
+                  .avatar.avatar-xs.avatar-circle
+                    img alt="" src="../assets/images/221.jpg" /
+                    i.status.status-online
+
+                .media-body
+                  h5.media-heading John Doe
+                  small.media-meta Active now
+
+              /! .media-group-item
+              a.media-group-item href="javascript:void(0)"
+              .media
+                .media-left
+                  .avatar.avatar-xs.avatar-circle
+                    img alt="" src="../assets/images/205.jpg" /
+                    i.status.status-offline
+
+                .media-body
+                  h5.media-heading John Doe
+                  small.media-meta 2 hours ago
+
+              /! .media-group-item
+              a.media-group-item href="javascript:void(0)"
+              .media
+                .media-left
+                  .avatar.avatar-xs.avatar-circle
+                    img alt="" src="../assets/images/207.jpg" /
+                    i.status.status-away
+
+                .media-body
+                  h5.media-heading Sara Smith
+                  small.media-meta idle 5 min ago
+
+              /! .media-group-item
+              a.media-group-item href="javascript:void(0)"
+              .media
+                .media-left
+                  .avatar.avatar-xs.avatar-circle
+                    img alt="" src="../assets/images/211.jpg" /
+                    i.status.status-away
+
+                .media-body
+                  h5.media-heading Donia Dyab
+                  small.media-meta idle 5 min ago
+              /! .media-group-item
+
+          li.nav-item.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:void(0)" role="button"
+              i.zmdi.zmdi-hc-lg.zmdi-settings
+
+            ul.dropdown-menu.animated.flipInY
+              li
+                a href="javascript:void(0)"
+                  i.zmdi.m-r-md.zmdi-hc-lg.zmdi-account-box
+                  | My Profile
+              li
+                a href="javascript:void(0)"
+                  i.zmdi.m-r-md.zmdi-hc-lg.zmdi-balance-wallet
+                  | Balance
+              li
+                a href="javascript:void(0)"
+                  i.zmdi.m-r-md.zmdi-hc-lg.zmdi-phone-msg
+                  | Connection
+                  span.label._bgtext-primary 3
+              li
+                a href="javascript:void(0)"
+                  i.zmdi.m-r-md.zmdi-hc-lg.zmdi-info
+                  | privacy
+
+          li.nav-item
+            a.side-panel-toggle data-class="open" data-target="#side-panel" data-toggle="class" href="javascript:void(0)" role="button"
+              i.zmdi.zmdi-hc-lg.zmdi-apps
+
+            #side-panel.side-panel
+              .panel-header
+                h4.panel-title Friends
+
+              .scrollable-container
+                .media-group
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/221.jpg" /
+                        i.status.status-online
+
+                    .media-body
+                      h5.media-heading John Doe
+                      small.media-meta active now
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/205.jpg" /
+                        i.status.status-online
+
+                    .media-body
+                      h5.media-heading John Doe
+                      small.media-meta active now
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/206.jpg" /
+                        i.status.status-online
+
+                    .media-body
+                      h5.media-heading Adam Kiti
+                      small.media-meta active now
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/207.jpg" /
+                        i.status.status-away
+
+                    .media-body
+                      h5.media-heading Jane Doe
+                      small.media-meta away
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/208.jpg" /
+                        i.status.status-away
+
+                    .media-body
+                      h5.media-heading Sara Adams
+                      small.media-meta away
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/209.jpg" /
+                        i.status.status-away
+
+                    .media-body
+                      h5.media-heading Smith Doe
+                      small.media-meta away
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/219.jpg" /
+                        i.status.status-away
+
+                    .media-body
+                      h5.media-heading Dana Dyab
+                      small.media-meta away
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/210.jpg" /
+                        i.status.status-offline
+
+                    .media-body
+                      h5.media-heading Jeffry Way
+                      small.media-meta 2 hours ago
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/211.jpg" /
+                        i.status.status-offline
+
+                    .media-body
+                      h5.media-heading Jane Doe
+                      small.media-meta 5 hours ago
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/212.jpg" /
+                        i.status.status-offline
+
+                    .media-body
+                      h5.media-heading Adam Khoury
+                      small.media-meta 22 minutes ago
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/207.jpg" /
+                        i.status.status-offline
+
+                    .media-body
+                      h5.media-heading Sara Smith
+                      small.media-meta 2 days ago
+
+                  /! .media-group-item
+                  a.media-group-item href="javascript:void(0)"
+                  .media
+                    .media-left
+                      .avatar.avatar-xs.avatar-circle
+                        img alt="" src="../assets/images/211.jpg" /
+                        i.status.status-offline
+
+                    .media-body
+                      h5.media-heading Donia Dyab
+                      small.media-meta 3 days ago
+
+      #navbar-search.navbar-search
+        form action="#"
+          span.search-icon
+            i.fa.fa-search
+
+          input.search-field placeholder="search..." type="search" /
+
+        button#search-close.search-close
+          i.fa.fa-close
+
+    main#app-main.app-main
+      .wrap
+        section.app-content
+          .row
+            .col-md-6.col-sm-6
+              .widget.p-md.clearfix
+                .pull-left
+                  h3.widget-title Welcome to Infinity
+                  small.text-color Number of views
+
+                span.pull-right.fz-lg.fw-500.counter data-plugin="counterUp"  102
+
+            .col-md-6.col-sm-6
+              .widget.p-md.clearfix
+                .pull-left
+                  h3.widget-title Active
+                  small.text-color Loads / contact
+
+                span.pull-right.fz-lg.fw-500.counter data-plugin="counterUp"  325
+
+          .row
+            .col-md-3.col-sm-6
+              .widget.stats-widget
+                .widget-body.clearfix
+                  .pull-left
+                    h3.widget-title.text-primary
+                      span.counter data-plugin="counterUp" > 66.136
+                      | k
+
+                    small.text-color Total loads
+
+                  span.pull-right.big-icon.watermark
+                    i.fa.fa-paperclip
+
+                footer.widget-footer.bg-primary
+                  small % charge
+                  span.small-chart.pull-right data-options="[4,3,5,2,1], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }" data-plugin="sparkline"
+
+            .col-md-3.col-sm-6
+              .widget.stats-widget
+                .widget-body.clearfix
+                  .pull-left
+                    h3.widget-title.text-danger
+                      span.counter data-plugin="counterUp" > 3.490
+                      | k
+
+                    small.text-color Total Pending
+
+                  span.pull-right.big-icon.watermark
+                    i.fa.fa-ban
+
+                footer.widget-footer.bg-danger
+                  small % charge
+                  span.small-chart.pull-right data-options="[1,2,3,5,4], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }" data-plugin="sparkline"
+
+            .col-md-3.col-sm-6
+              .widget.stats-widget
+                .widget-body.clearfix
+                  .pull-left
+                    h3.widget-title.text-success
+                      span.counter data-plugin="counterUp" > 8.378
+                      | k
+                    small.text-color Case Close
+                  span.pull-right.big-icon.watermark
+                    i.fa.fa-unlock-alt
+                footer.widget-footer.bg-success
+                  small % charge
+                  span.small-chart.pull-right data-options="[2,4,3,4,3], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }" data-plugin="sparkline"
+              /! .widget
+            .col-md-3.col-sm-6
+              .widget.stats-widget
+                .widget-body.clearfix
+                  .pull-left
+                    h3.widget-title.text-warning
+                      span.counter data-plugin="counterUp" > 3.490
+                      | k
+                    small.text-color Total Pending
+                  span.pull-right.big-icon.watermark
+                    i.fa.fa-file-text-o
+                footer.widget-footer.bg-warning
+                  small % charge
+                  span.small-chart.pull-right data-options="[5,4,3,5,2],{ type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }" data-plugin="sparkline"
+              /! .widget
+          /! .row
+          .row
+            .col-md-12
+              .widget.row.no-gutter.p-lg
+                .col-md-5.col-sm-5
+                  div
+                    h3.widget-title.fz-lg.text-primary.m-b-lg Sales in 2014
+                    p.m-b-lg Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits
+                    p.fs-italic Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic eum alias est vitae, obcaecati?
+                .col-md-7.col-sm-7
+                  div
+                    / #lineChart data-options=("\n\t\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\tdata: [[1),3.6],[2,3.5],[3,6],[4,4],[5,4.3],[6,3.5],[7,3.6]],\n\t\t\t\t\t\t\t\t\t\tcolor: '#ffa000',\n\t\t\t\t\t\t\t\t\t\tlines: { show: true, lineWidth: 6 },\n\t\t\t\t\t\t\t\t\t\tcurvedLines: { apply: true }\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\tdata: [[1,3.6],[2,3.5],[3,6],[4,4],[5,4.3],[6,3.5],[7,3.6]],\n\t\t\t\t\t\t\t\t\t\tcolor: '#ffa000',\n\t\t\t\t\t\t\t\t\t\tpoints: {show: true}\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\tseries: {\n\t\t\t\t\t\t\t\t\t\tcurvedLines: { active: true }\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\txaxis: {\n\t\t\t\t\t\t\t\t\t\tshow: true,\n\t\t\t\t\t\t\t\t\t\tfont: { size: 12, lineHeight: 10, style: 'normal', weight: '100',family: 'lato', variant: 'small-caps', color: '#a2a0a0' }\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\tyaxis: {\n\t\t\t\t\t\t\t\t\t\tshow: true,\n\t\t\t\t\t\t\t\t\t\tfont: { size: 12, lineHeight: 10, style: 'normal', weight: '100',family: 'lato', variant: 'small-caps', color: '#a2a0a0' }\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\tgrid: { color: '#a2a0a0', hoverable: true, margin: 8, labelMargin: 8, borderWidth: 0, backgroundColor: '#fff' },\n\t\t\t\t\t\t\t\t\ttooltip: true,\n\t\t\t\t\t\t\t\t\ttooltipOpts: { content: 'X: %x.0, Y: %y.2',  defaultTheme: false, shifts: { x: 0, y: -40 } },\n\t\t\t\t\t\t\t\t\tlegend: { show: false }\n\t\t\t\t\t\t\t\t}" data-plugin="plot" style=("width: 100%; height: 230px;")
+              /! .widget
+          /! .row
+          .row
+            .col-md-7
+              .widget
+                header.widget-header
+                  h4.widget-title Active Leads
+                hr.widget-separator/
+                .widget-body
+                  .table-responsive
+                    table.table.no-cellborder
+                      thead
+                        tr
+                          th Type
+                          th Lead Name
+                          th Views
+                          th Favorites
+                          th Last Visit
+                          th Last Action
+                      tbody
+                        tr
+                          td.text-primary Buyer
+                          td Denise Ann
+                          td 150
+                          td 150
+                          td 9:23 AM
+                          td
+                            span.table-icon.fa.fa-envelope
+                            | 11/9/2015
+                        tr
+                          td.text-primary Buyer
+                          td Denise Ann
+                          td 150
+                          td 202
+                          td 9:23 AM
+                          td
+                            span.table-icon.fa.fa-envelope
+                            | 11/9/2015
+                        tr
+                          td.text-success Landlord
+                          td Denise Ann
+                          td 150
+                          td 313
+                          td 9:23 AM
+                          td
+                            span.table-icon.fa.fa-envelope
+                            | 11/9/2015
+                        tr
+                          td.text-primary Buyer
+                          td Denise Ann
+                          td 150
+                          td 175
+                          td 9:23 AM
+                          td
+                            span.table-icon.fa.fa-envelope
+                            | 11/9/2015
+                        tr
+                          td.text-danger Seller
+                          td Denise Ann
+                          td 150
+                          td 148
+                          td 9:23 AM
+                          td
+                            span.table-icon.fa.fa-envelope
+                            | 11/9/2015
+                        tr
+                          td.text-primary Buyer
+                          td Denise Ann
+                          td 150
+                          td 1500
+                          td 9:23 AM
+                          td
+                            span.table-icon.fa.fa-envelope
+                            | 11/9/2015
+                        tr
+                          td.text-primary Buyer
+                          td Denise Ann
+                          td 150
+                          td 1270
+                          td 9:23 AM
+                          td
+                            span.table-icon.fa.fa-envelope
+                            | 11/9/2015
+                        tr
+                          td.text-danger Buyer
+                          td Denise Ann
+                          td 150
+                          td 3201
+                          td 9:23 AM
+                          td
+                            span.table-icon.fa.fa-envelope
+                            | 11/9/2015
+              /! .widget
+            /! END column
+            .col-md-5
+              .widget.todo-widget
+                header.widget-header
+                  h4.widget-title Todo List
+                hr.widget-separator/
+                .widget-body.p-b-0
+                  ul.todo-list
+                    li.todo-item
+                      .checkbox.checkbox-default
+                        input#checkbox02 type="checkbox" /
+                        label for="checkbox02"  Record The First Episode Of HTML Tutorial
+                    /! .todo-item
+                    li.todo-item
+                      .checkbox.checkbox-pink
+                        input#checkbox2 type="checkbox" /
+                        label for="checkbox2"  Prepare The Conference Schedule
+                    /! .todo-item
+                    li.todo-item
+                      .checkbox.checkbox-warning
+                        input#checkbox4 checked="" type="checkbox" /
+                        label for="checkbox4"  Decide The Live Discussion Time
+                    /! .todo-item
+                    li.todo-item
+                      .checkbox.checkbox-success
+                        input#checkbox3 checked="" type="checkbox" /
+                        label for="checkbox3"  Prepare For The Next Project
+                    /! .todo-item
+                    li.todo-item
+                      .checkbox.checkbox-danger
+                        input#checkbox5 checked="" type="checkbox" /
+                        label for="checkbox5"  Finish Up AngularJs Tutorial
+                    /! .todo-item
+                    li.todo-item
+                      .checkbox.checkbox-purple
+                        input#checkbox1 checked="" type="checkbox" /
+                        label for="checkbox1"  Finish Infinity Project
+                    /! .todo-item
+                  /! .todo-list
+                .new-todo
+                  input placeholder=("add new task") type="text" /
+                footer.widget-footer
+                  a.btn.btn-sm.btn-success.m-r-md href="javascript:void(0)"  All
+                  a.btn.btn-sm.btn-default href="javascript:void(0)"  Archive
+                  a.btn.btn-sm.btn-default.pull-right href="javascript:void(0)"  Clear completed
+              /! .widget
+          /! .row
+          .row
+            .col-md-6.col-sm-6
+              .widget
+                header.widget-header
+                  h4.widget-title Activities
+                hr.widget-separator/
+                .widget-body
+                  .streamline
+                    .sl-item.sl-primary
+                      .sl-content
+                        small.text-muted 23 mins ago
+                        p John has just started working on the project
+                    /! .sl-item
+                    .sl-item.sl-danger
+                      .sl-content
+                        small.text-muted 23 mins ago
+                        p Jane sent you invitation to attend the party
+                    /! .sl-item
+                    .sl-item.sl-success
+                      .sl-content
+                        small.text-muted 23 mins ago
+                        p Sally added you to her circles
+                    /! .sl-item
+                    .sl-item.sl-warning
+                      .sl-content
+                        small.text-muted 23 mins ago
+                        p Sara has finished her task
+                    /! .sl-item
+                  /! .streamline
+              /! .widget
+            .col-md-6.col-sm-6
+              .widget.google-chart
+                header.widget-header
+                  h4.widget-title Analytics
+                hr.widget-separator/
+                .widget-body
+                  / #barChart data-options=("\n\t\t\t\t\t\t\t[\n\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\tlabel: 'Users'),\n\t\t\t\t\t\t\t\t\tdata: [[1,200],[2,400],[3,500],[4,700],[5,600],[6,400],[7,500],[8,400], [9, 320], [10, 380], [11, 500], [12, 700]],\n\t\t\t\t\t\t\t\t\tbars: {show: true, fill: 1, fillColor: '#3f51b5', align: 'center', barWidth: .4}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\tseries: {\n\t\t\t\t\t\t\t\t\tbars: {show:  true}\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\txaxis: {\n\t\t\t\t\t\t\t\t\tfont: {size: 12, lineHeight: 10, style: 'normal', weight: '100',family: 'lato', variant: 'small-caps', color: '#a2a0a0' }\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\tyaxis: {\n\t\t\t\t\t\t\t\t\tmax: 800,\n\t\t\t\t\t\t\t\t\tfont: {size: 12, lineHeight: 10, style: 'normal', weight: '100',family: 'lato', variant: 'small-caps', color: '#a2a0a0' }\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\tlegend: { show: false },\n\t\t\t\t\t\t\t\tgrid: { color: '#fff', labelMargin: 16, hoverable: true },\n\t\t\t\t\t\t\t\tcolors: ['#3f51b5'],\n\t\t\t\t\t\t\t\ttooltip: {\n\t\t\t\t\t\t\t\t\tshow: true,\n\t\t\t\t\t\t\t\t\tcontent: '<div><span>X: %x, Y: %y</span></div>',\n\t\t\t\t\t\t\t\t\tdefaultTheme: false\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}" data-plugin="plot" style=("width: 100%; height: 220px;")
+              /! .widget
+          /! .row
+          .row
+            .col-md-6.col-sm-6
+              .widget
+                header.widget-header
+                  h4.widget-title Feeds
+                hr.widget-separator/
+                .widget-body
+                  .media-group.feeds-group
+                    .media-group-item
+                      .media
+                        .media-left
+                          .avatar.avatar-sm.avatar-circle
+                            img alt="" src="../assets/images/217.jpg" /
+                        .media-body
+                          h5
+                            a.text-color href="javascript:void(0)"  Some of the fantastic things people have had to say about Ooooh
+                          small.text-muted 2 days ago
+                    /! .media-group-item
+                    .media-group-item
+                      .media
+                        .media-left
+                          .avatar.avatar-sm.avatar-circle
+                            img alt="" src="../assets/images/218.jpg" /
+                        .media-body
+                          h5
+                            a.text-color href="javascript:void(0)"  Here are just some of the magazine reviews we have had
+                          small.text-muted 1 day ago
+                    /! .media-group-item
+                    .media-group-item
+                      .media
+                        .media-left
+                          .avatar.avatar-sm.avatar-circle
+                            img alt="" src="../assets/images/219.jpg" /
+                        .media-body
+                          h5
+                            a.text-color href="javascript:void(0)"  Lorem ipsum dolor amet, consectetur adipisicing elit.
+                          small.text-muted 2 days ago
+                    /! .media-group-item
+                    .media-group-item
+                      .media
+                        .media-left
+                          .avatar.avatar-sm.avatar-circle
+                            img alt="" src="../assets/images/215.jpg" /
+                        .media-body
+                          h5
+                            a.text-color href="javascript:void(0)"  “It’s just brilliant. I will recommend it to everyone!”
+                          small.text-muted 2 mins ago
+                    /! .media-group-item
+                    .media-group-item
+                      .media
+                        .media-left
+                          .avatar.avatar-sm.avatar-circle
+                            img alt="" src="../assets/images/221.jpg" /
+                        .media-body
+                          h5
+                            a.text-color href="javascript:void(0)"  John has just started working on the project
+                          small.text-muted right now
+                    /! .media-group-item
+              /! .widget
+            .col-md-6.col-sm-6
+              .widget
+                header.widget-header
+                  h4.widget-title Streams
+                hr.widget-separator/
+                .widget-body
+                  .streamline.m-l-lg
+                    .sl-item.p-b-md
+                      .sl-avatar.avatar.avatar-sm.avatar-circle
+                        img.img-responsive alt="avatar" src="../assets/images/221.jpg" /
+                      /! .avatar
+                      .sl-content.m-l-xl
+                        h5.m-t-0
+                          a.m-r-xs.theme-color href="javascript:void(0)"  John Doe
+                          small.text-muted.fz-sm last month
+                        p John has just started working on the project
+                    /! .sl-item
+                    .sl-item.p-b-md
+                      .sl-avatar.avatar.avatar-sm.avatar-circle
+                        img.img-responsive alt="avatar" src="../assets/images/214.jpg" /
+                      /! .avatar
+                      .sl-content.m-l-xl
+                        h5.m-t-0
+                          a.m-r-xs.theme-color href="javascript:void(0)"  Jane Doe
+                          small.text-muted.fz-sm last month
+                        p Jane sent you invitation to attend the party
+                    /! .sl-item
+                    .sl-item.p-b-md
+                      .sl-avatar.avatar.avatar-sm.avatar-circle
+                        img.img-responsive alt="avatar" src="../assets/images/217.jpg" /
+                      /! .avatar
+                      .sl-content.m-l-xl
+                        h5.m-t-0
+                          a.m-r-xs.theme-color href="javascript:void(0)"  Sally Mala
+                          small.text-muted.fz-sm last month
+                        p Sally added you to her circles
+                    /! .sl-item
+                    .sl-item.p-b-md
+                      .sl-avatar.avatar.avatar-sm.avatar-circle
+                        img.img-responsive alt="avatar" src="../assets/images/211.jpg" /
+                      /! .avatar
+                      .sl-content.m-l-xl
+                        h5.m-t-0
+                          a.m-r-xs.theme-color href="javascript:void(0)"  Sara Adams
+                          small.text-muted.fz-sm last month
+                        p Sara has finished her task
+                    /! .sl-item
+                    .sl-item.p-b-md
+                      .sl-avatar.avatar.avatar-sm.avatar-circle
+                        img.img-responsive alt="avatar" src="../assets/images/214.jpg" /
+                      /! .avatar
+                      .sl-content.m-l-xl
+                        h5.m-t-0
+                          a.m-r-xs.theme-color href="javascript:void(0)"  Sandy Doe
+                          small.text-muted.fz-sm last month
+                        p Sara has finished her task
+                    /! .sl-item
+                  /! .streamline
+              /! .widget
+          /! .row
+
+          .row
+            .col-md-12
+              .widget.widget-pie-chart
+                header.widget-header
+                  h4.widget-title ACTIVITIES
+
+                hr.widget-separator
+
+                .widget-body.clearfix
+                  / div data-options=("{\n\t\t              tooltip : {\n\t\t                  trigger: 'axis'\n\t\t              }),\n\t\t              legend: {\n\t\t                  data:['Max','Min']\n\t\t              },\n\t\t              calculable : true,\n\t\t              xAxis : [\n\t\t                  {\n\t\t                      type : 'category',\n\t\t                      boundaryGap : false,\n\t\t                      data : ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']\n\t\t                  }\n\t\t              ],\n\t\t              yAxis : [\n\t\t                  {\n\t\t                      type : 'value',\n\t\t                      axisLabel : {\n\t\t                          formatter: '{value} °C'\n\t\t                      }\n\t\t                  }\n\t\t              ],\n\t\t              series : [\n\t\t                  {\n\t\t                      name:'Max',\n\t\t                      type:'line',\n\t\t                      data:[9, 9, 13, 11, 10, 11, 8],\n\t\t                      markPoint : {\n\t\t                          data : [\n\t\t                              {type : 'max', name: 'Max'},\n\t\t                              {type : 'min', name: 'Min'}\n\t\t                          ]\n\t\t                      },\n\t\t                      markLine : {\n\t\t                          data : [\n\t\t                              {type : 'average', name: 'Average'}\n\t\t                          ]\n\t\t                      }\n\t\t                  },\n\t\t                  {\n\t\t                      name:'Min',\n\t\t                      type:'line',\n\t\t                      data:[1, -3, 2, 5, 3, 4, 0],\n\t\t                      markPoint : {\n\t\t                          data : [\n\t\t                              {name : 'Min of Week', value : -3, xAxis: 1, yAxis: -1.5}\n\t\t                          ]\n\t\t                      },\n\t\t                      markLine : {\n\t\t                          data : [\n\t\t                              {type : 'average', name : 'Average'}\n\t\t                          ]\n\t\t                      }\n\t\t                  }\n\t\t              ]\n\t\t            }" data-plugin="chart" style=("height: 300px;")
+
+      .wrap.p-t-0
+        footer.app-footer
+          .clearfix
+            ul.footer-menu.pull-right
+
+              li
+                a href="javascript:void(0)" Careers
+
+              li
+                a href="javascript:void(0)" Privacy Policy
+
+              li
+                a href="javascript:void(0)"
+                  | Feedback
+                  i.fa.fa-angle-up.m-l-md
+
+            .copyright.pull-left &copy; 2016 TurkishSpot.
+
+    = javascript_include_tag 'dashboard/application'

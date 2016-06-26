@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                           Prefix Verb       URI Pattern                                                 Controller#Action
+#                             root GET        /                                                           places#index
 #            conversation_messages GET        /conversations/:conversation_id/messages(.:format)          messages#index
 #                                  POST       /conversations/:conversation_id/messages(.:format)          messages#create
 #         new_conversation_message GET        /conversations/:conversation_id/messages/new(.:format)      messages#new
@@ -150,6 +151,7 @@
 #                                  POST       /admin/comments(.:format)                                   admin/comments#create
 #                    admin_comment GET        /admin/comments/:id(.:format)                               admin/comments#show
 #                                  DELETE     /admin/comments/:id(.:format)                               admin/comments#destroy
+#                   dashboard_root GET        /dashboard(.:format)                                        dashboard/welcome#index
 #                             rate POST       /rate(.:format)                                             rater#create
 #                  location_cities POST       /cities/location(.:format)                                  cities#location
 #                           cities GET        /cities(.:format)                                           cities#index
@@ -283,7 +285,6 @@
 #                       my_friends GET        /my_friends(.:format)                                       users#my_friends
 #                        my_places GET        /my-places(.:format)                                        users#my_places
 #                             page GET        /:action(.:format)                                          pages#:action
-#                             root GET        /                                                           places#index
 #
 # Routes for Shoppe::Engine:
 #                                              GET      /attachment/:id/:filename.:extension(.:format)                                     shoppe/attachments#show
@@ -415,6 +416,7 @@
 #
 
 Rails.application.routes.draw do
+  root 'places#index'
 
   resources :conversations do
     resources :messages
@@ -430,34 +432,34 @@ Rails.application.routes.draw do
   #
   # Product browising
   #
-  get "products", to: "products#index", :as => 'products'
-  #get 'products' => 'products#categories', :as => 'catalogue'
-  get 'products/filter' => 'products#filter', :as => 'product_filter'
-  get 'products/:category_id' => 'products#index', :as => 'products_by_category'
-  get 'products/:category_id/:product_id' => 'products#show', :as => 'product'
-  post 'products/:category_id/:product_id/buy' => 'products#add_to_basket', :as => 'buy_product'
+  get "products", to: "products#index", as: 'products'
+  #get 'products' => 'products#categories', as: 'catalogue'
+  get 'products/filter' => 'products#filter', as: 'product_filter'
+  get 'products/:category_id' => 'products#index', as: 'products_by_category'
+  get 'products/:category_id/:product_id' => 'products#show', as: 'product'
+  post 'products/:category_id/:product_id/buy' => 'products#add_to_basket', as: 'buy_product'
 
   #
   # Order status
   #
-  get 'order/:token' => 'orders#status', :as => 'order_status'
+  get 'order/:token' => 'orders#status', as: 'order_status'
 
   #
   # Basket
   #
-  get 'carts' => 'orders#show', :as => 'carts'
-  delete 'carts' => 'orders#destroy', :as => 'empty_basket'
-  post 'carts/:order_item_id' => 'orders#change_item_quantity', :as => 'adjust_basket_item_quantity'
+  get 'carts' => 'orders#show', as: 'carts'
+  delete 'carts' => 'orders#destroy', as: 'empty_basket'
+  post 'carts/:order_item_id' => 'orders#change_item_quantity', as: 'adjust_basket_item_quantity'
   delete 'carts/:order_item_id' => 'orders#change_item_quantity'
-  delete 'carts/delete/:order_item_id' => 'orders#remove_item', :as => 'remove_basket_item'
+  delete 'carts/delete/:order_item_id' => 'orders#remove_item', as: 'remove_basket_item'
 
   #
   # Checkout
   #
-  match 'checkout' => 'orders#checkout', :as => 'checkout', :via => [:get, :patch]
-  match 'checkout/delivery' => 'orders#change_delivery_service', :as => 'change_delivery_service', :via => [:post]
-  match 'checkout/pay' => 'orders#payment', :as => 'checkout_payment', :via => [:get, :patch]
-  match 'checkout/confirm' => 'orders#confirmation', :as => 'checkout_confirmation', :via => [:get, :patch]
+  match 'checkout' => 'orders#checkout', as: 'checkout', via: [:get, :patch]
+  match 'checkout/delivery' => 'orders#change_delivery_service', as: 'change_delivery_service', via: [:post]
+  match 'checkout/pay' => 'orders#payment', as: 'checkout_payment', via: [:get, :patch]
+  match 'checkout/confirm' => 'orders#confirmation', as: 'checkout_confirmation', via: [:get, :patch]
   #
   # Paypal
   #
@@ -471,6 +473,10 @@ Rails.application.routes.draw do
   }
 
   ActiveAdmin.routes(self)
+
+  namespace :dashboard do
+    root 'welcome#index'
+  end
 
   post '/rate' => 'rater#create', as: 'rate'
 
@@ -522,5 +528,4 @@ Rails.application.routes.draw do
   # Static pages
   #
   get ':action', controller: 'pages', as: 'page'
-  root 'places#index'
 end

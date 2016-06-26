@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.5.1'
 gem 'figaro'
 gem 'pg'
 gem 'searchkick'
@@ -14,7 +14,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'impressionist'
 gem 'enumerize'
-# gem 'paperclip', '~> 5.0.0.beta1'
 
 
 # auth
@@ -35,12 +34,12 @@ gem 'google-webfonts-rails'
 #gem 'ratyrate'
 # gem 'sunspot_rails'
 # gem 'sunspot_solr'
-gem 'progress_bar'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'gmaps4rails'
 gem 'gmap_coordinates_picker'
@@ -48,6 +47,10 @@ gem 'haml-rails'
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
 gem 'bxslider-rails'
+gem 'slim-rails'
+gem 'progress_bar'
+gem 'bower-rails'
+gem 'material_icons'
 
 
 # Use Unicorn as the app server
@@ -67,11 +70,12 @@ gem 'cocoon'
 
 gem 'capistrano', '~> 3.5'
 gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-bower'
 gem 'capistrano-rvm'
 gem 'capistrano-rails-collection'
 gem 'capistrano3-delayed-job', '~> 1.0'
 gem 'ffaker'
-gem 'faker' # remove this later
+gem 'faker' # to be removed later
 
 
 group :development, :test do
