@@ -13,7 +13,7 @@ class OpenDay < ActiveRecord::Base
   # plugins
   #
   extend Enumerize
-  enumerize :day_in_week, in: Enum::Place::DAY_NAME[:options]
+  enumerize :day_in_week, in: Enum::Place::DAY_NAME[:options], i18n_scope: "day_name"
 
 
   # relations

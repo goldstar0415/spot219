@@ -116,8 +116,8 @@ class Place < ActiveRecord::Base
 
   def add_open_days
     if self.open_days.empty?
-      Date::DAYNAMES.each do |day|
-        self.open_days.build(day_in_week: day, open: false)
+      Enum::Place::DAY_NAME[:options].each do |day|
+        self.open_days.build(day_in_week: day)
       end
     end
   end

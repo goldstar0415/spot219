@@ -11,14 +11,17 @@
           .form-group
             %label About
             = f.text_area :about, placeholder: "e.g. The best coffee in Toronto ...", class: "form-control", rows: "3"
-        .col-lg-12
-          .form-group
-            %label Subdomain
-            = f.text_field :subdomain, class: "form-control", placeholder: "Subdomain", required: true
-        .col-lg-3
-          .form-group
-            %label Country
-            = f.text_field :country, placeholder: "Country", class: "form-control"
+
+        / .col-lg-12
+        /   .form-group
+        /     %label Subdomain
+        /     = f.text_field :subdomain, class: "form-control", placeholder: "Subdomain", required: true
+
+        / .col-lg-3
+        /   .form-group
+        /     %label Country
+        /     = f.text_field :country, placeholder: "Country", class: "form-control"
+
         .col-lg-3
           .form-group
             %label City
@@ -35,24 +38,29 @@
         .col-lg-12
           .form-group
             %label Link to map
-            = f.gmap_coordinate_picker :lat_column => 'latitude', :lng_column => 'longitude' , :zoom_level => 12, :default_coordinates => [cookies[:latitude] || f.object.latitude || '9.9333', cookies[:longitude] || f.object.longitude || '-84.0833'], map_width: 800
+            = f.gmap_coordinate_picker lat_column: 'lat', lng_column: 'lng' , zoom_level: 12, default_coordinates: [cookies[:latitude] || f.object.lat || '9.9333', cookies[:longitude] || f.object.lng || '-84.0833'], map_width: 800
+
         .col-lg-3
           .form-group
             %label Link to Facebook (*)
-            = f.text_field :fb, placeholder: "https://www.facebook.com/", class: "form-control"
+            = f.text_field :facebook, placeholder: "https://www.facebook.com/", class: "form-control"
+
         .col-lg-3
           .form-group
             %label Link to Twitter (*)
-            = f.text_field :twit, placeholder: "https://twitter.com/", class: "form-control"
+            = f.text_field :twitter, placeholder: "https://twitter.com/", class: "form-control"
+
         .col-lg-3
           .form-group
             %label Link to Instagram (*)
-            = f.text_field :insta, placeholder: "https://www.instagram.com/", class: "form-control"
+            = f.text_field :instagram, placeholder: "https://www.instagram.com/", class: "form-control"
+
         .col-lg-3
           .form-group
             %label Link to website (*)
             = f.text_field :web, placeholder: "http://www.example.com", class: "form-control"
-        %h5.danger (*) Please provide all URLs with http:// or https://
+
+        %h5.danger (*) Please provide web URLs with http:// or https://
 
         %br/
         %hr/
@@ -78,17 +86,19 @@
         .open_days
           - @open_days.each do |open_day|
             = f.fields_for :open_days, open_day do |open_f|
-              .form-inline{class: "#{'active' if open_day.open}"}
+              .form-inline.active
                 .row
                   .col-md-2
                     = open_f.hidden_field :day_in_week, value: open_day.day_in_week
                     %label
                       = open_day.day_in_week
-                      = open_f.check_box :open
+                      = open_f.check_box :day_in_week
+
                   .col-md-1
-                    = open_f.time_select :start_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
+                    = open_f.time_select :start_time,  { ampm: true, discard_minute: true, ignore_date: true }, { class: 'form-control' }
+
                   .col-md-1
-                    = open_f.time_select :end_time,  {ampm: true, discard_minute: true, ignore_date: true}, {class: 'form-control'}
+                    = open_f.time_select :end_time,  { ampm: true, discard_minute: true, ignore_date: true }, { class: 'form-control'}
 
       = f.submit "Submit", class: "btn btn-success"
       = link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right"
