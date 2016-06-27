@@ -49,31 +49,31 @@
 
 	// initialize main
 	app.$main.addClass('in');
-	
+
 	app.init = function() {
 
-		$('[data-plugin]').plugins();
+		// $('[data-plugin]').plugins();
 		$('.scrollable-container').perfectScrollbar();
 		$('.sf-menu').superfish();
 
 		// load some needed libs listed at: LIBS.others => library.js
-		var loadingLibs = loader.load(LIBS["others"]);
-		
-		loadingLibs.done(function(){
+		// var loadingLibs = loader.load(LIBS["others"]);
 
-			$('[data-switchery]').each(function(){
-				var $this = $(this),
-						color = $this.attr('data-color') || '#188ae2',
-						jackColor = $this.attr('data-jackColor') || '#ffffff',
-						size = $this.attr('data-size') || 'default'
+		// loadingLibs.done(function(){
 
-				new Switchery(this, {
-					color: color,
-					size: size,
-					jackColor: jackColor
-				});
-			});
-		});
+		// 	$('[data-switchery]').each(function(){
+		// 		var $this = $(this),
+		// 				color = $this.attr('data-color') || '#188ae2',
+		// 				jackColor = $this.attr('data-jackColor') || '#ffffff',
+		// 				size = $this.attr('data-size') || 'default'
+
+		// 		new Switchery(this, {
+		// 			color: color,
+		// 			size: size,
+		// 			jackColor: jackColor
+		// 		});
+		// 	});
+		// });
 	};
 
 	window.app = app;
@@ -83,7 +83,7 @@
 // NAVBAR MODULE
 // =====================
 +function($, window){ 'use strict';
-	
+
 	// Cache DOM
 	var $body = app.$body,
 			$navbar = app.$navbar;
@@ -158,7 +158,7 @@
 			$sidebar = app.$sidebar,
 			$sidebarFold = $('#aside-fold'),
 			$sidebarToggle = $('#aside-toggle');
-		
+
 	var sidebar = {};
 
 	sidebar.init = function() {
@@ -179,7 +179,7 @@
 			e.preventDefault();
 			$(this).parent().toggleClass('open').find('.submenu').slideToggle(500).end().siblings().removeClass('open').find('.submenu').slideUp(500);
 		});
-		
+
 		$sidebarFold.on('click', function(e){
 			e.preventDefault();
 			self.fold();
@@ -241,7 +241,7 @@
 		$sidebarToggle.addClass('is-active');
 		$body.addClass('sb-open');
 	};
-	
+
 	sidebar.close = function(e) {
 		e.preventDefault();
 		$sidebar.removeClass('open');
@@ -282,7 +282,7 @@
 // =====================
 
 +function($, window){ 'use strict';
-	
+
 	// Cache DOM
 	var $body = app.$body,
 			$sidebar = app.$sidebar,
