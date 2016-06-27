@@ -2,7 +2,7 @@ server '104.131.49.187', port: 22, roles: [:web, :app, :db], primary: true, user
 
 set :application, 'turkish_spot'
 set :stage,     :production
-set :branch,    :develop
+set :branch,    :master
 set :deploy_to, "/home/apps/#{fetch(:application)}"
 
 # Don't change these unless you know what you're doing
