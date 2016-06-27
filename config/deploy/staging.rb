@@ -1,4 +1,4 @@
-server '104.131.114.11', port: 22, roles: [:web, :app, :db], primary: true, user: 'root'
+server '104.131.49.187', port: 22, roles: [:web, :app, :db], primary: true, user: 'root'
 
 set :application, 'turkish_spot'
 set :stage,     :production
