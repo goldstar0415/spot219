@@ -1,15 +1,13 @@
 {
-	"vendor": {
-		"name": "bower-rails generated vendor assets",
-		"dependencies": {
-			"animate.css": "latest",
-			"perfect-scrollbar": "latest",
-			"fullcalendar": "latest",
-			"pace": "latest",
-			"moment": "latest",
-			"jquery-slimscroll": "latest",
-			"jQuery-Storage-API": "latest",
-			"superfish": "latest"
-		}
+	"name": "bower-rails generated vendor assets",
+	"dependencies": {
+		"animate.css": "latest",
+		"perfect-scrollbar": "latest",
+		"fullcalendar": "latest",
+		"pace": "latest",
+		"moment": "latest",
+		"jquery-slimscroll": "latest",
+		"jQuery-Storage-API": "latest",
+		"superfish": "latest"
 	}
 }
