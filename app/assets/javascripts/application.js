@@ -14,13 +14,17 @@
 //= require jquery_ujs
 //= require bxslider
 //= require bootstrap-sprockets
-//= require_tree .
+//= require bootstrap
+//= require functions
+//= require main
+//= require places
 //= require jquery.raty
 //= require ratyrate
 //= require ckeditor/init
 //= require cocoon
 //= require highcharts
 //= require chartkick
+//= require shopping_carts
 
 var show_spinner = function(){
   $('#spinner').show();

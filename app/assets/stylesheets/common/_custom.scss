@@ -9,7 +9,13 @@ body {
 }
 
 .navbar {
-  background: white !important;
+  background: white;
+  border: 0;
+  height: auto;
+  min-height: none;
+  margin-bottom: 0;
+  padding: 12px 0;
+  list-style: none;
 }
 
 .container {
@@ -78,13 +84,6 @@ a.btn {
   border-radius: 0 !important;
 }
 
-.navbar {
-  border: 0 !important;
-  height: auto;
-  padding-top: 20px;
-  list-style: none;
-}
-
 .city-name{
   position: relative;
   background: black;
@@ -94,10 +93,6 @@ a.btn {
   color: white;
   display: inline-block;
   padding: 10px 20px;
-}
-
-.navbar-brand {
-  margin-top: -28px;
 }
 
 .search-form {
@@ -152,11 +147,11 @@ a.btn {
   background: none;
 }
 
-.navbar-righft li:hover{
-  background-color: #ffff66;
+.navbar-right li:hover {
+  background-color: #ff6;
 }
 
-.navbar-right a{
+.navbar-right a {
   font-size: 11px;
 }
 
@@ -166,36 +161,38 @@ a.btn {
   padding: 0; /*removing spacing*/
 }
 
-#section-one a.list-group-item{
+#section-one a.list-group-item {
   padding: 10px 15px;
   color: #555;
   border: 1px solid #ddd;
 }
-#section-one a.list-group-item:hover{
+
+#section-one a.list-group-item:hover {
   padding: 10px 15px;
   color: #555;
   border: 1px solid #ddd;
   background-color: #f5f5f5;
 }
-#section-one a.list-group-item.active{
+
+#section-one a.list-group-item.active {
   z-index: 2;
   color: #fff;
   background-color: #428bca;
   border-color: #428bca;
 }
 
-#section-one a:hover{
+#section-one a:hover {
   color: gray;
   border-bottom: 1px solid;
   padding: 0; /*removing spacing*/
   background-color: #ffff66;
 }
 
-.bx-controls a:hover{
+.bx-controls a:hover {
   background-color: transparent !important;
 }
 
-.bx-controls a{
+.bx-controls a {
   text-decoration: none !important;
   border: none !Important;
 }
@@ -206,7 +203,7 @@ a.btn {
   padding: 0;
 }
 
-#section-one .overlay a:hover{
+#section-one .overlay a:hover {
   color: gray;
   border-bottom: 1px solid;
   padding: 0; /*removing spacing*/
@@ -218,11 +215,13 @@ a.btn {
   border-bottom: 1px solid;
   padding: 0; /*removing spacing*/
   margin: 14px; /*add spacing*/
-  &.cart-icon{
+
+  &.cart-icon {
     margin: 0px;
     border-bottom: none;
     padding: 10px;
-    img{
+
+    img {
       width: 24px;
       height: 24px;
     }
@@ -235,21 +234,22 @@ a.btn {
   padding: 0; /*removing spacing*/
   margin: 14px; /*add spacing*/
   background-color: #ffff66;
-  &.cart-icon{
+
+  &.cart-icon {
     margin: 0px;
     border-bottom: none;
     padding: 10px;
   }
 }
 
-.card{
+.card {
   float: left;
   margin: 0 35px 37px 0px;
   position: relative;
   text-align: center;
 }
 
-.places{
+.places {
   margin: 0 15px;
 }
 
@@ -257,35 +257,35 @@ a.btn {
   padding-top: 50px;
 }
 
-.side-nav h5{
+.side-nav h5 {
   text-transform: uppercase;
   border-bottom: 1px solid;
   text-align: center;
 }
 
-#section-content .login{
+#section-content .login {
   padding-bottom: 10px;
 }
 
-input{
+input {
   border-radius: 0 !important;
 }
 
-.side-nav .btn{
+.side-nav .btn {
   border-radius: 0 !important;
   margin-top: 30px;
   width: 100%;
 }
 
-.side-nav a{
+.side-nav a {
   font-size: 11px;
 }
 
-.side-nav a:hover{
+.side-nav a:hover {
   background-color: #ffff66;
 }
 
-textarea{
+textarea {
   border-radius: 0 !important;
 }
 
