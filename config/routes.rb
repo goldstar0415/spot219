@@ -474,7 +474,7 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  namespace :dashboard do
+  namespace :dashboard, path: 'biz' do
     root 'welcome#index'
   end
 

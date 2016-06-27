@@ -14,48 +14,51 @@ html lang="en"
               i.fa.fa-gg
             span#brand-name.brand-icon.foldable Infinity
 
-      /! #sidebar-header
       .aside-user
-        /! aside-user
         .media
           .media-left
             .avatar.avatar-md.avatar-circle
               a href="javascript:void(0)"
-                img.img-responsive alt="avatar" src="../assets/images/221.jpg" /
-            /! .avatar
+                = image_tag '221.jpg', class: 'img-responsive'
+
           .media-body
             .foldable
               h5
                 a.username href="javascript:void(0)"  John Doe
+
               ul
                 li.dropdown
                   a.dropdown-toggle.usertitle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:void(0)"
                     small Web Developer
                     span.caret
+
                   ul.dropdown-menu.animated.flipInY
                     li
                       a.text-color href="http://envato.rathemes.com/index.html"
                         span.m-r-xs
                           i.fa.fa-home
                         span Home
+
                     li
                       a.text-color href="profile.html"
                         span.m-r-xs
                           i.fa.fa-user
                         span Profile
+
                     li
                       a.text-color href="settings.html"
                         span.m-r-xs
                           i.fa.fa-gear
                         span Settings
+
                     li.divider role="separator"
+
                     li
                       a.text-color href="logout.html"
                         span.m-r-xs
                           i.fa.fa-power-off
                         span Home
-        /! /aside-user
-      /! #aside-user
+
       .aside-scroll
         #aside-scroll-inner.aside-scroll-inner
           ul.aside-menu.aside-left-menu
@@ -66,12 +69,14 @@ html lang="en"
                 span.menu-text.foldable Dashboard
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="index-2.html"  Dashboard 1
+
                 li
                   a href="dashboard.2.html"  Dashboard 2
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -79,12 +84,13 @@ html lang="en"
                 span.menu-text.foldable Layouts
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="index-2.html"  Default
                 li
                   a href="../topbar/index.html"  Topbar
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -92,6 +98,7 @@ html lang="en"
                 span.menu-text.foldable UI Kit
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="buttons.html"  Buttons
@@ -111,7 +118,7 @@ html lang="en"
                   a href="tabs.html"  Tabs &amp; Accordions
                 li
                   a href="progress.html"  Progress
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -119,6 +126,7 @@ html lang="en"
                 span.menu-text.foldable Mail Box
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="inbox.html"
@@ -126,13 +134,13 @@ html lang="en"
                     span.badge.bg-primary.menu-label 12
                 li
                   a href="compose.html"  Compose
-            /! .menu-item
+
             li.menu-item
               a.menu-link href="search.web.html"
                 span.menu-icon
                   i.zmdi.zmdi-search.zmdi-hc-lg
                 span.menu-text.foldable Search
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -140,6 +148,7 @@ html lang="en"
                 span.menu-text.foldable Pages
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="profile.html"  Profile
@@ -153,7 +162,7 @@ html lang="en"
                   a href="gallery.2.html"  Gallery 2
                 li
                   a href="support.html"  FAQ
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -161,6 +170,7 @@ html lang="en"
                 span.menu-text.foldable Forms
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="form.layouts.html"  Form Layouts
@@ -176,7 +186,7 @@ html lang="en"
                   a href="form.datetime.html"  DateTime Pickers
                 li
                   a href="editors.html"  Editors
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -184,12 +194,13 @@ html lang="en"
                 span.menu-text.foldable Tables
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="tables.basic.html"  Basic Tables
                 li
                   a href="datatables.html"  DataTables
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -197,6 +208,7 @@ html lang="en"
                 span.menu-text.foldable Charts
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="charts.flot.html"  Flot Charts
@@ -212,7 +224,7 @@ html lang="en"
                   a href="echarts.scatter.html"  Scatter echarts
                 li
                   a href="echarts.custom.html"  Custom echarts
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -220,12 +232,13 @@ html lang="en"
                 span.menu-text.foldable Maps
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="map-google.html"  Google Maps
                 li
                   a href="map-vector.html"  Vector Maps
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -233,12 +246,13 @@ html lang="en"
                 span.menu-text.foldable Apps
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="calendar.html"  Calendar
                 li
                   a href="contacts.html"  Contacts
-            /! .menu-item
+
             li.menu-item.has-submenu
               a.menu-link.submenu-toggle href="javascript:void(0)"
                 span.menu-icon
@@ -246,6 +260,7 @@ html lang="en"
                 span.menu-text.foldable Extras
                 span.menu-caret.foldable
                   i.zmdi.zmdi-hc-sm.zmdi-chevron-right
+
               ul.submenu
                 li
                   a href="login.html"  Login
@@ -257,8 +272,9 @@ html lang="en"
                   a href="unlock.html"  Unlock Screen
                 li
                   a href="404.html"  404 Error
-            /! .menu-item
+
           hr/
+
           footer#aside-footer
             ul.aside-menu.aside-left-menu
               li.menu-item
@@ -266,22 +282,18 @@ html lang="en"
                   span.menu-icon
                     i.zmdi.zmdi-file-text.zmdi-hc-lg
                   span.menu-text.foldable Documentation
-              /! .menu-item
+
               li.menu-item
                 a.menu-link href="javascript:void(0)"
                   span.menu-icon
                     i.zmdi.zmdi-settings.zmdi-hc-lg
                   span.menu-text.foldable Settings
-              /! .menu-item
+
               li.menu-item
                 a.menu-link href="javascript:void(0)"
                   span.menu-icon
                     i.zmdi.zmdi-language-javascript.zmdi-hc-lg
                   span.menu-text.foldable Angular Version
-              /! .menu-item
-          /! #sidebar-footer
-        /! .aside-scroll-inner
-      /! #aside-scroll
 
     nav#app-navbar.app-navbar.p-l-lg.p-r-md.primary
       #navbar-header.pull-left
@@ -310,49 +322,45 @@ html lang="en"
               .media
                 .media-left
                   .avatar.avatar-xs.avatar-circle
-                    img alt="" src="../assets/images/221.jpg" /
+                    = image_tag '221.jpg'
                     i.status.status-online
 
                 .media-body
                   h5.media-heading John Doe
                   small.media-meta Active now
 
-              /! .media-group-item
               a.media-group-item href="javascript:void(0)"
               .media
                 .media-left
                   .avatar.avatar-xs.avatar-circle
-                    img alt="" src="../assets/images/205.jpg" /
+                    = image_tag '205.jpg'
                     i.status.status-offline
 
                 .media-body
                   h5.media-heading John Doe
                   small.media-meta 2 hours ago
 
-              /! .media-group-item
               a.media-group-item href="javascript:void(0)"
               .media
                 .media-left
                   .avatar.avatar-xs.avatar-circle
-                    img alt="" src="../assets/images/207.jpg" /
+                    = image_tag '207.jpg'
                     i.status.status-away
 
                 .media-body
                   h5.media-heading Sara Smith
                   small.media-meta idle 5 min ago
 
-              /! .media-group-item
               a.media-group-item href="javascript:void(0)"
               .media
                 .media-left
                   .avatar.avatar-xs.avatar-circle
-                    img alt="" src="../assets/images/211.jpg" /
+                    = image_tag '211.jpg'
                     i.status.status-away
 
                 .media-body
                   h5.media-heading Donia Dyab
                   small.media-meta idle 5 min ago
-              /! .media-group-item
 
           li.nav-item.dropdown
             a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:void(0)" role="button"
@@ -391,139 +399,128 @@ html lang="en"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/221.jpg" /
+                        = image_tag '221.jpg'
                         i.status.status-online
 
                     .media-body
                       h5.media-heading John Doe
                       small.media-meta active now
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/205.jpg" /
+                        = image_tag '205.jpg'
                         i.status.status-online
 
                     .media-body
                       h5.media-heading John Doe
                       small.media-meta active now
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/206.jpg" /
+                        = image_tag '206.jpg'
                         i.status.status-online
 
                     .media-body
                       h5.media-heading Adam Kiti
                       small.media-meta active now
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/207.jpg" /
+                        = image_tag '207.jpg'
                         i.status.status-away
 
                     .media-body
                       h5.media-heading Jane Doe
                       small.media-meta away
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/208.jpg" /
+                        = image_tag '208.jpg'
                         i.status.status-away
 
                     .media-body
                       h5.media-heading Sara Adams
                       small.media-meta away
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/209.jpg" /
+                        = image_tag '209.jpg'
                         i.status.status-away
 
                     .media-body
                       h5.media-heading Smith Doe
                       small.media-meta away
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/219.jpg" /
+                        = image_tag '219.jpg'
                         i.status.status-away
 
                     .media-body
                       h5.media-heading Dana Dyab
                       small.media-meta away
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/210.jpg" /
+                        = image_tag '210.jpg'
                         i.status.status-offline
 
                     .media-body
                       h5.media-heading Jeffry Way
                       small.media-meta 2 hours ago
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/211.jpg" /
+                        = image_tag '211.jpg'
                         i.status.status-offline
 
                     .media-body
                       h5.media-heading Jane Doe
                       small.media-meta 5 hours ago
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/212.jpg" /
+                        = image_tag '212.jpg'
                         i.status.status-offline
 
                     .media-body
                       h5.media-heading Adam Khoury
                       small.media-meta 22 minutes ago
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/207.jpg" /
+                        = image_tag '207.jpg'
                         i.status.status-offline
 
                     .media-body
                       h5.media-heading Sara Smith
                       small.media-meta 2 days ago
 
-                  /! .media-group-item
                   a.media-group-item href="javascript:void(0)"
                   .media
                     .media-left
                       .avatar.avatar-xs.avatar-circle
-                        img alt="" src="../assets/images/211.jpg" /
+                        = image_tag '211.jpg'
                         i.status.status-offline
 
                     .media-body
@@ -826,53 +823,57 @@ html lang="en"
                       .media
                         .media-left
                           .avatar.avatar-sm.avatar-circle
-                            img alt="" src="../assets/images/217.jpg" /
+                            = image_tag '217.jpg'
+
                         .media-body
                           h5
                             a.text-color href="javascript:void(0)"  Some of the fantastic things people have had to say about Ooooh
                           small.text-muted 2 days ago
-                    /! .media-group-item
+
                     .media-group-item
                       .media
                         .media-left
                           .avatar.avatar-sm.avatar-circle
-                            img alt="" src="../assets/images/218.jpg" /
+                            = image_tag '218.jpg'
+
                         .media-body
                           h5
                             a.text-color href="javascript:void(0)"  Here are just some of the magazine reviews we have had
                           small.text-muted 1 day ago
-                    /! .media-group-item
+
                     .media-group-item
                       .media
                         .media-left
                           .avatar.avatar-sm.avatar-circle
-                            img alt="" src="../assets/images/219.jpg" /
+                            = image_tag '219.jpg'
+
                         .media-body
                           h5
                             a.text-color href="javascript:void(0)"  Lorem ipsum dolor amet, consectetur adipisicing elit.
                           small.text-muted 2 days ago
-                    /! .media-group-item
+
                     .media-group-item
                       .media
                         .media-left
                           .avatar.avatar-sm.avatar-circle
-                            img alt="" src="../assets/images/215.jpg" /
+                            = image_tag '215.jpg'
+
                         .media-body
                           h5
                             a.text-color href="javascript:void(0)"  “It’s just brilliant. I will recommend it to everyone!”
                           small.text-muted 2 mins ago
-                    /! .media-group-item
+
                     .media-group-item
                       .media
                         .media-left
                           .avatar.avatar-sm.avatar-circle
-                            img alt="" src="../assets/images/221.jpg" /
+                            = image_tag '221.jpg'
+
                         .media-body
                           h5
                             a.text-color href="javascript:void(0)"  John has just started working on the project
                           small.text-muted right now
-                    /! .media-group-item
-              /! .widget
+
             .col-md-6.col-sm-6
               .widget
                 header.widget-header
@@ -882,57 +883,53 @@ html lang="en"
                   .streamline.m-l-lg
                     .sl-item.p-b-md
                       .sl-avatar.avatar.avatar-sm.avatar-circle
-                        img.img-responsive alt="avatar" src="../assets/images/221.jpg" /
-                      /! .avatar
+                        = image_tag '221.jpg', class: 'img-responsive'
+
                       .sl-content.m-l-xl
                         h5.m-t-0
                           a.m-r-xs.theme-color href="javascript:void(0)"  John Doe
                           small.text-muted.fz-sm last month
                         p John has just started working on the project
-                    /! .sl-item
+
                     .sl-item.p-b-md
                       .sl-avatar.avatar.avatar-sm.avatar-circle
-                        img.img-responsive alt="avatar" src="../assets/images/214.jpg" /
-                      /! .avatar
+                        = image_tag '214.jpg', class: 'img-responsive'
+
                       .sl-content.m-l-xl
                         h5.m-t-0
                           a.m-r-xs.theme-color href="javascript:void(0)"  Jane Doe
                           small.text-muted.fz-sm last month
                         p Jane sent you invitation to attend the party
-                    /! .sl-item
+
                     .sl-item.p-b-md
                       .sl-avatar.avatar.avatar-sm.avatar-circle
-                        img.img-responsive alt="avatar" src="../assets/images/217.jpg" /
-                      /! .avatar
+                        = image_tag '217.jpg', class: 'img-responsive'
+
                       .sl-content.m-l-xl
                         h5.m-t-0
                           a.m-r-xs.theme-color href="javascript:void(0)"  Sally Mala
                           small.text-muted.fz-sm last month
                         p Sally added you to her circles
-                    /! .sl-item
+
                     .sl-item.p-b-md
                       .sl-avatar.avatar.avatar-sm.avatar-circle
-                        img.img-responsive alt="avatar" src="../assets/images/211.jpg" /
-                      /! .avatar
+                        = image_tag '211.jpg', class: 'img-responsive'
+
                       .sl-content.m-l-xl
                         h5.m-t-0
                           a.m-r-xs.theme-color href="javascript:void(0)"  Sara Adams
                           small.text-muted.fz-sm last month
                         p Sara has finished her task
-                    /! .sl-item
+
                     .sl-item.p-b-md
                       .sl-avatar.avatar.avatar-sm.avatar-circle
-                        img.img-responsive alt="avatar" src="../assets/images/214.jpg" /
-                      /! .avatar
+                        = image_tag '214.jpg', class: 'img-responsive'
+
                       .sl-content.m-l-xl
                         h5.m-t-0
                           a.m-r-xs.theme-color href="javascript:void(0)"  Sandy Doe
                           small.text-muted.fz-sm last month
                         p Sara has finished her task
-                    /! .sl-item
-                  /! .streamline
-              /! .widget
-          /! .row
 
           .row
             .col-md-12
