@@ -23,4 +23,9 @@ class Feature < ActiveRecord::Base
   #
   validates :name, presence: true
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+
+
+  def should_generate_new_friendly_id?
+    slug.blank?
+  end
 end

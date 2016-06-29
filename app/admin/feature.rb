@@ -34,7 +34,7 @@ ActiveAdmin.register Feature do
    form do |f|
     f.inputs 'Community' do
       f.input :name
-      f.input :slug
+      # f.input :slug
     end
 
     actions

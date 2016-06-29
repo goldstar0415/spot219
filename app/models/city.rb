@@ -74,4 +74,9 @@ class City < ActiveRecord::Base
       self.lat, self.lng = geo.lat, geo.lng if geo.success
     end
   end
+
+
+  def should_generate_new_friendly_id?
+    slug.blank?
+  end
 end

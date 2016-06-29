@@ -43,7 +43,6 @@ ActiveAdmin.register Place do
       row :name
       row :tagline
       row :about
-      row :country
       row :city
       row :address
       row :phone
@@ -86,7 +85,6 @@ ActiveAdmin.register Place do
     f.inputs 'Community' do
       f.input :name
       f.input :about
-      f.input :country
       f.input :city
       f.input :address
       f.input :phone
@@ -96,14 +94,13 @@ ActiveAdmin.register Place do
       f.input :web
       f.input :user
       f.inputs do
-        f.object.add_open_days
-        f.gmap_coordinate_picker :lat_column => 'latitude', :lng_column => 'longitude' , :zoom_level => 12, :default_coordinates => [cookies[:latitude] || f.object.latitude || '9.9333', cookies[:longitude] || f.object.longitude || '-84.0833'], map_width: 800
+        f.gmap_coordinate_picker lat_column: 'lat', lng_column: 'lng' , zoom_level: 12, default_coordinates: [cookies[:latitude] || f.object.lat || '9.9333', cookies[:longitude] || f.object.lng || '-84.0833'], map_width: 800
       end
       f.input :image
       hr
       f.inputs do
         f.has_many :sliders, heading: "Sliders", allow_destroy: true, new_record: true do |a|
-          a.input :image, :as => :file, :label => "Image",:hint => a.object.image.nil? ? a.template.content_tag(:span, "No Image Yet") : a.template.image_tag(a.object.image)
+          a.input :image, as: :file, label: "Image", hint: a.object.image.nil? ? a.template.content_tag(:span, "No Image Yet") : a.template.image_tag(a.object.image)
         end
       end
       f.input :slug
@@ -111,9 +108,9 @@ ActiveAdmin.register Place do
       # f.input :description, label: "SEO Description"
 
       f.inputs do
+        f.object.add_open_days
         f.has_many :open_days, heading: "Open Days", allow_destroy: false, new_record: false do |a|
           a.input :day_in_week
-          a.input :open, as: :select, include_blank: false
           a.input :start_time, as: :time_select, ampm: true, discard_minute: true, ignore_date: true, include_blank: false
           a.input :end_time, as: :time_select, ampm: true, discard_minute: true, ignore_date: true, include_blank: false
         end

@@ -467,7 +467,6 @@ textarea {
   background: none;
   text-align: center;
   cursor: default;
-
 }
 
 .apple_pagination a{
@@ -478,35 +477,40 @@ textarea {
 }
 
 .apple_pagination a, .apple_pagination span {
-    padding: 0.2em 0.3em;
+  padding: 0.2em 0.3em;
 }
-  .apple_pagination .disabled {
-    color: #aaaaaa;
-}
-  .apple_pagination .current {
-    font-style: normal;
-    font-weight: bold;
-    color: black !important;
-    background-color: #f0f0f0 !important;
-    display: inline-block;
-    line-height: 1.5;
-    border-radius: 0px;
-    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
-    padding: 4px 10px;
-  }
-  .apple_pagination a {
-    background-color: #fdfdfd !important;
-    text-decoration: none;
-    color: black;
-}
-    .apple_pagination a:hover, .apple_pagination a:focus {
-      background-color: #f0f0f0 !important;
-      text-decoration: underline; }
 
+.apple_pagination .disabled {
+  color: #aaaaaa;
+}
+
+.apple_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  color: black !important;
+  background-color: #f0f0f0 !important;
+  display: inline-block;
+  line-height: 1.5;
+  border-radius: 0px;
+  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
+  padding: 4px 10px;
+}
+
+.apple_pagination a {
+  background-color: #fdfdfd !important;
+  text-decoration: none;
+  color: black;
+}
+
+.apple_pagination a:hover, .apple_pagination a:focus {
+  background-color: #f0f0f0 !important;
+  text-decoration: underline;
+}
 
 .thumbnail .caption{
   overflow: hidden;
 }
+
 .open_days{
   .form-inline{
     margin: 5px 0px;

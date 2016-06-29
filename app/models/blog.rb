@@ -39,4 +39,9 @@ class Blog < ActiveRecord::Base
     average = 1 if average == 0
     average
   end
+
+
+  def should_generate_new_friendly_id?
+    slug.blank?
+  end
 end
