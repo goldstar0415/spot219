@@ -10,7 +10,7 @@
         .container
           .media
             .media-left.pull-left
-              = link_to (image_tag @blog.user.avatar.url(:thumb), size: "55x55", class: "creator"), @blog.user
+              = link_to (image_tag @blog.user.avatar.thumb, size: "55x55", class: "creator"), @blog.user
             .media-body
               %h5.media-heading
                 %small Created by:
@@ -18,11 +18,11 @@
               %p.creator-blog
                 %small
                   Posted: #{time_ago_in_words(@blog.created_at)} ago
-        .col-lg-6.col-lg-offset-3{:align => "center"}
+        .col-lg-6.col-lg-offset-3{align: "center"}
           %h2
             %strong= @blog.title
           %hr/
-          = image_tag @blog.img.url(:medium), size: "700x515", class: "img-responsive"
+          = image_tag @blog.image.medium, size: "700x515", class: "img-responsive"
           %br/
           %br/
         .col-lg-6.col-lg-offset-3
@@ -31,9 +31,12 @@
       .col-lg-8.col-lg-offset-2
         .container.comment-section
           %h6 Comments &amp; reviews :
+
           %hr/
+
           #comments
-            = render :partial => @blog.blog_comments
+            = render partial: @blog.comments
+
           - if user_signed_in?
             .col-lg-5
               = form_for [@blog, BlogComment.new] do |f|

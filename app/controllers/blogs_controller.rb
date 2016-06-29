@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @blog.increment
+    @blog
   end
 
   # GET /blogs/new
@@ -69,7 +69,8 @@ class BlogsController < ApplicationController
     end
   end
 
-  private
+
+  protected
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
       @blog = Blog.find(params[:id])

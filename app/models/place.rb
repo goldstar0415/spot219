@@ -21,7 +21,7 @@
 #  slug              :string
 #  featured          :boolean          default(FALSE)
 #  image             :string
-#  impressions_count :integer
+#  impressions_count :integer          default(0)
 #
 
 class Place < ActiveRecord::Base

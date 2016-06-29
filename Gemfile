@@ -91,6 +91,7 @@ group :development do
   gem 'rails-erd'
   gem 'annotate'
   gem 'quiet_assets'
+  gem 'awesome_print'
 end
 
 # group :production do

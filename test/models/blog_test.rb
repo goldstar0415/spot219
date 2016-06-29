@@ -10,7 +10,7 @@
 #  user_id           :integer
 #  description       :string
 #  city_id           :integer
-#  impressions_count :integer
+#  impressions_count :integer          default(0)
 #  image             :string
 #  slug              :string
 #

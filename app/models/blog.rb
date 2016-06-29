@@ -10,7 +10,7 @@
 #  user_id           :integer
 #  description       :string
 #  city_id           :integer
-#  impressions_count :integer
+#  impressions_count :integer          default(0)
 #  image             :string
 #  slug              :string
 #
@@ -35,7 +35,7 @@ class Blog < ActiveRecord::Base
   # end
 
   def average_rating
-    average = (self.views_number/20).round(1)
+    average = (self.impressions_count.to_i / 20).round(1)
     average = 1 if average == 0
     average
   end

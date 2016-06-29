@@ -69,6 +69,7 @@ GEM
       execjs
     awesome_nested_set (3.0.3)
       activerecord (>= 4.0.0, < 5)
+    awesome_print (1.6.1)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -565,6 +566,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   annotate
+  awesome_print
   bootstrap-sass
   bower-rails
   bxslider-rails

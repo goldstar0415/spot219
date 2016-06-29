@@ -2,10 +2,9 @@
 #
 # Table name: subscriptions
 #
-#  id      :integer          not null, primary key
-#  name    :string
-#  price   :decimal(8, 2)    default(0.0)
-#  package :integer
+#  id    :integer          not null, primary key
+#  name  :string
+#  price :decimal(8, 2)    default(0.0)
 #
 
 class Subscription < ActiveRecord::Base

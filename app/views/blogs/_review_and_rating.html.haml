@@ -1,4 +1,4 @@
-%script{:type => "application/ld+json"}
+%script{type: "application/ld+json"}
   {
   "@context": "http://schema.org/",
   "@type": "Service",
@@ -8,6 +8,6 @@
   "@type": "AggregateRating",
   "ratingValue": "#{@blog.average_rating}",
   "bestRating": "5",
-  "ratingCount": "#{@blog.views_number}"
+  "ratingCount": "#{@blog.impressions_count}"
   }
   }

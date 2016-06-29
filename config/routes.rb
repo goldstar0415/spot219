@@ -101,6 +101,15 @@
 #                                  PATCH      /admin/claims/:id(.:format)                                 admin/claims#update
 #                                  PUT        /admin/claims/:id(.:format)                                 admin/claims#update
 #                                  DELETE     /admin/claims/:id(.:format)                                 admin/claims#destroy
+#     batch_action_admin_countries POST       /admin/countries/batch_action(.:format)                     admin/countries#batch_action
+#                  admin_countries GET        /admin/countries(.:format)                                  admin/countries#index
+#                                  POST       /admin/countries(.:format)                                  admin/countries#create
+#                new_admin_country GET        /admin/countries/new(.:format)                              admin/countries#new
+#               edit_admin_country GET        /admin/countries/:id/edit(.:format)                         admin/countries#edit
+#                    admin_country GET        /admin/countries/:id(.:format)                              admin/countries#show
+#                                  PATCH      /admin/countries/:id(.:format)                              admin/countries#update
+#                                  PUT        /admin/countries/:id(.:format)                              admin/countries#update
+#                                  DELETE     /admin/countries/:id(.:format)                              admin/countries#destroy
 #                  admin_dashboard GET        /admin/dashboard(.:format)                                  admin/dashboard#index
 #      batch_action_admin_features POST       /admin/features/batch_action(.:format)                      admin/features#batch_action
 #                   admin_features GET        /admin/features(.:format)                                   admin/features#index
@@ -151,7 +160,7 @@
 #                                  POST       /admin/comments(.:format)                                   admin/comments#create
 #                    admin_comment GET        /admin/comments/:id(.:format)                               admin/comments#show
 #                                  DELETE     /admin/comments/:id(.:format)                               admin/comments#destroy
-#                   dashboard_root GET        /dashboard(.:format)                                        dashboard/welcome#index
+#                   dashboard_root GET        /biz(.:format)                                              dashboard/welcome#index
 #                             rate POST       /rate(.:format)                                             rater#create
 #                  location_cities POST       /cities/location(.:format)                                  cities#location
 #                           cities GET        /cities(.:format)                                           cities#index
