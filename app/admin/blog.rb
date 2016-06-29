@@ -18,7 +18,7 @@ ActiveAdmin.register Blog do
     selectable_column
     id_column
     column :thumb do |blog|
-      image_tag(blog.img.url(:thumb), width: '100')
+      image_tag(blog.image.thumb, width: '100')
     end
     column :title
 
@@ -30,7 +30,7 @@ ActiveAdmin.register Blog do
       blog.body.try(:truncate, 100)
     end
 
-    column :views_number
+    column :impressions_count, label: 'View count'
     column :user
     actions
 
@@ -40,9 +40,9 @@ ActiveAdmin.register Blog do
     attributes_table do
       row :title
       row :user
-      row :views_number
+      row :impressions_count, label: 'View Count'
       row :image do
-        image_tag(blog.img.url(:thumb), width: '100')
+        image_tag(blog.image.thumb, width: '100')
       end
 
       row :body do
@@ -54,12 +54,12 @@ ActiveAdmin.register Blog do
  form do |f|
     f.inputs 'Community' do
       f.input :title
-      f.input :body, :as => :ckeditor
+      f.input :body, as: :ckeditor
       f.input :user, include_blank: false
-      f.input :city_id, :as => :select,
+      f.input :city_id, as: :select,
               :collection => City.all.map{|c| [c.name, c.id]},
               include_blank: "All City"
-      f.input :img
+      f.input :image
       hr
       f.input :description, label: "SEO Description"
     end
