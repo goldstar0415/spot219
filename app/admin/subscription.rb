@@ -20,7 +20,6 @@ ActiveAdmin.register Subscription do
     id_column
     column :name
     column :price
-    column :package
 
     actions
   end
@@ -29,7 +28,6 @@ ActiveAdmin.register Subscription do
     attributes_table do
       row :name
       row :price
-      row :package
 
       panel "Subscription Features" do
         table_for subscription.features do
@@ -40,11 +38,11 @@ ActiveAdmin.register Subscription do
     end
   end
 
-   form do |f|
+  form do |f|
     f.inputs 'Community' do
       f.input :name
       f.input :price
-      f.input :package, include_blank: false
+      # f.input :package, include_blank: false
       hr
       f.inputs 'Features' do
         f.input :feature_ids, as: :check_boxes, collection: Feature.all
