@@ -11,13 +11,16 @@
           .media
             .media-left.pull-left
               = link_to (image_tag @blog.user.avatar.thumb, size: "55x55", class: "creator"), @blog.user
+
             .media-body
               %h5.media-heading
                 %small Created by:
                 = link_to @blog.user.full_name, @blog.user
+
               %p.creator-blog
                 %small
                   Posted: #{time_ago_in_words(@blog.created_at)} ago
+
         .col-lg-6.col-lg-offset-3{align: "center"}
           %h2
             %strong= @blog.title

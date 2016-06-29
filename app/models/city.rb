@@ -35,6 +35,11 @@ class City < ActiveRecord::Base
   has_many :users
 
 
+  # callbacks
+  #
+  before_validation :geocode_address
+
+
   # validations
   #
   validates :name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }

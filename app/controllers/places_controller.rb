@@ -16,6 +16,7 @@ class PlacesController < ApplicationController
   #
   #
   def index
+    redirect_to({ controller: 'cities', action: 'show', id: session[:user_city] }) if session[:user_city].present?
     @places = Place.feature
 
     if @places.count < LIMIT

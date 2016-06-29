@@ -10,6 +10,9 @@ class CitiesController < ApplicationController
     @places = Place.all
   end
 
+
+  #
+  #
   def location
     if params['latitude'] && params['longitude']
       cookies[:latitude] = params['latitude']
