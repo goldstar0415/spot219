@@ -36,7 +36,7 @@ ActiveAdmin.register City do
 
       row :lng
       row :lat
-      # row :radius
+      row :distance
 
       row :places do
         city.places.count
@@ -64,7 +64,7 @@ ActiveAdmin.register City do
       f.input :about
       f.input :lng
       f.input :lat
-      # f.input :radius
+      f.input :distance
       f.input :image
       f.input :slug
     end
