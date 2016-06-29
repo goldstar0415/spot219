@@ -19,7 +19,10 @@ class ApplicationController < ActionController::Base
 
       if user_geocoded_location.success?
         city = City.find_by(name: user_geocoded_location.city)
-        session[:user_city] = city.slug || city.id
+
+        if city.present?
+          session[:user_city] = city.slug || city.id
+        end
       end
     end
   end
