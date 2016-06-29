@@ -17,8 +17,6 @@ class ApplicationController < ActionController::Base
       user_ip = (Rails.env.development? ? '199.103.62.197' : request.remote_ip)
       user_geocoded_location = Geokit::Geocoders::MultiGeocoder.geocode(user_ip)
 
-      ap user_geocoded_location
-
       if user_geocoded_location.success?
         city = City.find_by(name: user_geocoded_location.city)
         session[:user_city] = city.slug || city.id
