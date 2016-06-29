@@ -54,7 +54,7 @@ class Place < ActiveRecord::Base
   # validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
   # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_presence_of :name, :about, :address, :city, :phone, :user, :tagline
-  before_validation :geocode_address, on: :create
+  before_validation :geocode_address
 
 
   # nested attributes

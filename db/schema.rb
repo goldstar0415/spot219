@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626183827) do
+ActiveRecord::Schema.define(version: 20160629141940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,16 +111,13 @@ ActiveRecord::Schema.define(version: 20160626183827) do
   create_table "cities", force: :cascade do |t|
     t.text     "about"
     t.string   "name"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.float    "lng"
     t.float    "lat"
     t.float    "radius"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.string   "image"
     t.string   "slug"
     t.float    "distance"
     t.integer  "country_id"

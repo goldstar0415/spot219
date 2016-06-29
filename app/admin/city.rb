@@ -13,19 +13,17 @@ ActiveAdmin.register City do
 #   permitted
 # end
   filter :name
-  filter :subdomain
+  filter :slug
 
   index do
     selectable_column
-    column "Subdomain" do |c|
-      link_to c.subdomain, edit_admin_city_path(c.subdomain)
+    column "Slug" do |c|
+      link_to c.slug, edit_admin_city_path(c)
     end
     column :name
-    column :first_name
-    column :last_name
-    column :longitude
-    column :latitude
-    column :radius
+    column :lat
+    column :lng
+    # column :radius
   end
 
   show do
@@ -33,15 +31,12 @@ ActiveAdmin.register City do
       row :name
 
       row :user
-      row :first_name
-      row :last_name
-      row :email
 
       row :about
 
-      row :longitude
-      row :latitude
-      row :radius
+      row :lng
+      row :lat
+      # row :radius
 
       row :places do
         city.places.count
@@ -55,25 +50,23 @@ ActiveAdmin.register City do
         image_tag(city.image.url, width: 500)
       end
 
-      row :subdomain
+      row :slug
     end
 
     active_admin_comments
   end
 
-  form do |f|
+  form(html: { multipart: true }) do |f|
     f.inputs 'Community' do
+      f.input :country
       f.input :name
       f.input :user
-      f.input :first_name
-      f.input :last_name
-      f.input :email
       f.input :about
-      f.input :longitude
-      f.input :latitude
-      f.input :radius
+      f.input :lng
+      f.input :lat
+      # f.input :radius
       f.input :image
-      f.input :subdomain
+      f.input :slug
     end
 
     actions
