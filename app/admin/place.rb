@@ -14,22 +14,25 @@ ActiveAdmin.register Place do
 # end
 
   filter :name
-  filter :subdomain
+  # filter :slug
 
   index do
     selectable_column
-    column "Subdomain" do |c|
-      link_to (c.subdomain.blank? ? c.name : c.subdomain), edit_admin_place_path(c.subdomain.blank? ? c.id : c.subdomain)
+    column "Slug" do |c|
+      link_to c.slug, edit_admin_place_path(c)
     end
     column :name
-    column :title
-    column :title do |place|
-      place.title.try(:truncate, 30)
+    # column :tagline
+    column :tagline do |place|
+      place.tagline.try(:truncate, 24)
     end
-    column :about
+    column :about do |place|
+      place.about.try(:truncate, 24)
+    end
     column :address
     column :phone
     column :web
+    column :city
     column :user
 
     actions
@@ -38,24 +41,23 @@ ActiveAdmin.register Place do
   show do
     attributes_table do
       row :name
-      row :title
-      row :description
+      row :tagline
       row :about
       row :country
       row :city
       row :address
       row :phone
-      row :fb
-      row :twit
-      row :insta
+      row :facebook
+      row :twitter
+      row :instagram
       row :web
       row :user
-      row :subdomain
-      row :longitude
-      row :latitude
+      row :slug
+      row :lat
+      row :lng
 
       row :image do
-        image_tag(place.image.url, width: 500)
+        image_tag(place.image, width: 500)
       end
 
       panel "Sliders" do
@@ -67,7 +69,7 @@ ActiveAdmin.register Place do
       end
 
       row :days do
-        raw(place.open_days.where(open: true).map do |open_day|
+        raw(place.open_days.map do |open_day|
           ("<strong>#{open_day.day_in_week}</strong>" + " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}")
         end.join('<br/>'))
       end
@@ -85,12 +87,12 @@ ActiveAdmin.register Place do
       f.input :name
       f.input :about
       f.input :country
-      f.input :city_id, collection: City.all.map {|item| [item.name, item.id]}, as: :select
+      f.input :city
       f.input :address
       f.input :phone
-      f.input :fb
-      f.input :twit
-      f.input :insta
+      f.input :facebook
+      f.input :twitter
+      f.input :instagram
       f.input :web
       f.input :user
       f.inputs do
@@ -104,9 +106,9 @@ ActiveAdmin.register Place do
           a.input :image, :as => :file, :label => "Image",:hint => a.object.image.nil? ? a.template.content_tag(:span, "No Image Yet") : a.template.image_tag(a.object.image)
         end
       end
-      f.input :subdomain
-      f.input :title, label: "SEO Title"
-      f.input :description, label: "SEO Description"
+      f.input :slug
+      f.input :tagline, label: "SEO Title"
+      # f.input :description, label: "SEO Description"
 
       f.inputs do
         f.has_many :open_days, heading: "Open Days", allow_destroy: false, new_record: false do |a|

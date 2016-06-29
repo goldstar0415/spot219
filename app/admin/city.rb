@@ -47,7 +47,7 @@ ActiveAdmin.register City do
       end
 
       row :image do
-        image_tag(city.image.url, width: 500)
+        image_tag(city.image, width: 500)
       end
 
       row :slug

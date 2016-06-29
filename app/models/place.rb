@@ -88,9 +88,9 @@ class Place < ActiveRecord::Base
 
   def average_rating
     if self.comments.size > 0
-        self.comments.average(:number).round(1)
+      self.comments.average(:number).round(1)
     else
-        '5.0'
+      '5.0'
     end
   end
 
