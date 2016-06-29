@@ -43,21 +43,6 @@ if User.count == 0
 end
 
 
-# # Cities
-# #======================================================
-# City.destroy_all
-
-# ['Toronto', 'Jakarta', 'New York', 'Kualalumpur', 'Singapore'].each do |city_name|
-#   user = User.with_role(:mayor).order("RANDOM()").first
-
-#   if @city = City.create(name: city_name, user: user)
-#     p "City #{@city.name} generated -------------"
-#   else
-#     p "#{@city.errors.full_messages} -------------"
-#   end
-# end
-
-
 # Categories
 #======================================================
 ['Food', 'Nightlife', 'Restaurants', 'Shopping', 'Active Life'].each do |category|
