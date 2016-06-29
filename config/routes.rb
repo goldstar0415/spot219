@@ -425,7 +425,7 @@
 #
 
 Rails.application.routes.draw do
-  root 'places#index'
+  root 'welcome#index'
 
   resources :conversations do
     resources :messages

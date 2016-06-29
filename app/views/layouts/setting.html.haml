@@ -5,7 +5,7 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %link{:href => "https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "//fonts.googleapis.com/css?family=Open+Sans:400,600,300,700", :rel => "stylesheet", :type => "text/css"}/
     = display_meta_tags site: 'TurkishSpot',
                         separator: "|",
                         reverse: true
@@ -24,7 +24,7 @@
       #body.row
         .col-lg-12
           = render 'layouts/navbar'
-          = bootstrap_devise_error_messages!
+          / = bootstrap_devise_error_messages!
           #section-one
             #section-sign-up.sign_up
               .row

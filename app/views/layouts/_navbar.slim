@@ -29,9 +29,6 @@ nav.navbar.navbar-default.nav-color
                 li.divider role="separator"
                 li= link_to "Create new category", new_category_path
 
-          - else
-            li= link_to "Categories", categories_path
-
           - if current_user.has_role?(:admin) || current_user.has_role?(:mayor)
             li.dropdown
               a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
@@ -82,7 +79,7 @@ nav.navbar.navbar-default.nav-color
 
         - else
           li= link_to "All cities", cities_path
-          li= link_to "Categories", categories_path
+          li= link_to "Places", places_path
           li= link_to 'Register', new_user_registration_path
           li= link_to 'Log In', new_user_session_path
 
