@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index, :search]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
-  LIMIT = 15
+  # LIMIT = 15
 
 
   #
@@ -19,7 +19,7 @@ class PlacesController < ApplicationController
   def index
     keywords = params[:search].present? ? params[:search] : '*'
 
-    @places = Place.search keywords
+    @places = Place.search keywords, page: params[:page], per_page: 12
     # @places = params[:search].present? ? Place.search(params[:search]) : Place.featured
 
     # if @places.count < LIMIT
@@ -134,22 +134,7 @@ class PlacesController < ApplicationController
   end
 
 
-  #
-  #
-  # def search
-  #   @places = Place.search params[:search]
-  #   @places.each do |item|
-  #     item.search_logs.create(keyword: params[:search])
-  #   end
-
-  #   @cities = City.limit(10)
-  #   @cate = Category.limit(10)
-  # end
-
-
   protected
-
-
     #
     #
     def set_place

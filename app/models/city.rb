@@ -20,8 +20,9 @@
 class City < ActiveRecord::Base
   # plugins
   #
+  searchkick
   extend FriendlyId
-  friendly_id :name
+  friendly_id :slug_candidates
   # acts_as_mappable auto_geocode: { field: :name, error_message: 'Could not geocode city'}
   mount_uploader :image, ImageUploader
 
@@ -45,11 +46,15 @@ class City < ActiveRecord::Base
   validates_uniqueness_of :name, case_sensitive: false, scope: [:country]
 
 
+  #
+  #
   def countPlace
     places.count
   end
 
 
+  #
+  #
   def categories
     c = []
     places.each do |place|
@@ -60,17 +65,19 @@ class City < ActiveRecord::Base
   end
 
 
-  def self.search lat, long
-    cities = []
-    City.find_each do |city|
-      in_radius_ids = City.near([lat, long], city.radius, units: :km).map(&:id)
-      cities << city if in_radius_ids.include?(city.id)
-    end
+  # def self.search lat, long
+  #   cities = []
+  #   City.find_each do |city|
+  #     in_radius_ids = City.near([lat, long], city.radius, units: :km).map(&:id)
+  #     cities << city if in_radius_ids.include?(city.id)
+  #   end
 
-    cities
-  end
+  #   cities
+  # end
 
 
+  #
+  #
   def geocode_address
     if lat.nil? || lng.nil?
       geo = Geokit::Geocoders::MultiGeocoder.geocode("#{name}, #{country}")
@@ -81,7 +88,28 @@ class City < ActiveRecord::Base
   end
 
 
+  #
+  #
   def should_generate_new_friendly_id?
     slug.blank?
+  end
+
+
+  #
+  #
+  def search_data
+    {
+      name: name
+    }
+  end
+
+
+  #
+  #
+  def slug_candidates
+    [
+      :name,
+      [:name, :country]
+    ]
   end
 end
