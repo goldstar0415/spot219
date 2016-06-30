@@ -1,0 +1,33 @@
+/ = div_for(comment) do ||
+.media
+  .media-left.pull-left
+    / = link_to (image_tag comment.user.avatar.thumb, size: "55x55"), comment.user
+
+  .media-body
+    h5.media-heading style="font-weight: bold;"
+      = h(comment.title)
+      - if comment.rating == 1
+        = image_tag("star-on.png")
+      - elsif comment.rating == 2
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+      - elsif comment.rating ==3
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+      - elsif comment.rating == 4
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+      - elsif comment.rating == 5
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+        = image_tag("star-on.png")
+    p= h(comment.description)
+
+    p
+      / small Posted: #{time_ago_in_words(comment.created_at)} ago by #{link_to h(comment.user.full_name), comment.user}
+hr

@@ -65,7 +65,7 @@ class Place < ActiveRecord::Base
 
   # scopes
   #
-  scope :feature, -> {
+  scope :featured, -> {
     where(featured: :true).order("RANDOM()").limit(12)
   }
 

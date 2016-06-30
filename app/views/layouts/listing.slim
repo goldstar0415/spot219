@@ -1,0 +1,68 @@
+= extends :application do ||
+  #section-one
+    #section-content
+      .row
+        .col-xs-12
+          p#notice
+            = notice
+
+          h3.title= @page_title
+
+          hr
+          .col-lg-8
+            = yield
+
+          = area :sidebar do ||
+            .side-nav.col-lg-4
+              .col-md-6
+                h5= link_to 'Cities', cities_path, class: "link"
+
+                - @cities.each do |city|
+                  h6= link_to "#{city.name} <small>(#{pluralize city.countPlace, 'place'})</small>".html_safe, city
+
+                h6= link_to 'View all cities', cities_path
+
+                br
+
+                h5= link_to "Categories", categories_path, class: 'link'
+
+                - @cate.each do |category|
+                  h6= link_to "#{category.name} <small>(#{pluralize category.places.count, 'place'})</small>".html_safe, category
+
+                h6= link_to 'View all categories', categories_path
+
+                br
+
+                - if @blog
+                  .row
+                    .thumbnail
+                      = image_tag @blog.image.thumb, class: 'img-responsive'
+
+                      .caption
+                        h3= link_to @blog.title, @blog, class: 'link'
+                        p= @blog.body.truncate(80)
+                        p= link_to 'Read more', @blog, class: 'btn'
+
+              .col-md-6 align="center"
+                - if user_signed_in?
+                  h4 Hello, #{current_user.full_name}
+
+                  - if current_user.admin?
+                    h5 You are admin, so you can
+                    h5= link_to 'Create a New blog', new_blog_path, class: 'link'
+
+                - else
+                  = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
+                    .login
+                      = f.email_field :email, placeholder: "Your Email", class: "form-control"
+                    .login
+                      = f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control"
+                    .checkbox
+                      = f.label :remember_me do
+                        = f.check_box :remember_me
+                        Remember me
+                    = f.submit  t('.sign_in', default: "Sign in"), class: "btn btn-default pull-right"
+
+                  br
+
+                  = link_to t(".forgot_your_password", default: "Forgot your password?"), new_password_path(resource_name)

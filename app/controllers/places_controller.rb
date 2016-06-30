@@ -1,9 +1,10 @@
 class PlacesController < ApplicationController
+  layout 'listing', only: :index
   before_action :set_place, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index, :search]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
-  LIMIT = 16
+  LIMIT = 15
 
 
   #
@@ -16,7 +17,7 @@ class PlacesController < ApplicationController
   #
   #
   def index
-    @places = Place.feature
+    @places = Place.featured
 
     if @places.count < LIMIT
       items = Place.where.not(id: @places.ids)
@@ -28,6 +29,7 @@ class PlacesController < ApplicationController
     @cities = City.limit(10)
     @cate = Category.limit(10)
     @blog = Blog.last
+    @page_title = 'Places'
   end
 
 

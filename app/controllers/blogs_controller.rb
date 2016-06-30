@@ -1,32 +1,34 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!, only: :index
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :require_admin, except: [:show]
+
 
   # GET /blogs
   # GET /blogs.json
   def index
-    if has_role?(:admin)
-      @blogs = Blog.all
-    else
-      @blogs = current_user.blogs
-    end
-    @blogs = @blogs.page(params[:page]).per(15)
+    @blogs = (current_user.has_role?(:admin) ? Blog.all : current_user.blogs).page(params[:page]).per(15)
   end
+
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @commentable = @blog
     impressionist @blog
   end
+
 
   # GET /blogs/new
   def new
     @blog = Blog.new
   end
 
+
   # GET /blogs/1/edit
   def edit
   end
+
 
   # POST /blogs
   # POST /blogs.json
@@ -45,6 +47,7 @@ class BlogsController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
@@ -59,6 +62,7 @@ class BlogsController < ApplicationController
     end
   end
 
+
   # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
@@ -71,16 +75,22 @@ class BlogsController < ApplicationController
 
 
   protected
+    #
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
       @blog = Blog.find(params[:id])
     end
 
+
+    #
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :body, :img, :city_id)
+      params.require(:blog).permit(:title, :body, :image, :city_id)
     end
 
+
+    #
+    #
     def require_admin
       if !user_signed_in? || (user_signed_in? and !has_role?(:admin, :mayor))
         flash[:danger] = "Only admins can perform that action"

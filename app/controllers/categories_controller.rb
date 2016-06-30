@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  layout 'listing', only: :show
   before_action :require_admin, except: [:index, :show]
 
 
@@ -57,6 +58,7 @@ class CategoriesController < ApplicationController
     @cate = Category.limit(10)
     @category_places = @category.places.order(created_at: :desc).page(params[:page]).per(15)
     @blog = Blog.last
+    @page_title = @category.name
   end
 
 

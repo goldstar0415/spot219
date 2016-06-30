@@ -30,7 +30,7 @@ class CitiesController < ApplicationController
   def show
     @cate = Category.limit(10)
     @places = @city.places.order(featured: :desc).page(params[:place_page]).per(16)
-    @cities = City.limit(10)
+    @cities = City.where.not(id: @city.id).limit(10)
     @blog = Blog.last
 
     cookies[:first_time] = false

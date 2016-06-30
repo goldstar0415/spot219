@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
-  
+  #
+  #
   def create
-    @place = Place.find(params[:place_id])
-    @comment = @place.comments.create(comment_params)
+    # @place = Place.find(params[:place_id])
+    @comment = Comment.create(comment_params)
     @comment.user = current_user
-    
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @place }
@@ -15,13 +16,12 @@ class CommentsController < ApplicationController
       end
     end
   end
-  
-  
-  private
-  
-  def comment_params
-    params.require(:comment).permit(:title, :description, :place_id, :number)
-  end
-  
-  
+
+
+  protected
+    #
+    #
+    def comment_params
+      params.require(:comment).permit(:title, :description, :rating, :commentable)
+    end
 end

@@ -52,6 +52,7 @@ gem 'slim-rails'
 gem 'progress_bar'
 gem 'bower-rails'
 gem 'material_icons'
+gem 'nestive'
 
 
 # Use Unicorn as the app server
