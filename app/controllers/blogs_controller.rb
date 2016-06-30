@@ -1,20 +1,20 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, only: :index
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin, except: [:show]
+  # before_action :require_admin, except: [:show]
 
 
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = (current_user.has_role?(:admin) ? Blog.all : current_user.blogs).page(params[:page]).per(15)
+    @blogs = Blog.all.page(params[:page]).per(15)
+    # @blogs = (current_user.has_role?(:admin) ? Blog.all : current_user.blogs).page(params[:page]).per(15)
   end
 
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @commentable = @blog
+    @comment = Comment.new(commentable: @blog)
     impressionist @blog
   end
 

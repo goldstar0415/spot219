@@ -34,17 +34,17 @@
                 br
 
                 - if @blog
-                  .row
-                    .thumbnail
-                      = image_tag @blog.image.thumb, class: 'img-responsive'
+                  .thumbnail
+                    = image_tag @blog.image.thumb, class: 'img-responsive'
 
-                      .caption
-                        h3= link_to @blog.title, @blog, class: 'link'
-                        p= @blog.body.truncate(80)
-                        p= link_to 'Read more', @blog, class: 'btn'
+                    .caption
+                      h3= link_to @blog.title, @blog, class: 'link'
+                      p= @blog.body.truncate(80)
+                      p= link_to 'Read more', @blog, class: 'btn'
 
               .col-md-6 align="center"
                 - if user_signed_in?
+                  .current-user-avatar= image_tag current_user.avatar.thumb
                   h4 Hello, #{current_user.full_name}
 
                   - if current_user.admin?

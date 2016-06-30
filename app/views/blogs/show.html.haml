@@ -42,23 +42,26 @@
               - @blog.comments.each do |comment|
                 = render 'comments/comment', comment: comment
 
-          - if user_signed_in?
-            .col-lg-5
-              = simple_form_for [@commentable, Comment.new] do |f|
-                = f.input :title
-                / = f.text_field :title, :label => "Title", as: :string, placeholder: "Title (title can't be blank)", class: "form-control"
-                / %br/
-                = f.input :description, label: 'Comment'
-                / = f.text_area :description, :label => "Comment", as: :text, input_html: { rows: "4" }, placeholder: "Description (description can't be blank)", class: "form-control"
-                %h5
-                  Rate me
-                  %small (Higher is better)
+          / - if user_signed_in?
+          .col-lg-5
+            = simple_form_for @comment do |f|
+              = f.input :title
+              / = f.text_field :title, :label => "Title", as: :string, placeholder: "Title (title can't be blank)", class: "form-control"
+              / %br/
+              = f.input :description, label: 'Comment'
+              = f.input :commentable_id, as: :hidden, value: @blog.id
+              = f.input :commentable_type, as: :hidden, value: 'Blog'
+              / = f.input :redirect_to, as: :hidden, value: current_page
+              / = f.text_area :description, :label => "Comment", as: :text, input_html: { rows: "4" }, placeholder: "Description (description can't be blank)", class: "form-control"
+              %h5
+                Rate me
+                %small (Higher is better)
 
-                = f.select :rating, ((1..5).map {|i| [i,i] }), class: "form-control"
-                %br/
-                %br/
-                / = f.input :commentable
-                = f.submit "Add Comment", class: "btn btn-success"
+              = f.select :rating, ((1..5).map {|i| [i,i] }), class: "form-control"
+              %br/
+              %br/
+              / = f.input :commentable
+              = f.submit "Add Comment", class: "btn btn-success"
 
 .container
   %br/

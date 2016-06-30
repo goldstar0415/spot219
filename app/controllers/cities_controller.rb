@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+  layout 'listing', only: :show
   before_action :set_city, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
   before_action :require_same_user, only: [:edit, :update, :destroy]

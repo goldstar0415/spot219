@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: :create
+
+
   #
   #
   def create
@@ -22,6 +25,6 @@ class CommentsController < ApplicationController
     #
     #
     def comment_params
-      params.require(:comment).permit(:title, :description, :rating, :commentable)
+      params.require(:comment).permit(:title, :description, :rating, :commentable_id, :commentable_type)
     end
 end
