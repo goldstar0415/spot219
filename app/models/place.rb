@@ -72,6 +72,7 @@ class Place < ActiveRecord::Base
 
   # callbacks
   #
+  before_validation :strip_links
   # after_save :update_role
   # before_create { self.featured = !user.subscription_id.nil? }
 
@@ -140,5 +141,14 @@ class Place < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     slug.blank?
+  end
+
+
+  #
+  #
+  def strip_links
+    self.facebook = Addressable::URI.parse(facebook).path.split('/')[1] unless facebook.blank?
+    self.twitter = Addressable::URI.parse(twitter).path.split('/')[1] unless twitter.blank?
+    self.instagram = Addressable::URI.parse(instagram).path.split('/')[1] unless instagram.blank?
   end
 end
