@@ -7,14 +7,14 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
 #  lng        :float
 #  lat        :float
 #  radius     :float
 #  image      :string
 #  slug       :string
 #  distance   :float
-#  country_id :integer
+#  country    :string
+#  creator_id :integer
 #
 
 class City < ActiveRecord::Base
@@ -28,10 +28,9 @@ class City < ActiveRecord::Base
 
   # relations
   #
-  belongs_to :country
   has_many :places, dependent: :destroy
   has_many :blogs
-  belongs_to :user
+  belongs_to :creator, class_name: 'User'
   has_many :users
 
 
@@ -42,7 +41,8 @@ class City < ActiveRecord::Base
 
   # validations
   #
-  validates :name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
+  validates_presence_of :name, :country, :about
+  validates_uniqueness_of :name, case_sensitive: false, scope: [:country]
 
 
   def countPlace
@@ -73,7 +73,7 @@ class City < ActiveRecord::Base
 
   def geocode_address
     if lat.nil? || lng.nil?
-      geo = Geokit::Geocoders::MultiGeocoder.geocode ("#{name}, #{country.name}")
+      geo = Geokit::Geocoders::MultiGeocoder.geocode("#{name}, #{country}")
       # errors.add(:address, "Could not Geocode address") if !geo.success
       self.lat, self.lng = 0, 0 if !geo.success
       self.lat, self.lng = geo.lat, geo.lng if geo.success

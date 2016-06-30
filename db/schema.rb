@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629211834) do
+ActiveRecord::Schema.define(version: 20160630035537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,14 +113,14 @@ ActiveRecord::Schema.define(version: 20160629211834) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
     t.float    "lng"
     t.float    "lat"
     t.float    "radius"
     t.string   "image"
     t.string   "slug"
     t.float    "distance"
-    t.integer  "country_id"
+    t.string   "country"
+    t.integer  "creator_id"
   end
 
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
@@ -203,16 +203,6 @@ ActiveRecord::Schema.define(version: 20160629211834) do
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
-  end
-
-  create_table "countries", force: :cascade do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.float    "lat"
-    t.float    "lng"
-    t.float    "distance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|

@@ -7,14 +7,14 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
 #  lng        :float
 #  lat        :float
 #  radius     :float
 #  image      :string
 #  slug       :string
 #  distance   :float
-#  country_id :integer
+#  country    :string
+#  creator_id :integer
 #
 
 require 'test_helper'

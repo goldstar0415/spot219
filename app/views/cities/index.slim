@@ -1,0 +1,24 @@
+#section-one
+  #section-content
+    .row
+      .col-lg-10.col-lg-offset-1
+        #section-one.container
+          table.table.table-striped
+            thead
+              tr
+                th align="center" City name
+                th
+                th
+
+            tbody
+              - @cities.each do |city|
+                tr
+                  td align="center"
+                    = link_to "#{city.name} <small>(#{pluralize city.countPlace, 'place'})</small>".html_safe, city
+
+                  td align="center"= link_to 'Show', city
+
+                  td align="center"
+                    - if user_signed_in? && current_user == city.creator
+                      = link_to 'Edit', edit_city_path(city)
+                      = link_to 'Delete', city, method: :delete, data: { confirm: 'Are you sure?' }

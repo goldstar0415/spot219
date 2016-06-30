@@ -1,7 +1,8 @@
 class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:show, :index, :location]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+
 
   # GET /cities
   # GET /cities.json
@@ -41,15 +42,18 @@ class CitiesController < ApplicationController
     @city = City.new
   end
 
+
   # GET /cities/1/edit
   def edit
   end
+
 
   # POST /cities
   # POST /cities.json
   def create
     @city = City.new(city_params)
-    @city.user = current_user
+    @city.creator ||= current_user
+
     respond_to do |format|
       if @city.save
         format.html { redirect_to new_place_path, notice: 'City was successfully created.' }
@@ -60,6 +64,7 @@ class CitiesController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /cities/1
   # PATCH/PUT /cities/1.json
@@ -85,9 +90,8 @@ class CitiesController < ApplicationController
     end
   end
 
+
   protected
-
-
     #
     # Use callbacks to share common setup or constraints between actions.
     def set_city
@@ -98,8 +102,8 @@ class CitiesController < ApplicationController
     #
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
-      params.require(:city).permit(:first_name, :last_name, :email, :about, :name, :user_id,
-        :latitude, :longitude, :radius, :subdomain)
+      params.require(:city).permit(:country, :about, :name, :user_id,
+        :lat, :lng, :distance, :slug)
     end
 
 

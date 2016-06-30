@@ -1,4 +1,4 @@
-= form_for(@city) do |f|
+= simple_form_for(@city) do |f|
   - if @city.errors.any?
     #error_explanation
       %h2
@@ -7,49 +7,29 @@
       %ul
         - @city.errors.full_messages.each do |message|
           %li= message
+
   #section-add-city
     %hr/
     .row
       .col-lg-10.col-lg-offset-1
-        %form
-          %h4 Introduce yourself
+        .row
+          .col-xs-12
+            = f.input :name
+            = f.input :slug, label: 'Subdomain'
+            = f.input :country
+            = f.input :about, label: 'Why would you like to add your city ?'
+
           .col-lg-4
-            .form-group
-              %label{:for => "exampleInputPassword1"} First Name
-              = f.text_field :first_name,class: "form-control", placeholder: "First Name", required: true
+            = f.input :lat, label: 'Latitude'
+
           .col-lg-4
-            .form-group
-              %label{:for => "exampleInputPassword1"} Last Name
-              = f.text_field :last_name, class: "form-control", placeholder: "Last Name", required: true
+            = f.input :lng, label: 'Longitude'
+
           .col-lg-4
-            .form-group
-              %label{:for => "exampleInputPassword1"} Email
-              = f.text_field :email,class: "form-control", placeholder: "Your Email", required: true
-          .col-lg-12
-            .form-group
-              %label Subdomain
-              = f.text_field :subdomain, class: "form-control", placeholder: "Subdomain", required: true
-          .form-group.col-lg-12
-            %label Why would you like to add your city ?
-            = f.text_area :about,class: "form-control", rows: "3", placeholder: "Say something about the city ...", required: true
-          .col-lg-4
-            .form-group
-              %label City Name
-              = f.text_field :name,class: "form-control", placeholder: "City Name", required: true
-          .col-lg-4
-            .form-group
-              %label Latitude
-              = f.text_field :latitude, class: "form-control", placeholder: "City's latitude", required: true
-          .col-lg-4
-            .form-group
-              %label Longitude
-              = f.text_field :longitude, class: "form-control", placeholder: "City's longitude", required: true
-          .col-lg-4
-            .form-group
-              %label Radius (unit: km)
-              = f.text_field :radius, class: "form-control", placeholder: "Radius", required: true
-    .col-lg-1.col-lg-offset-1
-      = f.submit "Next", class: "btn btn-success"
-      %br/
-      %hr/
-      = link_to 'Cancel, go to home', root_path, class: "btn btn-default btn-xs"
+            = f.input :distance, label: 'Radius (unit: km)'
+
+          .col-xs-12
+            = f.submit "Next", class: "btn btn-success"
+            %br/
+            %hr/
+            = link_to 'Cancel, go to home', root_path, class: "btn btn-default btn-xs"

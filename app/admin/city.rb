@@ -13,7 +13,7 @@ ActiveAdmin.register City do
 #   permitted
 # end
   filter :name
-  filter :slug
+  filter :country
 
   index do
     selectable_column
@@ -21,6 +21,7 @@ ActiveAdmin.register City do
       link_to c.slug, edit_admin_city_path(c)
     end
     column :name
+    column :country
     column :lat
     column :lng
     # column :radius
@@ -29,14 +30,16 @@ ActiveAdmin.register City do
   show do
     attributes_table do
       row :name
-
-      row :user
+      row :slug
+      column :country
 
       row :about
 
       row :lng
       row :lat
       row :distance
+
+      row :creator
 
       row :places do
         city.places.count
@@ -47,10 +50,8 @@ ActiveAdmin.register City do
       end
 
       row :image do
-        image_tag(city.image, width: 500)
+        image_tag(city.image.url, width: 500)
       end
-
-      row :slug
     end
 
     active_admin_comments
@@ -60,7 +61,7 @@ ActiveAdmin.register City do
     f.inputs 'Community' do
       f.input :country
       f.input :name
-      f.input :user
+      f.input :creator
       f.input :about
       f.input :lng
       f.input :lat

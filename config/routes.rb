@@ -1,7 +1,7 @@
 # == Route Map
 #
 #                           Prefix Verb       URI Pattern                                                 Controller#Action
-#                             root GET        /                                                           places#index
+#                             root GET        /                                                           welcome#index
 #            conversation_messages GET        /conversations/:conversation_id/messages(.:format)          messages#index
 #                                  POST       /conversations/:conversation_id/messages(.:format)          messages#create
 #         new_conversation_message GET        /conversations/:conversation_id/messages/new(.:format)      messages#new
