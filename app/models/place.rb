@@ -27,9 +27,9 @@
 class Place < ActiveRecord::Base
   # plugins
   #
-  # searchkick
+  searchkick
   extend FriendlyId
-  friendly_id :name
+  friendly_id :slug_candidates
   is_impressionable counter_cache: true
   mount_uploader :image, ImageUploader
   # acts_as_mappable auto_geocode: { field: :address, error_message: 'Could not geocode city'}
@@ -73,7 +73,7 @@ class Place < ActiveRecord::Base
   # callbacks
   #
   before_validation :strip_links
-  # after_save :update_role
+  after_save :update_role
   # before_create { self.featured = !user.subscription_id.nil? }
 
 
@@ -150,5 +150,16 @@ class Place < ActiveRecord::Base
     self.facebook = Addressable::URI.parse(facebook).path.split('/')[1] unless facebook.blank?
     self.twitter = Addressable::URI.parse(twitter).path.split('/')[1] unless twitter.blank?
     self.instagram = Addressable::URI.parse(instagram).path.split('/')[1] unless instagram.blank?
+  end
+
+
+  #
+  #
+  def slug_candidates
+    [
+      :name,
+      [:name, city.name],
+      [:name, city.name, city.country]
+    ]
   end
 end

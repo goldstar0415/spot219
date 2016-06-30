@@ -93,7 +93,7 @@ nav.navbar.navbar-default.nav-color
               i.sub= pluralize current_order.total_items, 'item'
 
     .searchbar align="center"
-      - url = request[:controller] == 'products' ? products_path : search_path
+      - url = request[:controller] == 'products' ? products_path : places_path
       = form_tag url, method: :get do ||
         = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search near #{session[:user_city].blank? ? 'you' : session[:user_city]}..."
 

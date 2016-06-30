@@ -17,14 +17,17 @@ class PlacesController < ApplicationController
   #
   #
   def index
-    @places = Place.featured
+    keywords = params[:search].present? ? params[:search] : '*'
 
-    if @places.count < LIMIT
-      items = Place.where.not(id: @places.ids)
-      (LIMIT - @places.count).times do |i|
-        @places << items[i] if items[i]
-      end
-    end
+    @places = Place.search keywords
+    # @places = params[:search].present? ? Place.search(params[:search]) : Place.featured
+
+    # if @places.count < LIMIT
+    #   items = Place.where.not(id: @places.ids)
+    #   (LIMIT - @places.count).times do |i|
+    #     @places << items[i] if items[i]
+    #   end
+    # end
 
     @cities = City.limit(10)
     @cate = Category.limit(10)
@@ -133,15 +136,15 @@ class PlacesController < ApplicationController
 
   #
   #
-  def search
-    @places = Place.search params[:search]
-    @places.each do |item|
-      item.search_logs.create(keyword: params[:search])
-    end
+  # def search
+  #   @places = Place.search params[:search]
+  #   @places.each do |item|
+  #     item.search_logs.create(keyword: params[:search])
+  #   end
 
-    @cities = City.limit(10)
-    @cate = Category.limit(10)
-  end
+  #   @cities = City.limit(10)
+  #   @cate = Category.limit(10)
+  # end
 
 
   protected

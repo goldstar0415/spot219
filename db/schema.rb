@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630035537) do
+ActiveRecord::Schema.define(version: 20160630074201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,10 +96,13 @@ ActiveRecord::Schema.define(version: 20160630035537) do
     t.float    "budget"
     t.string   "name"
     t.integer  "user_id"
-    t.boolean  "running"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "running",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "place_id"
   end
+
+  add_index "campaigns", ["place_id"], name: "index_campaigns_on_place_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -440,6 +443,12 @@ ActiveRecord::Schema.define(version: 20160630035537) do
   create_table "search_logs", force: :cascade do |t|
     t.string   "keyword"
     t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.float    "ppc_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -807,4 +816,5 @@ ActiveRecord::Schema.define(version: 20160630035537) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "campaigns", "places"
 end

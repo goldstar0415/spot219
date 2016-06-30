@@ -101,15 +101,6 @@
 #                                  PATCH      /admin/claims/:id(.:format)                                 admin/claims#update
 #                                  PUT        /admin/claims/:id(.:format)                                 admin/claims#update
 #                                  DELETE     /admin/claims/:id(.:format)                                 admin/claims#destroy
-#     batch_action_admin_countries POST       /admin/countries/batch_action(.:format)                     admin/countries#batch_action
-#                  admin_countries GET        /admin/countries(.:format)                                  admin/countries#index
-#                                  POST       /admin/countries(.:format)                                  admin/countries#create
-#                new_admin_country GET        /admin/countries/new(.:format)                              admin/countries#new
-#               edit_admin_country GET        /admin/countries/:id/edit(.:format)                         admin/countries#edit
-#                    admin_country GET        /admin/countries/:id(.:format)                              admin/countries#show
-#                                  PATCH      /admin/countries/:id(.:format)                              admin/countries#update
-#                                  PUT        /admin/countries/:id(.:format)                              admin/countries#update
-#                                  DELETE     /admin/countries/:id(.:format)                              admin/countries#destroy
 #                  admin_dashboard GET        /admin/dashboard(.:format)                                  admin/dashboard#index
 #      batch_action_admin_features POST       /admin/features/batch_action(.:format)                      admin/features#batch_action
 #                   admin_features GET        /admin/features(.:format)                                   admin/features#index
@@ -289,7 +280,6 @@
 #                                  PATCH      /blogs/:id(.:format)                                        blogs#update
 #                                  PUT        /blogs/:id(.:format)                                        blogs#update
 #                                  DELETE     /blogs/:id(.:format)                                        blogs#destroy
-#                           search GET        /search(.:format)                                           places#search
 #                       my_profile GET        /my_profile(.:format)                                       users#my_profile
 #                       my_friends GET        /my_friends(.:format)                                       users#my_friends
 #                        my_places GET        /my-places(.:format)                                        users#my_places
@@ -529,7 +519,7 @@ Rails.application.routes.draw do
     resources :blog_comments
   end
 
-  get 'search', to: "places#search"
+  # get 'search', to: "places#search"
   get 'my_profile', to: "users#my_profile"
   get 'my_friends', to: 'users#my_friends'
   get 'my-places', to: 'users#my_places'
