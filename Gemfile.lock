@@ -597,7 +597,7 @@ DEPENDENCIES
   bower-rails
   bxslider-rails
   byebug
-  cancancan (~> 1.10)
+  cancancan
   capistrano (~> 3.5)
   capistrano-bower
   capistrano-rails (~> 1.1.1)

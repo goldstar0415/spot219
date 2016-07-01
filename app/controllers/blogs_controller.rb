@@ -85,7 +85,7 @@ class BlogsController < ApplicationController
     #
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :body, :image, :city_id)
+      params.require(:blog).permit(:title, :body, :image, :city)
     end
 
 
@@ -93,8 +93,8 @@ class BlogsController < ApplicationController
     #
     def require_admin
       if !user_signed_in? || (user_signed_in? and !has_role?(:admin, :mayor))
-        flash[:danger] = "Only admins can perform that action"
-        redirect_to categories_path
+        flash[:danger] = "You don't have permission to the action."
+        redirect_to blogs_path
       end
     end
 end

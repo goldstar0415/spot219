@@ -1,4 +1,4 @@
-= form_for @blog, html: { multipart: true } do |f|
+= simple_form_for @blog, html: { multipart: true } do |f|
   - if @blog.errors.any?
     #error_explanation
       %h2
@@ -7,25 +7,17 @@
       %ul
         - @blog.errors.full_messages.each do |message|
           %li= message
+
   #section-add-place
     %hr/
     .col-lg-8.col-lg-offset-2
-      %form
-        .form-group
-          %label{:for => "exampleInputEmail1"} Title
-          = f.text_field :title, placeholder: "Title", class: "form-control", required: true
-        .form-group
-          %label{:for => "exampleInputEmail1"} Body text
-          = f.cktext_area :body, placeholder: "The main text goes here", class: "form-control", rows: "10"
-        .form-group
-          %label{:for => "blog_city"} City
-          -if has_role?(:admin)
-            = f.select :city_id, options_for_select(City.all.map{|c| [c.name, c.id]}, selected: @blog.city_id), {include_blank: 'All city'}, {class: "form-control"}
-          -else
-            = f.select :city_id, options_for_select(current_user.cities.map{|c| [c.name, c.id]}, selected: @blog.city_id), {}, {class: "form-control"}
-        %hr/
-        .form-group
-          %label{:for => "exampleInputFile"} Upload image
-          = f.file_field :img
+      = f.input :title
+      = f.input :body, as: :ckeditor
+      = f.association :city, collection: manageable_cities_by(current_user)
+
+      %hr/
+      = f.input :image
+
+      .clearfix
         = f.submit "Post", class: "btn btn-success"
-      = link_to 'Back', root_path, class: "btn btn-default btn-xs pull-right"
+        = link_to 'Back', root_path, class: "btn btn-default btn-xs pull-right"

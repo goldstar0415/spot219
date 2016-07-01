@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   has_many :blogs
   has_many :campaigns, dependent: :destroy
   belongs_to :city
-  has_many :cities
+  has_many :cities, foreign_key: 'creator_id'
   has_one :order_info
   has_one :billing_address
   has_one :delivery_address

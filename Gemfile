@@ -23,7 +23,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'rolify'
-gem 'cancancan', '~> 1.10'
+gem 'cancancan'
 
 
 # assets

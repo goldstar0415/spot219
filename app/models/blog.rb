@@ -18,6 +18,9 @@
 class Blog < ActiveRecord::Base
   # plugins
   #
+  resourcify
+  extend FriendlyId
+  friendly_id :slug_candidates
   is_impressionable counter_cache: true
   mount_uploader :image, ImageUploader
 
@@ -34,6 +37,14 @@ class Blog < ActiveRecord::Base
   #   self.save
   # end
 
+
+  # validations
+  #
+  validates_presence_of :title, :body, :user, :city
+
+
+  #
+  #
   def average_rating
     average = (self.impressions_count.to_i / 20).round(1)
     average = 1 if average == 0
@@ -41,7 +52,20 @@ class Blog < ActiveRecord::Base
   end
 
 
+  #
+  #
   def should_generate_new_friendly_id?
     slug.blank?
+  end
+
+
+  #
+  #
+  def slug_candidates
+    [
+      :name,
+      [:name, city.name],
+      [:name, city.name, city.country]
+    ]
   end
 end

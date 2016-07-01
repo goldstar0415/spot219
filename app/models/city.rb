@@ -20,6 +20,7 @@
 class City < ActiveRecord::Base
   # plugins
   #
+  resourcify
   searchkick
   extend FriendlyId
   friendly_id :slug_candidates
