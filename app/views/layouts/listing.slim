@@ -52,15 +52,15 @@
                     h5= link_to 'Create a New blog', new_blog_path, class: 'link'
 
                 - else
-                  = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
-                    .login
-                      = f.email_field :email, placeholder: "Your Email", class: "form-control"
-                    .login
-                      = f.password_field :password, autocomplete: "off", placeholder: "Your password", class: "form-control"
+                  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
+                    = f.input :email, label: false, placeholder: 'Your E-mail'
+                    = f.input :password, label: false, placeholder: 'Your Password'
+
                     .checkbox
-                      = f.label :remember_me do
+                      = f.label :remember_me do ||
                         = f.check_box :remember_me
-                        Remember me
+                        | Remember me
+
                     = f.submit  t('.sign_in', default: "Sign in"), class: "btn btn-default pull-right"
 
                   br

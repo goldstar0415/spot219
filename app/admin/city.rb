@@ -31,7 +31,7 @@ ActiveAdmin.register City do
     attributes_table do
       row :name
       row :slug
-      column :country
+      row :country
 
       row :about
 

@@ -2,7 +2,7 @@ class CitiesController < ApplicationController
   layout 'listing', only: :show
   before_action :set_city, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  # before_action :require_permission, only: [:edit, :update]
 
 
   # GET /cities
@@ -13,25 +13,12 @@ class CitiesController < ApplicationController
   end
 
 
-  #
-  #
-  def location
-    if params['latitude'] && params['longitude']
-      cookies[:latitude] = params['latitude']
-      cookies[:longitude] = params['longitude']
-    end
-
-    city = City.search(params['latitude'], params['longitude']).first rescue nil
-    render json: { first_time: !city.nil?, subdomain: city.try(:subdomain) }
-  end
-
-
   # GET /cities/1
   # GET /cities/1.json
   def show
     @cate = Category.limit(10)
     @places = @city.places.order(featured: :desc).page(params[:place_page]).per(16)
-    @cities = City.where.not(id: @city.id).limit(10)
+    @cities = City.limit(10)
     @blog = Blog.last
 
     cookies[:first_time] = false
@@ -41,11 +28,6 @@ class CitiesController < ApplicationController
   # GET /cities/new
   def new
     @city = City.new
-  end
-
-
-  # GET /cities/1/edit
-  def edit
   end
 
 
@@ -67,9 +49,18 @@ class CitiesController < ApplicationController
   end
 
 
+  # GET /cities/1/edit
+  #
+  def edit
+    redirect_with_permission_error unless current_user.has_any_role?(:admin, { name: :mayor, resource: @city })
+  end
+
+
   # PATCH/PUT /cities/1
   # PATCH/PUT /cities/1.json
   def update
+    redirect_with_permission_error unless current_user.has_any_role?(:admin, { name: :mayor, resource: @city })
+
     respond_to do |format|
       if @city.update(city_params)
         format.html { redirect_to @city }
@@ -84,6 +75,8 @@ class CitiesController < ApplicationController
   # DELETE /cities/1
   # DELETE /cities/1.json
   def destroy
+    redirect_with_permission_error unless current_user.has_role?(:admin)
+
     @city.destroy
     respond_to do |format|
       format.html { redirect_to cities_url }
@@ -92,28 +85,31 @@ class CitiesController < ApplicationController
   end
 
 
+  #
+  #
+  def location
+    if params['latitude'] && params['longitude']
+      cookies[:latitude] = params['latitude']
+      cookies[:longitude] = params['longitude']
+    end
+
+    city = City.search(params['latitude'], params['longitude']).first rescue nil
+    render json: { first_time: !city.nil?, slug: city.try(:slug) }
+  end
+
+
   protected
     #
-    # Use callbacks to share common setup or constraints between actions.
+    #
     def set_city
-      @city = City.find(params[:id])
+      @city = City.find params[:id]
     end
 
 
     #
-    # Never trust parameters from the scary internet, only allow the white list through.
+    #
     def city_params
-      params.require(:city).permit(:country, :about, :name, :user_id,
+      params.require(:city).permit(:country, :about, :name, :creator,
         :lat, :lng, :distance, :slug)
-    end
-
-
-    #
-    #
-    def require_same_user
-      if current_user != @city.user and !has_role?(:admin)
-        flash[:danger] = "You can only edit or delete your own cities."
-        redirect_to root_path
-      end
     end
 end
