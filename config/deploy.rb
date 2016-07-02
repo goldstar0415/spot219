@@ -23,7 +23,7 @@ set :repo_url, 'git@bitbucket.org:lelacag/turkish-spot.git'
 # set :pty, true
 
 set :linked_files, %w(config/database.yml config/application.yml)
-set :linked_dirs,  %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system config/locales public/attachment public/uploads public/uploads/tmp)
+set :linked_dirs,  %w(log tmp/pids tmp/uploads tmp/cache tmp/sockets vendor/bundle public/system config/locales public/attachment public/uploads)
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
