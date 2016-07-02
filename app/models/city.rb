@@ -47,6 +47,16 @@ class City < ActiveRecord::Base
   validates_uniqueness_of :name, case_sensitive: false, scope: [:country]
 
 
+  # callbacks
+  #
+  after_save do |rec|
+    # Rolify had issue with this
+    mayors = User.with_role(:mayor, rec).distinct.select { |u| u.has_role?(:mayor, rec) }
+    mayors.each { |mayor| mayor.revoke :mayor, rec }
+    rec.creator.add_role :mayor, rec
+  end
+
+
   #
   #
   def countPlace

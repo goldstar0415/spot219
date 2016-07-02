@@ -43,7 +43,6 @@ module ApplicationHelper
   #
   #
   def has_role?(*args)
-    #current_roles.include?(role.to_s)
     args.any? { |x| current_roles.include?(x.to_s) }
   end
 
@@ -53,5 +52,13 @@ module ApplicationHelper
   def current_roles
     return [] unless current_user
     @current_roles ||= current_user.roles.pluck(:name)
+  end
+
+
+  #
+  #
+  def redirect_with_permission_error error_message=nil, redirect_to_path=nil
+    flash[:danger] = (error_message || "You don't have permission to perform the action.")
+    redirect_to(redirect_to_path || root_path)
   end
 end

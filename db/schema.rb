@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630074201) do
+ActiveRecord::Schema.define(version: 20160701234400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -769,9 +769,18 @@ ActiveRecord::Schema.define(version: 20160630074201) do
     t.string   "image"
   end
 
+  create_table "subscription_options", force: :cascade do |t|
+    t.integer  "subscription_id"
+    t.string   "period"
+    t.money    "price_cents",     scale: 2
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "subscription_options", ["subscription_id"], name: "index_subscription_options_on_subscription_id", using: :btree
+
   create_table "subscriptions", force: :cascade do |t|
-    t.string  "name"
-    t.decimal "price", precision: 8, scale: 2, default: 0.0
+    t.string "name"
   end
 
   create_table "subscriptions_features", force: :cascade do |t|
@@ -817,4 +826,5 @@ ActiveRecord::Schema.define(version: 20160630074201) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "campaigns", "places"
+  add_foreign_key "subscription_options", "subscriptions"
 end

@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:twitter, :google]
-  rolify
+  rolify strict: true
   mount_uploader :avatar, AvatarUploader
 
 
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   has_one :billing_address
   has_one :delivery_address
   has_many :sliders
-  belongs_to :subscription
+  belongs_to :subscription, class_name: 'SubscriptionOption'
 
 
   # validations

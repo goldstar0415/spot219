@@ -69,6 +69,7 @@ gem 'shoppe'
 gem 'shoppe-paypal'
 gem 'redcarpet'
 gem 'cocoon'
+gem 'money-rails'
 
 
 gem 'capistrano', '~> 3.5'
@@ -89,7 +90,7 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   #gem 'spring'
-  gem 'pry-rails'
+  # gem 'pry-rails'
   gem 'letter_opener'
   gem 'rails-erd'
   gem 'annotate'

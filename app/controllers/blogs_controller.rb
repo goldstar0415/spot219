@@ -1,32 +1,27 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  # before_action :require_admin, except: [:show]
+  before_action :authenticate_user!, except: [:index, :show]
 
 
   # GET /blogs
   # GET /blogs.json
   def index
     @blogs = Blog.all.page(params[:page]).per(15)
-    # @blogs = (current_user.has_role?(:admin) ? Blog.all : current_user.blogs).page(params[:page]).per(15)
   end
 
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @comment = Comment.new(commentable: @blog)
+    @comment = Comment.new commentable: @blog
     impressionist @blog
   end
 
 
   # GET /blogs/new
   def new
+    redirect_with_permission_error unless current_user.has_any_role?(:admin, :mayor)
     @blog = Blog.new
-  end
-
-
-  # GET /blogs/1/edit
-  def edit
   end
 
 
@@ -34,10 +29,17 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
+
+    redirect_with_permission_error unless current_user.has_any_role?(
+      :admin,
+      { name: :mayor, resource: @blog.city }
+      )
+
     @blog.user = current_user
 
     respond_to do |format|
       if @blog.save
+        current_user.add_role :creator, @blog
         format.html { redirect_to @blog }
         format.json { render :show, status: :created, location: @blog }
       else
@@ -48,9 +50,23 @@ class BlogsController < ApplicationController
   end
 
 
+  # GET /blogs/1/edit
+  def edit
+    redirect_with_permission_error unless current_user.has_any_role?(
+      :admin,
+      { name: :creator, resource: @blog }
+      )
+  end
+
+
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
+    redirect_with_permission_error unless current_user.has_any_role?(
+      :admin,
+      { name: :creator, resource: @blog }
+      )
+
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to @blog }
@@ -66,7 +82,13 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
+    redirect_with_permission_error unless current_user.has_any_role?(
+      :admin,
+      { name: :creator, resource: @blog }
+      )
+
     @blog.destroy
+
     respond_to do |format|
       format.html { redirect_to blogs_url }
       format.json { head :no_content }
@@ -76,25 +98,15 @@ class BlogsController < ApplicationController
 
   protected
     #
-    # Use callbacks to share common setup or constraints between actions.
+    #
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = Blog.find params[:id]
     end
 
 
     #
-    # Never trust parameters from the scary internet, only allow the white list through.
+    #
     def blog_params
-      params.require(:blog).permit(:title, :body, :image, :city)
-    end
-
-
-    #
-    #
-    def require_admin
-      if !user_signed_in? || (user_signed_in? and !has_role?(:admin, :mayor))
-        flash[:danger] = "You don't have permission to the action."
-        redirect_to blogs_path
-      end
+      params.require(:blog).permit :title, :body, :image, :city
     end
 end

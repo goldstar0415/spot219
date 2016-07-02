@@ -74,7 +74,12 @@ class Place < ActiveRecord::Base
   # callbacks
   #
   before_validation :strip_links
-  after_save :update_role
+
+  after_save do |rec|
+    place_owners = User.with_role(:place_owner, rec).distinct.select { |u| u.has_role?(:place_owner, rec) }
+    place_owners.each { |owner| owner.revoke :place_owner, rec }
+    rec.user.add_role :place_owner, rec
+  end
   # before_create { self.featured = !user.subscription_id.nil? }
 
 
@@ -102,16 +107,6 @@ class Place < ActiveRecord::Base
       self.comments.size
     else
       20
-    end
-  end
-
-
-  def update_role
-    if self.user_id_changed? and self.user.has_role?(:regular)
-      u = self.user
-      role_id = Role.where(name: "place_owner").first.id
-      u.role_ids = role_id
-      u.save
     end
   end
 
