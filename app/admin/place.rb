@@ -33,7 +33,7 @@ ActiveAdmin.register Place do
     column :phone
     column :web
     column :city
-    column :user
+    column :owner
 
     actions
   end
@@ -50,7 +50,7 @@ ActiveAdmin.register Place do
       row :twitter
       row :instagram
       row :web
-      row :user
+      row :owner
       row :slug
       row :lat
       row :lng
@@ -92,7 +92,7 @@ ActiveAdmin.register Place do
       f.input :twitter
       f.input :instagram
       f.input :web
-      f.input :user
+      f.input :owner
       f.inputs do
         f.gmap_coordinate_picker lat_column: 'lat', lng_column: 'lng' , zoom_level: 12, default_coordinates: [cookies[:latitude] || f.object.lat || '9.9333', cookies[:longitude] || f.object.lng || '-84.0833'], map_width: 800
       end

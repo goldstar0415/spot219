@@ -13,7 +13,7 @@
 #  web               :string
 #  created_at        :datetime
 #  updated_at        :datetime
-#  user_id           :integer
+#  owner_id          :integer
 #  city_id           :integer
 #  lat               :float
 #  lng               :float

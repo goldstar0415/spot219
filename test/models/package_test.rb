@@ -1,17 +1,16 @@
 # == Schema Information
 #
-# Table name: search_logs
+# Table name: packages
 #
 #  id         :integer          not null, primary key
-#  keyword    :string
-#  place_id   :integer
+#  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class SearchLogTest < ActiveSupport::TestCase
+class PackageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: package_options
+#
+#  id          :integer          not null, primary key
+#  package_id  :integer
+#  interval    :string
+#  price_cents :money
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  package_id: 
+  interval: MyString
+  price_cents: 
+
+two:
+  package_id: 
+  interval: MyString
+  price_cents: 

@@ -5,12 +5,12 @@
 #  id         :integer          not null, primary key
 #  about      :text
 #  name       :string
+#  image      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  lng        :float
 #  lat        :float
 #  radius     :float
-#  image      :string
 #  slug       :string
 #  distance   :float
 #  country    :string

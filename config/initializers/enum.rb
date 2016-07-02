@@ -26,9 +26,20 @@ module Enum
   #   }
   # end
 
+  #
+  #
   module Place
     DAY_NAME = {
       options: [:sun, :mon, :tue, :wed, :thu, :fri, :sat]
+    }
+  end
+
+
+  #
+  #
+  module Package
+    INTERVAL = {
+      options: [:monthly, :annually]
     }
   end
 end

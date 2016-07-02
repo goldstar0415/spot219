@@ -6,6 +6,7 @@ class CreateCities < ActiveRecord::Migration
       t.string :email
       t.text :about
       t.string :city_name
+      t.string :image
 
       t.timestamps null: false
     end

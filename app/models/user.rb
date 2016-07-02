@@ -13,14 +13,13 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
+#  avatar                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  first_name             :string
 #  last_name              :string
 #  admin                  :boolean          default(FALSE)
-#  avatar                 :string
 #  city_id                :integer
-#  subscription_id        :integer
 #  gender                 :boolean
 #  provider               :string
 #  uid                    :string
@@ -39,7 +38,7 @@ class User < ActiveRecord::Base
 
   # relations
   #
-  has_many :places
+  has_many :places, foreign_key: 'owner_id'
   has_many :comments
   has_many :place_comments, -> { where(commentable_type: 'Place') }, class_name: 'Comment'
   has_many :blog_comments, -> { where(commentable_type: 'Blog') }, class_name: 'Comment'
@@ -53,7 +52,7 @@ class User < ActiveRecord::Base
   has_one :billing_address
   has_one :delivery_address
   has_many :sliders
-  belongs_to :subscription, class_name: 'SubscriptionOption'
+  has_many :campaigns, dependent: :destroy
 
 
   # validations
@@ -63,11 +62,11 @@ class User < ActiveRecord::Base
 
   # callbacks
   #
-  before_save do
-    if subscription_id_changed?
-      places.update_all featured: !self.subscription_id.nil?
-    end
-  end
+  # before_save do
+  #   if subscription_id_changed?
+  #     places.update_all featured: !self.subscription_id.nil?
+  #   end
+  # end
 
 
   def full_name

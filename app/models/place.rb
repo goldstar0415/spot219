@@ -13,7 +13,7 @@
 #  web               :string
 #  created_at        :datetime
 #  updated_at        :datetime
-#  user_id           :integer
+#  owner_id          :integer
 #  city_id           :integer
 #  lat               :float
 #  lng               :float
@@ -38,15 +38,14 @@ class Place < ActiveRecord::Base
 
   # relations
   #
-  belongs_to :user
-  has_many :place_categories
+  belongs_to :owner, class_name: 'User'
+  belongs_to :city
+  has_many :place_categories, dependent: :destroy
   has_many :categories, through: :place_categories
   has_many :comments, as: :commentable, dependent: :destroy
-  has_many :users, through: :place_views
-  has_many :search_logs, dependent: :destroy
-  belongs_to :city
-  has_many :open_days
-  has_many :sliders
+  has_many :open_days, dependent: :destroy
+  has_many :sliders, dependent: :destroy
+  has_one :campaign, dependent: :destroy
 
 
   # validations
@@ -54,7 +53,7 @@ class Place < ActiveRecord::Base
   # validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
   # validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
   # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  validates_presence_of :name, :about, :address, :city, :phone, :user, :tagline
+  validates_presence_of :name, :about, :address, :city, :phone, :owner, :tagline
   before_validation :geocode_address
 
 
@@ -78,7 +77,7 @@ class Place < ActiveRecord::Base
   after_save do |rec|
     place_owners = User.with_role(:place_owner, rec).distinct.select { |u| u.has_role?(:place_owner, rec) }
     place_owners.each { |owner| owner.revoke :place_owner, rec }
-    rec.user.add_role :place_owner, rec
+    rec.owner.add_role :place_owner, rec
   end
   # before_create { self.featured = !user.subscription_id.nil? }
 

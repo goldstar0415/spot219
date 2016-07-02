@@ -2,7 +2,7 @@ class CreateSliders < ActiveRecord::Migration
   def change
     create_table :sliders do |t|
       t.string :name
-      t.attachment :image
+      t.string :image
       t.integer :position
       t.integer :user_id
       t.integer :place_id

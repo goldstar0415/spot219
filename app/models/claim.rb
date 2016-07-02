@@ -6,8 +6,8 @@
 #  email      :string           default(""), not null
 #  first_name :string           default("")
 #  last_name  :string           default("")
-#  proof      :string
 #  phone      :string
+#  proof      :string
 #  reason     :text
 #  status     :integer
 #  user_id    :integer

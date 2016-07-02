@@ -13,14 +13,13 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
+#  avatar                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  first_name             :string
 #  last_name              :string
 #  admin                  :boolean          default(FALSE)
-#  avatar                 :string
 #  city_id                :integer
-#  subscription_id        :integer
 #  gender                 :boolean
 #  provider               :string
 #  uid                    :string

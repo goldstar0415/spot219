@@ -31,10 +31,10 @@
         - places = [true, false].map { |item|  {name: (item == true ? 'Male' : 'Female'), data: current_user.places.map {|place| users = place.place_views.in_period(params[:period]).map(&:user).compact.uniq; [place.subdomain, users.select{|item| item.gender == item}.count] }}}
         = column_chart places, stacked: true, colors: ["red", "green"]
 
-  #section-content
-    .col-md-12
-      .form-group
-        %h4 Search Keywords
-        - data = {}
-        - logs = SearchLog.where(place_id: current_user.place_ids).in_period(params[:period]).group(:keyword).count
-        = column_chart logs
+  / #section-content
+  /   .col-md-12
+  /     .form-group
+  /       %h4 Search Keywords
+  /       - data = {}
+  /       - logs = SearchLog.where(place_id: current_user.place_ids).in_period(params[:period]).group(:keyword).count
+  /       = column_chart logs

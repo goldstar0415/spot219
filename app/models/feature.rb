@@ -16,7 +16,7 @@ class Feature < ActiveRecord::Base
 
   # relations
   #
-  has_and_belongs_to_many :subscriptions, join_table: :subscriptions_features
+  has_and_belongs_to_many :packages, join_table: :features_packages
 
 
   # validations

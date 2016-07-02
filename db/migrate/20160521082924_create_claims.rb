@@ -4,8 +4,8 @@ class CreateClaims < ActiveRecord::Migration
       t.string :email,              null: false, default: ""
       t.string :first_name,         default: ""
       t.string :last_name,          default: ""
-      t.attachment :proof
       t.string :phone
+      t.string :proof
       t.text :reason
       t.integer :status
       t.integer :user_id
