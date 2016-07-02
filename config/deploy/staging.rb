@@ -1,16 +1,15 @@
-server '104.131.49.187', port: 22, roles: [:web, :app, :db], primary: true, user: 'root'
+server '104.131.49.187', port: 22, roles: [:web, :app, :db], primary: true, user: 'deployer'
 
 set :application, 'turkish_spot'
 set :stage,     :production
 set :branch,    :master
-set :deploy_to, "/home/apps/#{fetch(:application)}"
 
 # Don't change these unless you know what you're doing
 set :pty,             true
 set :use_sudo,        false
 # set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/apps/#{fetch(:application)}"
+set :deploy_to,       "/home/deployer/apps/#{fetch(:application)}"
 
 # set :puma_rackup, -> { File.join(current_path, 'config.ru') }
 # set :puma_state, -> { File.join(shared_path, 'tmp', 'pids', 'puma.state') }
