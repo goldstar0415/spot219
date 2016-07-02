@@ -51,7 +51,7 @@ ActiveAdmin.register Blog do
     end
   end
 
- form do |f|
+  form do |f|
     f.inputs 'Community' do
       f.input :title
       f.input :body, as: :ckeditor
