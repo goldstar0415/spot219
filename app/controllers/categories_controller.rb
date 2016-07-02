@@ -64,8 +64,6 @@ class CategoriesController < ApplicationController
 
 
   protected
-
-
     #
     #
     def category_params
