@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   layout 'listing', only: :show
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :require_admin, except: [:index, :show]
 
 
@@ -75,9 +76,6 @@ class CategoriesController < ApplicationController
     #
     #
     def require_admin
-      if !user_signed_in? || (user_signed_in? and !has_role?(:admin))
-        flash[:danger] = "Only admins can perform that action"
-        redirect_to categories_path
-      end
+      redirect_with_permission_error unless current_user.has_role?(:admin)
     end
 end
