@@ -54,7 +54,8 @@ ActiveAdmin.register Blog do
   form do |f|
     f.inputs 'Community' do
       f.input :title
-      f.input :body, as: :ckeditor
+      f.input :body
+      # f.input :body, as: :ckeditor
       f.input :user, include_blank: false
       f.input :city_id, as: :select,
               :collection => City.all.map{|c| [c.name, c.id]},

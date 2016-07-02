@@ -62,7 +62,8 @@ ActiveAdmin.register City do
       f.input :country
       f.input :name
       f.input :creator
-      f.input :about, as: :ckeditor
+      # f.input :about, as: :ckeditor
+      f.input :about
       f.input :lng
       f.input :lat
       f.input :distance
