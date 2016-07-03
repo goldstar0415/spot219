@@ -84,8 +84,7 @@ ActiveAdmin.register Place do
    form do |f|
     f.inputs 'Community' do
       f.input :name
-      f.input :about
-      # f.input :about, as: :ckeditor
+      f.input :about, as: :ckeditor
       f.input :city
       f.input :address
       f.input :phone

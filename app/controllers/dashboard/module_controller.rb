@@ -1,6 +1,6 @@
 class Dashboard::ModuleController < ActionController::Base
-  before_action :authenticate_user!
-  before_action :subscriber_only
+  append_before_action :authenticate_user!
+  append_before_action :subscriber_only
 
 
   protected
