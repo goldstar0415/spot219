@@ -38,8 +38,7 @@ index do
    form do |f|
     f.inputs 'Community' do
       f.input :title
-      f.input :body
-      # f.input :body, :as => :ckeditor
+      f.input :body, as: :ckeditor
       f.input :city, collection: City.all.map {|item| [item.name, item.id]}
     end
 
