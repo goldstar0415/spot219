@@ -77,7 +77,6 @@ GEM
     bourbon (4.2.7)
       sass (~> 3.4)
       thor (~> 0.19)
-    bower-rails (0.10.0)
     builder (3.2.2)
     bxslider-rails (4.2.5.1)
     byebug (9.0.5)
@@ -537,6 +536,7 @@ GEM
       unicode_utils (>= 1.2.2)
     spreadsheet (1.1.2)
       ruby-ole (>= 1.0)
+    spring (1.7.1)
     sprockets (3.6.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -573,7 +573,6 @@ DEPENDENCIES
   annotate
   awesome_print
   bootstrap-sass
-  bower-rails
   bxslider-rails
   byebug
   cancancan
@@ -630,6 +629,7 @@ DEPENDENCIES
   shoppe-paypal
   simple_form
   slim-rails
+  spring
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

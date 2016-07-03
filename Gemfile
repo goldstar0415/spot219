@@ -27,15 +27,9 @@ gem 'cancancan'
 
 
 # assets
-# gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'google-webfonts-rails'
-#gem 'will_paginate'
-#gem 'bootstrap-will_paginate', '0.0.10'
 #gem 'ratyrate'
-# gem 'sunspot_rails'
-# gem 'sunspot_solr'
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'compass-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -51,13 +45,10 @@ gem 'bootstrap-sass'
 gem 'bxslider-rails'
 gem 'slim-rails'
 gem 'progress_bar'
-gem 'bower-rails'
 gem 'material_icons'
 gem 'nestive'
 
 
-# Use Unicorn as the app server
-# gem 'unicorn'
 gem 'activeadmin', github: 'activeadmin'
 gem 'country_select'
 gem 'delayed_job_active_record'
@@ -70,21 +61,19 @@ gem 'shoppe-paypal'
 gem 'redcarpet'
 gem 'cocoon'
 gem 'money-rails'
-
-
-gem 'ffaker'
 gem 'puma'
 
 
 group :development, :test do
   gem 'byebug'
+  gem 'ffaker'
 end
 
 
 group :development do
   gem 'web-console', '~> 2.0'
-  #gem 'spring'
-  # gem 'pry-rails'
+  gem 'spring'
+  # gem 'pry-rails' # this causing zsh crash a lot
   gem 'letter_opener'
   gem 'rails-erd'
   gem 'annotate'
