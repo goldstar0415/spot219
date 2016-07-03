@@ -2,6 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
+require 'mina/puma'
 # require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 # Basic settings:

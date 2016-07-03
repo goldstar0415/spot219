@@ -12,8 +12,8 @@
     %hr/
     .col-lg-8.col-lg-offset-2
       = f.input :title
-      / = f.input :body, as: :ckeditor
-      = f.input :body
+      = f.input :body, as: :ckeditor
+      / = f.input :body
       = f.association :city, collection: manageable_cities_by(current_user)
 
       %hr/
