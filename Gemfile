@@ -72,15 +72,16 @@ gem 'cocoon'
 gem 'money-rails'
 
 
-gem 'capistrano', '~> 3.5'
-gem 'capistrano-rails', '~> 1.1.1'
-gem 'capistrano-bower'
-gem 'capistrano-rbenv'
-gem 'capistrano-rails-collection'
-gem 'capistrano3-delayed-job', '~> 1.0'
-gem 'capistrano-passenger'
+# gem 'capistrano', '~> 3.5'
+# gem 'capistrano-rails', '~> 1.1.1'
+# gem 'capistrano-bower'
+# gem 'capistrano-rbenv'
+# gem 'capistrano-rails-collection'
+# gem 'capistrano3-delayed-job', '~> 1.0'
+# gem 'capistrano-passenger'
 gem 'ffaker'
 gem 'faker' # to be removed later
+gem 'puma'
 
 
 group :development, :test do
@@ -97,6 +98,11 @@ group :development do
   gem 'annotate'
   gem 'quiet_assets'
   gem 'awesome_print'
+
+  # deployment
+  gem 'mina', require: false
+  gem 'mina-puma', require: false
+  # gem 'mina-scp', require: false
 end
 
 # group :production do
