@@ -78,6 +78,7 @@ gem 'capistrano-bower'
 gem 'capistrano-rbenv'
 gem 'capistrano-rails-collection'
 gem 'capistrano3-delayed-job', '~> 1.0'
+gem 'capistrano-passenger'
 gem 'ffaker'
 gem 'faker' # to be removed later
 

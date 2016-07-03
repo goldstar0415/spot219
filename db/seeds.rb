@@ -68,7 +68,7 @@ if Rails.env.development?
     geocoded  = Geokit::Geocoders::GoogleGeocoder.geocode "#{addr['street']}, #{addr['city']}"
 
     if geocoded.success?
-      city      = City.where(name: addr['city'].titleize).first_or_create
+      city      = City.where(name: geocoded.city, country: geocoded.country_code, about: addr['city'].titleize, creator: User.first).first_or_create
 
       @place = city.places.new(
         name: company,

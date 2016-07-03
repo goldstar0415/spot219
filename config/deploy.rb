@@ -3,6 +3,7 @@ lock '3.5.0'
 
 set :application, 'Turkish_Spot'
 set :repo_url, 'git@bitbucket.org:lelacag/turkish-spot.git'
+set :rbenv_ruby, '2.3.1'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
