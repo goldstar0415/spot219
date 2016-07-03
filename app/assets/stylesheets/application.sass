@@ -84,6 +84,27 @@ h6.social
   img
     +border-radius(50%)
 
+.ui-autocomplete
+  position: absolute
+  background: white
+  border: 1px solid darken(white, 10%)
+
+  li
+    padding: 6px
+    cursor: pointer
+
+    + li
+      border-top: 1px solid darken(white, 5%)
+
+    &:hover
+      background: #ff6
+
+.form-group.place_categories
+  span.checkbox
+    float: left
+    margin: 10px
+      left: 0
+
 @media (min-width: 768px)
   .navbar-right
     margin-right: 0

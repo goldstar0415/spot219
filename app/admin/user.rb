@@ -23,7 +23,7 @@ ActiveAdmin.register User do
         row :id
         row :email
         row "Subscription" do
-          ad.subscription.try(:name)
+          # ad.subscription.try(:name)
         end
         row :roles do |user|
           user.roles.collect {|r| r.name.capitalize }.to_sentence
@@ -34,7 +34,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "User Details" do
       f.input :email
-      f.input :subscription_id, :as => :select, collection: Subscription.all, include_blank: false
+      # f.input :subscription_id, :as => :select, collection: Subscription.all, include_blank: false
       f.input :role_ids, collection: Role.global.map {|item| [(t "simple_form.options.user.roles.#{item.name}"), item.id]}, include_blank: false
     end
     f.actions

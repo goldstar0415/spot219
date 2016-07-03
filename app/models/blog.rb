@@ -63,9 +63,9 @@ class Blog < ActiveRecord::Base
   #
   def slug_candidates
     [
-      :name,
-      [:name, city.name],
-      [:name, city.name, city.country]
+      :title,
+      # [:title, city.name],
+      # [:title, city.name, city.country]
     ]
   end
 end

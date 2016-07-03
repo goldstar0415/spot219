@@ -50,16 +50,13 @@ class Place < ActiveRecord::Base
 
   # validations
   #
-  # validates_with AttachmentSizeValidator, attributes: :image, less_than: 5.megabytes
-  # validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
-  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  validates_presence_of :name, :about, :address, :city, :phone, :owner, :tagline
+  validates_presence_of :name, :about, :address, :city, :phone, :owner, :facebook, :twitter, :instagram, :web
   before_validation :geocode_address
 
 
   # nested attributes
   #
-  accepts_nested_attributes_for :open_days, reject_if: :all_blank
+  accepts_nested_attributes_for :open_days, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :sliders, reject_if: :all_blank, allow_destroy: true
 
 
@@ -74,10 +71,10 @@ class Place < ActiveRecord::Base
   #
   before_validation :strip_links
 
-  after_save do |rec|
-    place_owners = User.with_role(:place_owner, rec).distinct.select { |u| u.has_role?(:place_owner, rec) }
-    place_owners.each { |owner| owner.revoke :place_owner, rec }
-    rec.owner.add_role :place_owner, rec
+  after_save do
+    # place_owners = User.with_role(:place_owner, self).distinct.select { |u| u.has_role?(:place_owner, self) }
+    # place_owners.each { |owner| owner.revoke :place_owner, self }
+    # self.owner.add_role :place_owner, self
   end
   # before_create { self.featured = !user.subscription_id.nil? }
 
@@ -113,7 +110,7 @@ class Place < ActiveRecord::Base
   def add_open_days
     if self.open_days.empty?
       Enum::Place::DAY_NAME[:options].each do |day|
-        self.open_days.build(day_in_week: day)
+        self.open_days.build(day_in_week: day.to_s)
       end
     end
   end
@@ -142,9 +139,9 @@ class Place < ActiveRecord::Base
   #
   #
   def strip_links
-    self.facebook = Addressable::URI.parse(facebook).path.split('/')[1] unless facebook.blank?
-    self.twitter = Addressable::URI.parse(twitter).path.split('/')[1] unless twitter.blank?
-    self.instagram = Addressable::URI.parse(instagram).path.split('/')[1] unless instagram.blank?
+    # self.facebook = Addressable::URI.parse(facebook).path.split('/')[1] unless facebook.blank?
+    # self.twitter = Addressable::URI.parse(twitter).path.split('/')[1] unless twitter.blank?
+    # self.instagram = Addressable::URI.parse(instagram).path.split('/')[1] unless instagram.blank?
   end
 
 

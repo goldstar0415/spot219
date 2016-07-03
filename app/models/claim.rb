@@ -21,7 +21,7 @@ class Claim < ActiveRecord::Base
   #
   extend Enumerize
   enumerize :status, in: [:pending, :approved, :denied], default: :pending
-  # mount_uploader :proof, BaseUploader
+  mount_uploader :proof, DocumentUploader
 
 
   # relations

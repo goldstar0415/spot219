@@ -1,7 +1,8 @@
 class PlacesController < ApplicationController
   layout 'listing', only: :index
+  skip_before_action :verify_authenticity_token, if: :json_request?
   before_action :set_place, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :index, :search]
+  before_action :authenticate_user!, except: [:show, :index, :search, :autocomplete]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   # LIMIT = 15
@@ -17,12 +18,17 @@ class PlacesController < ApplicationController
   #
   #
   def autocomplete
-    render json: Place.search(params[:search], {
-      fields: ['name^5', 'city', 'categories'],
-      limit: 15,
-      load: false,
-      misspellings: { below: 5 }
-    }).map(&:name)
+    respond_to do |f|
+      f.html
+      f.json do
+        render json: Place.search(params[:q], {
+          fields: ['name^5', 'city'],
+          limit: 5,
+          load: false,
+          misspellings: { below: 5 }
+        }).map{ |p| "#{p.name}, #{p.city}" }.to_json, callback: params[:callback]
+      end
+    end
   end
 
 
@@ -71,23 +77,13 @@ class PlacesController < ApplicationController
   #
   def new
     @place = Place.new
-    @place.add_open_days
+    # @place.open_days.build
 
     @cities = City.all
-    build_opendays
-    @open_days = @place.open_days
-
+    # build_opendays
+    # @open_days = @place.open_days
 
     @place.sliders.build
-  end
-
-
-  #
-  #
-  def edit
-    @cities = City.uniq.pluck(:name)
-    build_opendays
-    @open_days = @place.open_days
   end
 
 
@@ -110,8 +106,15 @@ class PlacesController < ApplicationController
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
     end
+  end
 
-    p @place.errors.full_messages
+
+  #
+  #
+  def edit
+    @cities = City.uniq.pluck(:name)
+    build_opendays
+    @open_days = @place.open_days
   end
 
 
@@ -157,10 +160,10 @@ class PlacesController < ApplicationController
     #
     #
     def place_params
-      params.require(:place).permit(:name, :about, :country, :city,
-        :address, :phone, :fb, :twit, :insta, :web, :map, :image, :subdomain,
-        :city_id, :latitude, :longitude, category_ids: [],
-        open_days_attributes: [ :id, :day_in_week, :start_time, :end_time, :open ],
+      params.require(:place).permit(:name, :about, :city_id,
+        :address, :phone, :facebook, :twitter, :instagram, :web, :map, :image, :slug,
+        :lat, :lng, category_ids: [],
+        open_days_attributes: [ :id, :day_in_week, :start_time, :end_time ],
         sliders_attributes: [:id, :user_id, :image, :position, :_destroy])
     end
 
@@ -178,8 +181,15 @@ class PlacesController < ApplicationController
     #
     #
     def build_opendays
-      Date::DAYNAMES.each do |day|
-        @place.open_days.build(day_in_week: day)
+      Enum::Place::DAY_NAME[:options].each do |day|
+        @place.open_days.build(day_in_week: day.to_s)
       end if @place.open_days.empty?
+    end
+
+
+    #
+    #
+    def json_request?
+      request.format.json?
     end
 end

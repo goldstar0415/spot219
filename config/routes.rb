@@ -129,15 +129,6 @@
 #                                  PATCH      /admin/places/:id(.:format)                                 admin/places#update
 #                                  PUT        /admin/places/:id(.:format)                                 admin/places#update
 #                                  DELETE     /admin/places/:id(.:format)                                 admin/places#destroy
-# batch_action_admin_subscriptions POST       /admin/subscriptions/batch_action(.:format)                 admin/subscriptions#batch_action
-#              admin_subscriptions GET        /admin/subscriptions(.:format)                              admin/subscriptions#index
-#                                  POST       /admin/subscriptions(.:format)                              admin/subscriptions#create
-#           new_admin_subscription GET        /admin/subscriptions/new(.:format)                          admin/subscriptions#new
-#          edit_admin_subscription GET        /admin/subscriptions/:id/edit(.:format)                     admin/subscriptions#edit
-#               admin_subscription GET        /admin/subscriptions/:id(.:format)                          admin/subscriptions#show
-#                                  PATCH      /admin/subscriptions/:id(.:format)                          admin/subscriptions#update
-#                                  PUT        /admin/subscriptions/:id(.:format)                          admin/subscriptions#update
-#                                  DELETE     /admin/subscriptions/:id(.:format)                          admin/subscriptions#destroy
 #         batch_action_admin_users POST       /admin/users/batch_action(.:format)                         admin/users#batch_action
 #                      admin_users GET        /admin/users(.:format)                                      admin/users#index
 #                                  POST       /admin/users(.:format)                                      admin/users#create
@@ -229,15 +220,6 @@
 #                                  PATCH      /comments/:id(.:format)                                     comments#update
 #                                  PUT        /comments/:id(.:format)                                     comments#update
 #                                  DELETE     /comments/:id(.:format)                                     comments#destroy
-#                      stat_places GET        /places/stat(.:format)                                      places#stat
-#                           places GET        /places(.:format)                                           places#index
-#                                  POST       /places(.:format)                                           places#create
-#                        new_place GET        /places/new(.:format)                                       places#new
-#                       edit_place GET        /places/:id/edit(.:format)                                  places#edit
-#                            place GET        /places/:id(.:format)                                       places#show
-#                                  PATCH      /places/:id(.:format)                                       places#update
-#                                  PUT        /places/:id(.:format)                                       places#update
-#                                  DELETE     /places/:id(.:format)                                       places#destroy
 #                             user GET        /users/:id(.:format)                                        users#show
 #                   search_friends GET        /search_friends(.:format)                                   users#search
 #                       add_friend POST       /add_friend(.:format)                                       users#add_friend
@@ -256,11 +238,13 @@
 #                                  PATCH      /places/:place_id/comments/:id(.:format)                    comments#update
 #                                  PUT        /places/:place_id/comments/:id(.:format)                    comments#update
 #                                  DELETE     /places/:place_id/comments/:id(.:format)                    comments#destroy
-#                                  GET        /places(.:format)                                           places#index
+#                      stat_places GET        /places/stat(.:format)                                      places#stat
+#              autocomplete_places GET        /places/autocomplete(.:format)                              places#autocomplete
+#                           places GET        /places(.:format)                                           places#index
 #                                  POST       /places(.:format)                                           places#create
-#                                  GET        /places/new(.:format)                                       places#new
-#                                  GET        /places/:id/edit(.:format)                                  places#edit
-#                                  GET        /places/:id(.:format)                                       places#show
+#                        new_place GET        /places/new(.:format)                                       places#new
+#                       edit_place GET        /places/:id/edit(.:format)                                  places#edit
+#                            place GET        /places/:id(.:format)                                       places#show
 #                                  PATCH      /places/:id(.:format)                                       places#update
 #                                  PUT        /places/:id(.:format)                                       places#update
 #                                  DELETE     /places/:id(.:format)                                       places#destroy
@@ -496,10 +480,6 @@ Rails.application.routes.draw do
 
   resources :claims, :blog_comments, :blogs, :friendships, :sliders, :campaigns, :comments
 
-  resources :places do
-    get :stat, on: :collection
-  end
-
   resources :users, only: [:show]
 
   get 'search_friends', to: 'users#search'
@@ -513,6 +493,10 @@ Rails.application.routes.draw do
 
   resources :places do
     resources :comments
+    collection do
+      get :stat
+      get :autocomplete
+    end
   end
 
   resources :blogs do

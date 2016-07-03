@@ -1,16 +1,19 @@
-= form_for @place, html: { multipart: true }  do |f|
+= simple_form_for @place, html: { multipart: true }  do |f|
   #section-add-place
     %hr/
     .col-lg-10.col-lg-offset-1
       %form
         .col-lg-12
-          .form-group
-            %label Place Name
-            = f.text_field :name, placeholder: "Place name", class: "form-control", required: true
+          = f.input :name
+          / .form-group
+          /   %label Place Name
+          /   = f.text_field :name, placeholder: "Place name", class: "form-control", required: true
+
         .col-lg-12
-          .form-group
-            %label About
-            = f.text_area :about, placeholder: "e.g. The best coffee in Toronto ...", class: "form-control", rows: "3"
+          = f.input :about, as: :ckeditor
+          / .form-group
+          /   %label About
+          /   = f.text_area :about, placeholder: "e.g. The best coffee in Toronto ...", class: "form-control", rows: "3"
 
         / .col-lg-12
         /   .form-group
@@ -23,85 +26,111 @@
         /     = f.text_field :country, placeholder: "Country", class: "form-control"
 
         .col-lg-3
-          .form-group
-            %label City
-            %br/
-            = f.select :city_id, options_from_collection_for_select(City.all, :id, :name), {}, class: "form-control sel"
+          = f.association :city
+          / .form-group
+          /   %label City
+          /   %br/
+          /   = f.select :city_id, options_from_collection_for_select(City.all, :id, :name), {}, class: "form-control sel"
+
         .col-lg-3
-          .form-group
-            %label Phone
-            = f.text_field :phone, placeholder: "Phone", class: "form-control"
+          = f.input :phone
+          / .form-group
+          /   %label Phone
+          /   = f.text_field :phone, placeholder: "Phone", class: "form-control"
+
         .col-lg-3
-          .form-group
-            %label Full Address
-            = f.text_field :address, placeholder: "Full Address", class: "form-control"
+          = f.input :address
+          / .form-group
+          /   %label Full Address
+          /   = f.text_field :address, placeholder: "Full Address", class: "form-control"
+
         .col-lg-12
           .form-group
             %label Link to map
             = f.gmap_coordinate_picker lat_column: 'lat', lng_column: 'lng' , zoom_level: 12, default_coordinates: [cookies[:latitude] || f.object.lat || '9.9333', cookies[:longitude] || f.object.lng || '-84.0833'], map_width: 800
 
         .col-lg-3
-          .form-group
-            %label Link to Facebook (*)
-            = f.text_field :facebook, placeholder: "https://www.facebook.com/", class: "form-control"
+          = f.input :facebook
+          / .form-group
+          /   %label Link to Facebook (*)
+          /   = f.text_field :facebook, placeholder: "https://www.facebook.com/", class: "form-control"
 
         .col-lg-3
-          .form-group
-            %label Link to Twitter (*)
-            = f.text_field :twitter, placeholder: "https://twitter.com/", class: "form-control"
+          = f.input :twitter
+          / .form-group
+          /   %label Link to Twitter (*)
+          /   = f.text_field :twitter, placeholder: "https://twitter.com/", class: "form-control"
 
         .col-lg-3
-          .form-group
-            %label Link to Instagram (*)
-            = f.text_field :instagram, placeholder: "https://www.instagram.com/", class: "form-control"
+          = f.input :instagram
+          / .form-group
+          /   %label Link to Instagram (*)
+          /   = f.text_field :instagram, placeholder: "https://www.instagram.com/", class: "form-control"
 
         .col-lg-3
+          = f.input :web, label: 'Website'
+          / .form-group
+          /   %label Link to website (*)
+          /   = f.text_field :web, placeholder: "http://www.example.com", class: "form-control"
+
+          %h5.danger (*) Please provide web URLs with http:// or https://
+
+        .col-lg-3 &nbsp;
+        / .form-group
+        /   .row
+        /     / .col-md-12
+        /     /   %label
+        /     /     Choose category
+        /     /     %small (You can choose max 3 categories)
+
+        /     .col-sm-offset-1.col-sm-10
+        / = f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|
+        /   - cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text}
+        .col-xs-12
+          %hr
+
+          .clearfix
+            %label Categories (max 3)
+
+          = f.association :categories, as: :check_boxes, label: false
+
+        .col-xs-12
+          %hr/
           .form-group
-            %label Link to website (*)
-            = f.text_field :web, placeholder: "http://www.example.com", class: "form-control"
-
-        %h5.danger (*) Please provide web URLs with http:// or https://
-
-        %br/
-        %hr/
-        .form-group
-          .row
-            .col-md-12
-              %label
-                Choose category
-                %small (You can choose max 3 categories)
-            .col-sm-offset-1.col-sm-10
-              = f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|
-                - cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text}
-
-        %hr/
-        .form-group
-          %label Upload image of the place
-          - if has_feature?(current_user, "add-photo-slider")
-            = render 'form_slider', f: f
-          - else
+            %label Upload image of the place
+            / - if has_feature?(current_user, "add-photo-slider")
+            /   = render 'form_slider', f: f
+            / - else
             = f.file_field :image, required: true if f.object.new_record?
 
-        %hr/
-        .open_days
-          - @open_days.each do |open_day|
-            = f.fields_for :open_days, open_day do |open_f|
-              .form-inline.active
-                .row
-                  .col-md-2
-                    = open_f.hidden_field :day_in_week, value: open_day.day_in_week
-                    %label
-                      = open_day.day_in_week
-                      = open_f.check_box :day_in_week
+        .col-xs-12
+          %hr/
+          .open_days
+            / = f.simple_fields_for :open_days do |ff|
+            /   = ff.input :day_in_week, collection: Enum::Place::DAY_NAME[:options], as: :check_boxes
+            = f.simple_fields_for :open_days, f.object.open_days.build do |ff|
+              = ff.input :day_in_week
+              = ff.input :start_time
+              = ff.input :end_time
+              / - @open_days.each do |open_day|
+              / .form-inline.active
+              /   .row
+              /     .col-md-2
+              /       / = open_f.hidden_field :day_in_week, value: open_day.day_in_week.to_s
 
-                  .col-md-1
-                    = open_f.time_select :start_time,  { ampm: true, discard_minute: true, ignore_date: true }, { class: 'form-control' }
+              /       %label
+              /         / = open_day.day_in_week.to_s
+              /         = open_f.check_box :day_in_week
 
-                  .col-md-1
-                    = open_f.time_select :end_time,  { ampm: true, discard_minute: true, ignore_date: true }, { class: 'form-control'}
+              /     .col-md-1
+              /       = open_f.time_select :start_time,  { ampm: true, discard_minute: true, ignore_date: true }, { class: 'form-control' }
 
-      = f.submit "Submit", class: "btn btn-success"
-      = link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right"
+              /     .col-md-1
+              /       = open_f.time_select :end_time,  { ampm: true, discard_minute: true, ignore_date: true }, { class: 'form-control'}
+
+        .col-xs-12
+          = f.submit "Submit", class: "btn btn-success"
+          = link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right"
 
 / :javascript
 /   loadCurrentLocation()

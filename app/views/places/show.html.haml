@@ -1,7 +1,9 @@
 - set_meta_tags title: @place.name,
                 description: @place.about,
                 keywords: @place.name.to_s.split(' ').join(', ')
+
 = render 'review_and_rating'
+
 #section-one
   #section-content
     .row
@@ -13,12 +15,12 @@
               %strong= @place.name
 
             // Slider ##
-            - if has_feature?(@place.user, "add-photo-slider") and @place.sliders.present?
-              .place-slider-wrapper
-                = render "slider"
+            / - if has_feature?(@place.user, "add-photo-slider") and @place.sliders.present?
+            .place-slider-wrapper
+              = render "slider"
 
-            - else
-              = image_tag @place.image.medium, class: "img-responsive"
+            / - else
+            = image_tag @place.image.medium, class: "img-responsive"
 
             // Map ##
             .google-maps
@@ -29,7 +31,7 @@
             %h4 About
             %h6
               %small
-                This place was created by: #{@place.user.full_name}
+                This place was created by: #{@place.owner.full_name}
 
             - if @place.categories.any?
               %p
@@ -39,13 +41,13 @@
               %h5.score= @place.average_rating
 
             // about ##
-            %p= @place.about
+            %p= @place.about.html_safe
 
             // address ####
             %hr/
             %h5
               %strong Country:
-              = @place.city.country.name
+              = @place.city.country
 
             %h5
               %strong City:
@@ -66,19 +68,19 @@
 
               - if @place.facebook.present?
                 %h6.social
-                  = link_to @place.facebook, target: :_blank do
+                  = link_to "https://facebook.com/#{@place.facebook}", target: :_blank do
                     = icon 'facebook'
                     %span= @place.name
 
               - if @place.twitter.present?
                 %h6.social
-                  = link_to @place.twitter, target: :_blank do
+                  = link_to "https://twitter.com/#{@place.twitter}", target: :_blank do
                     = icon 'twitter'
                     %span= @place.twitter
 
               - if @place.instagram.present?
                 %h6.social
-                  = link_to @place.instagram, target: :_blank do
+                  = link_to "https://instagram/#{@place.instagram}", target: :_blank do
                     = icon 'instagram'
                     %span= @place.instagram
 

@@ -95,6 +95,6 @@ nav.navbar.navbar-default.nav-color
     .searchbar align="center"
       - url = request[:controller] == 'products' ? products_path : places_path
       = form_tag url, method: :get do ||
-        = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search near #{session[:user_city].blank? ? 'you' : session[:user_city]}..."
+        = text_field_tag :search, params[:search], class: "form-group search-form", placeholder: "Have you tried Turkish Coffee? Search near #{session[:user_city].blank? ? 'you' : session[:user_city]}...", data: { url: autocomplete_places_path(format: :json) }
 
         = submit_tag "Search", class: "btn btn-default search-btn"
