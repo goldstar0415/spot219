@@ -18,7 +18,7 @@ threads 8, 32
 
 workers Integer(ENV['CONCURRENCY'] || 2)
 
-# preload_app!
+preload_app!
 
 unless ENV['RAILS_ENV'] == 'development'
   activate_control_app 'unix:///home/deployer/apps/turkish_spot/shared/tmp/sockets/pumactl.sock'
