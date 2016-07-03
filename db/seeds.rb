@@ -101,9 +101,9 @@ if Rails.env.development?
       user = User.with_role(:mayor).order("RANDOM()").first
       city = City.order("RANDOM()").first
       Blog.create(
-                title: Faker::Hipster.sentence(7),
-                description: Faker::Hipster.sentence(25),
-                body: Faker::Hipster.paragraph(4),
+                title: FFaker::Lorem.sentence,
+                description: FFaker::Lorem.sentence,
+                body: "<p>#{FFaker::Lorem.paragraphs(4).join('</p><p>')}</p>".html_safe,
                 user_id: user.id,
                 img: File.new("#{Rails.root}/app/assets/images/500-500.png"),
                 city_id: city.id

@@ -25,6 +25,8 @@ module TurkishSpot
 
     config.time_zone = 'Eastern Time (US & Canada)'
 
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
     unless Rails.env.development?
       Rails.application.config.middleware.use ExceptionNotification::Rack,
         email: {

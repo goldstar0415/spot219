@@ -16,6 +16,18 @@ class PlacesController < ApplicationController
 
   #
   #
+  def autocomplete
+    render json: Place.search(params[:search], {
+      fields: ['name^5', 'city', 'categories'],
+      limit: 15,
+      load: false,
+      misspellings: { below: 5 }
+    }).map(&:name)
+  end
+
+
+  #
+  #
   def index
     keywords = params[:search].present? ? params[:search] : '*'
 
