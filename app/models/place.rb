@@ -50,13 +50,13 @@ class Place < ActiveRecord::Base
 
   # validations
   #
-  validates_presence_of :name, :about, :address, :city, :phone, :owner, :facebook, :twitter, :instagram, :web
+  validates_presence_of :name, :about, :address, :city, :phone, :owner, :facebook, :twitter, :instagram, :web, :image
   before_validation :geocode_address
 
 
   # nested attributes
   #
-  accepts_nested_attributes_for :open_days, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :open_days, reject_if: :not_open, allow_destroy: true
   accepts_nested_attributes_for :sliders, reject_if: :all_blank, allow_destroy: true
 
 
@@ -71,12 +71,21 @@ class Place < ActiveRecord::Base
   #
   before_validation :strip_links
 
-  after_save do
-    # place_owners = User.with_role(:place_owner, self).distinct.select { |u| u.has_role?(:place_owner, self) }
-    # place_owners.each { |owner| owner.revoke :place_owner, self }
-    # self.owner.add_role :place_owner, self
-  end
+  # after_save do
+  #   # place_owners = User.with_role(:place_owner, self).distinct.select { |u| u.has_role?(:place_owner, self) }
+  #   # place_owners.each { |owner| owner.revoke :place_owner, self }
+  #   # self.owner.add_role :place_owner, self
+  # end
   # before_create { self.featured = !user.subscription_id.nil? }
+
+  # before_validation on: :update do |rec|
+  #   ap rec
+  # #   # ap "asd"
+  # #   # ap rec.open_days.count
+  #   if rec.open_days.count > 0
+  #     rec.open_days.each { |o| o.delete }
+  #   end
+  # end
 
 
   def search_data
@@ -93,7 +102,7 @@ class Place < ActiveRecord::Base
     if self.comments.size > 0
       self.comments.average(:number).round(1)
     else
-      '5.0'
+      0
     end
   end
 
@@ -102,7 +111,7 @@ class Place < ActiveRecord::Base
     if self.comments.size > 0
       self.comments.size
     else
-      20
+      0
     end
   end
 
@@ -118,6 +127,11 @@ class Place < ActiveRecord::Base
 
   def price
     5
+  end
+
+
+  def not_open open_day
+    open_day['open'].blank?
   end
 
 
@@ -139,19 +153,23 @@ class Place < ActiveRecord::Base
   #
   #
   def strip_links
-    # self.facebook = Addressable::URI.parse(facebook).path.split('/')[1] unless facebook.blank?
-    # self.twitter = Addressable::URI.parse(twitter).path.split('/')[1] unless twitter.blank?
-    # self.instagram = Addressable::URI.parse(instagram).path.split('/')[1] unless instagram.blank?
+    self.facebook = (Addressable::URI.parse(facebook).path.split('/')[1] || facebook) if !facebook.blank?
+    self.twitter = (Addressable::URI.parse(twitter).path.split('/')[1] || twitter) if !twitter.blank?
+    self.instagram = (Addressable::URI.parse(instagram).path.split('/')[1] || instagram) if !instagram.blank?
   end
 
 
   #
   #
   def slug_candidates
-    [
-      :name,
-      [:name, city.name],
-      [:name, city.name, city.country]
-    ]
+    unless city.blank?
+      [
+        :name,
+        [:name, city.name],
+        [:name, city.name, city.country]
+      ]
+    else
+      [:name]
+    end
   end
 end

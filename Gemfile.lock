@@ -378,6 +378,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nested_form (0.3.2)
     nestive (0.6.0)
       rails (>= 3.0.0)
     net-ssh (3.0.2)
@@ -610,6 +611,7 @@ DEPENDENCIES
   mina-puma
   mini_magick
   money-rails
+  nested_form
   nestive
   omniauth
   omniauth-google-oauth2

@@ -90,6 +90,7 @@ class PlacesController < ApplicationController
   #
   #
   def create
+    ap params
     @place = Place.new(place_params)
     @place.owner = current_user
     @place.save
@@ -113,22 +114,23 @@ class PlacesController < ApplicationController
   #
   def edit
     @cities = City.uniq.pluck(:name)
-    build_opendays
-    @open_days = @place.open_days
+    # build_opendays
+    # @open_days = @place.open_days
   end
 
 
   #
   #
   def update
+    ap params
     respond_to do |format|
       #binding.pry
       if @place.update(place_params)
         format.html { redirect_to @place }
         format.json { render :show, status: :ok, location: @place }
       else
-        build_opendays
-        @open_days = @place.open_days
+        # build_opendays
+        # @open_days = @place.open_days
         flash.now[:error] = @place.errors.full_messages.to_sentence
 
         format.html { render :edit }
@@ -163,7 +165,7 @@ class PlacesController < ApplicationController
       params.require(:place).permit(:name, :about, :city_id,
         :address, :phone, :facebook, :twitter, :instagram, :web, :map, :image, :slug,
         :lat, :lng, category_ids: [],
-        open_days_attributes: [ :id, :day_in_week, :start_time, :end_time ],
+        open_days_attributes: [ :id, :day_in_week, :start_time, :end_time, :open ],
         sliders_attributes: [:id, :user_id, :image, :position, :_destroy])
     end
 
@@ -171,7 +173,7 @@ class PlacesController < ApplicationController
     #
     #
     def require_same_user
-      if current_user != @place.user and !has_role?(:admin)
+      if current_user != @place.owner and !has_role?(:admin)
         flash[:danger] = "You can only edit or delete your own places."
         redirect_to root_path
       end

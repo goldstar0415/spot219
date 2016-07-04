@@ -15,6 +15,7 @@ gem 'mini_magick'
 gem 'impressionist'
 gem 'enumerize'
 gem 'simple_form'
+gem 'nested_form'
 
 
 # auth

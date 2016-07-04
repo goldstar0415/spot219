@@ -21,6 +21,9 @@ class OpenDay < ActiveRecord::Base
   belongs_to :place
 
 
+  attr_accessor :open
+
+
   # validations
   #
   validates_presence_of :day_in_week, :start_time, :end_time
