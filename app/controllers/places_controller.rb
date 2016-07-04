@@ -38,15 +38,6 @@ class PlacesController < ApplicationController
     keywords = params[:search].present? ? params[:search] : '*'
 
     @places = Place.search keywords, page: params[:page], per_page: 12
-    # @places = params[:search].present? ? Place.search(params[:search]) : Place.featured
-
-    # if @places.count < LIMIT
-    #   items = Place.where.not(id: @places.ids)
-    #   (LIMIT - @places.count).times do |i|
-    #     @places << items[i] if items[i]
-    #   end
-    # end
-
     @cities = City.limit(10)
     @cate = Category.limit(10)
     @blog = Blog.last
@@ -62,13 +53,8 @@ class PlacesController < ApplicationController
     @places = Place.all
     @blog = Blog.last
     @claim = Claim.new
-
-    @open_days = @place.open_days
-
     @shopping_cart = ShoppingCart.new
     @sliders = @place.sliders.order(:position)
-
-    # @place.view!(current_user.try(:id))
     impressionist @place
   end
 
@@ -77,12 +63,8 @@ class PlacesController < ApplicationController
   #
   def new
     @place = Place.new
-    # @place.open_days.build
-
+    @business_hour = @place.build_business_hour
     @cities = City.all
-    # build_opendays
-    # @open_days = @place.open_days
-
     @place.sliders.build
   end
 
@@ -90,7 +72,6 @@ class PlacesController < ApplicationController
   #
   #
   def create
-    ap params
     @place = Place.new(place_params)
     @place.owner = current_user
     @place.save
@@ -100,8 +81,6 @@ class PlacesController < ApplicationController
         format.html { redirect_to @place }
         format.json { render :show, status: :created, location: @place }
       else
-        build_opendays
-        @open_days = @place.open_days
         flash.now[:error] = @place.errors.full_messages.to_sentence
         format.html { render :new  }
         format.json { render json: @place.errors, status: :unprocessable_entity }
@@ -114,23 +93,18 @@ class PlacesController < ApplicationController
   #
   def edit
     @cities = City.uniq.pluck(:name)
-    # build_opendays
-    # @open_days = @place.open_days
+    @business_hour = @place.business_hour || @place.build_business_hour
   end
 
 
   #
   #
   def update
-    ap params
     respond_to do |format|
-      #binding.pry
       if @place.update(place_params)
         format.html { redirect_to @place }
         format.json { render :show, status: :ok, location: @place }
       else
-        # build_opendays
-        # @open_days = @place.open_days
         flash.now[:error] = @place.errors.full_messages.to_sentence
 
         format.html { render :edit }
@@ -162,10 +136,19 @@ class PlacesController < ApplicationController
     #
     #
     def place_params
+      business_hour_params = [:id, :place_id,
+        :sun, :sun_open, :sun_close,
+        :mon, :mon_open, :mon_close,
+        :tue, :tue_open, :tue_close,
+        :wed, :wed_open, :wed_close,
+        :thu, :thu_open, :thu_close,
+        :fri, :fri_open, :fri_close,
+        :sat, :sat_open, :sat_close]
+
       params.require(:place).permit(:name, :about, :city_id,
         :address, :phone, :facebook, :twitter, :instagram, :web, :map, :image, :slug,
         :lat, :lng, category_ids: [],
-        open_days_attributes: [ :id, :day_in_week, :start_time, :end_time, :open ],
+        business_hour_attributes: business_hour_params,
         sliders_attributes: [:id, :user_id, :image, :position, :_destroy])
     end
 
@@ -173,19 +156,10 @@ class PlacesController < ApplicationController
     #
     #
     def require_same_user
-      if current_user != @place.owner and !has_role?(:admin)
+      if !(current_user != @place.owner || !current_user.has_role?(:admin))
         flash[:danger] = "You can only edit or delete your own places."
         redirect_to root_path
       end
-    end
-
-
-    #
-    #
-    def build_opendays
-      Enum::Place::DAY_NAME[:options].each do |day|
-        @place.open_days.build(day_in_week: day.to_s)
-      end if @place.open_days.empty?
     end
 
 

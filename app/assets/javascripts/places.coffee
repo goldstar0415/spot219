@@ -30,9 +30,9 @@ set_location_fields = ->
 
 loadLocationBasedOnAddress=->
   address = $('#place_address').val()
-  city = $('#place_city_id').val()
-  country = $('#place_country').val()
-  full_address = "#{address}, #{city}, #{country}"
+  city = $('#place_city_id :selected').text()
+  # country = $('#place_country').val()
+  full_address = "#{address}, #{city}"
 
   codeAddress(full_address)
 
@@ -58,6 +58,6 @@ codeAddress =(address) ->
 
 @loadCurrentLocation=->
   set_location_fields()
-  $('#place_address').change ->
+  $('#place_address, #place_city_id').change ->
     loadLocationBasedOnAddress()
 

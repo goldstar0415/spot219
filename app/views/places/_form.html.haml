@@ -50,48 +50,25 @@
         .col-xs-12
           %hr/
           = f.input :image
+          = image_tag @place.image.thumb unless @place.image.blank?
 
         .col-xs-12
           %hr/
-          .open_days
-            / = f.simple_fields_for :open_days do |ff|
-            /   = ff.input :day_in_week, collection: Enum::Place::DAY_NAME[:options], as: :check_boxes
-            / %label{ for: 'open_day_attributes' } Open days
-            - Enum::Place::DAY_NAME[:options].each do |day|
-              = f.simple_fields_for :open_days, f.object.open_days.build do |ff|
-                / = ff.link_to_add
-                .row
-                  .col-xs-2
-                    / %input{ type: "checkbox", name: "place[open_days_attributes][]", value: day }
-                    / = day
-                    = ff.input :open, as: :boolean, label: day, input_html: { checked: @place.open_days.where(day_in_week: day).any? }
-                    = ff.input :day_in_week, as: :hidden, input_html: { value: day }
-                    / = ff.input :day_in_week
+          .open_days.row
+            = f.simple_fields_for :business_hour, @business_hour do |ff|
+              - Enum::Place::DAY_NAME[:options].each do |day|
+                .col-xs-2
+                  = ff.input eval(":#{day}")
 
-                  .col-xs-2
-                    = ff.input :start_time
+                .col-xs-2
+                  = ff.input eval(":#{day}_open"), label: false
 
-                  .col-xs-2
-                    = ff.input :end_time
-                  / - @open_days.each do |open_day|
-                  / .form-inline.active
-                  /   .row
-                  /     .col-md-2
-                  /       / = open_f.hidden_field :day_in_week, value: open_day.day_in_week.to_s
-
-                  /       %label
-                  /         / = open_day.day_in_week.to_s
-                  /         = open_f.check_box :day_in_week
-
-                  /     .col-md-1
-                  /       = open_f.time_select :start_time,  { ampm: true, discard_minute: true, ignore_date: true }, { class: 'form-control' }
-
-                  /     .col-md-1
-                  /       = open_f.time_select :end_time,  { ampm: true, discard_minute: true, ignore_date: true }, { class: 'form-control'}
+                .col-xs-2
+                  = ff.input eval(":#{day}_close"), label: false
 
         .col-xs-12
           = f.submit "Submit", class: "btn btn-success"
           = link_to 'Back', places_path, class: "btn btn-default btn-xs pull-right"
 
-/ :javascript
-/   loadCurrentLocation()
+:javascript
+  loadCurrentLocation()

@@ -43,9 +43,10 @@ class Place < ActiveRecord::Base
   has_many :place_categories, dependent: :destroy
   has_many :categories, through: :place_categories
   has_many :comments, as: :commentable, dependent: :destroy
-  has_many :open_days, dependent: :destroy
+  # has_many :open_days, dependent: :destroy
   has_many :sliders, dependent: :destroy
-  has_one :campaign, dependent: :destroy
+  has_one :campaign
+  has_one :business_hour
 
 
   # validations
@@ -56,7 +57,8 @@ class Place < ActiveRecord::Base
 
   # nested attributes
   #
-  accepts_nested_attributes_for :open_days, reject_if: :not_open, allow_destroy: true
+  # accepts_nested_attributes_for :open_days, reject_if: :not_open, allow_destroy: true
+  accepts_nested_attributes_for :business_hour
   accepts_nested_attributes_for :sliders, reject_if: :all_blank, allow_destroy: true
 
 
@@ -70,22 +72,6 @@ class Place < ActiveRecord::Base
   # callbacks
   #
   before_validation :strip_links
-
-  # after_save do
-  #   # place_owners = User.with_role(:place_owner, self).distinct.select { |u| u.has_role?(:place_owner, self) }
-  #   # place_owners.each { |owner| owner.revoke :place_owner, self }
-  #   # self.owner.add_role :place_owner, self
-  # end
-  # before_create { self.featured = !user.subscription_id.nil? }
-
-  # before_validation on: :update do |rec|
-  #   ap rec
-  # #   # ap "asd"
-  # #   # ap rec.open_days.count
-  #   if rec.open_days.count > 0
-  #     rec.open_days.each { |o| o.delete }
-  #   end
-  # end
 
 
   def search_data

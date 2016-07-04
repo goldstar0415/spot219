@@ -80,7 +80,8 @@ if Rails.env.development?
         instagram: "@#{company.parameterize}",
         web: "http://www.#{company.parameterize}.com",
         owner: User.create(email: user['email'], password: '12345678', first_name: user['name']['first'].titleize, last_name: user['name']['last'].titleize),
-        tagline: FFaker::Lorem.paragraph
+        tagline: FFaker::Lorem.paragraph,
+        remote_image_url: 'http://image.slidesharecdn.com/railsview-chapte5-form-121119021715-phpapp02/95/rails-view-chapte-5-form-15-638.jpg?cb=1353291573'
         )
 
       @place.categories << Category.order('RANDOM()').first(rand 1..3)

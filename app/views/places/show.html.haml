@@ -74,13 +74,13 @@
 
               - if @place.twitter.present?
                 %h6.social
-                  = link_to "https://twitter.com/#{@place.twitter}", target: :_blank do
+                  = link_to "https://twitter.com/#{@place.twitter.gsub('@', '')}", target: :_blank do
                     = icon 'twitter'
                     %span= @place.twitter
 
               - if @place.instagram.present?
                 %h6.social
-                  = link_to "https://instagram/#{@place.instagram}", target: :_blank do
+                  = link_to "https://instagram/#{@place.instagram.gsub('@', '')}", target: :_blank do
                     = icon 'instagram'
                     %span= @place.instagram
 
@@ -92,11 +92,13 @@
 
             %hr/
             %div
-              - if @open_days.present?
-                - @open_days.each do |open_day|
+              - Enum::Place::DAY_NAME[:options].each do |day|
+                - if eval("@place.business_hour.#{day}?")
                   %h6
-                    %strong= "#{open_day.day_in_week}"
-                    = " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}"
+                    %strong= day.to_s.titleize
+                    = eval("@place.business_hour.#{day}_open").strftime("%H:%M")
+                    %span -
+                    = eval("@place.business_hour.#{day}_close").strftime("%H:%M")
 
             %hr/
 
