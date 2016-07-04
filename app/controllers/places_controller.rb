@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   layout 'listing', only: :index
-  skip_before_action :verify_authenticity_token, if: :json_request?
+  skip_before_action :verify_authenticity_token, if: :json_request?, only: [:autocomplete]
   before_action :set_place, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index, :search, :autocomplete]
   before_action :require_same_user, only: [:edit, :update, :destroy]
@@ -21,12 +21,12 @@ class PlacesController < ApplicationController
     respond_to do |f|
       f.html
       f.json do
-        render json: Place.search(params[:q], {
+        render json: Place.search(params[:term], {
           fields: ['name^5', 'city'],
           limit: 5,
           load: false,
           misspellings: { below: 5 }
-        }).map{ |p| "#{p.name}, #{p.city}" }.to_json, callback: params[:callback]
+        }).map{ |p| "#{p.name}, #{p.city}" }.to_json
       end
     end
   end

@@ -27,13 +27,13 @@ $(document).ready ->
     auto: true,
     autoControls: true
 
-  # $searchfield = $('#search')
-  $('#search').autocomplete
-    source: (req, resp) ->
-      $.ajax
-        url: $('#search').data('url')
-        dataType: "jsonp"
-        data:
-          q: req.term
-        success: (data) ->
-          resp data.responseText
+  $searchfield = $('#search')
+  $searchfield.autocomplete
+    source: $searchfield.data('url')
+      # $.ajax
+      #   url: 'http://gd.geobytes.com/AutoCompleteCity'
+      #   dataType: "jsonp"
+      #   data:
+      #     q: req.term
+      #   success: (data) ->
+      #     resp data.responseText
