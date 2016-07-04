@@ -102,22 +102,17 @@ class Place < ActiveRecord::Base
   end
 
 
-  def add_open_days
-    if self.open_days.empty?
-      Enum::Place::DAY_NAME[:options].each do |day|
-        self.open_days.build(day_in_week: day.to_s)
-      end
+  def add_business_hour
+    if !self.business_hour.present?
+      # Enum::Place::DAY_NAME[:options].each do |day|
+      self.build_business_hour
+      # end
     end
   end
 
 
   def price
     5
-  end
-
-
-  def not_open open_day
-    open_day['open'].blank?
   end
 
 

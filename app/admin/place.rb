@@ -56,7 +56,7 @@ ActiveAdmin.register Place do
       row :lng
 
       row :image do
-        image_tag(place.image, width: 500)
+        image_tag(place.image.url, width: 500)
       end
 
       panel "Sliders" do
@@ -67,10 +67,10 @@ ActiveAdmin.register Place do
         end
       end
 
-      row :days do
-        raw(place.open_days.map do |open_day|
-          ("<strong>#{open_day.day_in_week}</strong>" + " #{open_day.start_time.strftime("%I%p")}-#{open_day.end_time.strftime("%I%p")}")
-        end.join('<br/>'))
+      row :business_hour do
+        raw(Enum::Place::DAY_NAME[:options].map do |day|
+          eval("place.business_hour.#{day}?") ? ("<strong>#{day.to_s.titleize}:</strong> " + eval("place.business_hour.#{day}_open").strftime("%H:%M") + " - " + eval("place.business_hour.#{day}_close").strftime("%H:%M")) : nil
+        end.join('<br>'))
       end
 
       row :reviews do
@@ -81,7 +81,7 @@ ActiveAdmin.register Place do
     active_admin_comments
   end
 
-   form do |f|
+  form do |f|
     f.inputs 'Community' do
       f.input :name
       f.input :about, as: :ckeditor
@@ -100,20 +100,25 @@ ActiveAdmin.register Place do
       hr
       f.inputs do
         f.has_many :sliders, heading: "Sliders", allow_destroy: true, new_record: true do |a|
-          a.input :image, as: :file, label: "Image", hint: a.object.image.nil? ? a.template.content_tag(:span, "No Image Yet") : a.template.image_tag(a.object.image)
+          a.input :image, as: :file, label: "Image", hint: a.object.image.nil? ? a.template.content_tag(:span, "No Image Yet") : a.template.image_tag(a.object.image.url)
         end
       end
       f.input :slug
       f.input :tagline, label: "SEO Title"
       # f.input :description, label: "SEO Description"
 
-      f.inputs do
-        f.object.add_open_days
-        f.has_many :open_days, heading: "Open Days", allow_destroy: false, new_record: false do |a|
-          a.input :day_in_week
-          a.input :start_time, as: :time_select, ampm: true, discard_minute: true, ignore_date: true, include_blank: false
-          a.input :end_time, as: :time_select, ampm: true, discard_minute: true, ignore_date: true, include_blank: false
+      f.inputs "Business Hour", for: [:business_hour, f.object.business_hour || BusinessHour.new] do |f|
+        Enum::Place::DAY_NAME[:options].each do |day|
+          f.input eval(":#{day}")
+          f.input eval(":#{day}_open"), label: false
+          f.input eval(":#{day}_close"), label: false
         end
+        # f.object.add_business_hour
+        # f.has_one :business_hour, heading: "Business Hour", new_record: false do |a|
+        #   # a.input :day_in_week
+        #   # a.input :start_time, as: :time_select, ampm: true, discard_minute: true, ignore_date: true, include_blank: false
+        #   # a.input :end_time, as: :time_select, ampm: true, discard_minute: true, ignore_date: true, include_blank: false
+        # end
       end
     end
 

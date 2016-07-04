@@ -60,4 +60,3 @@ codeAddress =(address) ->
   set_location_fields()
   $('#place_address, #place_city_id').change ->
     loadLocationBasedOnAddress()
-
