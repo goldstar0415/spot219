@@ -46,7 +46,7 @@ class Place < ActiveRecord::Base
   # has_many :open_days, dependent: :destroy
   has_many :sliders, dependent: :destroy
   has_one :campaign
-  has_one :business_hour
+  has_one :business_hour, dependent: :destroy
 
 
   # validations
@@ -73,6 +73,8 @@ class Place < ActiveRecord::Base
   #
   before_validation :strip_links
 
+  before_save :build_business_hour
+
 
   def search_data
     {
@@ -98,15 +100,6 @@ class Place < ActiveRecord::Base
       self.comments.size
     else
       0
-    end
-  end
-
-
-  def add_business_hour
-    if !self.business_hour.present?
-      # Enum::Place::DAY_NAME[:options].each do |day|
-      self.build_business_hour
-      # end
     end
   end
 
